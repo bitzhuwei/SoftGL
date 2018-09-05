@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
+namespace SoftGL
 {
     public struct TextureUnit
     {
@@ -18,7 +18,7 @@ namespace CSharpGL
         public uint textureRectangle;
     }
 
-    public partial class SoftGLRenderContext
+    partial class SoftGLRenderContext
     {
         private const int GL_MAX_TEXTURE_IMAGE_UNITS = 8;
         private TextureUnit[] textureUnits = new TextureUnit[GL_MAX_TEXTURE_IMAGE_UNITS];

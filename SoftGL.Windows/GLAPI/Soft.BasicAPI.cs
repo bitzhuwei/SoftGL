@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-namespace CSharpGL
+namespace SoftGL
 {
     public partial class SoftGL : GL
     {

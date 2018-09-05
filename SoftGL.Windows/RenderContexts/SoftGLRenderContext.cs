@@ -2,12 +2,12 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-namespace CSharpGL
+namespace SoftGL
 {
     /// <summary>
     /// creates render device and render context.
     /// </summary>
-    public partial class SoftGLRenderContext : GLRenderContext
+    public partial class SoftGLRenderContext : CSharpGL.GLRenderContext
     {
         /// <summary>
         /// 
@@ -21,7 +21,7 @@ namespace CSharpGL
         /// <param name="height">The height.</param>
         /// <param name="parameters">parameters.</param>
         /// <returns></returns>
-        public SoftGLRenderContext(int width, int height, ContextGenerationParams parameters)
+        public SoftGLRenderContext(int width, int height, CSharpGL.ContextGenerationParams parameters)
             : base(width, height, parameters)
         {
             GCHandle handle = GCHandle.Alloc(this, GCHandleType.WeakTrackResurrection);
@@ -53,7 +53,7 @@ namespace CSharpGL
         /// <param name="height"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        private bool CreateBasicRenderContext(int width, int height, ContextGenerationParams parameters)
+        private bool CreateBasicRenderContext(int width, int height, CSharpGL.ContextGenerationParams parameters)
         {
             //var wndClass = new WNDCLASSEX();
             //wndClass.Init();
@@ -114,7 +114,7 @@ namespace CSharpGL
         /// means building a new context. If this fails, we'll have to make do with 2.1.
         /// </summary>
         /// <param name="parameters"></param>
-        protected bool UpdateContextVersion(ContextGenerationParams parameters)
+        protected bool UpdateContextVersion(CSharpGL.ContextGenerationParams parameters)
         {
             //  If the request version number is anything up to and including 2.1, standard render contexts
             //  will provide what we need (as long as the graphics card drivers are up to date).
@@ -135,19 +135,19 @@ namespace CSharpGL
 
                     int[] attribList = new int[]
                     {
-                        SoftGL.WGL_SUPPORT_OPENGL_ARB,   (int)GL.GL_TRUE,
-                        SoftGL.WGL_DRAW_TO_WINDOW_ARB,   (int)GL.GL_TRUE,
-                        SoftGL.WGL_DOUBLE_BUFFER_ARB,    (int)GL.GL_TRUE,
-                        SoftGL.WGL_ACCELERATION_ARB,     SoftGL.WGL_FULL_ACCELERATION_ARB,
-                        SoftGL.WGL_PIXEL_TYPE_ARB,       SoftGL.WGL_TYPE_RGBA_ARB,
-                        SoftGL.WGL_COLOR_BITS_ARB,       parameters.ColorBits,
-                        SoftGL.WGL_ACCUM_BITS_ARB,       parameters.AccumBits,
-                        SoftGL.WGL_ACCUM_RED_BITS_ARB,   parameters.AccumRedBits,
-                        SoftGL.WGL_ACCUM_GREEN_BITS_ARB, parameters.AccumGreenBits,
-                        SoftGL.WGL_ACCUM_BLUE_BITS_ARB,  parameters.AccumBlueBits,
-                        SoftGL.WGL_ACCUM_ALPHA_BITS_ARB, parameters.AccumAlphaBits,
-                        SoftGL.WGL_DEPTH_BITS_ARB,       parameters.DepthBits,
-                        SoftGL.WGL_STENCIL_BITS_ARB,     parameters.StencilBits,
+                        //SoftGL.WGL_SUPPORT_OPENGL_ARB,   (int)GL.GL_TRUE,
+                        //SoftGL.WGL_DRAW_TO_WINDOW_ARB,   (int)GL.GL_TRUE,
+                        //SoftGL.WGL_DOUBLE_BUFFER_ARB,    (int)GL.GL_TRUE,
+                        //SoftGL.WGL_ACCELERATION_ARB,     SoftGL.WGL_FULL_ACCELERATION_ARB,
+                        //SoftGL.WGL_PIXEL_TYPE_ARB,       SoftGL.WGL_TYPE_RGBA_ARB,
+                        //SoftGL.WGL_COLOR_BITS_ARB,       parameters.ColorBits,
+                        //SoftGL.WGL_ACCUM_BITS_ARB,       parameters.AccumBits,
+                        //SoftGL.WGL_ACCUM_RED_BITS_ARB,   parameters.AccumRedBits,
+                        //SoftGL.WGL_ACCUM_GREEN_BITS_ARB, parameters.AccumGreenBits,
+                        //SoftGL.WGL_ACCUM_BLUE_BITS_ARB,  parameters.AccumBlueBits,
+                        //SoftGL.WGL_ACCUM_ALPHA_BITS_ARB, parameters.AccumAlphaBits,
+                        //SoftGL.WGL_DEPTH_BITS_ARB,       parameters.DepthBits,
+                        //SoftGL.WGL_STENCIL_BITS_ARB,     parameters.StencilBits,
                         0,        //End
                     };
 
@@ -165,12 +165,12 @@ namespace CSharpGL
 
                     int[] attributes =
                     {
-                        SoftGL.WGL_CONTEXT_MAJOR_VERSION_ARB, 
-                        major,
-                        SoftGL.WGL_CONTEXT_MINOR_VERSION_ARB, 
-                        minor,
-                        SoftGL.WGL_CONTEXT_PROFILE_MASK_ARB,  
-                        SoftGL.WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB,
+                        //SoftGL.WGL_CONTEXT_MAJOR_VERSION_ARB, 
+                        //major,
+                        //SoftGL.WGL_CONTEXT_MINOR_VERSION_ARB, 
+                        //minor,
+                        //SoftGL.WGL_CONTEXT_PROFILE_MASK_ARB,  
+                        //SoftGL.WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB,
 //#if DEBUG
 //                        GL.WGL_CONTEXT_FLAGS, GL.WGL_CONTEXT_DEBUG_BIT,// this is a debug context
 //#endif

@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-namespace CSharpGL
+namespace SoftGL
 {
     public partial class SoftGL
     {

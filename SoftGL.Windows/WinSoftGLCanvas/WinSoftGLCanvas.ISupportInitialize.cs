@@ -47,7 +47,7 @@ namespace CSharpGL
                 {
                     parameters = this.parameters;
                 }
-                var renderContext = new SoftGLRenderContext(width, height, parameters);
+                var renderContext = new SoftGL.SoftGLRenderContext(width, height, parameters);
                 renderContext.MakeCurrent();
                 this.renderContext = renderContext;
 

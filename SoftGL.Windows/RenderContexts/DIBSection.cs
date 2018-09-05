@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace CSharpGL
+namespace SoftGL
 {
     /// <summary>
     /// device-independent bitmap
@@ -15,7 +15,7 @@ namespace CSharpGL
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
         /// <param name="parameters">parameters.</param>
-        public DIBSection(IntPtr deviceContext, int width, int height, ContextGenerationParams parameters)
+        public DIBSection(IntPtr deviceContext, int width, int height, CSharpGL.ContextGenerationParams parameters)
         {
             this.Width = width;
             this.Height = height;
@@ -50,7 +50,7 @@ namespace CSharpGL
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
         /// <param name="parameters">parameters.</param>
-        public void Resize(int width, int height, ContextGenerationParams parameters)
+        public void Resize(int width, int height, CSharpGL.ContextGenerationParams parameters)
         {
             //	Destroy existing objects.
             this.DestroyBitmap();
@@ -81,7 +81,7 @@ namespace CSharpGL
         /// </summary>
         /// <param name="hDC"></param>
         /// <param name="parameters">parameters.</param>
-        protected void SetPixelFormat(IntPtr hDC, ContextGenerationParams parameters)
+        protected void SetPixelFormat(IntPtr hDC, CSharpGL.ContextGenerationParams parameters)
         {
             //	Create the big lame pixel format majoo.
             //var pdf = new PixelFormatDescriptor();
