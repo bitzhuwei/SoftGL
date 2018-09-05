@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{71DC4735
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "d00_HelloSoftGL", "Demos\d00_HelloSoftGL\d00_HelloSoftGL.csproj", "{F9D8BC8C-CCC1-4AA4-A794-EE17F9BB322B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftGL", "SoftGL\SoftGL.csproj", "{6D016512-38B7-49F0-9FCB-B58621621545}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{F9D8BC8C-CCC1-4AA4-A794-EE17F9BB322B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9D8BC8C-CCC1-4AA4-A794-EE17F9BB322B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9D8BC8C-CCC1-4AA4-A794-EE17F9BB322B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D016512-38B7-49F0-9FCB-B58621621545}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D016512-38B7-49F0-9FCB-B58621621545}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D016512-38B7-49F0-9FCB-B58621621545}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D016512-38B7-49F0-9FCB-B58621621545}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
