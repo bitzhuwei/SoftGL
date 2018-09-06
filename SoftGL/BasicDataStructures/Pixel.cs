@@ -6,7 +6,7 @@ namespace SoftGL
     ///
     /// </summary>
     [StructLayout(LayoutKind.Explicit)]
-    public struct Pixel
+    struct Pixel
     {
         /// <summary>
         ///

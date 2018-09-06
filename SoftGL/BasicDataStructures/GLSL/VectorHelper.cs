@@ -3,7 +3,7 @@
     /// <summary>
     /// vector's helper.
     /// </summary>
-    public static class VectorHelper
+    static class VectorHelper
     {
         /// <summary>
         /// separator

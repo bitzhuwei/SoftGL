@@ -9,7 +9,7 @@ namespace SoftGL
     /// </summary>
     //[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Size = 4 * 4)]
     [StructLayout(LayoutKind.Explicit)]
-    public struct vec4 : IEquatable<vec4>
+    struct vec4 : IEquatable<vec4>
     {
         /// <summary>
         /// x = r = s

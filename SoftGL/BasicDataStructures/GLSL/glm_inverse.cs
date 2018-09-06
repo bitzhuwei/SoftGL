@@ -1,6 +1,6 @@
 ﻿namespace SoftGL
 {
-    public static partial class glm
+    static partial class glm
     {
         /// <summary>
         /// Gets the transposed matrix.

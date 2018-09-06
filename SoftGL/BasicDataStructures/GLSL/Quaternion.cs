@@ -6,7 +6,7 @@ namespace SoftGL
     /// <summary>
     /// Quaternion
     /// </summary>
-    public struct Quaternion
+    struct Quaternion
     {
         /// <summary>
         ///

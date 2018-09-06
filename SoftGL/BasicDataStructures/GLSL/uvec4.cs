@@ -9,7 +9,7 @@ namespace SoftGL
     /// </summary>
     //[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Size = 4 * 4)]
     [StructLayout(LayoutKind.Explicit)]
-    public struct uvec4 : IEquatable<uvec4>
+    struct uvec4 : IEquatable<uvec4>
     {
         /// <summary>
         /// </summary>

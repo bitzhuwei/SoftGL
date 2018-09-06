@@ -2,7 +2,7 @@
 
 namespace SoftGL
 {
-    public static partial class glm
+    static partial class glm
     {
         public static uint packUnorm4x8(this vec4 v)
         {

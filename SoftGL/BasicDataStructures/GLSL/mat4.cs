@@ -8,7 +8,7 @@ namespace SoftGL
     /// Represents a 4x4 matrix.
     /// </summary>
     [StructLayout(LayoutKind.Explicit)]
-    public struct mat4 : IEquatable<mat4>
+    struct mat4 : IEquatable<mat4>
     {
         //internal static mat4 Parse(string value)
         //{

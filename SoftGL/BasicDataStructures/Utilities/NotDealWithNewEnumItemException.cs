@@ -8,7 +8,7 @@ namespace SoftGL
     /// <summary>
     /// 
     /// </summary>
-    public class NotDealWithNewEnumItemException : Exception
+    class NotDealWithNewEnumItemException : Exception
     {
         private Type enumType;
         /// <summary>

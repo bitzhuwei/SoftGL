@@ -5,7 +5,7 @@ namespace SoftGL
     /// <summary>
     /// Invoke ItemUpdated event when item is updated.
     /// </summary>
-    public class NoisyArray<T> where T : struct, IEquatable<T>
+    class NoisyArray<T> where T : struct, IEquatable<T>
     {
         private T[] array;
 
@@ -81,7 +81,7 @@ namespace SoftGL
     /// <see cref="NoisyArray&lt;T&gt;"/>'s event args.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class NoisyArrayEventArgs<T> : EventArgs
+    class NoisyArrayEventArgs<T> : EventArgs
     {
         /// <summary>
         /// <see cref="NoisyArray&lt;T&gt;"/>'s event args.

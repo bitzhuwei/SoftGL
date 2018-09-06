@@ -8,7 +8,7 @@ namespace SoftGL
     /// Represents a two dimensional vector.
     /// </summary>
     [StructLayout(LayoutKind.Explicit)]
-    public struct uvec2 : IEquatable<uvec2>
+    struct uvec2 : IEquatable<uvec2>
     {
         /// <summary>
         /// Don't change the order of x, y appears!

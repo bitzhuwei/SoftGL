@@ -5,7 +5,7 @@ namespace SoftGL
     /// <summary>
     ///
     /// </summary>
-    public static class PositionHelper
+    static class PositionHelper
     {
 
         ///// <summary>

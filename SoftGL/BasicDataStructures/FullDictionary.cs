@@ -13,7 +13,7 @@ namespace SoftGL
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
     /// <typeparam name="TValue"></typeparam>
-    public class FullDictionary<TKey, TValue> : IDictionary<TKey, TValue>,
+    class FullDictionary<TKey, TValue> : IDictionary<TKey, TValue>,
         ICollection<KeyValuePair<TKey, TValue>>,
         IDictionary, ICollection,
         //IReadOnlyDictionary<TKey, TValue>,

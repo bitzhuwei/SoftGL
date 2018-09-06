@@ -8,7 +8,7 @@ namespace SoftGL
     /// Represents a 2x2 matrix.
     /// </summary>
     [StructLayout(LayoutKind.Explicit)]
-    public struct mat2 : IEquatable<mat2>
+    struct mat2 : IEquatable<mat2>
     {
         //internal static mat2 Parse(string value)
         //{

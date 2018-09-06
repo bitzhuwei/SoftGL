@@ -6,7 +6,7 @@ namespace SoftGL
     /// <summary>
     ///
     /// </summary>
-    public static class StructHelper
+    static class StructHelper
     {
         ///// <summary>
         ///// 从当前位置读取一个struct并前移Stream的位置<code>Marshal.SizeOf(typeof(T))</code>的距离。

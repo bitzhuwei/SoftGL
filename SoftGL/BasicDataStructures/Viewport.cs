@@ -8,7 +8,7 @@ namespace SoftGL
     /// <summary>
     /// 
     /// </summary>
-    public class Viewport
+    class Viewport
     {
         /// <summary>
         /// 

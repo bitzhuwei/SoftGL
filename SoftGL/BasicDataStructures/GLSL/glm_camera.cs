@@ -3,7 +3,7 @@
 namespace SoftGL
 {
     // ReSharper disable InconsistentNaming
-    public static partial class glm
+    static partial class glm
     {
         /// <summary>
         /// Creates a frustrum projection matrix.

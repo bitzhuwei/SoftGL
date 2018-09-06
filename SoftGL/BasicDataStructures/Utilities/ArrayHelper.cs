@@ -6,7 +6,7 @@ namespace SoftGL
     /// <summary>
     /// Helper class for array.
     /// </summary>
-    public static class ArrayHelper
+    static class ArrayHelper
     {
         /// <summary>
         /// Print elements in format 'element, element, element, ...'

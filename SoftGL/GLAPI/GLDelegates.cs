@@ -8,7 +8,7 @@ namespace SoftGL
     /// <summary>
     /// Cached delegates. Used in GL.GetDelegateFor().
     /// </summary>
-    public static class GLDelegates
+    static class GLDelegates
     {
         /// <summary>
         /// 

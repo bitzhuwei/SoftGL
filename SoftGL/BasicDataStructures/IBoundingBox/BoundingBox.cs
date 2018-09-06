@@ -5,7 +5,7 @@ namespace SoftGL
     /// <summary>
     /// Specify a bounding box that marks a model's edges.
     /// </summary>
-    public class BoundingBox : IBoundingBox
+    class BoundingBox : IBoundingBox
     {
         /// <summary>
         /// Maximum position of this bounding box.

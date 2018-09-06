@@ -5,7 +5,7 @@ namespace SoftGL
     /// <summary>
     /// Records time when is a property is updated and uploaded.
     /// </summary>
-    public class UpdatingRecord
+    class UpdatingRecord
     {
         /// <summary>
         /// The last time that a property is updated in client application.

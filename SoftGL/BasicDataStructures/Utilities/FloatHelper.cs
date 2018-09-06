@@ -3,7 +3,7 @@
     /// <summary>
     ///
     /// </summary>
-    public static class FloatHelper
+    static class FloatHelper
     {
         /// <summary>
         /// 获取float类型的简短描述。

@@ -3,7 +3,7 @@
     /// <summary>
     /// Specify a cuboid that marks a model's edges.
     /// </summary>
-    public interface IBoundingBox
+    interface IBoundingBox
     {
         /// <summary>
         /// Maximum position of this cuboid.

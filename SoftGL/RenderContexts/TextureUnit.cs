@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SoftGL
 {
-    public struct TextureUnit
+    struct TextureUnit
     {
         public uint texture1D;
         public uint texture2D;

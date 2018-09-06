@@ -3,7 +3,7 @@
     /// <summary>
     /// treat <see cref="mat4"/> as a matrix that transform object from model's space to world's space.
     /// </summary>
-    public static class ModelMatrixHelper
+    static class ModelMatrixHelper
     {
         /// <summary>
         /// Gets rotate factor in specified <paramref name="matrix"/>.

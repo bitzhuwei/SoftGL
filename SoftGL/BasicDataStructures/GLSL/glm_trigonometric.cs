@@ -5,7 +5,7 @@ namespace SoftGL
     /// <summary>
     ///
     /// </summary>
-    public static partial class glm
+    static partial class glm
     {
         /// <summary>
         ///

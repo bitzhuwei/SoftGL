@@ -5,7 +5,7 @@ namespace SoftGL
     /// <summary>
     ///
     /// </summary>
-    public static class IBoundingBoxHelper
+    static class IBoundingBoxHelper
     {
         /// <summary>
         /// Gets all maximum parts from two <see cref="vec3"/>.
