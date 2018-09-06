@@ -39,11 +39,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BasicDataStructures\Events\GLEventArgs.cs" />
-    <Compile Include="BasicDataStructures\Events\GLEventHandler`1.cs" />
-    <Compile Include="BasicDataStructures\Events\GLKeyEventArgs.cs" />
-    <Compile Include="BasicDataStructures\Events\GLKeyPressEventArgs.cs" />
-    <Compile Include="BasicDataStructures\Events\GLMouseEventArgs.cs" />
     <Compile Include="BasicDataStructures\FullDictionary.cs" />
     <Compile Include="BasicDataStructures\GLSL\bvec2.cs" />
     <Compile Include="BasicDataStructures\GLSL\bvec3.cs" />
