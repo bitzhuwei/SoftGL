@@ -39,8 +39,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BasicDataStructures\Connection\ConnectionField.cs" />
-    <Compile Include="BasicDataStructures\Connection\ConnectionFieldBase.cs" />
     <Compile Include="BasicDataStructures\Events\GLEventArgs.cs" />
     <Compile Include="BasicDataStructures\Events\GLEventHandler`1.cs" />
     <Compile Include="BasicDataStructures\Events\GLKeyEventArgs.cs" />
@@ -143,7 +141,6 @@
     <Content Include="GLAPI\GL.Enumerations\DrawMode.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="BasicDataStructures\Connection\readme.md" />
     <None Include="BasicDataStructures\IBoundingBox\readme.md" />
     <None Include="BasicDataStructures\readme.md" />
     <None Include="GLAPI\readme.md" />
