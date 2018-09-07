@@ -1,7 +1,7 @@
 ﻿using System;
 namespace SoftGL
 {
-    public partial class GL
+    partial class GL
     {
         #region OpenGL 3.0
 

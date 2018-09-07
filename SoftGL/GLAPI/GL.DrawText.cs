@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SoftGL
 {
-    public partial class GL
+    partial class GL
     {
         ///// <summary>
         ///// 

@@ -1,6 +1,6 @@
 ﻿namespace SoftGL
 {
-    public partial class GL
+    partial class GL
     {
         #region The OpenGL constant definitions.
 

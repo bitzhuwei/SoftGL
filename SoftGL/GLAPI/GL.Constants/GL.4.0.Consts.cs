@@ -1,6 +1,6 @@
 ﻿namespace SoftGL
 {
-    public partial class GL
+    partial class GL
     {
         #region OpenGL 4.0
 

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SoftGL
 {
-    public partial class GL
+    partial class GL
     {
         #region OpenGL 2.0
 

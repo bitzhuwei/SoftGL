@@ -4,7 +4,7 @@ using System.Text;
 namespace SoftGL
 {
     // TODO: members of OpenGL in this file is not organized yet.
-    public partial class GL
+    partial class GL
     {
         #region GL_EXT_rescale_normal
 
