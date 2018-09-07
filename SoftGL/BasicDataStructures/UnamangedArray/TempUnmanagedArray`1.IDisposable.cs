@@ -1,7 +1,7 @@
 ﻿using System;
 namespace SoftGL
 {
-    public sealed unsafe partial class TempUnmanagedArray<T>
+    sealed unsafe partial class TempUnmanagedArray<T>
     {
         /// <summary>
         /// Dispose unmanaged resources

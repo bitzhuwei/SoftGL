@@ -7,7 +7,7 @@ namespace SoftGL
     /// An temporary unmanaged huge array who don't dispose its unmanged memory.
     /// </summary>
     /// <typeparam name="T">sbyte, byte, char, short, ushort, int, uint, long, ulong, float, double, decimal, bool or other struct types. enum not supported.</typeparam>
-    public unsafe partial class TempUnmanagedArray<T> : UnmanagedArrayBase where T : struct
+    sealed unsafe partial class TempUnmanagedArray<T> : UnmanagedArrayBase where T : struct
     {
         /// <summary>
         /// An temporary unmanaged huge array who don't dispose its unmanged memory.

@@ -8,7 +8,7 @@ namespace SoftGL
     /// <para>Check http://www.cnblogs.com/bitzhuwei/p/huge-unmanged-array-in-csharp.html </para>
     /// </summary>
     /// <typeparam name="T">sbyte, byte, char, short, ushort, int, uint, long, ulong, float, double, decimal, bool or other struct types. enum not supported.</typeparam>
-    public sealed unsafe partial class UnmanagedArray<T> : UnmanagedArrayBase where T : struct
+    sealed unsafe partial class UnmanagedArray<T> : UnmanagedArrayBase where T : struct
     {
         /// <summary>
         /// unmanaged array.

@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace SoftGL
 {
-    public abstract partial class UnmanagedArrayBase
+    abstract partial class UnmanagedArrayBase
     {
         #region IDisposable Members
 

@@ -11,7 +11,7 @@ namespace SoftGL
     /// <see cref="GL"/> represents functions suppproted in OpenGL32.dll/openGL32.so/... and all extended functions.
     /// </para>
     /// </summary>
-    public abstract partial class GL
+    abstract partial class GL
     {
         /// <summary>
         /// The only insstance of the OpenGL implementation on current operation system.

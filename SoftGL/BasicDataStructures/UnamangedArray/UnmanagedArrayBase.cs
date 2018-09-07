@@ -8,7 +8,7 @@ namespace SoftGL
     /// Base type of unmanaged array.
     /// <para>Similar to array in <code>int array[Length];</code></para>
     /// </summary>
-    public abstract partial class UnmanagedArrayBase : IDisposable
+    abstract partial class UnmanagedArrayBase : IDisposable
     {
         /// <summary>
         /// 此非托管数组中的数据在内存中的起始地址

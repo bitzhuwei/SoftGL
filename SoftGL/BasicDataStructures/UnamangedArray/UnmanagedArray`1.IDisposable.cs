@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 namespace SoftGL
 {
-    public sealed unsafe partial class UnmanagedArray<T>
+    sealed unsafe partial class UnmanagedArray<T>
     {
         /// <summary>
         /// How many <see cref="UnmanagedArray&lt;T&gt;"/> objects allocated?
