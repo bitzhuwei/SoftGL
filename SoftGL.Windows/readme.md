@@ -1,2 +1,2 @@
 ﻿# namespace SoftGL.Windows
-Implementation of OpenGL in pure C# on Windows.
+Initialization of OpenGL(based on SoftGL) in pure C# on Windows.
