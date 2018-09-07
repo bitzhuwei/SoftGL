@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 
 namespace SoftGL
 {
-    public partial class SoftGL : GL
+    public partial class WinSoftGL : GL
     {
         public override void Accum(uint op, float value)
         {

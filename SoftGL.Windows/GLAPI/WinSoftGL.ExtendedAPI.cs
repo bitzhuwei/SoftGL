@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 
 namespace SoftGL
 {
-    public partial class SoftGL
+    public partial class WinSoftGL
     {
-        private static readonly Type thisType = typeof(SoftGL);
+        private static readonly Type thisType = typeof(WinSoftGL);
         //private static 
         public override Delegate GetDelegateFor(string functionName, Type functionDeclaration)
         {

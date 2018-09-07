@@ -41,10 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GLAPI\SoftGL.cs" />
-    <Compile Include="GLAPI\SoftGL.ExtendedAPI.cs" />
-    <Compile Include="GLAPI\SoftGL.ExtendedConsts.cs" />
-    <Compile Include="GLAPI\Soft.BasicAPI.cs" />
+    <Compile Include="GLAPI\WinSoftGL.cs" />
+    <Compile Include="GLAPI\WinSoftGL.ExtendedAPI.cs" />
+    <Compile Include="GLAPI\WinSoftGL.ExtendedConsts.cs" />
+    <Compile Include="GLAPI\WinSoftGL.BasicAPI.cs" />
     <Compile Include="GUI\WinCtrlRoot\TranslateExtension.cs" />
     <Compile Include="GUI\WinCtrlRoot\WinSoftCtrlRoot.cs" />
     <Compile Include="RenderContexts\DIBSection.cs" />

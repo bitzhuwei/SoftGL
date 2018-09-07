@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SoftGL
 {
-    public partial class SoftGL
+    public partial class WinSoftGL
     {
 
         #region WGL_create_context
