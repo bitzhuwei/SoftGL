@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSharpGL
+namespace SoftGL.Windows
 {
     /// <summary>
     /// A FontBitmap entry contains the details of a font face.

@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using CSharpGL;
 
-namespace SoftGL
+namespace SoftGL.Windows
 {
     /// <summary>
     /// creates render device and render context.

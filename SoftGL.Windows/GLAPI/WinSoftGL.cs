@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using CSharpGL;
 
-namespace SoftGL
+namespace SoftGL.Windows
 {
     /// <summary>
     /// Implementation of OpenGL on Windows System.

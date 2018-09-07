@@ -1,4 +1,4 @@
-﻿namespace CSharpGL
+﻿namespace SoftGL.Windows
 {
     partial class WinSoftGLCanvas
     {

@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace CSharpGL
 {
-    public partial class SoftGL
+    partial class WinSoftGL
     {
         #region The OpenGL DLL Functions.
 

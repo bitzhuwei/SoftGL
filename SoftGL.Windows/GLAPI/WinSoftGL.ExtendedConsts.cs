@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SoftGL
+namespace SoftGL.Windows
 {
-    public partial class WinSoftGL
+    partial class WinSoftGL
     {
 
         #region WGL_create_context

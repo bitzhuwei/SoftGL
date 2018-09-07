@@ -3,8 +3,9 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+using CSharpGL;
 
-namespace CSharpGL
+namespace SoftGL.Windows
 {
     // IGLCanvas
     public partial class WinSoftGLCanvas

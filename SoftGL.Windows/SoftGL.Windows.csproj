@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GLAPI\WinSoftGL.DrawText.cs" />
     <Compile Include="GLAPI\WinSoftGL.cs" />
     <Compile Include="GLAPI\WinSoftGL.ExtendedAPI.cs" />
     <Compile Include="GLAPI\WinSoftGL.ExtendedConsts.cs" />

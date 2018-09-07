@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 
-namespace CSharpGL
+namespace SoftGL.Windows
 {
     /// <summary>
     /// This class wraps the functionality of the wglUseFontBitmaps function to

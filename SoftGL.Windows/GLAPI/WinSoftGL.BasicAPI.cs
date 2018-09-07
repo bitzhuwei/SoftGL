@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-namespace SoftGL
+namespace SoftGL.Windows
 {
-    public partial class WinSoftGL : GL
+    partial class WinSoftGL
     {
         public override void Accum(uint op, float value)
         {

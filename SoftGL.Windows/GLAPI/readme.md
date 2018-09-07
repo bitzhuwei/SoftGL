@@ -1,2 +1,2 @@
-﻿# `CSharpGL`
-`CSharpGL` is an OpenGL implementation on Windows Operation System.
+﻿# `SoftGL.Windows`
+`SoftGL.Windows` is an OpenGL initialization of `SoftGL` on Windows Operation System.

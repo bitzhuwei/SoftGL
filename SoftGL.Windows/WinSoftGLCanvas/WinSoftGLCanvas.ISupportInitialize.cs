@@ -1,10 +1,11 @@
-﻿using System;
+﻿using CSharpGL;
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace CSharpGL
+namespace SoftGL.Windows
 {
 
     public partial class WinSoftGLCanvas
@@ -47,7 +48,7 @@ namespace CSharpGL
                 {
                     parameters = this.parameters;
                 }
-                var renderContext = new SoftGL.SoftGLRenderContext(width, height, parameters);
+                var renderContext = new SoftGLRenderContext(width, height, parameters);
                 renderContext.MakeCurrent();
                 this.renderContext = renderContext;
 

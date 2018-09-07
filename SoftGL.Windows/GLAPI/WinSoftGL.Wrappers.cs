@@ -7,7 +7,7 @@ using System.Text;
 namespace CSharpGL
 {
     // 用重载和枚举来简化GL编程。
-    public partial class SoftGL
+    partial class WinSoftGL
     {
         #region translate, rotate, scale
 

@@ -1,9 +1,10 @@
-﻿using System;
+﻿using CSharpGL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CSharpGL
+namespace SoftGL.Windows
 {
     /// <summary>
     /// Root Control in CSharpGL's scene's GUI system.

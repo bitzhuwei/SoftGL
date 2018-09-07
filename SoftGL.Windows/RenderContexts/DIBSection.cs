@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace SoftGL
+namespace SoftGL.Windows
 {
     /// <summary>
     /// device-independent bitmap

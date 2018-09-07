@@ -1,6 +1,6 @@
 using System;
 
-namespace SoftGL
+namespace SoftGL.Windows
 {
     partial class DIBSection
     {

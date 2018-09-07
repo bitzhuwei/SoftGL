@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-namespace SoftGL
+namespace SoftGL.Windows
 {
-    public partial class WinSoftGL
+    partial class WinSoftGL
     {
         private static readonly Type thisType = typeof(WinSoftGL);
         //private static 
