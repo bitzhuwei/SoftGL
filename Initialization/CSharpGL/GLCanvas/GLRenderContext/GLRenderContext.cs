@@ -12,13 +12,11 @@ namespace CSharpGL
         /// </summary>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
-        /// <param name="parameters">parameters.</param>
         /// <returns></returns>
-        public GLRenderContext(int width, int height, ContextGenerationParams parameters)
+        public GLRenderContext(int width, int height)
         {
             this.Width = width;
             this.Height = height;
-            this.Parameters = parameters;
         }
 
         /// <summary>
@@ -65,10 +63,5 @@ namespace CSharpGL
         /// <value>The height.</value>
         public int Height { get; protected set; }
 
-        /// <summary>
-        /// Gets or sets the bit depth.
-        /// </summary>
-        /// <value>The bit depth.</value>
-        public ContextGenerationParams Parameters { get; protected set; }
     }
 }

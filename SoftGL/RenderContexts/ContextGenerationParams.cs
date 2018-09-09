@@ -9,7 +9,7 @@ namespace SoftGL
     /// <summary>
     /// 
     /// </summary>
-    class ContextGenerationParams
+    public class ContextGenerationParams
     {
         private byte colorBits = 32;
         /// <summary>

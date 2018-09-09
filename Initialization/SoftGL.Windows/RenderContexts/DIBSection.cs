@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
+using SoftGL;
 
 namespace SoftGL.Windows
 {
@@ -15,7 +16,7 @@ namespace SoftGL.Windows
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
         /// <param name="parameters">parameters.</param>
-        public DIBSection(IntPtr deviceContext, int width, int height, CSharpGL.ContextGenerationParams parameters)
+        public DIBSection(IntPtr deviceContext, int width, int height, ContextGenerationParams parameters)
         {
             this.Width = width;
             this.Height = height;
@@ -50,7 +51,7 @@ namespace SoftGL.Windows
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
         /// <param name="parameters">parameters.</param>
-        public void Resize(int width, int height, CSharpGL.ContextGenerationParams parameters)
+        public void Resize(int width, int height, ContextGenerationParams parameters)
         {
             //	Destroy existing objects.
             this.DestroyBitmap();
@@ -81,7 +82,7 @@ namespace SoftGL.Windows
         /// </summary>
         /// <param name="hDC"></param>
         /// <param name="parameters">parameters.</param>
-        protected void SetPixelFormat(IntPtr hDC, CSharpGL.ContextGenerationParams parameters)
+        protected void SetPixelFormat(IntPtr hDC, ContextGenerationParams parameters)
         {
             //	Create the big lame pixel format majoo.
             //var pdf = new PixelFormatDescriptor();

@@ -9,6 +9,9 @@ namespace SoftGL.Windows
     {
         public override void Accum(uint op, float value)
         {
+            SoftGLRenderContext context = this.currentContext;
+            if (context == null) { return; }
+
             //throw new NotImplementedException();
         }
 

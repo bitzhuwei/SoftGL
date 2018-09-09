@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
@@ -9,10 +10,11 @@ namespace SoftGL
     /// </summary>
     partial class SoftGLRenderContext : GLRenderContext
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        internal IntPtr Pointer { get; private set; }
+        internal static readonly Dictionary<ContexPair, SoftGLRenderContext> contextDict = new Dictionary<ContexPair, SoftGLRenderContext>();
+        internal static readonly Dictionary<IntPtr, SoftGLRenderContext> pRenderContextDict = new Dictionary<IntPtr, SoftGLRenderContext>();
+        internal static readonly IList<SoftGLRenderContext> allRenderContexts = new List<SoftGLRenderContext>();
+
+        internal IntPtr currentDeviceContext;
 
         /// <summary>
         /// creates render device and render context.
@@ -25,8 +27,11 @@ namespace SoftGL
             : base(width, height, parameters)
         {
             GCHandle handle = GCHandle.Alloc(this, GCHandleType.WeakTrackResurrection);
-            this.Pointer = GCHandle.ToIntPtr(handle);
+            this.RenderContextHandle = GCHandle.ToIntPtr(handle);
             handle.Free();
+            pRenderContextDict.Add(this.RenderContextHandle, this);
+            allRenderContexts.Add(this);
+
             // Create a new window class, as basic as possible.
             if (!this.CreateBasicRenderContext(width, height, parameters))
             {

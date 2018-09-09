@@ -23,7 +23,7 @@ namespace SoftGL.Windows
         {
             SoftGLRenderContext context = this.currentContext;
 
-            return context == null ? IntPtr.Zero : context.Pointer;
+            return context == null ? IntPtr.Zero : context.RenderContextHandle;
         }
     }
 }

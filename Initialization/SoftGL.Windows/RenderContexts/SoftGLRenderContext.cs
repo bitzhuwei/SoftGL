@@ -11,23 +11,17 @@ namespace SoftGL.Windows
     public partial class SoftGLRenderContext : CSharpGL.GLRenderContext
     {
         /// <summary>
-        /// 
-        /// </summary>
-        internal IntPtr Pointer { get; private set; }
-
-        /// <summary>
         /// creates render device and render context.
         /// </summary>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
         /// <param name="parameters">parameters.</param>
         /// <returns></returns>
-        public SoftGLRenderContext(int width, int height, CSharpGL.ContextGenerationParams parameters)
-            : base(width, height, parameters)
+        public SoftGLRenderContext(int width, int height, ContextGenerationParams parameters)
+            : base(width, height)
         {
-            GCHandle handle = GCHandle.Alloc(this, GCHandleType.WeakTrackResurrection);
-            this.Pointer = GCHandle.ToIntPtr(handle);
-            handle.Free();
+            this.Parameters = parameters;
+
             // Create a new window class, as basic as possible.
             if (!this.CreateBasicRenderContext(width, height, parameters))
             {
@@ -54,7 +48,7 @@ namespace SoftGL.Windows
         /// <param name="height"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        private bool CreateBasicRenderContext(int width, int height, CSharpGL.ContextGenerationParams parameters)
+        private bool CreateBasicRenderContext(int width, int height, ContextGenerationParams parameters)
         {
             //var wndClass = new WNDCLASSEX();
             //wndClass.Init();
@@ -115,7 +109,7 @@ namespace SoftGL.Windows
         /// means building a new context. If this fails, we'll have to make do with 2.1.
         /// </summary>
         /// <param name="parameters"></param>
-        protected bool UpdateContextVersion(CSharpGL.ContextGenerationParams parameters)
+        protected bool UpdateContextVersion(ContextGenerationParams parameters)
         {
             //  If the request version number is anything up to and including 2.1, standard render contexts
             //  will provide what we need (as long as the graphics card drivers are up to date).
@@ -314,5 +308,7 @@ namespace SoftGL.Windows
         ///
         /// </summary>
         private DIBSection dibSection;
+
+        public ContextGenerationParams Parameters { get; set; }
     }
 }
