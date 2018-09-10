@@ -9,10 +9,7 @@ namespace SoftGL.Windows
     {
         public override void Accum(uint op, float value)
         {
-            SoftGLRenderContext context = this.currentContext;
-            if (context == null) { return; }
-
-            //throw new NotImplementedException();
+            FakeOperatingSystem.glAccum(op, value);
         }
 
         public override void AlphaFunc(uint func, float ref_notkeword)
