@@ -48,8 +48,8 @@ namespace SoftGL.Windows
             this.Invalidate();
         }
 
-        private GLRenderContext renderContext;
-        GLRenderContext IGLCanvas.RenderContext { get { return this.renderContext; } }
+        private CSharpGL.GLRenderContext renderContext;
+        CSharpGL.GLRenderContext IGLCanvas.RenderContext { get { return this.renderContext; } }
 
         private event GLEventHandler<GLKeyPressEventArgs> glKeyPress;
         event GLEventHandler<GLKeyPressEventArgs> IGLCanvas.KeyPress

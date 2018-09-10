@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0208C27C-2FEE-48B9-A6A5-DB0BDF39A7E6}</ProjectGuid>
+    <ProjectGuid>{99434AFF-95F3-4C32-B0FF-6383A2FAAFBF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SoftGL.Windows</RootNamespace>
-    <AssemblyName>SoftGL.Windows</AssemblyName>
+    <RootNamespace>FakeOS</RootNamespace>
+    <AssemblyName>FakeOS</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -20,7 +20,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,61 +32,21 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GLAPI\WinSoftGL.DrawText.cs" />
-    <Compile Include="GLAPI\WinSoftGL.cs" />
-    <Compile Include="GLAPI\WinSoftGL.ExtendedAPI.cs" />
-    <Compile Include="GLAPI\WinSoftGL.ExtendedConsts.cs" />
-    <Compile Include="GLAPI\WinSoftGL.BasicAPI.cs" />
-    <Compile Include="GUI\WinCtrlRoot\TranslateExtension.cs" />
-    <Compile Include="GUI\WinCtrlRoot\WinSoftCtrlRoot.cs" />
-    <Compile Include="RenderContexts\DIBSection.cs" />
-    <Compile Include="RenderContexts\DIBSection.IDisposable.cs" />
-    <Compile Include="RenderContexts\LastError.cs" />
-    <Compile Include="RenderContexts\SoftGLRenderContext.cs" />
-    <Compile Include="WinSoftGLCanvas\WinSoftGLCanvas.ContextGenerationParameters.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="WinSoftGLCanvas\WinSoftGLCanvas.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="WinSoftGLCanvas\WinSoftGLCanvas.Designer.cs">
-      <DependentUpon>WinSoftGLCanvas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="WinSoftGLCanvas\WinSoftGLCanvas.Events.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="WinSoftGLCanvas\WinSoftGLCanvas.IGLCanvas.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="WinSoftGLCanvas\WinSoftGLCanvas.ISupportInitialize.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <None Include="GLAPI\readme.md" />
     <None Include="readme.md" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="StaticCalls.API.cs" />
+    <Compile Include="StaticCalls.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="WinSoftGLCanvas\readme.md" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\OS\SoftOpengl32\SoftOpengl32.csproj">
-      <Project>{99434aff-95f3-4c32-b0ff-6383a2faafbf}</Project>
-      <Name>SoftOpengl32</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\SoftGL\SoftGL.csproj">
       <Project>{6d016512-38b7-49f0-9fcb-b58621621545}</Project>
       <Name>SoftGL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CSharpGL\CSharpGL.csproj">
-      <Project>{a03cffff-433c-4a6e-8bd1-3a60ef9817a5}</Project>
-      <Name>CSharpGL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

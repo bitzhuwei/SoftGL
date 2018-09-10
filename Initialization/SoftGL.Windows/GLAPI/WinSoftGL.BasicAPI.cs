@@ -9,7 +9,7 @@ namespace SoftGL.Windows
     {
         public override void Accum(uint op, float value)
         {
-            FakeOperatingSystem.glAccum(op, value);
+            SoftOpengl32.StaticCalls.glAccum(op, value);
         }
 
         public override void AlphaFunc(uint func, float ref_notkeword)

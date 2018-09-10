@@ -122,12 +122,11 @@
     <Compile Include="GLAPI\GL.ExntendedAPI.cs" />
     <Compile Include="GLAPI\GL.PrintError.cs" />
     <Compile Include="GLAPI\GLDelegates.cs" />
-    <Compile Include="OS.CreateContext\FakeOperatingSystem.API.cs" />
-    <Compile Include="OS.CreateContext\FakeOperatingSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RenderContexts\ContextGenerationParams.cs" />
     <Compile Include="RenderContexts\DIBSection.cs" />
     <Compile Include="RenderContexts\DIBSection.IDisposable.cs" />
+    <Compile Include="RenderContexts\ContextManager.cs" />
     <Compile Include="RenderContexts\GLRenderContext.cs" />
     <Compile Include="RenderContexts\GLRenderContext.IDisposable.cs" />
     <Compile Include="RenderContexts\LastError.cs" />
