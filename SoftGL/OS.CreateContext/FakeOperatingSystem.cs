@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace SoftGL
 {
@@ -9,7 +10,7 @@ namespace SoftGL
     /// Initialization component calls Operating System. Operating System calls Hardware Driver. Hardware Driver is actually SoftGL.
     /// This is the 'opengl32.dll' in SoftGL environment.
     /// </summary>
-    public class FakeOperatingSystem
+    public partial class FakeOperatingSystem
     {
         /// <summary>
         /// Creates a render context of SoftGL!
@@ -18,34 +19,84 @@ namespace SoftGL
         public static IntPtr CreateContext(IntPtr deviceContext, int width, int height, ContextGenerationParams parameters)
         {
             var context = new SoftGLRenderContext(width, height, parameters);
-            var key = new ContexPair(deviceContext, context.RenderContextHandle);
-            SoftGLRenderContext.contextDict.Add(key, context);
 
             return context.RenderContextHandle;
         }
 
         public static void MakeCurrent(IntPtr deviceContext, IntPtr renderContext)
         {
-            if (deviceContext == IntPtr.Zero) { return; }
-
-            var key = new ContexPair(deviceContext, renderContext);
-            var dict = SoftGLRenderContext.contextDict;
-            SoftGLRenderContext context = null;
-            if (dict.TryGetValue(key, out context))
+            var threadContextDict = SoftGLRenderContext.threadContextDict;
+            if (renderContext == IntPtr.Zero) // cancel current render context to current thread.
             {
-                if (renderContext == IntPtr.Zero)
+                SoftGLRenderContext context = null;
+
+                Thread thread = Thread.CurrentThread;
+                if (threadContextDict.TryGetValue(thread, out context))
                 {
-                    dict.Remove(key);
+                    threadContextDict.Remove(thread);
                 }
                 else
                 {
-                    context.currentDeviceContext = deviceContext;
+                    // TODO: what should I do?
                 }
             }
-            else
+            else // change current render context to current thread.
             {
-
+                Thread thread = Thread.CurrentThread;
+                SoftGLRenderContext oldContext = null;
+                threadContextDict.TryGetValue(thread, out oldContext);
+                SoftGLRenderContext context = null;
+                if (SoftGLRenderContext.handleContextDict.TryGetValue(renderContext, out context))
+                {
+                    if (oldContext != context)
+                    {
+                        if (oldContext != null) { threadContextDict.Remove(thread); }
+                        context.DeviceContextHandle = deviceContext;
+                        threadContextDict.Add(thread, context);
+                    }
+                }
+                else
+                {
+                    // TODO: update last error.
+                }
             }
+        }
+
+        /// <summary>
+        /// Gets current render context's handle.
+        /// </summary>
+        /// <returns></returns>
+        public static IntPtr GetCurrentContextHandle()
+        {
+            IntPtr result = IntPtr.Zero;
+
+            var threadContextDict = SoftGLRenderContext.threadContextDict;
+            SoftGLRenderContext context = null;
+            Thread thread = Thread.CurrentThread;
+            if (threadContextDict.TryGetValue(thread, out context))
+            {
+                result = context.RenderContextHandle;
+            }
+
+            return result;
+        }
+
+
+        /// <summary>
+        /// Gets current render context.
+        /// </summary>
+        /// <returns></returns>
+        internal static SoftGLRenderContext GetCurrentContext()
+        {
+            var threadContextDict = SoftGLRenderContext.threadContextDict;
+            SoftGLRenderContext context = null;
+            Thread thread = Thread.CurrentThread;
+            if (!threadContextDict.TryGetValue(thread, out context))
+            {
+                context = null;
+            }
+
+            return context;
         }
     }
 }
