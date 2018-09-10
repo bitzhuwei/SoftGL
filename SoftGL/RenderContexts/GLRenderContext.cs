@@ -51,7 +51,7 @@ namespace SoftGL
         /// <summary>
         /// Gets the device context handle.
         /// </summary>
-        public IntPtr DeviceContextHandle { get; protected set; }
+        public IntPtr DeviceContextHandle { get; internal set; }
 
         /// <summary>
         /// Gets or sets the width.

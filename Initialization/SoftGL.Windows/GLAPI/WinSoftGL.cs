@@ -11,8 +11,6 @@ namespace SoftGL.Windows
     /// </summary>
     public partial class WinSoftGL : GL
     {
-        private SoftGLRenderContext currentContext;
-
         /// <summary>
         /// Single instance of <see cref="WinSoftGL"/>.
         /// </summary>
@@ -21,9 +19,7 @@ namespace SoftGL.Windows
 
         public override IntPtr GetCurrentContext()
         {
-            SoftGLRenderContext context = this.currentContext;
-
-            return context == null ? IntPtr.Zero : context.RenderContextHandle;
+            return FakeOperatingSystem.GetCurrentContext();
         }
     }
 }
