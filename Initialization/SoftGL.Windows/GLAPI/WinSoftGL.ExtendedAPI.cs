@@ -9,6 +9,7 @@ namespace SoftGL.Windows
     partial class WinSoftGL
     {
         private static readonly Type thisType = typeof(WinSoftGL);
+
         //private static 
         public override Delegate GetDelegateFor(string functionName, Type functionDeclaration)
         {

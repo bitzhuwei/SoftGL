@@ -82,10 +82,6 @@
       <Project>{0208c27c-2fee-48b9-a6a5-db0bdf39a7e6}</Project>
       <Name>SoftGL.Windows</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\SoftGL\SoftGL.csproj">
-      <Project>{6d016512-38b7-49f0-9fcb-b58621621545}</Project>
-      <Name>SoftGL</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

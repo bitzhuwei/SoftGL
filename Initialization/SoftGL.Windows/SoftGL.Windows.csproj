@@ -73,7 +73,6 @@
     </Compile>
     <None Include="GLAPI\readme.md" />
     <None Include="readme.md" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="WinSoftGLCanvas\readme.md" />
   </ItemGroup>
