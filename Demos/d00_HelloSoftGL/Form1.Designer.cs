@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.winSoftGLCanvas1 = new CSharpGL.WinSoftGLCanvas();
+            this.winSoftGLCanvas1 = new SoftGL.Windows.WinSoftGLCanvas();
             ((System.ComponentModel.ISupportInitialize)(this.winSoftGLCanvas1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,7 +64,7 @@
 
         #endregion
 
-        private CSharpGL.WinSoftGLCanvas winSoftGLCanvas1;
+        private SoftGL.Windows.WinSoftGLCanvas winSoftGLCanvas1;
     }
 }
 

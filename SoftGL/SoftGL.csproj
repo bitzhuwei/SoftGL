@@ -15,11 +15,12 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>true</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -38,8 +39,110 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="BasicDataStructures\FullDictionary.cs" />
+    <Compile Include="BasicDataStructures\GLSL\bvec2.cs" />
+    <Compile Include="BasicDataStructures\GLSL\bvec3.cs" />
+    <Compile Include="BasicDataStructures\GLSL\bvec4.cs" />
+    <Compile Include="BasicDataStructures\GLSL\dvec2.cs" />
+    <Compile Include="BasicDataStructures\GLSL\dvec3.cs" />
+    <Compile Include="BasicDataStructures\GLSL\dvec4.cs" />
+    <Compile Include="BasicDataStructures\GLSL\glm_camera.cs" />
+    <Compile Include="BasicDataStructures\GLSL\glm_inverse.cs" />
+    <Compile Include="BasicDataStructures\GLSL\glm_trigonometric.cs" />
+    <Compile Include="BasicDataStructures\GLSL\glm_unorm4x8.cs" />
+    <Compile Include="BasicDataStructures\GLSL\ivec2.cs" />
+    <Compile Include="BasicDataStructures\GLSL\ivec3.cs" />
+    <Compile Include="BasicDataStructures\GLSL\ivec4.cs" />
+    <Compile Include="BasicDataStructures\GLSL\mat2.cs" />
+    <Compile Include="BasicDataStructures\GLSL\mat3.cs" />
+    <Compile Include="BasicDataStructures\GLSL\mat4.cs" />
+    <Compile Include="BasicDataStructures\GLSL\MatrixHelper.cs" />
+    <Compile Include="BasicDataStructures\GLSL\ModelMatrixHelper.cs" />
+    <Compile Include="BasicDataStructures\GLSL\Quaternion.cs" />
+    <Compile Include="BasicDataStructures\GLSL\uvec2.cs" />
+    <Compile Include="BasicDataStructures\GLSL\uvec3.cs" />
+    <Compile Include="BasicDataStructures\GLSL\uvec4.cs" />
+    <Compile Include="BasicDataStructures\GLSL\vec2.cs" />
+    <Compile Include="BasicDataStructures\GLSL\vec3.cs" />
+    <Compile Include="BasicDataStructures\GLSL\vec4.cs" />
+    <Compile Include="BasicDataStructures\GLSL\VectorHelper.cs" />
+    <Compile Include="BasicDataStructures\IBoundingBox\BoundingBox.cs" />
+    <Compile Include="BasicDataStructures\IBoundingBox\IBoundingBox.cs" />
+    <Compile Include="BasicDataStructures\IBoundingBox\IBoundingBoxHelper.cs" />
+    <Compile Include="BasicDataStructures\NoisyArray.cs" />
+    <Compile Include="BasicDataStructures\Pixel.cs" />
+    <Compile Include="BasicDataStructures\UnamangedArray\TempUnmanagedArray`1.cs" />
+    <Compile Include="BasicDataStructures\UnamangedArray\TempUnmanagedArray`1.IDisposable.cs" />
+    <Compile Include="BasicDataStructures\UnamangedArray\UnmanagedArrayBase.cs" />
+    <Compile Include="BasicDataStructures\UnamangedArray\UnmanagedArrayBase.IDisposable.cs" />
+    <Compile Include="BasicDataStructures\UnamangedArray\UnmanagedArray`1.cs" />
+    <Compile Include="BasicDataStructures\UnamangedArray\UnmanagedArray`1.IDisposable.cs" />
+    <Compile Include="BasicDataStructures\UpdatingRecord.cs" />
+    <Compile Include="BasicDataStructures\Utilities\ArrayHelper.cs" />
+    <Compile Include="BasicDataStructures\Utilities\DoubleHelper.cs" />
+    <Compile Include="BasicDataStructures\Utilities\FloatHelper.cs" />
+    <Compile Include="BasicDataStructures\Utilities\Log\Log.cs" />
+    <Compile Include="BasicDataStructures\Utilities\NotDealWithNewEnumItemException.cs" />
+    <Compile Include="BasicDataStructures\Utilities\PositionHelper.cs" />
+    <Compile Include="BasicDataStructures\Utilities\StructHelper.cs" />
+    <Compile Include="BasicDataStructures\Viewport.cs" />
+    <None Include="readme.md" />
+    <Compile Include="GLAPI\GL.BasicAPI.cs" />
+    <Compile Include="GLAPI\GL.Constants\GL.1.2.Consts.cs" />
+    <Compile Include="GLAPI\GL.Constants\GL.1.3.Consts.cs" />
+    <Compile Include="GLAPI\GL.Constants\GL.1.4.Consts.cs" />
+    <Compile Include="GLAPI\GL.Constants\GL.1.5.Consts.cs" />
+    <Compile Include="GLAPI\GL.Constants\GL.2.0.Consts.cs" />
+    <Compile Include="GLAPI\GL.Constants\GL.2.1.Consts.cs" />
+    <Compile Include="GLAPI\GL.Constants\GL.3.0.Consts.cs" />
+    <Compile Include="GLAPI\GL.Constants\GL.3.1.Consts.cs" />
+    <Compile Include="GLAPI\GL.Constants\GL.3.2.Consts.cs" />
+    <Compile Include="GLAPI\GL.Constants\GL.3.3.Consts.cs" />
+    <Compile Include="GLAPI\GL.Constants\GL.4.0.Consts.cs" />
+    <Compile Include="GLAPI\GL.Constants\GL.Constants.cs" />
+    <Compile Include="GLAPI\GL.Constants\GL.Extensions.Consts.cs" />
+    <Compile Include="GLAPI\GL.Constants\GL.Framebuffer.Consts.cs" />
+    <Compile Include="GLAPI\GL.cs" />
+    <Compile Include="GLAPI\GL.DrawText.cs" />
+    <Compile Include="GLAPI\GL.Enumerations\Blend.cs" />
+    <Compile Include="GLAPI\GL.Enumerations\Buffer.cs" />
+    <Compile Include="GLAPI\GL.Enumerations\CubemapFace.cs" />
+    <Compile Include="GLAPI\GL.Enumerations\DrawMode.cs" />
+    <Compile Include="GLAPI\GL.Enumerations\ErrorCode.cs" />
+    <Compile Include="GLAPI\GL.Enumerations\FrontFaceMode.cs" />
+    <Compile Include="GLAPI\GL.Enumerations\GetTarget.cs" />
+    <Compile Include="GLAPI\GL.Enumerations\MapBufferAccess.cs" />
+    <Compile Include="GLAPI\GL.Enumerations\MapBufferRangeAccess.cs" />
+    <Compile Include="GLAPI\GL.Enumerations\PolugonOffset.cs" />
+    <Compile Include="GLAPI\GL.Enumerations\PolygonMode.cs" />
+    <Compile Include="GLAPI\GL.Enumerations\QueryTarget.cs" />
+    <Compile Include="GLAPI\GL.Enumerations\ShaderType.cs" />
+    <Compile Include="GLAPI\GL.Enumerations\StencilTest.cs" />
+    <Compile Include="GLAPI\GL.Enumerations\TextureTarget.cs" />
+    <Compile Include="GLAPI\GL.ExntendedAPI.cs" />
+    <Compile Include="GLAPI\GL.PrintError.cs" />
+    <Compile Include="GLAPI\GLDelegates.cs" />
+    <Compile Include="OS.CreateContext\FakeOperatingSystem.API.cs" />
+    <Compile Include="OS.CreateContext\FakeOperatingSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RenderContexts\ContextGenerationParams.cs" />
+    <Compile Include="RenderContexts\DIBSection.cs" />
+    <Compile Include="RenderContexts\DIBSection.IDisposable.cs" />
+    <Compile Include="RenderContexts\GLRenderContext.cs" />
+    <Compile Include="RenderContexts\GLRenderContext.IDisposable.cs" />
+    <Compile Include="RenderContexts\LastError.cs" />
+    <Compile Include="RenderContexts\SoftGLRenderContext.API.cs" />
+    <Compile Include="RenderContexts\SoftGLRenderContext.cs" />
+    <Compile Include="RenderContexts\ContextPair.cs" />
+    <Compile Include="RenderContexts\TextureUnit.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GLAPI\GL.Enumerations\DrawMode.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BasicDataStructures\IBoundingBox\readme.md" />
+    <None Include="BasicDataStructures\readme.md" />
+    <None Include="GLAPI\readme.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
