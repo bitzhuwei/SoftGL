@@ -23,6 +23,11 @@ namespace SoftGL
             return context.RenderContextHandle;
         }
 
+        /// <summary>
+        /// Make specified <paramref name="renderContext"/> the current one of current thread.
+        /// </summary>
+        /// <param name="deviceContext"></param>
+        /// <param name="renderContext"></param>
         public static void MakeCurrent(IntPtr deviceContext, IntPtr renderContext)
         {
             var threadContextDict = SoftGLRenderContext.threadContextDict;
@@ -81,7 +86,6 @@ namespace SoftGL
             return result;
         }
 
-
         /// <summary>
         /// Gets current render context.
         /// </summary>
@@ -97,6 +101,38 @@ namespace SoftGL
             }
 
             return context;
+        }
+
+        /// <summary>
+        /// Gets current device context.
+        /// </summary>
+        /// <returns></returns>
+        public static IntPtr GetCurrentDC()
+        {
+            SoftGLRenderContext context = GetCurrentContextObj();
+            return context != null ? context.DeviceContextHandle : IntPtr.Zero;
+        }
+
+        /// <summary>
+        /// Delete specified render context.
+        /// </summary>
+        /// <param name="renderContext"></param>
+        public static void DeleteContext(IntPtr renderContext)
+        {
+            if (renderContext == IntPtr.Zero) { return; }
+
+            IntPtr current = GetCurrentContext();
+            if (current == renderContext) // make this render context not current any more.
+            {
+                IntPtr deviceContext = GetCurrentDC();
+                MakeCurrent(deviceContext, IntPtr.Zero);
+            }
+
+            SoftGLRenderContext context = null;
+            if (SoftGLRenderContext.handleContextDict.TryGetValue(renderContext, out context))
+            {
+                context.Dispose();
+            }
         }
     }
 }
