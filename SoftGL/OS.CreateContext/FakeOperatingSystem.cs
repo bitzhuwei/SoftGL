@@ -66,7 +66,7 @@ namespace SoftGL
         /// Gets current render context's handle.
         /// </summary>
         /// <returns></returns>
-        public static IntPtr GetCurrentContextHandle()
+        public static IntPtr GetCurrentContext()
         {
             IntPtr result = IntPtr.Zero;
 
@@ -86,7 +86,7 @@ namespace SoftGL
         /// Gets current render context.
         /// </summary>
         /// <returns></returns>
-        internal static SoftGLRenderContext GetCurrentContext()
+        internal static SoftGLRenderContext GetCurrentContextObj()
         {
             var threadContextDict = SoftGLRenderContext.threadContextDict;
             SoftGLRenderContext context = null;
