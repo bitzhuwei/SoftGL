@@ -12,24 +12,27 @@ namespace SoftGL
         /// </summary>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
-        /// <param name="parameters">parameters.</param>
-        /// <returns></returns>
-        public GLRenderContext(int width, int height, ContextGenerationParams parameters)
+        /// <param name="paramNames">parameters' names.</param>
+        /// <param name="paramValues">parameters' values.</param>
+        public GLRenderContext(int width, int height, string[] paramNames, uint[] paramValues)
         {
-            this.Width = width;
-            this.Height = height;
-            this.Parameters = parameters;
-        }
+            if (paramNames != null)
+            {
+                if (paramValues == null || paramNames.Length != paramValues.Length)
+                { throw new ArgumentException("Names no matching with values!"); }
+            }
+            else if (paramValues != null)
+            { throw new ArgumentException("Names no matching with values!"); }
+            else // both are null.
+            {
+                paramNames = new string[0];
+                paramValues = new uint[0];
+            }
 
-        /// <summary>
-        /// Sets the dimensions of the render context provider.
-        /// </summary>
-        /// <param name="width">Width.</param>
-        /// <param name="height">Height.</param>
-        public virtual void SetDimensions(int width, int height)
-        {
             this.Width = width;
             this.Height = height;
+            this.ParamNames = paramNames;
+            this.ParamValues = paramValues;
         }
 
         /// <summary>
@@ -66,9 +69,14 @@ namespace SoftGL
         public int Height { get; protected set; }
 
         /// <summary>
-        /// Gets or sets the bit depth.
+        /// Gets or sets the parameters' names.
         /// </summary>
         /// <value>The bit depth.</value>
-        public ContextGenerationParams Parameters { get; protected set; }
+        public string[] ParamNames { get; protected set; }
+
+        /// <summary>
+        /// Gets or sets the parameters' values.
+        /// </summary>
+        public uint[] ParamValues { get; protected set; }
     }
 }

@@ -16,10 +16,15 @@ namespace SoftOpengl32
         /// <summary>
         /// Creates a render context of SoftGL!
         /// </summary>
+        /// <param name="deviceContext"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="paramNames">parameters' names.</param>
+        /// <param name="paramValues">parameters' values.</param>
         /// <returns></returns>
-        public static IntPtr CreateContext(IntPtr deviceContext, int width, int height, ContextGenerationParams parameters)
+        public static IntPtr CreateContext(IntPtr deviceContext, int width, int height, string[] paramNames, uint[] paramValues)
         {
-            return ContextManager.CreateContext(deviceContext, width, height, parameters);
+            return ContextManager.CreateContext(deviceContext, width, height, paramNames, paramValues);
         }
 
         /// <summary>
