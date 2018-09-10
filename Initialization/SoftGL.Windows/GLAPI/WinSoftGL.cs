@@ -19,7 +19,7 @@ namespace SoftGL.Windows
 
         public override IntPtr GetCurrentContext()
         {
-            return FakeOperatingSystem.GetCurrentContext();
+            return SoftOpengl32.StaticCalls.GetCurrentContext();
         }
     }
 }

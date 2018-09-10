@@ -5,7 +5,7 @@ namespace SoftGL
     /// <summary>
     /// OpenGL render context.
     /// </summary>
-    abstract partial class GLRenderContext : IDisposable
+    public abstract partial class GLRenderContext : IDisposable
     {
         /// <summary>
         ///  Set the width, height and parameters.

@@ -9,7 +9,7 @@ namespace SoftGL
     /// <summary>
     /// creates render device and render context.
     /// </summary>
-    partial class SoftGLRenderContext : GLRenderContext
+    public partial class SoftGLRenderContext : GLRenderContext
     {
         internal static readonly Dictionary<IntPtr, SoftGLRenderContext> handleContextDict = new Dictionary<IntPtr, SoftGLRenderContext>();
         internal static readonly Dictionary<Thread, SoftGLRenderContext> threadContextDict = new Dictionary<Thread, SoftGLRenderContext>();
@@ -69,7 +69,7 @@ namespace SoftGL
             handle.Free();
             this.window = window;
 
-            FakeOperatingSystem.MakeCurrent(this.DeviceContextHandle, this.RenderContextHandle);
+            ContextManager.MakeCurrent(this.DeviceContextHandle, this.RenderContextHandle);
 
             return true;
         }
@@ -157,7 +157,7 @@ namespace SoftGL
             if (this.RenderContextHandle != IntPtr.Zero)
             {
                 //Win32.wglMakeCurrent(this.DeviceContextHandle, this.RenderContextHandle);
-                FakeOperatingSystem.MakeCurrent(this.DeviceContextHandle, this.RenderContextHandle);
+                ContextManager.MakeCurrent(this.DeviceContextHandle, this.RenderContextHandle);
             }
         }
 

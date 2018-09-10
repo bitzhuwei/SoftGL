@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using SoftGL;
 
 namespace SoftGL
 {
@@ -10,7 +11,7 @@ namespace SoftGL
     /// Initialization component calls Operating System. Operating System calls Hardware Driver. Hardware Driver is actually SoftGL.
     /// This is the 'opengl32.dll' in SoftGL environment.
     /// </summary>
-    public partial class FakeOperatingSystem
+    public partial class ContextManager
     {
         /// <summary>
         /// Creates a render context of SoftGL!
@@ -90,7 +91,7 @@ namespace SoftGL
         /// Gets current render context.
         /// </summary>
         /// <returns></returns>
-        internal static SoftGLRenderContext GetCurrentContextObj()
+        public static SoftGLRenderContext GetCurrentContextObj()
         {
             var threadContextDict = SoftGLRenderContext.threadContextDict;
             SoftGLRenderContext context = null;
