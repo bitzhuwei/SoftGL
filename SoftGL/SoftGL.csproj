@@ -127,10 +127,11 @@
     <Compile Include="GLObjects\Framebuffer\Renderbuffer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RenderContexts\ContextManager.cs" />
+    <Compile Include="RenderContexts\Framebuffer\SoftGLRenderContext.Framebuffer.cs" />
     <Compile Include="RenderContexts\GLRenderContext.cs" />
     <Compile Include="RenderContexts\GLRenderContext.IDisposable.cs" />
     <Compile Include="RenderContexts\LastError.cs" />
-    <Compile Include="RenderContexts\Framebuffer\SoftGLRenderContext..Renderbuffer.cs" />
+    <Compile Include="RenderContexts\Framebuffer\SoftGLRenderContext.Renderbuffer.cs" />
     <Compile Include="RenderContexts\SoftGLRenderContext.API.cs" />
     <Compile Include="RenderContexts\SoftGLRenderContext.cs" />
     <Compile Include="RenderContexts\ContextPair.cs" />
