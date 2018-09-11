@@ -11,7 +11,13 @@ namespace SoftGL
     /// </summary>
     public partial class SoftGLRenderContext : GLRenderContext
     {
+        /// <summary>
+        /// RenderContextHandle -> Render Context Object.
+        /// </summary>
         internal static readonly Dictionary<IntPtr, SoftGLRenderContext> handleContextDict = new Dictionary<IntPtr, SoftGLRenderContext>();
+        /// <summary>
+        /// Thread -> Binding Render Context Object.
+        /// </summary>
         internal static readonly Dictionary<Thread, SoftGLRenderContext> threadContextDict = new Dictionary<Thread, SoftGLRenderContext>();
 
         /// <summary>
