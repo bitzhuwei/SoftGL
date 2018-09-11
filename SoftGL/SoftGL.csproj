@@ -127,18 +127,18 @@
     <Compile Include="GLObjects\Framebuffer\Framebuffer.cs" />
     <Compile Include="GLObjects\Framebuffer\Renderbuffer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RenderContexts\Texture\Texture.cs" />
-    <Compile Include="RenderContexts\Utilities\ContextManager.cs" />
-    <Compile Include="RenderContexts\Framebuffer\Framebuffer.cs" />
-    <Compile Include="RenderContexts\GLRenderContext.cs" />
-    <Compile Include="RenderContexts\GLRenderContext.IDisposable.cs" />
-    <Compile Include="RenderContexts\Utilities\LastError.cs" />
-    <Compile Include="RenderContexts\Framebuffer\Renderbuffer.cs" />
-    <Compile Include="RenderContexts\SoftGLRenderContext.API.cs" />
-    <Compile Include="RenderContexts\SoftGLRenderContext.cs" />
-    <Compile Include="RenderContexts\Utilities\InternalFormatHelper.cs" />
-    <Compile Include="RenderContexts\Utilities\TextureUnit.cs" />
-    <None Include="RenderContexts\readme.md" />
+    <Compile Include="RenderContext\Texture\Texture.cs" />
+    <Compile Include="RenderContext\Utilities\ContextManager.cs" />
+    <Compile Include="RenderContext\Framebuffer\Framebuffer.cs" />
+    <Compile Include="RenderContext\GLRenderContext.cs" />
+    <Compile Include="RenderContext\GLRenderContext.IDisposable.cs" />
+    <Compile Include="RenderContext\Utilities\LastError.cs" />
+    <Compile Include="RenderContext\Framebuffer\Renderbuffer.cs" />
+    <Compile Include="RenderContext\SoftGLRenderContext.API.cs" />
+    <Compile Include="RenderContext\SoftGLRenderContext.cs" />
+    <Compile Include="RenderContext\Utilities\InternalFormatHelper.cs" />
+    <Compile Include="RenderContext\Utilities\TextureUnit.cs" />
+    <None Include="RenderContext\readme.md" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="GLAPI\GL.Enumerations\DrawMode.png" />
