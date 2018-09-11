@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Threading;
 
@@ -40,19 +41,23 @@ namespace SoftGL
 
             {
                 ////	Create the window. Position and size it.
-                var window = new object();
+                var window = new Bitmap(width, height);
+                var graphics = Graphics.FromImage(window);
                 ////	Get the window device context.
-                GCHandle handle = GCHandle.Alloc(window, GCHandleType.WeakTrackResurrection);
-                this.DeviceContextHandle = GCHandle.ToIntPtr(handle);
-                handle.Free();
+                //GCHandle handle = GCHandle.Alloc(window, GCHandleType.WeakTrackResurrection);
+                //this.DeviceContextHandle = GCHandle.ToIntPtr(handle);
+                //handle.Free();
+                this.DeviceContextHandle = graphics.GetHdc();
                 this.window = window;
+                this.graphics = graphics;
             }
 
             ContextManager.MakeCurrent(this.DeviceContextHandle, this.RenderContextHandle);
         }
 
         // abstract window for now.
-        private object window;
+        private Bitmap window;
+        private Graphics graphics;
 
         /// <summary>
         /// The window handle.
@@ -64,8 +69,11 @@ namespace SoftGL
         /// </summary>
         protected override void DisposeUnmanagedResources()
         {
-            ////	Release the device context.
+            ////	Release the device context and the window.
             //Win32.ReleaseDC(windowHandle, this.DeviceContextHandle);
+            this.graphics.ReleaseHdc();
+            this.graphics.Dispose();
+            this.window.Dispose();
 
             ////	Destroy the window.
             //Win32.DestroyWindow(windowHandle);
@@ -76,7 +84,6 @@ namespace SoftGL
                 //Win32.wglDeleteContext(this.RenderContextHandle);
                 this.RenderContextHandle = IntPtr.Zero;
             }
-
         }
 
         /// <summary>
