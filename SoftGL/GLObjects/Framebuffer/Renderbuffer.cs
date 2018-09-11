@@ -53,5 +53,14 @@ namespace SoftGL
             this.Height = height;
             this.DataStore = dataStore;
         }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return string.Format("Renderbuffer:internalFormat:{0}, w:{1}, h:{2}", this.InternalFormat, this.Width, this.Height);
+        }
     }
 }
