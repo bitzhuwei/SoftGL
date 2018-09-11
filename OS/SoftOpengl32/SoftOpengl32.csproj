@@ -39,7 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="readme.md" />
-    <Compile Include="Framebuffer\StaticCalls.Renderbuffer.cs" />
+    <Compile Include="Framebuffer\Renderbuffer.cs" />
     <Compile Include="StaticCalls.API.cs" />
     <Compile Include="StaticCalls.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
