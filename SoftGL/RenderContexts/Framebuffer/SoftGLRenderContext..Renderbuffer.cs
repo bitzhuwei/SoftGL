@@ -10,13 +10,13 @@ namespace SoftGL
     {
         private uint nextRenderbufferName = 0;
 
-        private readonly List<uint> renderbufferNameList = new List<uint>();
+        private readonly List<uint> nameList = new List<uint>();
         /// <summary>
         /// name -> render buffer object.
         /// </summary>
         private readonly Dictionary<uint, Renderbuffer> nameRenderbufferDict = new Dictionary<uint, Renderbuffer>();
 
-        private Renderbuffer[] currentRenderbuffers = new Renderbuffer[1];
+        private Renderbuffer[] currentRenderbuffers = new Renderbuffer[1]; // [GL_RENDERBUFFER]
         private const int maxRenderbufferSize = 1024 * 8;
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace SoftGL
             {
                 uint name = nextRenderbufferName;
                 names[i] = name;
-                renderbufferNameList.Add(name);
+                nameList.Add(name);
                 nextRenderbufferName++;
             }
         }
@@ -40,10 +40,10 @@ namespace SoftGL
         public void BindRenderbuffer(uint target, uint name)
         {
             if (target != GL.GL_RENDERBUFFER) { SetLastError(ErrorCode.InvalidEnum); }
-            if ((name != 0) && (!this.renderbufferNameList.Contains(name))) { SetLastError(ErrorCode.InvalidOperation); }
+            if ((name != 0) && (!this.nameList.Contains(name))) { SetLastError(ErrorCode.InvalidOperation); }
 
             Dictionary<uint, Renderbuffer> dict = this.nameRenderbufferDict;
-            if (!dict.ContainsKey(name))
+            if (!dict.ContainsKey(name)) // for the first time the name is binded, we create a renderbuffer object.
             {
                 var obj = new Renderbuffer(name);
                 dict.Add(name, obj);
@@ -67,6 +67,18 @@ namespace SoftGL
                 int bytes = (bitSize % 8 == 0) ? bitSize / 8 : bitSize / 8 + 1; // TODO: any better solution?
                 var dataStore = new byte[width * height * bytes];
                 obj.Storage(internalformat, width, height, dataStore);
+            }
+        }
+
+        public void DeleteRenderbuffers(int count, uint[] names)
+        {
+            if (count < 0) { SetLastError(ErrorCode.InvalidValue); }
+
+            for (int i = 0; i < count; i++)
+            {
+                uint name = names[i];
+                if (nameList.Contains(name)) { nameList.Remove(name); }
+                if (nameRenderbufferDict.ContainsKey(name)) { nameRenderbufferDict.Remove(name); }
             }
         }
     }

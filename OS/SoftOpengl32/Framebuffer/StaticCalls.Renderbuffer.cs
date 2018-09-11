@@ -56,5 +56,19 @@ namespace SoftOpengl32
                 context.RenderbufferStorage(target, internalformat, width, height);
             }
         }
+
+        /// <summary>
+        /// delete renderbuffer objects.
+        /// </summary>
+        /// <param name="count">Specifies the number of renderbuffer objects to be deleted.</param>
+        /// <param name="names">A pointer to an array containing <paramref name="count"/>​ renderbuffer objects to be deleted.</param>
+        public static void glDeleteRenderbuffers(int count, uint[] names)
+        {
+            SoftGLRenderContext context = StaticCalls.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.DeleteRenderbuffers(count, names);
+            }
+        }
     }
 }
