@@ -15,8 +15,43 @@ namespace SoftGL
         public uint Id { get { return this.ids[0]; } }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public uint InternalFormat { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Width { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Height { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public byte[] DataStore { get; set; }
+
+        /// <summary>
         /// Creates a render buffer object.
         /// </summary>
         public Renderbuffer(uint id) { this.ids[0] = id; }
+
+        /// <summary>
+        /// RenderbufferStorage(..).
+        /// </summary>
+        /// <param name="internalformat"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="dataStore"></param>
+        public void Storage(uint internalformat, int width, int height, byte[] dataStore)
+        {
+            this.InternalFormat = internalformat;
+            this.Width = width;
+            this.Height = height;
+            this.DataStore = dataStore;
+        }
     }
 }

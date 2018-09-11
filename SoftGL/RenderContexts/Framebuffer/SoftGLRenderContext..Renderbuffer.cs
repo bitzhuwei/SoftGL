@@ -60,7 +60,14 @@ namespace SoftGL
             // TODO: GL_INVALID_ENUM is generated if internalformat​ is not a color-renderable, depth-renderable, or stencil-renderable format.
             // TODO: GL_OUT_OF_MEMORY is generated if the GL is unable to create a data store of the requested size.
 
-
+            Renderbuffer obj = this.currentRenderbuffers[target - GL.GL_RENDERBUFFER];
+            if (obj != null)
+            {
+                int bitSize = InternalFormatHelper.BitSize(internalformat);
+                int bytes = (bitSize % 8 == 0) ? bitSize / 8 : bitSize / 8 + 1; // TODO: any better solution?
+                var dataStore = new byte[width * height * bytes];
+                obj.Storage(internalformat, width, height, dataStore);
+            }
         }
     }
 }
