@@ -36,5 +36,19 @@ namespace SoftOpengl32
                 context.BindTexture((TextureTarget)target, name);
             }
         }
+
+        /// <summary>
+        /// delete named textures.
+        /// </summary>
+        /// <param name="count">Specifies the number of textures to be deleted.</param>
+        /// <param name="names">Specifies an array of textures to be deleted.</param>
+        public static void glDeleteTextures(int count, uint[] names)
+        {
+            SoftGLRenderContext context = StaticCalls.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.DeleteTextures(count, names);
+            }
+        }
     }
 }

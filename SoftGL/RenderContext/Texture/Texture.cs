@@ -91,5 +91,17 @@ namespace SoftGL
                     break;
             }
         }
+
+        public void DeleteTextures(int count, uint[] names)
+        {
+            if (count < 0) { SetLastError(ErrorCode.InvalidValue); return; }
+
+            for (int i = 0; i < count; i++)
+            {
+                uint name = names[i];
+                if (textureNameList.Contains(name)) { textureNameList.Remove(name); }
+                if (nameTextureDict.ContainsKey(name)) { nameTextureDict.Remove(name); }
+            }
+        }
     }
 }
