@@ -7,10 +7,6 @@ using SoftGL;
 
 namespace SoftOpengl32
 {
-    /// <summary>
-    /// Initialization component calls Operating System. Operating System calls Hardware Driver. Hardware Driver is actually SoftGL.
-    /// This is the 'opengl32.dll' in SoftGL environment.
-    /// </summary>
     public partial class StaticCalls
     {
         /// <summary>

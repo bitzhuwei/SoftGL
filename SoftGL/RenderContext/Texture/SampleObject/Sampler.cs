@@ -48,5 +48,10 @@ namespace SoftGL
 
             this.currentSampler = dict[name];
         }
+
+        public void DeleteSamplers()
+        {
+
+        }
     }
 }
