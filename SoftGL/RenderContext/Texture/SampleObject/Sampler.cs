@@ -49,9 +49,16 @@ namespace SoftGL
             this.currentSampler = dict[name];
         }
 
-        public void DeleteSamplers()
+        public void DeleteSamplers(int count, uint[] names)
         {
+            if (count < 0) { SetLastError(ErrorCode.InvalidValue); return; }
 
+            for (int i = 0; i < count; i++)
+            {
+                uint name = names[i];
+                if (samplerNameList.Contains(name)) { samplerNameList.Remove(name); }
+                if (nameSamplerDict.ContainsKey(name)) { nameSamplerDict.Remove(name); }
+            }
         }
     }
 }

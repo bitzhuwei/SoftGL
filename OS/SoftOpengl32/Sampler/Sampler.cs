@@ -36,5 +36,19 @@ namespace SoftOpengl32
                 context.BindSampler(unit, name);
             }
         }
+
+        /// <summary>
+        /// delete named sampler objects.
+        /// </summary>
+        /// <param name="count">Specifies the number of sampler objects to be deleted.</param>
+        /// <param name="names">Specifies an array of sampler objects to be deleted.</param>
+        public static void glDeleteSamplers(int count, uint[] names)
+        {
+            SoftGLRenderContext context = StaticCalls.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.DeleteSamplers(count, names);
+            }
+        }
     }
 }

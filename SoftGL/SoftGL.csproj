@@ -126,7 +126,15 @@
     <Compile Include="GLAPI\GLDelegates.cs" />
     <Compile Include="GLObjects\Framebuffer\Framebuffer.cs" />
     <Compile Include="GLObjects\Framebuffer\Renderbuffer.cs" />
+    <Compile Include="GLObjects\Texture\Samplers\SamplerObject\Sampler.cs" />
+    <Compile Include="GLObjects\Texture\Samplers\SamplerObject\SamplerParameters\SamplerParameter.cs" />
+    <Compile Include="GLObjects\Texture\Samplers\SamplerObject\SamplerParameters\SamplerParameterf.cs" />
+    <Compile Include="GLObjects\Texture\Samplers\SamplerObject\SamplerParameters\SamplerParameteri.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RenderContext\Texture\SampleObject\SampleParameters\SamplerParameter.cs" />
+    <Compile Include="RenderContext\Texture\SampleObject\SampleParameters\SamplerParameteri.cs" />
+    <Compile Include="RenderContext\Texture\SampleObject\SampleParameters\SamplerParameterf.cs" />
+    <Compile Include="RenderContext\Texture\SampleObject\Sampler.cs" />
     <Compile Include="RenderContext\Texture\Texture.cs" />
     <Compile Include="RenderContext\Utilities\ContextManager.cs" />
     <Compile Include="RenderContext\Framebuffer\Framebuffer.cs" />
@@ -148,9 +156,7 @@
     <None Include="BasicDataStructures\readme.md" />
     <None Include="GLAPI\readme.md" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="GLObjects\Texture\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
