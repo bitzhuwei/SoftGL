@@ -19,6 +19,7 @@ namespace SoftGL
 
         private void TexParameteri(uint target, uint pname, int param)
         {
+            Texture texture = this.GetCurrentTexture((TextureTarget)target);
 
         }
     }
