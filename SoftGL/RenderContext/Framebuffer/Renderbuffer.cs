@@ -17,7 +17,7 @@ namespace SoftGL
         private readonly Dictionary<uint, Renderbuffer> nameRenderbufferDict = new Dictionary<uint, Renderbuffer>();
 
         private Renderbuffer[] currentRenderbuffers = new Renderbuffer[1]; // [GL_RENDERBUFFER]
-        private const int maxRenderbufferSize = 1024 * 8; // TOD: 
+        private const int maxRenderbufferSize = 1024 * 8; // TODO: maxRenderbufferSize = ?
 
         /// <summary>
         /// 
