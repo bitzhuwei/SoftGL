@@ -72,10 +72,10 @@ namespace SoftGL
         {
             if (target == 0) { SetLastError(ErrorCode.InvalidEnum); return; }
             if ((name != 0) && (!this.textureNameList.Contains(name))) { SetLastError(ErrorCode.InvalidOperation); return; }
-            Dictionary<uint, Texture> dict = nameTextureDict;
             Texture texture = null;
             if (name != 0)
             {
+                Dictionary<uint, Texture> dict = nameTextureDict;
                 if (dict.TryGetValue(name, out texture))
                 {
                     if (texture.Target != target) { SetLastError(ErrorCode.InvalidOperation); return; }
