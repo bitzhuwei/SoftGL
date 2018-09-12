@@ -7,7 +7,7 @@ using SoftGL;
 
 namespace SoftOpengl32
 {
-    public partial class StaticCalls
+    partial class StaticCalls
     {
         /// <summary>
         /// generate sampler object names.
