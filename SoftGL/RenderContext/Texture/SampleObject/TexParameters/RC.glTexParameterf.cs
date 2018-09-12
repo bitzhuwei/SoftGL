@@ -10,7 +10,19 @@ namespace SoftGL
     {
         public static void glTexParameterf(uint target, uint pname, float param)
         {
-            throw new NotImplementedException();
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.TexParameterf((TextureTarget)target, pname, param);
+            }
+        }
+
+        private void TexParameterf(TextureTarget target, uint pname, float param)
+        {
+            if (target == 0) { SetLastError(ErrorCode.InvalidEnum); return; }
+
+            Texture texture = this.GetCurrentTexture(target);
+            if (texture != null) { texture.SetProperty(pname, param); }
         }
     }
 }
