@@ -93,7 +93,6 @@ namespace SoftGL
             for (int i = 0; i < count; i++)
             {
                 uint name = names[i];
-                if (samplerNameList.Contains(name)) { samplerNameList.Remove(name); }
                 if (nameSamplerDict.ContainsKey(name)) { nameSamplerDict.Remove(name); }
             }
         }
