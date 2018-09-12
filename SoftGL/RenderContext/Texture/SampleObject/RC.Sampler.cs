@@ -57,7 +57,8 @@ namespace SoftGL
             if (unit >= maxCombinedTextureImageUnits) { SetLastError(ErrorCode.InvalidValue); return; }
             if ((name != 0) && (!this.nameSamplerDict.ContainsKey(name))) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-            this.currentSamplers[unit] = this.nameSamplerDict[name];
+            if (name == 0) { this.currentRenderbuffers[unit] = null; }
+            else { this.currentSamplers[unit] = this.nameSamplerDict[name]; }
         }
 
         public static bool glIsSampler(uint name)
