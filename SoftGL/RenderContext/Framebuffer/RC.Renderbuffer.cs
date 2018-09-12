@@ -55,14 +55,19 @@ namespace SoftGL
             if (target != GL.GL_RENDERBUFFER) { SetLastError(ErrorCode.InvalidEnum); return; }
             if ((name != 0) && (!this.renderbufferNameList.Contains(name))) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-            Dictionary<uint, Renderbuffer> dict = this.nameRenderbufferDict;
-            if (!dict.ContainsKey(name)) // for the first time the name is binded, we create a renderbuffer object.
+            if (name == 0)
+            { this.currentRenderbuffers[target - GL.GL_RENDERBUFFER] = null; }
+            else
             {
-                var obj = new Renderbuffer(name);
-                dict.Add(name, obj);
-            }
+                Dictionary<uint, Renderbuffer> dict = this.nameRenderbufferDict;
+                if (!dict.ContainsKey(name)) // for the first time the name is binded, we create a renderbuffer object.
+                {
+                    var obj = new Renderbuffer(name);
+                    dict.Add(name, obj);
+                }
 
-            this.currentRenderbuffers[target - GL.GL_RENDERBUFFER] = dict[name];
+                this.currentRenderbuffers[target - GL.GL_RENDERBUFFER] = dict[name];
+            }
         }
 
         public static bool glIsRenderbuffer(uint name)

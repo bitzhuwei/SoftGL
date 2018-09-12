@@ -74,14 +74,17 @@ namespace SoftGL
             if ((name != 0) && (!this.textureNameList.Contains(name))) { SetLastError(ErrorCode.InvalidOperation); return; }
             Dictionary<uint, Texture> dict = nameTextureDict;
             Texture texture = null;
-            if (dict.TryGetValue(name, out texture))
+            if (name != 0)
             {
-                if (texture.Target != target) { SetLastError(ErrorCode.InvalidOperation); return; }
-            }
-            else // create a new texture object.
-            {
-                texture = new Texture(target, name);
-                dict.Add(name, texture);
+                if (dict.TryGetValue(name, out texture))
+                {
+                    if (texture.Target != target) { SetLastError(ErrorCode.InvalidOperation); return; }
+                }
+                else // create a new texture object.
+                {
+                    texture = new Texture(target, name);
+                    dict.Add(name, texture);
+                }
             }
 
             TextureUnit currentUnit = this.textureUnits[this.currentTextureUnitIndex];
@@ -115,7 +118,7 @@ namespace SoftGL
                     currentUnit.textureRectangle = texture;
                     break;
                 default:
-                    break;
+                    throw new NotImplementedException();
             }
         }
 
