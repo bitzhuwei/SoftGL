@@ -17,7 +17,7 @@ namespace SoftGL
         /// </summary>
         private readonly Dictionary<uint, Sampler> nameSamplerDict = new Dictionary<uint, Sampler>();
 
-        private Sampler currentSampler;
+        private Sampler[] currentSamplers = new Sampler[maxTextureImageUnits];
         private uint maxCombinedTextureImageUnits = 64; // TODO: maxCombinedTextureImageUnits = ?
 
         public static void glGenSamplers(int count, uint[] names)
@@ -57,7 +57,7 @@ namespace SoftGL
             if (unit >= maxCombinedTextureImageUnits) { SetLastError(ErrorCode.InvalidValue); return; }
             if ((name != 0) && (!this.nameSamplerDict.ContainsKey(name))) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-            this.currentSampler = this.nameSamplerDict[name];
+            this.currentSamplers[unit] = this.nameSamplerDict[name];
         }
 
         public static bool glIsSampler(uint name)
