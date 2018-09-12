@@ -10,11 +10,7 @@ namespace SoftOpengl32
     {
         public static void glSamplerParameteri(uint sampler, uint pname, int param)
         {
-            SoftGLRenderContext context = StaticCalls.GetCurrentContextObj();
-            if (context != null)
-            {
-                context.SamplerParameteri(sampler, pname, param);
-            }
+            SoftGLRenderContext.glSamplerParameteri(sampler, pname, param);
         }
     }
 }

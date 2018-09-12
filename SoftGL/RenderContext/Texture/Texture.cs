@@ -20,7 +20,16 @@ namespace SoftGL
         private TextureUnit[] textureUnits = new TextureUnit[maxTextureImageUnits];
         private uint currentTextureUnitIndex = 0;
 
-        public void GenTextures(int count, uint[] names)
+        public static void glGenTextures(int count, uint[] names)
+        {
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.GenTextures(count, names);
+            }
+        }
+
+        private void GenTextures(int count, uint[] names)
         {
             if (count < 0) { SetLastError(ErrorCode.InvalidValue); return; }
 
@@ -33,7 +42,16 @@ namespace SoftGL
             }
         }
 
-        public void ActiveTexture(uint textureUnit)
+        public static void glActiveTexture(uint textureUnit)
+        {
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.ActiveTexture(textureUnit);
+            }
+        }
+
+        private void ActiveTexture(uint textureUnit)
         {
             if (textureUnit < GL.GL_TEXTURE0) { SetLastError(ErrorCode.InvalidEnum); return; }
             if (GL.GL_TEXTURE0 + maxTextureImageUnits <= textureUnit) { SetLastError(ErrorCode.InvalidEnum); return; }
@@ -41,7 +59,16 @@ namespace SoftGL
             this.currentTextureUnitIndex = textureUnit - GL.GL_TEXTURE0;
         }
 
-        public void BindTexture(TextureTarget target, uint name)
+        public static void glBindTexture(TextureTarget target, uint name)
+        {
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.BindTexture(target, name);
+            }
+        }
+
+        private void BindTexture(TextureTarget target, uint name)
         {
             if (target == 0) { SetLastError(ErrorCode.InvalidEnum); return; }
             if ((name != 0) && (!this.textureNameList.Contains(name))) { SetLastError(ErrorCode.InvalidOperation); return; }
@@ -92,7 +119,16 @@ namespace SoftGL
             }
         }
 
-        public void DeleteTextures(int count, uint[] names)
+        public static void glDeleteTextures(int count, uint[] names)
+        {
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.DeleteTextures(count, names);
+            }
+        }
+
+        private void DeleteTextures(int count, uint[] names)
         {
             if (count < 0) { SetLastError(ErrorCode.InvalidValue); return; }
 

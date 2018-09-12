@@ -19,12 +19,16 @@ namespace SoftGL
         private Renderbuffer[] currentRenderbuffers = new Renderbuffer[1]; // [GL_RENDERBUFFER]
         private const int maxRenderbufferSize = 1024 * 8; // TODO: maxRenderbufferSize = ?
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="count"></param>
-        /// <param name="names"></param>
-        public void GenRenderbuffers(int count, uint[] names)
+        public static void glGenRenderbuffers(int count, uint[] names)
+        {
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.GenRenderbuffers(count, names);
+            }
+        }
+
+        private void GenRenderbuffers(int count, uint[] names)
         {
             if (count < 0) { SetLastError(ErrorCode.InvalidValue); return; }
 
@@ -37,7 +41,16 @@ namespace SoftGL
             }
         }
 
-        public void BindRenderbuffer(uint target, uint name)
+        public static void glBindRenderbuffer(uint target, uint name)
+        {
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.BindRenderbuffer(target, name);
+            }
+        }
+
+        private void BindRenderbuffer(uint target, uint name)
         {
             if (target != GL.GL_RENDERBUFFER) { SetLastError(ErrorCode.InvalidEnum); return; }
             if ((name != 0) && (!this.renderbufferNameList.Contains(name))) { SetLastError(ErrorCode.InvalidOperation); return; }
@@ -52,7 +65,16 @@ namespace SoftGL
             this.currentRenderbuffers[target - GL.GL_RENDERBUFFER] = dict[name];
         }
 
-        public void RenderbufferStorage(uint target, uint internalformat, int width, int height)
+        public static void glRenderbufferStorage(uint target, uint internalformat, int width, int height)
+        {
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.RenderbufferStorage(target, internalformat, width, height);
+            }
+        }
+
+        private void RenderbufferStorage(uint target, uint internalformat, int width, int height)
         {
             if (target != GL.GL_RENDERBUFFER) { SetLastError(ErrorCode.InvalidEnum); return; }
             if (width < 0 || maxRenderbufferSize < width) { SetLastError(ErrorCode.InvalidValue); return; }
@@ -70,7 +92,16 @@ namespace SoftGL
             }
         }
 
-        public void DeleteRenderbuffers(int count, uint[] names)
+        public static void glDeleteRenderbuffers(int count, uint[] names)
+        {
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.DeleteRenderbuffers(count, names);
+            }
+        }
+
+        private void DeleteRenderbuffers(int count, uint[] names)
         {
             if (count < 0) { SetLastError(ErrorCode.InvalidValue); return; }
 

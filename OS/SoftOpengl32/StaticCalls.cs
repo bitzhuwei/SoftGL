@@ -50,7 +50,7 @@ namespace SoftOpengl32
         /// Gets current render context.
         /// </summary>
         /// <returns></returns>
-        public static SoftGLRenderContext GetCurrentContextObj()
+        private static SoftGLRenderContext GetCurrentContextObj()
         {
             return ContextManager.GetCurrentContextObj();
         }

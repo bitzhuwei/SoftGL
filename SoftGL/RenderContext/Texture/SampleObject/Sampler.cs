@@ -21,7 +21,16 @@ namespace SoftGL
         private Sampler currentSampler;
         private uint maxCombinedTextureImageUnits = 64; // TODO: maxCombinedTextureImageUnits = ?
 
-        public void GenSamplers(int count, uint[] names)
+        public static void glGenSamplers(int count, uint[] names)
+        {
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.GenSamplers(count, names);
+            }
+        }
+
+        private void GenSamplers(int count, uint[] names)
         {
             if (count < 0) { SetLastError(ErrorCode.InvalidValue); return; }
 
@@ -34,7 +43,16 @@ namespace SoftGL
             }
         }
 
-        public void BindSampler(uint unit, uint name)
+        public static void glBindSampler(uint unit, uint name)
+        {
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.BindSampler(unit, name);
+            }
+        }
+
+        private void BindSampler(uint unit, uint name)
         {
             if (unit >= maxCombinedTextureImageUnits) { SetLastError(ErrorCode.InvalidValue); return; }
             if ((name != 0) && (!this.samplerNameList.Contains(name))) { SetLastError(ErrorCode.InvalidOperation); return; }
@@ -49,7 +67,16 @@ namespace SoftGL
             this.currentSampler = dict[name];
         }
 
-        public void DeleteSamplers(int count, uint[] names)
+        public static void glDeleteSamplers(int count, uint[] names)
+        {
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.DeleteSamplers(count, names);
+            }
+        }
+
+        private void DeleteSamplers(int count, uint[] names)
         {
             if (count < 0) { SetLastError(ErrorCode.InvalidValue); return; }
 

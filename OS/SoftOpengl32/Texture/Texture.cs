@@ -16,11 +16,7 @@ namespace SoftOpengl32
         /// <param name="names">Specifies an array in which the generated texture names are stored.</param>
         public static void glGenTextures(int count, uint[] names)
         {
-            SoftGLRenderContext context = StaticCalls.GetCurrentContextObj();
-            if (context != null)
-            {
-                context.GenTextures(count, names);
-            }
+            SoftGLRenderContext.glGenTextures(count, names);
         }
 
         /// <summary>
@@ -30,11 +26,7 @@ namespace SoftOpengl32
         /// <param name="name">Specifies the name of a texture.</param>
         public static void glBindTexture(uint target, uint name)
         {
-            SoftGLRenderContext context = StaticCalls.GetCurrentContextObj();
-            if (context != null)
-            {
-                context.BindTexture((TextureTarget)target, name);
-            }
+            SoftGLRenderContext.glBindTexture((TextureTarget)target, name);
         }
 
         /// <summary>
@@ -44,11 +36,7 @@ namespace SoftOpengl32
         /// <param name="names">Specifies an array of textures to be deleted.</param>
         public static void glDeleteTextures(int count, uint[] names)
         {
-            SoftGLRenderContext context = StaticCalls.GetCurrentContextObj();
-            if (context != null)
-            {
-                context.DeleteTextures(count, names);
-            }
+            SoftGLRenderContext.glDeleteTextures(count, names);
         }
     }
 }

@@ -16,11 +16,7 @@ namespace SoftOpengl32
         /// <param name="names">Specifies an array in which the generated renderbuffer object names are stored.</param>
         public static void glGenRenderbuffers(int count, uint[] names)
         {
-            SoftGLRenderContext context = StaticCalls.GetCurrentContextObj();
-            if (context != null)
-            {
-                context.GenRenderbuffers(count, names);
-            }
+            SoftGLRenderContext.glGenRenderbuffers(count, names);
         }
 
         /// <summary>
@@ -30,11 +26,7 @@ namespace SoftOpengl32
         /// <param name="name">Specifies the name of the renderbuffer object to bind.</param>
         public static void glBindRenderbuffer(uint target, uint name)
         {
-            SoftGLRenderContext context = StaticCalls.GetCurrentContextObj();
-            if (context != null)
-            {
-                context.BindRenderbuffer(target, name);
-            }
+            SoftGLRenderContext.glBindRenderbuffer(target, name);
         }
 
         /// <summary>
@@ -46,11 +38,7 @@ namespace SoftOpengl32
         /// <param name="height">Specifies the height of the renderbuffer, in pixels.</param>
         public static void glRenderbufferStorage(uint target, uint internalformat, int width, int height)
         {
-            SoftGLRenderContext context = StaticCalls.GetCurrentContextObj();
-            if (context != null)
-            {
-                context.RenderbufferStorage(target, internalformat, width, height);
-            }
+            SoftGLRenderContext.glRenderbufferStorage(target, internalformat, width, height);
         }
 
         /// <summary>
@@ -60,11 +48,7 @@ namespace SoftOpengl32
         /// <param name="names">A pointer to an array containing <paramref name="count"/>​ renderbuffer objects to be deleted.</param>
         public static void glDeleteRenderbuffers(int count, uint[] names)
         {
-            SoftGLRenderContext context = StaticCalls.GetCurrentContextObj();
-            if (context != null)
-            {
-                context.DeleteRenderbuffers(count, names);
-            }
+            SoftGLRenderContext.glDeleteRenderbuffers(count, names);
         }
     }
 }
