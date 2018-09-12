@@ -65,6 +65,23 @@ namespace SoftGL
             this.currentRenderbuffers[target - GL.GL_RENDERBUFFER] = dict[name];
         }
 
+        public static bool glIsRenderbuffer(uint name)
+        {
+            bool result = false;
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                result = context.IsRenderbuffer(name);
+            }
+
+            return result;
+        }
+
+        private bool IsRenderbuffer(uint name)
+        {
+            return ((name > 0) && (nameRenderbufferDict.ContainsKey(name)));
+        }
+
         public static void glRenderbufferStorage(uint target, uint internalformat, int width, int height)
         {
             SoftGLRenderContext context = ContextManager.GetCurrentContextObj();

@@ -30,6 +30,16 @@ namespace SoftOpengl32
         }
 
         /// <summary>
+        /// determine if a name corresponds to a renderbuffer object.
+        /// </summary>
+        /// <param name="name">Specifies a value that may be the name of a renderbuffer object.</param>
+        /// <returns></returns>
+        public static bool glIsRenderbuffer(uint name)
+        {
+            return SoftGLRenderContext.glIsRenderbuffer(name);
+        }
+
+        /// <summary>
         /// establish data storage, format and dimensions of a renderbuffer object's image.
         /// </summary>
         /// <param name="target">Specifies a binding to which the target of the allocation and must be GL_RENDERBUFFER.</param>
