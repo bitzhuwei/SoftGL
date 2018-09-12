@@ -18,16 +18,12 @@ namespace SoftGL
         /// </summary>
         private readonly Dictionary<uint, Sampler> nameSamplerDict = new Dictionary<uint, Sampler>();
 
-        private Sampler[] currentSamplers = new Sampler[1]; // []
+        private Sampler currentSampler;
+        private uint maxCombinedTextureImageUnits = 64; // TODO: maxCombinedTextureImageUnits = ?
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="count"></param>
-        /// <param name="names"></param>
         public void GenSamplers(int count, uint[] names)
         {
-            if (count < 0) { SetLastError(ErrorCode.InvalidValue); }
+            if (count < 0) { SetLastError(ErrorCode.InvalidValue); return; }
 
             for (int i = 0; i < count; i++)
             {
@@ -38,5 +34,19 @@ namespace SoftGL
             }
         }
 
+        public void BindSampler(uint unit, uint name)
+        {
+            if (unit >= maxCombinedTextureImageUnits) { SetLastError(ErrorCode.InvalidValue); return; }
+            if ((name != 0) && (!this.samplerNameList.Contains(name))) { SetLastError(ErrorCode.InvalidOperation); return; }
+
+            Dictionary<uint, Sampler> dict = this.nameSamplerDict;
+            if (!dict.ContainsKey(name)) // for the first time the name is binded, we create a renderbuffer object.
+            {
+                var obj = new Sampler(name);
+                dict.Add(name, obj);
+            }
+
+            this.currentSampler = dict[name];
+        }
     }
 }

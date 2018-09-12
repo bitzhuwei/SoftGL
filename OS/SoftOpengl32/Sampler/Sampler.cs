@@ -23,5 +23,18 @@ namespace SoftOpengl32
             }
         }
 
+        /// <summary>
+        /// bind a named sampler to a texturing target.
+        /// </summary>
+        /// <param name="unit">Specifies the index of the texture unit to which the sampler is bound.</param>
+        /// <param name="name">Specifies the name of a sampler.</param>
+        public static void glBindSampler(uint unit, uint name)
+        {
+            SoftGLRenderContext context = StaticCalls.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.BindSampler(unit, name);
+            }
+        }
     }
 }

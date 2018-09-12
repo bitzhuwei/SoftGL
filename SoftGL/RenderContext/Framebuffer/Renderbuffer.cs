@@ -26,7 +26,7 @@ namespace SoftGL
         /// <param name="names"></param>
         public void GenRenderbuffers(int count, uint[] names)
         {
-            if (count < 0) { SetLastError(ErrorCode.InvalidValue); }
+            if (count < 0) { SetLastError(ErrorCode.InvalidValue); return; }
 
             for (int i = 0; i < count; i++)
             {
@@ -39,8 +39,8 @@ namespace SoftGL
 
         public void BindRenderbuffer(uint target, uint name)
         {
-            if (target != GL.GL_RENDERBUFFER) { SetLastError(ErrorCode.InvalidEnum); }
-            if ((name != 0) && (!this.renderbufferNameList.Contains(name))) { SetLastError(ErrorCode.InvalidOperation); }
+            if (target != GL.GL_RENDERBUFFER) { SetLastError(ErrorCode.InvalidEnum); return; }
+            if ((name != 0) && (!this.renderbufferNameList.Contains(name))) { SetLastError(ErrorCode.InvalidOperation); return; }
 
             Dictionary<uint, Renderbuffer> dict = this.nameRenderbufferDict;
             if (!dict.ContainsKey(name)) // for the first time the name is binded, we create a renderbuffer object.
@@ -54,9 +54,9 @@ namespace SoftGL
 
         public void RenderbufferStorage(uint target, uint internalformat, int width, int height)
         {
-            if (target != GL.GL_RENDERBUFFER) { SetLastError(ErrorCode.InvalidEnum); }
-            if (width < 0 || maxRenderbufferSize < width) { SetLastError(ErrorCode.InvalidValue); }
-            if (height < 0 || maxRenderbufferSize < height) { SetLastError(ErrorCode.InvalidValue); }
+            if (target != GL.GL_RENDERBUFFER) { SetLastError(ErrorCode.InvalidEnum); return; }
+            if (width < 0 || maxRenderbufferSize < width) { SetLastError(ErrorCode.InvalidValue); return; }
+            if (height < 0 || maxRenderbufferSize < height) { SetLastError(ErrorCode.InvalidValue); return; }
             // TODO: GL_INVALID_ENUM is generated if internalformat​ is not a color-renderable, depth-renderable, or stencil-renderable format.
             // TODO: GL_OUT_OF_MEMORY is generated if the GL is unable to create a data store of the requested size.
 
@@ -72,7 +72,7 @@ namespace SoftGL
 
         public void DeleteRenderbuffers(int count, uint[] names)
         {
-            if (count < 0) { SetLastError(ErrorCode.InvalidValue); }
+            if (count < 0) { SetLastError(ErrorCode.InvalidValue); return; }
 
             for (int i = 0; i < count; i++)
             {

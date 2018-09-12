@@ -7,8 +7,8 @@ namespace SoftGL
 {
     partial class SoftGLRenderContext
     {
-        private const int GL_MAX_TEXTURE_IMAGE_UNITS = 8;
-        private TextureUnit[] textureUnits = new TextureUnit[GL_MAX_TEXTURE_IMAGE_UNITS];
+        private const int maxTextureImageUnits = 8;
+        private TextureUnit[] textureUnits = new TextureUnit[maxTextureImageUnits];
         private uint currentTextureUnitIndex = 0;
 
         public void ActiveTexture(uint textureUnit)
@@ -19,7 +19,7 @@ namespace SoftGL
                 return;
             }
 
-            if (GL.GL_TEXTURE0 + GL_MAX_TEXTURE_IMAGE_UNITS <= textureUnit)
+            if (GL.GL_TEXTURE0 + maxTextureImageUnits <= textureUnit)
             {
                 this.SetLastError(ErrorCode.InvalidEnum);
                 return;
