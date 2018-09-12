@@ -10,9 +10,8 @@ namespace SoftGL
     /// </summary>
     partial class SoftGLRenderContext
     {
-        private uint nextSamplerName = 0;
+        private uint nextSamplerName = 1;
 
-        private readonly List<uint> samplerNameList = new List<uint>();
         /// <summary>
         /// name -> sampler object.
         /// </summary>
@@ -38,7 +37,8 @@ namespace SoftGL
             {
                 uint name = nextSamplerName;
                 names[i] = name;
-                samplerNameList.Add(name);
+                var obj = new Sampler(name);
+                this.nameSamplerDict.Add(name, obj);
                 nextSamplerName++;
             }
         }
@@ -55,16 +55,26 @@ namespace SoftGL
         private void BindSampler(uint unit, uint name)
         {
             if (unit >= maxCombinedTextureImageUnits) { SetLastError(ErrorCode.InvalidValue); return; }
-            if ((name != 0) && (!this.samplerNameList.Contains(name))) { SetLastError(ErrorCode.InvalidOperation); return; }
+            if ((name != 0) && (!this.nameSamplerDict.ContainsKey(name))) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-            Dictionary<uint, Sampler> dict = this.nameSamplerDict;
-            if (!dict.ContainsKey(name)) // for the first time the name is binded, we create a renderbuffer object.
+            this.currentSampler = this.nameSamplerDict[name];
+        }
+
+        public static bool glIsSampler(uint name)
+        {
+            bool result = false;
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
             {
-                var obj = new Sampler(name);
-                dict.Add(name, obj);
+                result = context.IsSampler(name);
             }
 
-            this.currentSampler = dict[name];
+            return result;
+        }
+
+        private bool IsSampler(uint name)
+        {
+            return ((name > 0) && (this.nameSamplerDict.ContainsKey(name)));
         }
 
         public static void glDeleteSamplers(int count, uint[] names)
