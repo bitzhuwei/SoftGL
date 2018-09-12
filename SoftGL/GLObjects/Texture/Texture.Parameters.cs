@@ -25,5 +25,10 @@ namespace SoftGL
 
             return result;
         }
+
+        private void InitParameters()
+        {
+
+        }
     }
 }

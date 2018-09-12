@@ -29,6 +29,8 @@ namespace SoftGL
         {
             this.Target = target;
             this.ids[0] = id;
+
+            this.InitParameters(); // TODO: Is this needed?
         }
 
         /// <summary>
