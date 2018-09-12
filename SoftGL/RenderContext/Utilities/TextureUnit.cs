@@ -7,14 +7,14 @@ namespace SoftGL
 {
     struct TextureUnit
     {
-        public uint texture1D;
-        public uint texture2D;
-        public uint texture2DMultisample;
-        public uint texture2DArray;
-        public uint texture3D;
-        public uint texture2DMultisampleArray;
-        public uint textureCubeMap;
-        public uint textureBuffer;
-        public uint textureRectangle;
+        public Texture texture1D;
+        public Texture texture2D;
+        public Texture texture2DMultisample;
+        public Texture texture2DArray;
+        public Texture texture3D;
+        public Texture texture2DMultisampleArray;
+        public Texture textureCubeMap;
+        public Texture textureBuffer;
+        public Texture textureRectangle;
     }
 }

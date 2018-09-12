@@ -14,7 +14,7 @@ namespace SoftGL
 
         private readonly List<uint> samplerNameList = new List<uint>();
         /// <summary>
-        /// name -> render buffer object.
+        /// name -> sampler object.
         /// </summary>
         private readonly Dictionary<uint, Sampler> nameSamplerDict = new Dictionary<uint, Sampler>();
 

@@ -38,12 +38,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Texture\Texture.cs" />
     <None Include="readme.md" />
-    <Compile Include="Sampler\Sampler.cs" />
+    <Compile Include="Texture\Sampler\Sampler.cs" />
     <Compile Include="Framebuffer\Renderbuffer.cs" />
-    <Compile Include="Sampler\SamplerParameters\SamplerParameter.cs" />
-    <Compile Include="Sampler\SamplerParameters\SamplerParameterf.cs" />
-    <Compile Include="Sampler\SamplerParameters\SamplerParameteri.cs" />
+    <Compile Include="Texture\Sampler\SamplerParameters\SamplerParameter.cs" />
+    <Compile Include="Texture\Sampler\SamplerParameters\SamplerParameterf.cs" />
+    <Compile Include="Texture\Sampler\SamplerParameters\SamplerParameteri.cs" />
     <Compile Include="StaticCalls.API.cs" />
     <Compile Include="StaticCalls.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

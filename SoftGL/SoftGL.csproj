@@ -126,6 +126,7 @@
     <Compile Include="GLAPI\GLDelegates.cs" />
     <Compile Include="GLObjects\Framebuffer\Framebuffer.cs" />
     <Compile Include="GLObjects\Framebuffer\Renderbuffer.cs" />
+    <Compile Include="GLObjects\Texture\Texture.cs" />
     <Compile Include="GLObjects\Texture\Samplers\SamplerObject\Sampler.cs" />
     <Compile Include="GLObjects\Texture\Samplers\SamplerObject\SamplerParameters\SamplerParameter.cs" />
     <Compile Include="GLObjects\Texture\Samplers\SamplerObject\SamplerParameters\SamplerParameterf.cs" />
