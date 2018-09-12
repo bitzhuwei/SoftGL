@@ -7,7 +7,7 @@ namespace SoftGL
 {
     partial class SoftGLRenderContext
     {
-        private uint nextTextureName = 0;
+        private uint nextTextureName = 1;
 
         private readonly List<uint> textureNameList = new List<uint>();
         /// <summary>
@@ -117,6 +117,23 @@ namespace SoftGL
                 default:
                     break;
             }
+        }
+
+        public static bool glIsTexture(uint name)
+        {
+            bool result = false;
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                result = context.IsTexture(name);
+            }
+
+            return result;
+        }
+
+        private bool IsTexture(uint name)
+        {
+            return ((name > 0) && (nameTextureDict.ContainsKey(name)));
         }
 
         public static void glDeleteTextures(int count, uint[] names)

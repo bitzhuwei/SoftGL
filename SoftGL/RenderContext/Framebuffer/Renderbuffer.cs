@@ -8,7 +8,7 @@ namespace SoftGL
 {
     partial class SoftGLRenderContext
     {
-        private uint nextRenderbufferName = 0;
+        private uint nextRenderbufferName = 1;
 
         private readonly List<uint> renderbufferNameList = new List<uint>();
         /// <summary>

@@ -30,6 +30,15 @@ namespace SoftOpengl32
         }
 
         /// <summary>
+        /// determine if a name corresponds to a texture.
+        /// </summary>
+        /// <param name="name">Specifies a value that may be the name of a texture.</param>
+        public static void glIsTexture(uint name)
+        {
+            SoftGLRenderContext.glIsTexture(name);
+        }
+
+        /// <summary>
         /// delete named textures.
         /// </summary>
         /// <param name="count">Specifies the number of textures to be deleted.</param>
