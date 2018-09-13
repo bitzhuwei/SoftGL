@@ -38,6 +38,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Framebuffer\Attach\SC.Attach.Renderbuffer.cs" />
     <Compile Include="Framebuffer\SC.Framebuffer.cs" />
     <Compile Include="Texture\TexImage\SC.TexImage2D.cs" />
     <Compile Include="Texture\Storage\SC.Storage2D.cs" />

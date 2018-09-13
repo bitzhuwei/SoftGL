@@ -18,5 +18,6 @@ namespace SoftGL
         /// Creates a framebuffer object.
         /// </summary>
         public Framebuffer(uint id) { this.ids[0] = id; }
+
     }
 }
