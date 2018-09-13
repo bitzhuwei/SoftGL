@@ -21,10 +21,11 @@ namespace SoftGL
 
         private IAttachable[] colorbufferAttachments = new IAttachable[8]; // OpenGL supports at least 8 color attachement points.
 
-        private IAttachable depthbufferAttachment;
+        public IAttachable[] ColorbufferAttachments { get { return colorbufferAttachments; } }
 
-        private IAttachable stencilbufferAttachment;
+        public IAttachable DepthbufferAttachment { get; set; }
 
+        public IAttachable StencilbufferAttachment { get; set; }
 
     }
 }

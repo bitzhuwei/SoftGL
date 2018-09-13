@@ -22,13 +22,40 @@ namespace SoftGL
             if (target == 0) { SetLastError(ErrorCode.InvalidEnum); return; }
             if (renderbufferTarget != GL.GL_RENDERBUFFER) { SetLastError(ErrorCode.InvalidEnum); return; }
             // TODO: GL_INVALID_OPERATION is generated if zero is bound to target.
+            Dictionary<uint, Renderbuffer> dict = this.nameRenderbufferDict;
+            if ((renderbufferName != 0) && (!dict.ContainsKey(renderbufferName))) { SetLastError(ErrorCode.InvalidOperation); return; }
+
+            Renderbuffer renderbuffer = null;
+            if (renderbufferName != 0)
+            {
+                if (!dict.TryGetValue(renderbufferName, out renderbuffer))
+                { SetLastError(ErrorCode.InvalidOperation); return; }
+            }
 
             Framebuffer framebuffer = this.currentFramebuffers[target];
             if (framebuffer == null) { return; }
 
+            if (attachmentPoint == GL.GL_DEPTH_ATTACHMENT)
+            {
+                framebuffer.DepthbufferAttachment = renderbuffer;
+            }
+            else if (attachmentPoint == GL.GL_STENCIL_ATTACHMENT)
+            {
+                framebuffer.StencilbufferAttachment = renderbuffer;
+            }
+            else if (attachmentPoint == GL.GL_DEPTH_STENCIL_ATTACHMENT)
+            {
+                framebuffer.DepthbufferAttachment = renderbuffer;
+                framebuffer.StencilbufferAttachment = renderbuffer;
+            }
+            else // color attachment points.
+            {
+                if (attachmentPoint < GL.GL_COLOR_ATTACHMENT0) { SetLastError(ErrorCode.InvalidOperation); return; }
+                uint index = attachmentPoint - GL.GL_COLOR_ATTACHMENT0;
+                if (framebuffer.ColorbufferAttachments.Length <= index) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-
-            throw new NotImplementedException();
+                framebuffer.ColorbufferAttachments[index] = renderbuffer;
+            }
         }
     }
 }

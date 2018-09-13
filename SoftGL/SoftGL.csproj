@@ -110,6 +110,7 @@
     <Compile Include="GLAPI\GL.ExntendedAPI.cs" />
     <Compile Include="GLAPI\GL.PrintError.cs" />
     <Compile Include="GLAPI\GLDelegates.cs" />
+    <Compile Include="GLObjects\Framebuffer\Renderbuffer.IAttachable.cs" />
     <Compile Include="GLObjects\IAttachable.cs" />
     <Compile Include="GLObjects\Framebuffer\Framebuffer.IDisposable.cs" />
     <Compile Include="GLObjects\Framebuffer\Framebuffer.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="GLObjects\Texture\TexParameters\TexParameterf.cs" />
     <Compile Include="GLObjects\Texture\TexParameters\TexParameterfv.cs" />
     <Compile Include="GLObjects\Texture\TexParameters\TexParameteri.cs" />
+    <Compile Include="GLObjects\Texture\Texture.IAttachable.cs" />
     <Compile Include="GLObjects\Texture\Texture.Parameters.cs" />
     <Compile Include="GLObjects\Texture\Texture.cs" />
     <Compile Include="GLObjects\Texture\Samplers\SamplerObject\Sampler.cs" />
