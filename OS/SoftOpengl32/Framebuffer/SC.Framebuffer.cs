@@ -28,5 +28,15 @@ namespace SoftOpengl32
         {
             SoftGLRenderContext.glBindFramebuffer(target, name);
         }
+
+        /// <summary>
+        /// determine if a name corresponds to a framebuffer object.
+        /// </summary>
+        /// <param name="name">Specifies a value that may be the name of a framebuffer object.</param>
+        /// <returns></returns>
+        public static bool glIsFramebuffer(uint name)
+        {
+            return SoftGLRenderContext.glIsFramebuffer(name);
+        }
     }
 }

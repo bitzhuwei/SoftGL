@@ -66,6 +66,23 @@ namespace SoftGL
             currentFramebuffers[target] = dict[name];
         }
 
+        public static bool glIsFramebuffer(uint name)
+        {
+            bool result = false;
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                result = context.IsFramebuffer(name);
+            }
+
+            return result;
+        }
+
+        private bool IsFramebuffer(uint name)
+        {
+            return ((name > 0) && (nameFramebufferDict.ContainsKey(name)));
+        }
+
     }
 
     enum BindFramebufferTarget : uint
