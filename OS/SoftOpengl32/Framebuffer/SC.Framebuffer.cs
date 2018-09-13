@@ -38,5 +38,16 @@ namespace SoftOpengl32
         {
             return SoftGLRenderContext.glIsFramebuffer(name);
         }
+
+
+        /// <summary>
+        /// delete framebuffer objects.
+        /// </summary>
+        /// <param name="count">Specifies the number of framebuffer objects to be deleted.</param>
+        /// <param name="names">A pointer to an array containing <paramref name="count"/>​ framebuffer objects to be deleted.</param>
+        public static void glDeleteFramebuffers(int count, uint[] names)
+        {
+            SoftGLRenderContext.glDeleteFramebuffers(count, names);
+        }
     }
 }

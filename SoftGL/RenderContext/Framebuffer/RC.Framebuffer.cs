@@ -83,6 +83,44 @@ namespace SoftGL
             return ((name > 0) && (nameFramebufferDict.ContainsKey(name)));
         }
 
+        public static void glDeleteFramebuffers(int count, uint[] names)
+        {
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.DeleteFramebuffers(count, names);
+            }
+        }
+
+        private void DeleteFramebuffers(int count, uint[] names)
+        {
+            if (count < 0) { SetLastError(ErrorCode.InvalidValue); return; }
+
+            List<uint> list = this.framebufferNameList;
+            Dictionary<uint, Framebuffer> dict = this.nameFramebufferDict;
+            for (int i = 0; i < count; i++)
+            {
+                uint name = names[i];
+                if (name != 0) // The name zero is reserved by the GL and is silently ignored.
+                {
+                    if (list.Contains(name)) { list.Remove(name); }
+                    Framebuffer framebuffer = null;
+                    if (dict.TryGetValue(name, out framebuffer))
+                    {
+                        foreach (var item in this.currentFramebuffers)
+                        {
+                            if (item.Value == framebuffer) // If a framebuffer that is currently bound.
+                            {
+                                this.BindFramebuffer(item.Key, 0); // unbind it.
+                            }
+                        }
+
+                        dict.Remove(name);
+                        framebuffer.Dispose();
+                    }
+                }
+            }
+        }
     }
 
     enum BindFramebufferTarget : uint

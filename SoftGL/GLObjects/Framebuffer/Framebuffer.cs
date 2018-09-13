@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SoftGL
 {
-    class Framebuffer
+    partial class Framebuffer : IDisposable
     {
         private uint[] ids = new uint[1];
 

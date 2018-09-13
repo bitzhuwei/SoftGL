@@ -110,6 +110,7 @@
     <Compile Include="GLAPI\GL.ExntendedAPI.cs" />
     <Compile Include="GLAPI\GL.PrintError.cs" />
     <Compile Include="GLAPI\GLDelegates.cs" />
+    <Compile Include="GLObjects\Framebuffer\Framebuffer.IDisposable.cs" />
     <Compile Include="GLObjects\Framebuffer\Framebuffer.cs" />
     <Compile Include="GLObjects\Framebuffer\Renderbuffer.cs" />
     <Compile Include="GLObjects\Texture\TexParameters\TexParameter.cs" />
