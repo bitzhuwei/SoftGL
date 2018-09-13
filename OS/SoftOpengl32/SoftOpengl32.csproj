@@ -38,15 +38,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Texture\TexImage\RC.TexImage2D.cs" />
-    <Compile Include="Texture\Storage\RC.Storage2D.cs" />
-    <Compile Include="Texture\Texture.cs" />
+    <Compile Include="Framebuffer\SC.Framebuffer.cs" />
+    <Compile Include="Texture\TexImage\SC.TexImage2D.cs" />
+    <Compile Include="Texture\Storage\SC.Storage2D.cs" />
+    <Compile Include="Texture\SC.Texture.cs" />
     <None Include="readme.md" />
-    <Compile Include="Texture\Sampler\Sampler.cs" />
-    <Compile Include="Framebuffer\Renderbuffer.cs" />
-    <Compile Include="Texture\Sampler\SamplerParameters\SamplerParameter.cs" />
-    <Compile Include="Texture\Sampler\SamplerParameters\SamplerParameterf.cs" />
-    <Compile Include="Texture\Sampler\SamplerParameters\SamplerParameteri.cs" />
+    <Compile Include="Texture\Sampler\SC.Sampler.cs" />
+    <Compile Include="Framebuffer\SC.Renderbuffer.cs" />
+    <Compile Include="Texture\Sampler\SamplerParameters\SC.SamplerParameter.cs" />
+    <Compile Include="Texture\Sampler\SamplerParameters\SC.SamplerParameterf.cs" />
+    <Compile Include="Texture\Sampler\SamplerParameters\SC.SamplerParameteri.cs" />
     <Compile Include="StaticCalls.API.cs" />
     <Compile Include="StaticCalls.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
