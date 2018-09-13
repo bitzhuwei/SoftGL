@@ -19,5 +19,12 @@ namespace SoftGL
         /// </summary>
         public Framebuffer(uint id) { this.ids[0] = id; }
 
+        private IAttachable[] colorbufferAttachments = new IAttachable[8]; // OpenGL supports at least 8 color attachement points.
+
+        private IAttachable depthbufferAttachment;
+
+        private IAttachable stencilbufferAttachment;
+
+
     }
 }

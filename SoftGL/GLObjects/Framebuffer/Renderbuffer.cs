@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SoftGL
 {
-    partial class Renderbuffer
+    partial class Renderbuffer : IAttachable
     {
         private uint[] ids = new uint[1];
 
