@@ -5,6 +5,7 @@ using System.Text;
 
 namespace SoftGL
 {
+    // https://www.khronos.org/opengl/wiki/Sampler_Object
     /// <summary>
     /// Bind a <see cref="Sampler"/> object to a texture uint('s index), and it will affect all textures that bind to the same texture uint.
     /// </summary>
