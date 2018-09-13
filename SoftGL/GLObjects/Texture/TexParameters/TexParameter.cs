@@ -80,6 +80,6 @@ namespace SoftGL
         /// 
         /// </summary>
         /// <param name="target"></param>
-        public abstract void Apply(TextureTarget target);
+        public abstract void Apply(BindTextureTarget target);
     }
 }

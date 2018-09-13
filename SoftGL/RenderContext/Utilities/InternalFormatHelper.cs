@@ -5,6 +5,7 @@ using System.Text;
 
 namespace SoftGL
 {
+    // https://www.khronos.org/opengl/wiki/Image_Format
     static class InternalFormatHelper
     {
         /// <summary>

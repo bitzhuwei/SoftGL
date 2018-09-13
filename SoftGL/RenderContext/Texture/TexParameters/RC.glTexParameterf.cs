@@ -13,11 +13,11 @@ namespace SoftGL
             SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
             if (context != null)
             {
-                context.TexParameterf((TextureTarget)target, pname, param);
+                context.TexParameterf((BindTextureTarget)target, pname, param);
             }
         }
 
-        private void TexParameterf(TextureTarget target, uint pname, float param)
+        private void TexParameterf(BindTextureTarget target, uint pname, float param)
         {
             if (target == 0) { SetLastError(ErrorCode.InvalidEnum); return; }
 

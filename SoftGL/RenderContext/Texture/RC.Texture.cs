@@ -59,7 +59,7 @@ namespace SoftGL
             this.currentTextureUnitIndex = textureUnit - GL.GL_TEXTURE0;
         }
 
-        public static void glBindTexture(TextureTarget target, uint name)
+        public static void glBindTexture(BindTextureTarget target, uint name)
         {
             SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
             if (context != null)
@@ -68,7 +68,7 @@ namespace SoftGL
             }
         }
 
-        private void BindTexture(TextureTarget target, uint name)
+        private void BindTexture(BindTextureTarget target, uint name)
         {
             if (target == 0) { SetLastError(ErrorCode.InvalidEnum); return; }
             if ((name != 0) && (!this.textureNameList.Contains(name))) { SetLastError(ErrorCode.InvalidOperation); return; }

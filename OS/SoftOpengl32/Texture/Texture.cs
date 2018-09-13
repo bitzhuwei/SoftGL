@@ -26,7 +26,7 @@ namespace SoftOpengl32
         /// <param name="name">Specifies the name of a texture.</param>
         public static void glBindTexture(uint target, uint name)
         {
-            SoftGLRenderContext.glBindTexture((TextureTarget)target, name);
+            SoftGLRenderContext.glBindTexture((BindTextureTarget)target, name);
         }
 
         /// <summary>

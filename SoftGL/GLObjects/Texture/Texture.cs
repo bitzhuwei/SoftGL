@@ -13,7 +13,7 @@ namespace SoftGL
         /// <summary>
         /// 
         /// </summary>
-        public TextureTarget Target { get; private set; }
+        public BindTextureTarget Target { get; private set; }
 
         private uint[] ids = new uint[1];
 
@@ -25,7 +25,7 @@ namespace SoftGL
         /// <summary>
         /// Creates a sampler object.
         /// </summary>
-        public Texture(TextureTarget target, uint id)
+        public Texture(BindTextureTarget target, uint id)
         {
             this.Target = target;
             this.ids[0] = id;
@@ -39,7 +39,7 @@ namespace SoftGL
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("Texture: Id:{0}", this.ids);
+            return string.Format("Texture: Id:{0}, T:{1}", this.ids, this.Target);
         }
     }
 }

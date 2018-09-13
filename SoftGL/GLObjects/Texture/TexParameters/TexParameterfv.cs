@@ -44,7 +44,7 @@ namespace SoftGL
         /// 
         /// </summary>
         /// <param name="target"></param>
-        public override void Apply(TextureTarget target)
+        public override void Apply(BindTextureTarget target)
         {
             GL.Instance.TexParameterfv((uint)target, PName, PValue);
         }

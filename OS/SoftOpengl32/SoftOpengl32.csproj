@@ -38,6 +38,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Texture\TexImage\RC.TexImage2D.cs" />
+    <Compile Include="Texture\Storage\RC.Storage2D.cs" />
     <Compile Include="Texture\Texture.cs" />
     <None Include="readme.md" />
     <Compile Include="Texture\Sampler\Sampler.cs" />
