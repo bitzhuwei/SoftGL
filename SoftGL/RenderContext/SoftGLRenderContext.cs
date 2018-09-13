@@ -7,10 +7,7 @@ using System.Threading;
 
 namespace SoftGL
 {
-    /// <summary>
-    /// creates render device and render context.
-    /// </summary>
-    public partial class SoftGLRenderContext : GLRenderContext
+    public partial class SoftGLRenderContext
     {
         /// <summary>
         /// RenderContextHandle -> Render Context Object.
@@ -53,6 +50,9 @@ namespace SoftGL
             }
 
             ContextManager.MakeCurrent(this.DeviceContextHandle, this.RenderContextHandle);
+
+            InitDefaultFramebuffer();
+
         }
 
         // abstract window for now.

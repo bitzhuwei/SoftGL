@@ -124,6 +124,7 @@
     <Compile Include="GLObjects\Texture\Samplers\SamplerObject\SamplerParameters\SamplerParameterf.cs" />
     <Compile Include="GLObjects\Texture\Samplers\SamplerObject\SamplerParameters\SamplerParameteri.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RenderContext\SoftGLRenderContext.cs" />
     <Compile Include="RenderContext\Texture\RC.BindTextureTarget.cs" />
     <Compile Include="RenderContext\Texture\RC.Texture.Common.cs" />
     <Compile Include="RenderContext\Texture\Storage\RC.TexStorageTarget.cs" />
@@ -142,8 +143,7 @@
     <Compile Include="RenderContext\GLRenderContext.IDisposable.cs" />
     <Compile Include="RenderContext\Utilities\LastError.cs" />
     <Compile Include="RenderContext\Framebuffer\RC.Renderbuffer.cs" />
-    <Compile Include="RenderContext\SoftGLRenderContext.API.cs" />
-    <Compile Include="RenderContext\SoftGLRenderContext.cs" />
+    <Compile Include="RenderContext\Framebuffer\SC.InitFramebuffer.cs" />
     <Compile Include="RenderContext\Utilities\InternalFormatHelper.cs" />
     <Compile Include="RenderContext\Utilities\TextureUnit.cs" />
     <None Include="RenderContext\readme.md" />

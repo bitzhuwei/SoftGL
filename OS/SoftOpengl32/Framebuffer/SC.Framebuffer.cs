@@ -18,5 +18,15 @@ namespace SoftOpengl32
         {
             SoftGLRenderContext.glGenFramebuffers(count, names);
         }
+
+        /// <summary>
+        /// bind a framebuffer to a framebuffer target.
+        /// </summary>
+        /// <param name="target">Specifies the framebuffer target of the binding operation.</param>
+        /// <param name="name">Specifies the name of the framebuffer object to bind.</param>
+        public static void glBindFramebuffer(uint target, uint name)
+        {
+            SoftGLRenderContext.glBindFramebuffer(target, name);
+        }
     }
 }

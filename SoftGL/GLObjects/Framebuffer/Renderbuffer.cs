@@ -35,7 +35,7 @@ namespace SoftGL
         public byte[] DataStore { get; set; }
 
         /// <summary>
-        /// Creates a render buffer object.
+        /// Creates a renderbuffer object.
         /// </summary>
         public Renderbuffer(uint id) { this.ids[0] = id; }
 

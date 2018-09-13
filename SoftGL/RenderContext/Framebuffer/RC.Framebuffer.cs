@@ -16,7 +16,7 @@ namespace SoftGL
         /// </summary>
         private readonly Dictionary<uint, Framebuffer> nameFramebufferDict = new Dictionary<uint, Framebuffer>();
 
-        private Framebuffer currentFramebuffer = null;
+        private Dictionary<BindFramebufferTarget, Framebuffer> currentFramebuffers = new Dictionary<BindFramebufferTarget, Framebuffer>(3);
 
         public static void glGenFramebuffers(int count, uint[] names)
         {
@@ -39,5 +39,48 @@ namespace SoftGL
                 nextFramebufferName++;
             }
         }
+
+        public static void glBindFramebuffer(uint target, uint name)
+        {
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.BindFramebuffer((BindFramebufferTarget)target, name);
+            }
+        }
+
+        private void BindFramebuffer(BindFramebufferTarget target, uint name)
+        {
+            if (target == 0) { SetLastError(ErrorCode.InvalidEnum); return; }
+            if ((name != 0) && (!this.framebufferNameList.Contains(name))) { SetLastError(ErrorCode.InvalidOperation); return; }
+
+            Dictionary<BindFramebufferTarget, Framebuffer> currentFramebuffers = this.currentFramebuffers;
+            Dictionary<uint, Framebuffer> dict = this.nameFramebufferDict;
+
+            if (!dict.ContainsKey(name)) // for the first time the name is binded, we create a framebuffer object.
+            {
+                var obj = new Framebuffer(name);
+                dict.Add(name, obj);
+            }
+
+            currentFramebuffers[target] = dict[name];
+        }
+
+    }
+
+    enum BindFramebufferTarget : uint
+    {
+        /// <summary>
+        /// 0x8CA9
+        /// </summary>
+        DrawFramebuffer = GL.GL_DRAW_FRAMEBUFFER,
+        /// <summary>
+        /// 0x8CA8
+        /// </summary>
+        ReadFramebuffer = GL.GL_READ_FRAMEBUFFER,
+        /// <summary>
+        /// 0x8D40
+        /// </summary>
+        Framebuffer = GL.GL_FRAMEBUFFER
     }
 }

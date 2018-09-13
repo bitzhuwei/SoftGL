@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Threading;
 
 namespace SoftGL
 {
-    partial class SoftGLRenderContext
+    /// <summary>
+    /// creates render device and render context.
+    /// </summary>
+    public partial class SoftGLRenderContext : GLRenderContext
     {
-        public void Accum(uint op, float value)
+        private void InitDefaultFramebuffer()
         {
             throw new NotImplementedException();
         }
