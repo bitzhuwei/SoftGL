@@ -22,7 +22,7 @@ namespace SoftGL
         /// <summary>
         /// glGet(GL_MAX_COLOR_ATTACHMENTS, ..);
         /// </summary>
-        private const int maxColorAttachments = 8;
+        internal const int maxColorAttachments = 8;
         private IAttachable[] colorbufferAttachments = new IAttachable[maxColorAttachments]; // OpenGL supports at least 8 color attachement points.
 
         public IAttachable[] ColorbufferAttachments { get { return colorbufferAttachments; } }
