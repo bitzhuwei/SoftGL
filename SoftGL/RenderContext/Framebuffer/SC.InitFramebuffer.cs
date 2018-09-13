@@ -14,6 +14,10 @@ namespace SoftGL
     {
         private void InitDefaultFramebuffer()
         {
+            var ids = new uint[1];
+            this.GenFramebuffers(1, ids);
+            if (ids[0] != 0) { throw new Exception("This framebuffer must be 0!"); }
+            this.BindFramebuffer(BindFramebufferTarget.Framebuffer, ids[0]);
             throw new NotImplementedException();
         }
     }
