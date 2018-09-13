@@ -19,7 +19,11 @@ namespace SoftGL
         /// </summary>
         public Framebuffer(uint id) { this.ids[0] = id; }
 
-        private IAttachable[] colorbufferAttachments = new IAttachable[8]; // OpenGL supports at least 8 color attachement points.
+        /// <summary>
+        /// glGet(GL_MAX_COLOR_ATTACHMENTS, ..);
+        /// </summary>
+        private const int maxColorAttachments = 8;
+        private IAttachable[] colorbufferAttachments = new IAttachable[maxColorAttachments]; // OpenGL supports at least 8 color attachement points.
 
         public IAttachable[] ColorbufferAttachments { get { return colorbufferAttachments; } }
 
