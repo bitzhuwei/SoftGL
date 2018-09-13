@@ -11,6 +11,7 @@ namespace SoftGL
     {
         static SoftGLRenderContext()
         {
+            // for glGetIntegerv(..).
             {
                 Dictionary<uint, int[]> dict = SoftGLRenderContext.pValuesDict;
                 dict.Add(GL.GL_MAX_COLOR_ATTACHMENTS, new int[] { Framebuffer.maxColorAttachments });
