@@ -18,5 +18,17 @@ namespace SoftOpengl32
         {
             return SoftGLRenderContext.glCreateShader(shaderType);
         }
+
+        /// <summary>
+        /// Replaces the source code in a shader object.
+        /// </summary>
+        /// <param name="shader">Specifies the handle of the shader object whose source code is to be replaced.</param>
+        /// <param name="count">Specifies the number of elements in the string​ and length​ arrays.</param>
+        /// <param name="codes">Specifies an array of pointers to strings containing the source code to be loaded into the shader.</param>
+        /// <param name="lengths">Specifies an array of code lengths.</param>
+        public static void glShaderSource(uint shader, int count, string[] codes, int[] lengths)
+        {
+            SoftGLRenderContext.glShaderSource(shader, count, codes, lengths);
+        }
     }
 }
