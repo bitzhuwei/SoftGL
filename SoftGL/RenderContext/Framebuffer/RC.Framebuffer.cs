@@ -16,7 +16,8 @@ namespace SoftGL
         /// </summary>
         private readonly Dictionary<uint, Framebuffer> nameFramebufferDict = new Dictionary<uint, Framebuffer>();
 
-        private Dictionary<BindFramebufferTarget, Framebuffer> currentFramebuffers = new Dictionary<BindFramebufferTarget, Framebuffer>(3);
+        private readonly Framebuffer defaultFramebuffer;
+        private Framebuffer currentFramebuffer;
 
         public static void glGenFramebuffers(int count, uint[] names)
         {
@@ -54,16 +55,16 @@ namespace SoftGL
             if (target == 0) { SetLastError(ErrorCode.InvalidEnum); return; }
             if ((name != 0) && (!this.framebufferNameList.Contains(name))) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-            Dictionary<BindFramebufferTarget, Framebuffer> currentFramebuffers = this.currentFramebuffers;
             Dictionary<uint, Framebuffer> dict = this.nameFramebufferDict;
-
             if (!dict.ContainsKey(name)) // for the first time the name is binded, we create a framebuffer object.
             {
                 var obj = new Framebuffer(name);
                 dict.Add(name, obj);
             }
 
-            currentFramebuffers[target] = dict[name];
+            Framebuffer fbo = dict[name];
+            fbo.Target = target;
+            this.currentFramebuffer = fbo;
         }
 
         public static bool glIsFramebuffer(uint name)
@@ -107,12 +108,10 @@ namespace SoftGL
                     Framebuffer framebuffer = null;
                     if (dict.TryGetValue(name, out framebuffer))
                     {
-                        foreach (var item in this.currentFramebuffers)
+                        if (this.currentFramebuffer == framebuffer) // If a framebuffer that is currently bound.
                         {
-                            if (item.Value == framebuffer) // If a framebuffer that is currently bound.
-                            {
-                                this.BindFramebuffer(item.Key, 0); // unbind it.
-                            }
+                            Framebuffer defaultFBO = dict[0];
+                            this.BindFramebuffer(defaultFBO.Target, 0); // unbind it.
                         }
 
                         dict.Remove(name);

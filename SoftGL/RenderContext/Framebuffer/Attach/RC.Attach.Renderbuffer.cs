@@ -32,8 +32,12 @@ namespace SoftGL
                 { SetLastError(ErrorCode.InvalidOperation); return; }
             }
 
-            Framebuffer framebuffer = this.currentFramebuffers[target];
+            Framebuffer framebuffer = this.currentFramebuffer;
             if (framebuffer == null) { return; }
+            if (framebuffer.Target != target)
+            {
+                // TODO: what should I do? Or should multiple current framebufer object exist?
+            }
 
             if (attachmentPoint == GL.GL_DEPTH_ATTACHMENT)
             {

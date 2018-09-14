@@ -15,6 +15,11 @@ namespace SoftGL
         public uint Id { get { return this.ids[0]; } }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public BindFramebufferTarget Target { get; set; }
+
+        /// <summary>
         /// Creates a framebuffer object.
         /// </summary>
         public Framebuffer(uint id) { this.ids[0] = id; }
@@ -25,11 +30,21 @@ namespace SoftGL
         internal const int maxColorAttachments = 8;
         private IAttachable[] colorbufferAttachments = new IAttachable[maxColorAttachments]; // OpenGL supports at least 8 color attachement points.
 
-        public IAttachable[] ColorbufferAttachments { get { return colorbufferAttachments; } }
+        public IAttachable FrontLeft { get { return this.colorbufferAttachments[0]; } set { this.colorbufferAttachments[0] = value; } }
+
+        public IAttachable FrontRight { get { return this.colorbufferAttachments[1]; } set { this.colorbufferAttachments[1] = value; } }
+
+        public IAttachable BackLeft { get { return this.colorbufferAttachments[2]; } set { this.colorbufferAttachments[2] = value; } }
+
+        public IAttachable BackRight { get { return this.colorbufferAttachments[3]; } set { this.colorbufferAttachments[3] = value; } }
+
+        public IAttachable[] ColorbufferAttachments { get { return this.colorbufferAttachments; } }
 
         public IAttachable DepthbufferAttachment { get; set; }
 
         public IAttachable StencilbufferAttachment { get; set; }
 
+        private List<uint> drawBuffers = new List<uint>();
+        public IList<uint> DrawBuffers { get { return this.drawBuffers; } }
     }
 }
