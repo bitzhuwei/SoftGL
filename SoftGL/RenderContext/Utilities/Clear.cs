@@ -22,6 +22,53 @@ namespace SoftGL
             this.clearColor = new vec4(r, g, b, a);
         }
 
+
+        private float clearDepthf = 1;
+        private double clearDepth = 1;
+
+        public static void glClearDepthf(float depth)
+        {
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.ClearDepthf(depth);
+            }
+        }
+
+        private void ClearDepthf(float depth)
+        {
+            this.clearDepthf = depth;
+        }
+
+        public static void glClearDepth(double depth)
+        {
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.ClearDepth(depth);
+            }
+        }
+
+        private void ClearDepth(double depth)
+        {
+            this.clearDepth = depth;
+        }
+
+        private int clearStencil = 0;
+        public static void glClearStencil(int s)
+        {
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.ClearStencil(s);
+            }
+        }
+
+        private void ClearStencil(int s)
+        {
+            this.clearStencil = s;
+        }
+
         public static void glClear(uint mask)
         {
             SoftGLRenderContext context = ContextManager.GetCurrentContextObj();

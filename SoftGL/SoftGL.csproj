@@ -129,6 +129,7 @@
     <Compile Include="GLObjects\Texture\Samplers\SamplerObject\SamplerParameters\SamplerParameteri.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RenderContext\Framebuffer\Attach\RC.Attach.Renderbuffer.cs" />
+    <Compile Include="RenderContext\Framebuffer\RC.Framebuffer.DrawBuffers.cs" />
     <Compile Include="RenderContext\Framebuffer\RC.Framebuffer.CheckStatus.cs" />
     <Compile Include="RenderContext\SoftGLRenderContext.static.cs" />
     <Compile Include="RenderContext\SoftGLRenderContext.ctor.cs" />
@@ -148,7 +149,7 @@
     <Compile Include="RenderContext\Framebuffer\RC.Framebuffer.cs" />
     <Compile Include="RenderContext\GLRenderContext.cs" />
     <Compile Include="RenderContext\GLRenderContext.IDisposable.cs" />
-    <Compile Include="RenderContext\Utilities\ClearColor.cs" />
+    <Compile Include="RenderContext\Utilities\Clear.cs" />
     <Compile Include="RenderContext\Utilities\GetInfo.cs" />
     <Compile Include="RenderContext\Utilities\LastError.cs" />
     <Compile Include="RenderContext\Framebuffer\RC.Renderbuffer.cs" />

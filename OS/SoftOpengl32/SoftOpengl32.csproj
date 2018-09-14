@@ -39,12 +39,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Framebuffer\Attach\SC.Attach.Renderbuffer.cs" />
+    <Compile Include="Framebuffer\SC.Framebuffer.DrawBuffers.cs" />
     <Compile Include="Framebuffer\SC.Framebuffer.CheckStatus.cs" />
     <Compile Include="Framebuffer\SC.Framebuffer.cs" />
     <Compile Include="Texture\TexImage\SC.TexImage2D.cs" />
     <Compile Include="Texture\Storage\SC.Storage2D.cs" />
     <Compile Include="Texture\SC.Texture.cs" />
-    <Compile Include="Utilities\ClearColor.cs" />
+    <Compile Include="Utilities\Clear.cs" />
     <None Include="readme.md" />
     <Compile Include="Texture\Sampler\SC.Sampler.cs" />
     <Compile Include="Framebuffer\SC.Renderbuffer.cs" />
