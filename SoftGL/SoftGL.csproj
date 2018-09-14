@@ -115,6 +115,7 @@
     <Compile Include="GLObjects\Framebuffer\Framebuffer.IDisposable.cs" />
     <Compile Include="GLObjects\Framebuffer\Framebuffer.cs" />
     <Compile Include="GLObjects\Framebuffer\Renderbuffer.cs" />
+    <Compile Include="GLObjects\ShaderProgram\ShaderProgram.cs" />
     <Compile Include="GLObjects\Texture\TexParameters\TexParameter.cs" />
     <Compile Include="GLObjects\Texture\TexParameters\TexParameter.PropertyName.cs" />
     <Compile Include="GLObjects\Texture\TexParameters\TexParameterf.cs" />
@@ -131,6 +132,7 @@
     <Compile Include="RenderContext\Framebuffer\Attach\RC.Attach.Renderbuffer.cs" />
     <Compile Include="RenderContext\Framebuffer\RC.Framebuffer.DrawBuffers.cs" />
     <Compile Include="RenderContext\Framebuffer\RC.Framebuffer.CheckStatus.cs" />
+    <Compile Include="RenderContext\ShaderProgram\RC.ShaderProgram.cs" />
     <Compile Include="RenderContext\SoftGLRenderContext.static.cs" />
     <Compile Include="RenderContext\SoftGLRenderContext.ctor.cs" />
     <Compile Include="RenderContext\Texture\RC.BindTextureTarget.cs" />
