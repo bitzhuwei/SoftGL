@@ -51,7 +51,7 @@ namespace SoftGL
 
             ContextManager.MakeCurrent(this.DeviceContextHandle, this.RenderContextHandle);
 
-            InitDefaultFramebuffer();
+            InitDefaultFramebuffer(width, height);
             this.defaultFramebuffer = this.nameFramebufferDict[0];
 
         }

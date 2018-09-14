@@ -30,6 +30,8 @@ namespace SoftGL
         internal const int maxColorAttachments = 8;
         private IAttachable[] colorbufferAttachments = new IAttachable[maxColorAttachments]; // OpenGL supports at least 8 color attachement points.
 
+        #region for default framebuffer object only.
+
         public IAttachable FrontLeft { get { return this.colorbufferAttachments[0]; } set { this.colorbufferAttachments[0] = value; } }
 
         public IAttachable FrontRight { get { return this.colorbufferAttachments[1]; } set { this.colorbufferAttachments[1] = value; } }
@@ -37,6 +39,8 @@ namespace SoftGL
         public IAttachable BackLeft { get { return this.colorbufferAttachments[2]; } set { this.colorbufferAttachments[2] = value; } }
 
         public IAttachable BackRight { get { return this.colorbufferAttachments[3]; } set { this.colorbufferAttachments[3] = value; } }
+
+        #endregion for default framebuffer object only.
 
         public IAttachable[] ColorbufferAttachments { get { return this.colorbufferAttachments; } }
 
