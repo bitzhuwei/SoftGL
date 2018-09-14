@@ -17,6 +17,11 @@ namespace SoftGL
             }
         }
 
+        private void DrawBuffers(params uint[] buffers)
+        {
+            this.DrawBuffers(buffers.Length, buffers);
+        }
+
         private void DrawBuffers(int count, uint[] buffers)
         {
             Framebuffer framebuffer = this.currentFramebuffer;
