@@ -52,13 +52,33 @@ namespace SoftGL
             if (count < 0) { SetLastError(ErrorCode.InvalidValue); return; }
 
             Shader shader = this.nameShaderDict[name];
+            // a dummy implementation.
             var builder = new System.Text.StringBuilder();
             foreach (var item in codes)
             {
                 builder.AppendLine(item);
             }
-            shader.SetCode(builder.ToString());
+            shader.Code = builder.ToString();
         }
+
+        public static void glCompileShader(uint name)
+        {
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.CompileShader(name);
+            }
+        }
+
+        private void CompileShader(uint name)
+        {
+            if (name == 0) { SetLastError(ErrorCode.InvalidValue); return; }
+            if (!this.nameShaderDict.ContainsKey(name)) { SetLastError(ErrorCode.InvalidOperation); return; }
+
+            Shader shader = this.nameShaderDict[name];
+            shader.Compile();
+        }
+
     }
 
     enum ShaderType : uint
