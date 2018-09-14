@@ -35,5 +35,26 @@ namespace SoftGL
 
             return name;
         }
+
+        public static void glAttachShader(uint program, uint shader)
+        {
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.AttachShader(program, shader);
+            }
+        }
+
+        private void AttachShader(uint programName, uint shaderName)
+        {
+            if (programName == 0 || shaderName == 0) { SetLastError(ErrorCode.InvalidValue); return; }
+            if ((!this.nameShaderProgramDict.ContainsKey(programName)) || (!this.nameShaderDict.ContainsKey(shaderName))) { SetLastError(ErrorCode.InvalidOperation); return; }
+
+            ShaderProgram program = this.nameShaderProgramDict[programName];
+            Shader shader = this.nameShaderDict[shaderName];
+            if (program.AttachedShaders.Contains(shader)) { SetLastError(ErrorCode.InvalidOperation); return; }
+            program.AttachedShaders.Add(shader);
+        }
+
     }
 }

@@ -21,6 +21,12 @@ namespace SoftGL
             this.Id = id;
         }
 
+        private List<Shader> attachedShaders = new List<Shader>();
+        /// <summary>
+        /// 
+        /// </summary>
+        public IList<Shader> AttachedShaders { get { return this.attachedShaders; } }
+
         /// <summary>
         ///
         /// </summary>
