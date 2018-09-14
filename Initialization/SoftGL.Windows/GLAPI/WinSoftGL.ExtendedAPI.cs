@@ -8,14 +8,15 @@ namespace SoftGL.Windows
 {
     partial class WinSoftGL
     {
-        private static readonly Type thisType = typeof(WinSoftGL);
+        private static readonly Type thisType = typeof(SoftOpengl32.StaticCalls);
+
         //private static 
         public override Delegate GetDelegateFor(string functionName, Type functionDeclaration)
         {
             Delegate result = null;
             if (!extensionFunctions.TryGetValue(functionName, out result))
             {
-                MethodInfo methodInfo = thisType.GetMethod(functionName, BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
+                MethodInfo methodInfo = thisType.GetMethod(functionName, BindingFlags.Static | BindingFlags.Public);
                 if (methodInfo != null)
                 {
                     result = System.Delegate.CreateDelegate(functionDeclaration, methodInfo);

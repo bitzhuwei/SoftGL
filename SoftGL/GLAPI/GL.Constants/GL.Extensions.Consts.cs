@@ -1627,11 +1627,11 @@ namespace SoftGL
 
         //#region GL_draw_buffers
 
-        ////  Constants
-        ///// <summary>
-        /////
-        ///// </summary>
-        //public const uint GL_MAX_DRAW_BUFFERS = 0x8824;
+        //  Constants
+        /// <summary>
+        ///
+        /// </summary>
+        public const uint GL_MAX_DRAW_BUFFERS = 0x8824;
         ///// <summary>
         /////
         ///// </summary>

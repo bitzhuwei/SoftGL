@@ -16,7 +16,7 @@ namespace SoftGL.Windows
         /// <param name="e"></param>
         protected override void OnPaint(PaintEventArgs e)
         {
-            GLRenderContext renderContext = this.renderContext;
+            CSharpGL.GLRenderContext renderContext = this.renderContext;
             if (renderContext == null)
             {
                 base.OnPaint(e);
@@ -99,7 +99,7 @@ namespace SoftGL.Windows
             int width = this.Width, height = this.Height;
             if (width > 0 && height > 0)
             {
-                GLRenderContext renderContext = this.renderContext;
+                CSharpGL.GLRenderContext renderContext = this.renderContext;
                 if (renderContext != null)
                 {
                     renderContext.MakeCurrent();
@@ -131,7 +131,7 @@ namespace SoftGL.Windows
 
         private void DestroyRenderContext()
         {
-            GLRenderContext renderContext = this.renderContext;
+            CSharpGL.GLRenderContext renderContext = this.renderContext;
             if (renderContext != null)
             {
                 this.renderContext = null;
