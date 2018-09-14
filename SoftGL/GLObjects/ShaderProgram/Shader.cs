@@ -59,5 +59,59 @@ namespace SoftGL
             //// "Hello World" will be written in console
             //myClass.GetType().GetMethod("PrintConsole").Invoke(myClass, new object[] { "Hello World" });
         }
+
+        public void GetShaderStatus(ShaderStatus pname, int[] pValues)
+        {
+            if (pValues == null) { return; }
+
+            switch (pname)
+            {
+                case ShaderStatus.ShaderType:
+                    if (pValues.Length > 0)
+                    {
+                        pValues[0] = (int)this.ShaderType;
+                    }
+                    break;
+                case ShaderStatus.DeleteStatus:
+                    throw new NotImplementedException();
+                case ShaderStatus.CompileStatus:
+                    if (pValues.Length > 0)
+                    {
+                        CompilerResults res = this.CompilingResult;
+                        if (res == null) { pValues[0] = (int)GL.GL_FALSE; }
+                        else
+                        {
+                            pValues[0] = res.Errors.Count == 0 ? (int)GL.GL_TRUE : (int)GL.GL_FALSE;
+                        }
+                    }
+                    break;
+                case ShaderStatus.InfoLogLength:
+                    if (pValues.Length > 0)
+                    {
+                        CompilerResults res = this.CompilingResult;
+                        if (res == null) { pValues[0] = 0; }
+                        else
+                        {
+                            int length = 0;
+                            foreach (var error in res.Errors)
+                            {
+                                length += error.ToString().Length + Environment.NewLine.Length;
+                            }
+                            pValues[0] = length;
+                        }
+                    }
+                    break;
+                case ShaderStatus.ShaderSourceLength:
+                    if (pValues.Length > 0)
+                    {
+                        string code = this.Code;
+                        if (code == null) { pValues[0] = 0; }
+                        else { pValues[0] = code.Length; }
+                    }
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+        }
     }
 }

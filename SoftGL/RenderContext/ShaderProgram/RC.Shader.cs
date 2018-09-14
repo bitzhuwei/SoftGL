@@ -79,6 +79,24 @@ namespace SoftGL
             shader.Compile();
         }
 
+        public static void glGetShaderiv(uint name, uint pname, int[] pValues)
+        {
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.GetShaderiv(name, (ShaderStatus)pname, pValues);
+            }
+        }
+
+        private void GetShaderiv(uint name, ShaderStatus pname, int[] pValues)
+        {
+            if (name == 0) { SetLastError(ErrorCode.InvalidValue); return; }
+            if (!this.nameShaderDict.ContainsKey(name)) { SetLastError(ErrorCode.InvalidOperation); return; }
+            if (pname == 0) { SetLastError(ErrorCode.InvalidEnum); return; }
+
+            Shader shader = this.nameShaderDict[name];
+            shader.GetShaderStatus(pname, pValues);
+        }
     }
 
     enum ShaderType : uint
@@ -89,5 +107,14 @@ namespace SoftGL
         GeometryShader = GL.GL_GEOMETRY_SHADER,
         FragmentShader = GL.GL_FRAGMENT_SHADER,
         ComputeShader = GL.GL_COMPUTE_SHADER
+    }
+
+    enum ShaderStatus : uint
+    {
+        ShaderType = GL.GL_SHADER_TYPE,
+        DeleteStatus = GL.GL_DELETE_STATUS,
+        CompileStatus = GL.GL_COMPILE_STATUS,
+        InfoLogLength = GL.GL_INFO_LOG_LENGTH,
+        ShaderSourceLength = GL.GL_SHADER_SOURCE_LENGTH
     }
 }

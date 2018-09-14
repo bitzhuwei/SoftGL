@@ -39,5 +39,16 @@ namespace SoftOpengl32
         {
             SoftGLRenderContext.glCompileShader(name);
         }
+
+        /// <summary>
+        /// Returns a parameter from a shader object.
+        /// </summary>
+        /// <param name="name">Specifies the shader object to be queried.</param>
+        /// <param name="pname">Specifies the object parameter. Accepted symbolic names are GL_SHADER_TYPE, GL_DELETE_STATUS, GL_COMPILE_STATUS, GL_INFO_LOG_LENGTH, GL_SHADER_SOURCE_LENGTH.</param>
+        /// <param name="pValues">Returns the requested object parameter.</param>
+        public static void glGetShaderiv(uint name, uint pname, int[] pValues)
+        {
+            SoftGLRenderContext.glGetShaderiv(name, pname, pValues);
+        }
     }
 }
