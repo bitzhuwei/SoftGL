@@ -61,7 +61,7 @@ namespace SoftGL
             SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
             if (context != null)
             {
-                context.LinkProgram(program);
+                context.LinkProgram(name);
             }
         }
 
