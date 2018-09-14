@@ -42,6 +42,7 @@
     <Compile Include="Framebuffer\SC.Framebuffer.DrawBuffers.cs" />
     <Compile Include="Framebuffer\SC.Framebuffer.CheckStatus.cs" />
     <Compile Include="Framebuffer\SC.Framebuffer.cs" />
+    <Compile Include="ShaderProgram\SC.Shader.cs" />
     <Compile Include="ShaderProgram\SC.ShaderProgram.cs" />
     <Compile Include="Texture\TexImage\SC.TexImage2D.cs" />
     <Compile Include="Texture\Storage\SC.Storage2D.cs" />
