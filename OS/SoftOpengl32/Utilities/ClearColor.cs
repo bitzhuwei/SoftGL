@@ -19,5 +19,14 @@ namespace SoftOpengl32
         {
             SoftGLRenderContext.glClearColor(r, g, b, a);
         }
+
+        /// <summary>
+        /// clear buffers to preset values.
+        /// </summary>
+        /// <param name="mask">Bitwise OR of masks that indicate the buffers to be cleared. The three masks are GL_COLOR_BUFFER_BIT, GL_DEPTH_BUFFER_BIT, and GL_STENCIL_BUFFER_BIT.</param>
+        public static void glClear(uint mask)
+        {
+            SoftGLRenderContext.glClear(mask);
+        }
     }
 }
