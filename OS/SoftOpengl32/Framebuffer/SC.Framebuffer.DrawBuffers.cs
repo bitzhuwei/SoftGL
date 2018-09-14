@@ -14,9 +14,9 @@ namespace SoftOpengl32
         /// </summary>
         /// <param name="count">Specifies the number of buffers in <paramref name="buffers"/>.</param>
         /// <param name="buffers">Points to an array of symbolic constants specifying the buffers into which fragment colors or data values will be written.</param>
-        public static uint glDrawBuffers(int count, uint[] buffers)
+        public static void glDrawBuffers(int count, uint[] buffers)
         {
-            return SoftGLRenderContext.glDrawBuffers(count, buffers);
+            SoftGLRenderContext.glDrawBuffers(count, buffers);
         }
     }
 }
