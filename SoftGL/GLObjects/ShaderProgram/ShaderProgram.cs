@@ -35,5 +35,10 @@ namespace SoftGL
         {
             return string.Format("ShaderProgram: Id:{0}", this.Id);
         }
+
+        public void Link()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

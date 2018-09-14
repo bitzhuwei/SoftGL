@@ -56,5 +56,23 @@ namespace SoftGL
             program.AttachedShaders.Add(shader);
         }
 
+        public static void glLinkProgram(uint name)
+        {
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.LinkProgram(program);
+            }
+        }
+
+        private void LinkProgram(uint name)
+        {
+            if (name == 0) { SetLastError(ErrorCode.InvalidValue); return; }
+            if (!this.nameShaderProgramDict.ContainsKey(name)) { SetLastError(ErrorCode.InvalidOperation); return; }
+            // TODO: GL_INVALID_OPERATION is generated if program​ is the currently active program object and transform feedback mode is active.
+
+            ShaderProgram program = this.nameShaderProgramDict[name];
+            program.Link();
+        }
     }
 }

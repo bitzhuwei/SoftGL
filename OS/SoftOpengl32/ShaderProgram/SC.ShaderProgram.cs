@@ -27,5 +27,14 @@ namespace SoftOpengl32
         {
             SoftGLRenderContext.glAttachShader(program, shader);
         }
+
+        /// <summary>
+        /// Links a program object.
+        /// </summary>
+        /// <param name="name">Specifies the handle of the program object to be linked.</param>
+        public static void glLinkProgram(uint name)
+        {
+            SoftGLRenderContext.glLinkProgram(name);
+        }
     }
 }
