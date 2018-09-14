@@ -147,8 +147,8 @@
     <Compile Include="RenderContext\Texture\RC.Texture.cs" />
     <Compile Include="RenderContext\Utilities\ContextManager.cs" />
     <Compile Include="RenderContext\Framebuffer\RC.Framebuffer.cs" />
-    <Compile Include="RenderContext\GLRenderContext.cs" />
-    <Compile Include="RenderContext\GLRenderContext.IDisposable.cs" />
+    <Compile Include="RenderContext\SoftGLRenderContext.cs" />
+    <Compile Include="RenderContext\SoftGLRenderContext.IDisposable.cs" />
     <Compile Include="RenderContext\Utilities\Clear.cs" />
     <Compile Include="RenderContext\Utilities\GetInfo.cs" />
     <Compile Include="RenderContext\Utilities\LastError.cs" />

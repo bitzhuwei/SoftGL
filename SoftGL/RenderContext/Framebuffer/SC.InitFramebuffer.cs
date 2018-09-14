@@ -7,10 +7,7 @@ using System.Threading;
 
 namespace SoftGL
 {
-    /// <summary>
-    /// creates render device and render context.
-    /// </summary>
-    public partial class SoftGLRenderContext : GLRenderContext
+    partial class SoftGLRenderContext
     {
         private void InitDefaultFramebuffer(int width, int height)
         {

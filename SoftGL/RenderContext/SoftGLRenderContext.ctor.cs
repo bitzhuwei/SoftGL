@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace SoftGL
 {
-    public partial class SoftGLRenderContext
+    partial class SoftGLRenderContext
     {
         /// <summary>
         /// RenderContextHandle -> Render Context Object.
@@ -19,15 +19,33 @@ namespace SoftGL
         internal static readonly Dictionary<Thread, SoftGLRenderContext> threadContextDict = new Dictionary<Thread, SoftGLRenderContext>();
 
         /// <summary>
-        /// creates render device and render context.
+        /// creates render context.
         /// </summary>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
         /// <param name="paramNames">parameters' names.</param>
         /// <param name="paramValues">parameters' values.</param>
         public SoftGLRenderContext(int width, int height, string[] paramNames, uint[] paramValues)
-            : base(width, height, paramNames, paramValues)
         {
+            {
+                if (paramNames != null)
+                {
+                    if (paramValues == null || paramNames.Length != paramValues.Length)
+                    { throw new ArgumentException("Names no matching with values!"); }
+                }
+                else if (paramValues != null)
+                { throw new ArgumentException("Names no matching with values!"); }
+                else // both are null.
+                {
+                    paramNames = new string[0];
+                    paramValues = new uint[0];
+                }
+
+                this.Width = width;
+                this.Height = height;
+                this.ParamNames = paramNames;
+                this.ParamValues = paramValues;
+            }
             {
                 GCHandle handle = GCHandle.Alloc(this, GCHandleType.WeakTrackResurrection);
                 this.RenderContextHandle = GCHandle.ToIntPtr(handle);
@@ -36,6 +54,7 @@ namespace SoftGL
                 //allRenderContexts.Add(this);
             }
 
+            // TODO: move this dc to SoftGL.Windows.
             {
                 ////	Create the window. Position and size it.
                 var window = new Bitmap(width, height);
@@ -66,32 +85,10 @@ namespace SoftGL
         protected IntPtr windowHandle = IntPtr.Zero;
 
         /// <summary>
-        /// Destroys the render context provider instance.
-        /// </summary>
-        protected override void DisposeUnmanagedResources()
-        {
-            ////	Release the device context and the window.
-            //Win32.ReleaseDC(windowHandle, this.DeviceContextHandle);
-            this.graphics.ReleaseHdc();
-            this.graphics.Dispose();
-            this.window.Dispose();
-
-            ////	Destroy the window.
-            //Win32.DestroyWindow(windowHandle);
-
-            // If we have a render context, destroy it.
-            if (this.RenderContextHandle != IntPtr.Zero)
-            {
-                //Win32.wglDeleteContext(this.RenderContextHandle);
-                this.RenderContextHandle = IntPtr.Zero;
-            }
-        }
-
-        /// <summary>
         /// Blit the rendered data to the supplied device context.
         /// </summary>
         /// <param name="deviceContext">The HDC.</param>
-        public override void Blit(IntPtr deviceContext)
+        public void Blit(IntPtr deviceContext)
         {
             ////IntPtr dc = this.DeviceContextHandle;
             ////if (dc != IntPtr.Zero || windowHandle != IntPtr.Zero)
@@ -121,7 +118,7 @@ namespace SoftGL
         /// <summary>
         /// Makes the render context current.
         /// </summary>
-        public override void MakeCurrent()
+        public void MakeCurrent()
         {
             if (this.RenderContextHandle != IntPtr.Zero)
             {
