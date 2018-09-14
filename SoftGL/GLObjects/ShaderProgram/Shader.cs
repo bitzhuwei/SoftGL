@@ -51,6 +51,13 @@ namespace SoftGL
             var compParameters = new CompilerParameters();
             CompilerResults res = codeProvider.CompileAssemblyFromSource(compParameters, this.Code);
             this.CompilingResult = res;
+            // how to use res:
+            //// Create a new instance of the class 'MyClass'　　　　// 有命名空间的，需要命名空间.类名
+            //object myClass = res.CompiledAssembly.CreateInstance("MyClass");
+
+            //// Call the method 'PrintConsole' with the parameter 'Hello World'
+            //// "Hello World" will be written in console
+            //myClass.GetType().GetMethod("PrintConsole").Invoke(myClass, new object[] { "Hello World" });
         }
     }
 }
