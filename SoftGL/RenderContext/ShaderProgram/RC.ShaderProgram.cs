@@ -53,6 +53,7 @@ namespace SoftGL
             ShaderProgram program = this.nameShaderProgramDict[programName];
             Shader shader = this.nameShaderDict[shaderName];
             if (program.AttachedShaders.Contains(shader)) { SetLastError(ErrorCode.InvalidOperation); return; }
+
             program.AttachedShaders.Add(shader);
         }
 
@@ -69,9 +70,9 @@ namespace SoftGL
         {
             if (name == 0) { SetLastError(ErrorCode.InvalidValue); return; }
             if (!this.nameShaderProgramDict.ContainsKey(name)) { SetLastError(ErrorCode.InvalidOperation); return; }
+            ShaderProgram program = this.nameShaderProgramDict[name];
             // TODO: GL_INVALID_OPERATION is generated if program​ is the currently active program object and transform feedback mode is active.
 
-            ShaderProgram program = this.nameShaderProgramDict[name];
             program.Link();
         }
     }

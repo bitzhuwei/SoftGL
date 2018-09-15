@@ -5,7 +5,11 @@ using System.Text;
 
 namespace SoftGL
 {
-    class SamplerParameterf : SamplerParameter
+    abstract class VertexShader
     {
+        [Out]
+        public vec4 gl_Position;
+
+        public abstract void main();
     }
 }
