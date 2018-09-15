@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SoftGL
 {
-    public abstract partial class TexParameter
+    abstract partial class TexParameter
     {
         /// <summary>
         /// 

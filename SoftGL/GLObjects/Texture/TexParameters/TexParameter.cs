@@ -8,7 +8,7 @@ namespace SoftGL
     /// <summary>
     /// glTexParameteri/f();
     /// </summary>
-    public abstract partial class TexParameter
+    abstract partial class TexParameter
     {
         /// <summary>
         /// 

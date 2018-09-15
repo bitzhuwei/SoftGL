@@ -5,15 +5,9 @@ using System.Text;
 
 namespace SoftGL
 {
-    /// <summary>
-    /// Bind a <see cref="Sampler"/> object to a texture uint('s index), and it will affect all textures that bind to the same texture uint.
-    /// </summary>
-    partial class Texture : IAttachable
+    class GLBuffer
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public BindTextureTarget Target { get; private set; }
+        public BindBufferTarget Target { get; private set; }
 
         private uint[] ids = new uint[1];
 
@@ -23,14 +17,12 @@ namespace SoftGL
         public uint Id { get { return this.ids[0]; } }
 
         /// <summary>
-        /// Creates a texture object.
+        /// Creates a buffer object.
         /// </summary>
-        public Texture(BindTextureTarget target, uint id)
+        public GLBuffer(BindBufferTarget target, uint id)
         {
             this.Target = target;
             this.ids[0] = id;
-
-            this.InitParameters(); // TODO: Is this needed?
         }
 
         /// <summary>

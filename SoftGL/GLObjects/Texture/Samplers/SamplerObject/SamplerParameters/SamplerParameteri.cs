@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SoftGL
 {
-    public class SamplerParameteri : SamplerParameter
+    class SamplerParameteri : SamplerParameter
     {
 
     }

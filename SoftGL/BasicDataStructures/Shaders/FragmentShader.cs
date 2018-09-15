@@ -5,7 +5,8 @@ using System.Text;
 
 namespace SoftGL
 {
-    class SamplerParameterf : SamplerParameter
+    abstract class FragmentShader
     {
+        public abstract void main();
     }
 }

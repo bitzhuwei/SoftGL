@@ -8,7 +8,7 @@ namespace SoftGL
     /// <summary>
     /// Bind a <see cref="Sampler"/> object to a texture uint('s index), and it will affect all textures that bind to the same texture uint.
     /// </summary>
-    public partial class Sampler : List<SamplerParameter>
+    partial class Sampler : List<SamplerParameter>
     {
         private uint[] ids = new uint[1];
 
