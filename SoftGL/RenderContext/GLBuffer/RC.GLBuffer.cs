@@ -13,7 +13,7 @@ namespace SoftGL
         /// </summary>
         private readonly Dictionary<uint, GLBuffer> nameBufferDict = new Dictionary<uint, GLBuffer>();
 
-        private GLBuffer currentBuffer;
+        private Dictionary<BindBufferTarget, GLBuffer> currentBufferDict = new Dictionary<BindBufferTarget, GLBuffer>();
 
         public static void glGenBuffers(int count, uint[] names)
         {
@@ -65,7 +65,7 @@ namespace SoftGL
                 }
             }
 
-            this.currentBuffer = buffer;
+            this.currentBufferDict[target] = buffer;
         }
 
         public static bool glIsBuffer(uint name)
