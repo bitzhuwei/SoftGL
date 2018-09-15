@@ -73,6 +73,7 @@ namespace SoftGL
             InitDefaultFramebuffer(width, height);
             this.defaultFramebuffer = this.nameFramebufferDict[0];
 
+            InitBufferDict();
         }
 
         // abstract window for now.

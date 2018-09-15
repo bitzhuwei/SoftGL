@@ -20,4 +20,17 @@ namespace SoftGL
         TransformFeedbackBuffer = GL.GL_TRANSFORM_FEEDBACK_BUFFER,
         UniformBuffer = GL.GL_UNIFORM_BUFFER
     }
+
+    enum Usage : uint
+    {
+        StreamDraw = GL.GL_STREAM_DRAW,
+        StreamRead = GL.GL_STREAM_READ,
+        SteramCopy = GL.GL_STREAM_COPY,
+        StaticDraw = GL.GL_STATIC_DRAW,
+        StaticRead = GL.GL_STATIC_READ,
+        StaticCopy = GL.GL_STATIC_COPY,
+        DynamicDraw = GL.GL_DYNAMIC_DRAW,
+        DynamicRead = GL.GL_DYNAMIC_READ,
+        DynamicCopy = GL.GL_DYNAMIC_COPY
+    }
 }
