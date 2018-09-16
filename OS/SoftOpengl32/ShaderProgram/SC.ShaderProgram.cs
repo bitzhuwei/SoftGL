@@ -46,5 +46,14 @@ namespace SoftOpengl32
         {
             return SoftGLRenderContext.glGetAttribLocation(program, name);
         }
+
+        /// <summary>
+        /// Installs a program object as part of current rendering state.
+        /// </summary>
+        /// <param name="program">Specifies the handle of the program object whose executables are to be used as part of current rendering state.</param>
+        public static void glUseProgram(uint program)
+        {
+            SoftGLRenderContext.glUseProgram(program);
+        }
     }
 }
