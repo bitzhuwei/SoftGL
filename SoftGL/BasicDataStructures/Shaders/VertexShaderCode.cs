@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SoftGL
 {
-    abstract class VertexShader
+    abstract class VertexShaderCode
     {
         [Out]
         public vec4 gl_Position;

@@ -36,5 +36,15 @@ namespace SoftOpengl32
         {
             SoftGLRenderContext.glLinkProgram(name);
         }
+
+        /// <summary>
+        /// Returns the location of an attribute variable.
+        /// </summary>
+        /// <param name="program">Specifies the program object to be queried.</param>
+        /// <param name="name">Points to a null terminated string containing the name of the attribute variable whose location is to be queried.</param>
+        public static int glGetAttribLocation(uint program, string name)
+        {
+            return SoftGLRenderContext.glGetAttribLocation(program, name);
+        }
     }
 }
