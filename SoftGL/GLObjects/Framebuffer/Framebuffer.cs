@@ -14,7 +14,10 @@ namespace SoftGL
         /// </summary>
         public BindFramebufferTarget Target { get; set; }
 
-        public Framebuffer(uint id) { this.Id = id; }
+        public Framebuffer(uint id)
+        {
+            this.Id = id;
+        }
 
         /// <summary>
         /// glGet(GL_MAX_COLOR_ATTACHMENTS, ..);
@@ -42,5 +45,35 @@ namespace SoftGL
 
         private List<uint> drawBuffers = new List<uint>();
         public IList<uint> DrawBuffers { get { return this.drawBuffers; } }
+
+        public List<IAttachable> GetCurrentColorBuffers()
+        {
+            var list = new List<IAttachable>();
+            foreach (var item in this.drawBuffers)
+            {
+                uint index = colorbufferDict[item];
+                IAttachable colorbuffer = this.colorbufferAttachments[index];
+                list.Add(colorbuffer);
+            }
+
+            return list;
+        }
+
+        /// <summary>
+        /// GL.XXX -> index
+        /// </summary>
+        private static readonly Dictionary<uint, uint> colorbufferDict = new Dictionary<uint, uint>();
+        static Framebuffer()
+        {
+            Dictionary<uint, uint> dict = colorbufferDict;
+            dict.Add(GL.GL_FRONT_LEFT, 0);
+            dict.Add(GL.GL_FRONT_RIGHT, 1);
+            dict.Add(GL.GL_BACK_LEFT, 2);
+            dict.Add(GL.GL_BACK_RIGHT, 3);
+            for (uint i = 0; i < maxColorAttachments; i++)
+            {
+                dict.Add(GL.GL_COLOR_ATTACHMENT0 + i, i);
+            }
+        }
     }
 }
