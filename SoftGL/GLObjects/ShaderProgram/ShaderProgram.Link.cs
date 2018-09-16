@@ -6,14 +6,19 @@ namespace SoftGL
     partial class ShaderProgram
     {
         private string logInfo = string.Empty;
-        private bool linkResult = false;
+
+        public string LogInfo
+        {
+            get { return logInfo; }
+            set { logInfo = value; }
+        }
 
         /// <summary>
         /// from Shader to exe.
         /// </summary>
         public void Link()
         {
-            if (!FindTypedShaders()) { linkResult = false; return; }
+            if (!FindTypedShaders()) { return; }
 
             throw new NotImplementedException();
         }
