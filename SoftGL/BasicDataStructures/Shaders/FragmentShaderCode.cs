@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SoftGL
 {
-    abstract class FragmentShader
+    abstract class FragmentShaderCode
     {
         public abstract void main();
     }
