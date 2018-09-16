@@ -10,5 +10,10 @@ namespace SoftGL
     /// </summary>
     interface IAttachable
     {
+        /// <summary>
+        /// Clear attachment with specified <paramref name="value"/>.
+        /// </summary>
+        /// <param name="value"></param>
+        void Clear(byte[] value);
     }
 }

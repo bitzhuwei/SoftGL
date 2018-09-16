@@ -80,15 +80,46 @@ namespace SoftGL
 
         private void Clear(uint mask)
         {
+            if (mask == 0) { return; }
             const uint all = (~GL.GL_COLOR_BUFFER_BIT) & (~GL.GL_DEPTH_BUFFER_BIT) & (~GL.GL_STENCIL_BUFFER_BIT);
             if ((mask & all) != 0) { SetLastError(ErrorCode.InvalidValue); return; }
 
-            bool clearColor = (mask & GL.GL_COLOR_BUFFER_BIT) != 0;
-            bool clearDepth = (mask & GL.GL_DEPTH_BUFFER_BIT) != 0;
-            bool clearStencil = (mask & GL.GL_STENCIL_BUFFER_BIT) != 0;
-            if (!(clearColor || clearDepth || clearStencil)) { return; }
+            bool colorBIT = (mask & GL.GL_COLOR_BUFFER_BIT) != 0;
+            bool depthBIT = (mask & GL.GL_DEPTH_BUFFER_BIT) != 0;
+            bool stencilBIT = (mask & GL.GL_STENCIL_BUFFER_BIT) != 0;
+            if (!(colorBIT || depthBIT || stencilBIT)) { return; }
 
+            Framebuffer framebuffer = this.currentFramebuffer;
+            if (colorBIT) // clear all colorbuffers.
+            {
+                List<IAttachable> list = framebuffer.GetCurrentColorBuffers();
+                vec4 c = this.clearColor;
+                byte[] value = c.ToBytes();
+                foreach (var item in list)
+                {
+                    item.Clear(value);
+                }
+            }
 
+            if (depthBIT) // clear depthbuffer.
+            {
+                IAttachable item = framebuffer.DepthbufferAttachment;
+                if (item != null)
+                {
+                    byte[] value = this.clearDepth.ToBytes();
+                    item.Clear(value);
+                }
+            }
+
+            if (stencilBIT) // clear stencilbuffer.
+            {
+                IAttachable item = framebuffer.StencilbufferAttachment;
+                if (item != null)
+                {
+                    byte[] value = this.clearStencil.ToBytes();
+                    item.Clear(value);
+                }
+            }
         }
 
     }

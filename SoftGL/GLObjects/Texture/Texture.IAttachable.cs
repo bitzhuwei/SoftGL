@@ -7,5 +7,13 @@ namespace SoftGL
 {
     partial class Texture
     {
+        #region IAttachable
+
+        public void Clear(byte[] values)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion IAttachable
     }
 }
