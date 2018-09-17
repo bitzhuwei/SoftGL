@@ -11,6 +11,7 @@ namespace SoftGL
     class VertexShader : Shader
     {
         private Dictionary<string, InVariable> inVariableDict;
+
         public VertexShader(uint id) : base(ShaderType.VertexShader, id) { }
 
         public int GetAttribLocation(string name)
@@ -28,26 +29,32 @@ namespace SoftGL
             return result;
         }
 
-        protected override string DoCompile()
+        protected override string AfterCompile(Assembly assembly)
         {
-            var codeProvider = new CSharpCodeProvider();
-            var compParameters = new CompilerParameters();
-            CompilerResults res = codeProvider.CompileAssemblyFromSource(compParameters, this.Code);
-            if (res.Errors.Count > 0) { return DumpLog(res); }
+            Type codeType = this.FindShaderCodeType(assembly, typeof(VertexShaderCode));
+            if (codeType == null) { return "No VertexShader found!"; }
 
-            Type vsType = null; // type of vertex shader code.
-            Assembly asm = res.CompiledAssembly;
-            Type[] types = asm.GetTypes();
-            foreach (var item in types)
             {
-                if (item.BaseType == typeof(VertexShaderCode))
-                {
-                    vsType = item;
-                    break;
-                }
+                Dictionary<string, InVariable> dict;
+                string result = FindInVariables(codeType, out dict);
+                if (result != string.Empty) { return result; }
+                this.inVariableDict = dict;
             }
 
-            var dict = new Dictionary<string, InVariable>(); uint nextLoc = 0;
+            {
+                Dictionary<string, UniformVariable> dict;
+                string result = FindUniformVariables(codeType, out dict);
+                if (result != string.Empty) { return result; }
+                this.uniformVariableDict = dict;
+            }
+
+            return string.Empty;
+        }
+
+        private string FindInVariables(Type vsType, out Dictionary<string, InVariable> dict)
+        {
+            dict = new Dictionary<string, InVariable>();
+            uint nextLoc = 0;
             foreach (var item in vsType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
             {
                 object[] inAttribute = item.GetCustomAttributes(typeof(InAttribute), false);
@@ -69,25 +76,10 @@ namespace SoftGL
                     dict.Add(item.Name, v);
                 }
             }
-            this.inVariableDict = dict;
 
             return string.Empty;
         }
 
-        class InVariable
-        {
-            public uint location;
-            public readonly FieldInfo field;
 
-            public InVariable(FieldInfo field)
-            {
-                this.field = field;
-            }
-
-            public override string ToString()
-            {
-                return string.Format("f:{0}, loc:{1}", this.field, this.location);
-            }
-        }
     }
 }
