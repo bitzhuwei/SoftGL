@@ -144,5 +144,49 @@ namespace SoftOpengl32
             SoftGLRenderContext.glUniform1iv(location, count, value);
         }
 
+        /// <summary>
+        /// Specify the value of a uniform variable for the current program object.
+        /// </summary>
+        /// <param name="location">Specifies the location of the uniform value to be modified.</param>
+        /// <param name="count">Specifies the number of elements that are to be modified. This should be 1 if the targeted uniform variable is not an array, and 1 or more if it is an array.</param>
+        /// <param name="value">Specifies a pointer to an array of count​ values that will be used to update the specified uniform variable.</param>
+        public static void glUniform4fv(int location, int count, float[] value)
+        {
+            SoftGLRenderContext.glUniform4fv(location, count, value);
+        }
+
+        /// <summary>
+        /// Specify the value of a uniform variable for the current program object.
+        /// </summary>
+        /// <param name="location">Specifies the location of the uniform value to be modified.</param>
+        /// <param name="count">Specifies the number of elements that are to be modified. This should be 1 if the targeted uniform variable is not an array, and 1 or more if it is an array.</param>
+        /// <param name="value">Specifies a pointer to an array of count​ values that will be used to update the specified uniform variable.</param>
+        public static void glUniform3fv(int location, int count, float[] value)
+        {
+            SoftGLRenderContext.glUniform3fv(location, count, value);
+        }
+
+        /// <summary>
+        /// Specify the value of a uniform variable for the current program object.
+        /// </summary>
+        /// <param name="location">Specifies the location of the uniform value to be modified.</param>
+        /// <param name="count">Specifies the number of elements that are to be modified. This should be 1 if the targeted uniform variable is not an array, and 1 or more if it is an array.</param>
+        /// <param name="value">Specifies a pointer to an array of count​ values that will be used to update the specified uniform variable.</param>
+        public static void glUniform2fv(int location, int count, float[] value)
+        {
+            SoftGLRenderContext.glUniform2fv(location, count, value);
+        }
+
+        /// <summary>
+        /// Specify the value of a uniform variable for the current program object.
+        /// </summary>
+        /// <param name="location">Specifies the location of the uniform value to be modified.</param>
+        /// <param name="count">Specifies the number of elements that are to be modified. This should be 1 if the targeted uniform variable is not an array, and 1 or more if it is an array.</param>
+        /// <param name="value">Specifies a pointer to an array of count​ values that will be used to update the specified uniform variable.</param>
+        public static void glUniform1fv(int location, int count, float[] value)
+        {
+            SoftGLRenderContext.glUniform1fv(location, count, value);
+        }
+
     }
 }
