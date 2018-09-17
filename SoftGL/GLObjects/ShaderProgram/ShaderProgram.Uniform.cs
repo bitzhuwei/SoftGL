@@ -42,5 +42,29 @@ namespace SoftGL
             }
             pin.Free();
         }
+
+        public unsafe void SetUniform3fv(int location, int count, bool transpose, float[] value)
+        {
+            float[] values = value;
+            if (transpose)
+            {
+                values[0] = value[0]; values[1] = value[3]; values[2] = value[6];
+                values[3] = value[1]; values[4] = value[4]; values[5] = value[7];
+                values[6] = value[2]; values[7] = value[5]; values[8] = value[8];
+            }
+            byte[] uniformBytes = this.uniformBytes;
+            GCHandle pin = GCHandle.Alloc(values, GCHandleType.Pinned);
+            IntPtr address = pin.AddrOfPinnedObject();
+            byte* array = (byte*)address.ToPointer();
+            const int valuesLength = 9 * sizeof(float);
+            for (int i = 0; i < count; i++)
+            {
+                for (int j = 0; j < valuesLength; j++)
+                {
+                    uniformBytes[location + i * valuesLength + j] = array[j];
+                }
+            }
+            pin.Free();
+        }
     }
 }
