@@ -45,7 +45,7 @@ namespace SoftGL
             int result = -1;
             if (this.logInfo.Length > 0) { return -1; }
             UniformVariable v = null;
-            if (this.uniformDict.TryGetValue(name, out v))
+            if (this.nameUniformDict.TryGetValue(name, out v))
             {
                 result = (int)v.location;
             }
@@ -65,5 +65,6 @@ namespace SoftGL
 
             return result;
         }
+
     }
 }
