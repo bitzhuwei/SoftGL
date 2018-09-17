@@ -12,19 +12,9 @@ namespace SoftGL
     {
         public FragmentShader(uint id) : base(ShaderType.FragmentShader, id) { }
 
-        protected override string AfterCompile(Assembly assembly)
+        protected override string AfterCompile()
         {
-            Type codeType = this.FindShaderCodeType(assembly, typeof(FragmentShaderCode));
-            if (codeType == null) { return "No FragmentShader found!"; }
-
-            {
-                Dictionary<string, UniformVariable> dict;
-                string result = FindUniformVariables(codeType, out dict);
-                if (result != string.Empty) { return result; }
-                this.uniformVariableDict = dict;
-            }
-
-            return string.Empty;
+            throw new NotImplementedException();
         }
     }
 }

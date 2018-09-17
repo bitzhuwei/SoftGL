@@ -76,6 +76,10 @@
     <Compile Include="BasicDataStructures\ShaderCodes\FragmentShaderCode.cs" />
     <Compile Include="BasicDataStructures\ShaderCodes\SimpleFrag.cs" />
     <Compile Include="BasicDataStructures\ShaderCodes\SimpleVert.cs" />
+    <Compile Include="BasicDataStructures\ShaderCodes\GeometryShaderCode.cs" />
+    <Compile Include="BasicDataStructures\ShaderCodes\TessEvaluationShaderCode.cs" />
+    <Compile Include="BasicDataStructures\ShaderCodes\TessControlShaderCode.cs" />
+    <Compile Include="BasicDataStructures\ShaderCodes\ComputeShaderCode.cs" />
     <Compile Include="BasicDataStructures\ShaderCodes\VertexShaderCode.cs" />
     <Compile Include="BasicDataStructures\UnamangedArray\TempUnmanagedArray`1.cs" />
     <Compile Include="BasicDataStructures\UnamangedArray\TempUnmanagedArray`1.IDisposable.cs" />
@@ -94,6 +98,7 @@
     <Compile Include="BasicDataStructures\Viewport.cs" />
     <Compile Include="GLObjects\GLBuffers\GLBuffer.cs" />
     <Compile Include="GLObjects\ShaderProgram\ComputeShader.cs" />
+    <Compile Include="GLObjects\ShaderProgram\ShaderType.cs" />
     <Compile Include="GLObjects\ShaderProgram\UniformVariable.cs" />
     <Compile Include="GLObjects\ShaderProgram\InVariable.cs" />
     <Compile Include="GLObjects\ShaderProgram\TessEvaluationShader.cs" />
