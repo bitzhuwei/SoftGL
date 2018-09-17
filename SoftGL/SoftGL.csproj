@@ -108,6 +108,7 @@
     <Compile Include="GLObjects\ShaderProgram\FragmentShader.cs" />
     <Compile Include="GLObjects\ShaderProgram\VertexShader.cs" />
     <Compile Include="GLObjects\VertexArrayObject\VertexArrayObject.cs" />
+    <Compile Include="RenderContext\DrawCommand\RC.DrawElements.cs" />
     <Compile Include="RenderContext\RC.tmp.cs" />
     <Compile Include="RenderContext\GLBuffer\RC.BindBufferTarget.cs" />
     <Compile Include="RenderContext\GLBuffer\RC.InitBufferDict.cs" />
