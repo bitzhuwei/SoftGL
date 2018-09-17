@@ -91,11 +91,10 @@ namespace SoftGL
         private string FindUniformVariables(Type shaderCodeType, Dictionary<string, UniformVariable> dict)
         {
             dict.Clear();
-            uint nextLoc = 0;
             foreach (var item in shaderCodeType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
             {
                 object[] inAttribute = item.GetCustomAttributes(typeof(UniformAttribute), false);
-                if (inAttribute != null && inAttribute.Length > 0) // this is a 'in ...;' field.
+                if (inAttribute != null && inAttribute.Length > 0) // this is a 'uniform ...;' field.
                 {
                     var v = new UniformVariable(item);
                     dict.Add(item.Name, v);
