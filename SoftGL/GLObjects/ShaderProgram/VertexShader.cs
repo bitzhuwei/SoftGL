@@ -10,14 +10,14 @@ namespace SoftGL
 {
     class VertexShader : Shader
     {
-        private Dictionary<string, InVariable> inVariableDict;
+        private Dictionary<string, InVariable> inVariableDict = new Dictionary<string, InVariable>();
 
         public VertexShader(uint id) : base(ShaderType.VertexShader, id) { }
 
         public int GetAttribLocation(string name)
         {
             int result = -1;
-            if (this.infoLog.Length > 0) { return result; }
+            if (this.InfoLog.Length > 0) { return result; }
             Dictionary<string, InVariable> dict = this.inVariableDict;
             if (dict == null) { return result; }
             InVariable v = null;
@@ -29,31 +29,19 @@ namespace SoftGL
             return result;
         }
 
-        protected override string AfterCompile(Assembly assembly)
+        protected override string AfterCompile()
         {
-            Type codeType = this.FindShaderCodeType(assembly, typeof(VertexShaderCode));
-            if (codeType == null) { return "No VertexShader found!"; }
-
             {
-                Dictionary<string, InVariable> dict;
-                string result = FindInVariables(codeType, out dict);
+                string result = FindInVariables(this.codeType, this.inVariableDict);
                 if (result != string.Empty) { return result; }
-                this.inVariableDict = dict;
-            }
-
-            {
-                Dictionary<string, UniformVariable> dict;
-                string result = FindUniformVariables(codeType, out dict);
-                if (result != string.Empty) { return result; }
-                this.uniformVariableDict = dict;
             }
 
             return string.Empty;
         }
 
-        private string FindInVariables(Type vsType, out Dictionary<string, InVariable> dict)
+        private string FindInVariables(Type vsType, Dictionary<string, InVariable> dict)
         {
-            dict = new Dictionary<string, InVariable>();
+            dict.Clear();
             uint nextLoc = 0;
             foreach (var item in vsType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
             {

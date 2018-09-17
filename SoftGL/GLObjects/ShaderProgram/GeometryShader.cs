@@ -12,7 +12,7 @@ namespace SoftGL
     {
         public GeometryShader(uint id) : base(ShaderType.GeometryShader, id) { }
 
-        protected override string AfterCompile(Assembly assembly)
+        protected override string AfterCompile()
         {
             throw new NotImplementedException();
         }

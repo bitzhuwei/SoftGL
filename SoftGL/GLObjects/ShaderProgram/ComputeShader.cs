@@ -12,7 +12,7 @@ namespace SoftGL
     {
         public ComputeShader(uint id) : base(ShaderType.ComputeShader, id) { }
 
-        protected override string AfterCompile(Assembly assembly)
+        protected override string AfterCompile()
         {
             throw new NotImplementedException();
         }
