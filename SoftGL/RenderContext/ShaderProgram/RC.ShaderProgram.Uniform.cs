@@ -25,7 +25,9 @@ namespace SoftGL
             ShaderProgram program = this.nameShaderProgramDict[progName];
             if (program.LogInfo != string.Empty) { SetLastError(ErrorCode.InvalidOperation); return result; }
 
-            throw new NotImplementedException();
+            result = program.GetUniformLocation(name);
+
+            return result;
         }
 
     }

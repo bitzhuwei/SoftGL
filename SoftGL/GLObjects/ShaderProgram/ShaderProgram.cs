@@ -40,6 +40,19 @@ namespace SoftGL
             return string.Format("ShaderProgram: Id:{0}", this.Id);
         }
 
+        public int GetUniformLocation(string name)
+        {
+            int result = -1;
+            if (this.logInfo.Length > 0) { return -1; }
+            UniformVariable v = null;
+            if (this.uniformDict.TryGetValue(name, out v))
+            {
+                result = (int)v.location;
+            }
+
+            return result;
+        }
+
         public int GetAttribLocation(string name)
         {
             int result = -1;
