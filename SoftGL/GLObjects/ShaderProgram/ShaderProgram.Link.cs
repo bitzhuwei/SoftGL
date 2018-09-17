@@ -23,6 +23,13 @@ namespace SoftGL
             throw new NotImplementedException();
         }
 
+        private bool FindUniforms()
+        {
+            bool result = true;
+
+            return result;
+        }
+
         /// <summary>
         /// find the vertex shader and other shaders.
         /// </summary>
