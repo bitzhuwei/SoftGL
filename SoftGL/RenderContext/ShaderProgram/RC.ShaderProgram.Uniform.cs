@@ -17,7 +17,7 @@ namespace SoftGL
             return result;
         }
 
-        private int GetUniformLocation(uint progName, string name)
+        private int GetUniformLocation(uint progName, string varNname)
         {
             int result = -1;
             if (progName == 0) { SetLastError(ErrorCode.InvalidValue); return result; }
@@ -25,7 +25,7 @@ namespace SoftGL
             ShaderProgram program = this.nameShaderProgramDict[progName];
             if (program.LogInfo != string.Empty) { SetLastError(ErrorCode.InvalidOperation); return result; }
 
-            result = program.GetUniformLocation(name);
+            result = program.GetUniformLocation(varNname);
 
             return result;
         }
