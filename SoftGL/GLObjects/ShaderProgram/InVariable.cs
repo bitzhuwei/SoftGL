@@ -9,7 +9,7 @@ namespace SoftGL
 
     class InVariable
     {
-        public uint location;
+        public uint location = uint.MaxValue;
         public readonly FieldInfo field;
 
         public InVariable(FieldInfo field)

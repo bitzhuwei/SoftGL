@@ -9,7 +9,7 @@ namespace SoftGL
 
     class UniformVariable
     {
-        public uint location;
+        public uint location = uint.MaxValue;
         public readonly FieldInfo field;
 
         public UniformVariable(FieldInfo field)
