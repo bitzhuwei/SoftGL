@@ -192,19 +192,19 @@ namespace SoftGL
             SetUniformiv(location, 1, values, 1);
         }
 
-        public unsafe void SetUniform4i(int location, float v0, float v1, float v2, float v3)
+        public unsafe void SetUniform4f(int location, float v0, float v1, float v2, float v3)
         {
             var values = new float[] { v0, v1, v2, v3 };
             SetUniformfv(location, 1, values, 4);
         }
 
-        public unsafe void SetUniform3i(int location, float v0, float v1, float v2)
+        public unsafe void SetUniform3f(int location, float v0, float v1, float v2)
         {
             var values = new float[] { v0, v1, v2 };
             SetUniformfv(location, 1, values, 3);
         }
 
-        public unsafe void SetUniform2i(int location, float v0, float v1)
+        public unsafe void SetUniform2f(int location, float v0, float v1)
         {
             var values = new float[] { v0, v1 };
             SetUniformfv(location, 1, values, 2);
@@ -215,5 +215,6 @@ namespace SoftGL
             var values = new float[] { v0 };
             SetUniformfv(location, 1, values, 1);
         }
+
     }
 }

@@ -513,5 +513,97 @@ namespace SoftGL
             program.SetUniform1ui(location, v0);
         }
 
+        public static void glUniform4i(int location, int v0, int v1, int v2, int v3)
+        {
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.Uniform4i(location, v0, v1, v2, v3);
+            }
+        }
+
+        private void Uniform4i(int location, int v0, int v1, int v2, int v3)
+        {
+            if (location < 0) { return; }
+
+            ShaderProgram program = this.currentShaderProgram;
+            if (program == null) { SetLastError(ErrorCode.InvalidOperation); return; }
+            UniformVariable v = program.GetUniformVariable(location);
+            if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
+            FieldInfo field = v.field;
+            if (field.FieldType.IsArray) { SetLastError(ErrorCode.InvalidOperation); return; } // TODO: not sure about this line.
+
+            program.SetUniform4i(location, v0, v1, v2, v3);
+        }
+
+        public static void glUniform3i(int location, int v0, int v1, int v2)
+        {
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.Uniform3i(location, v0, v1, v2);
+            }
+        }
+
+        private void Uniform3i(int location, int v0, int v1, int v2)
+        {
+            if (location < 0) { return; }
+
+            ShaderProgram program = this.currentShaderProgram;
+            if (program == null) { SetLastError(ErrorCode.InvalidOperation); return; }
+            UniformVariable v = program.GetUniformVariable(location);
+            if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
+            FieldInfo field = v.field;
+            if (field.FieldType.IsArray) { SetLastError(ErrorCode.InvalidOperation); return; } // TODO: not sure about this line.
+
+            program.SetUniform3i(location, v0, v1, v2);
+        }
+
+        public static void glUniform2i(int location, int v0, int v1)
+        {
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.Uniform2i(location, v0, v1);
+            }
+        }
+
+        private void Uniform2i(int location, int v0, int v1)
+        {
+            if (location < 0) { return; }
+
+            ShaderProgram program = this.currentShaderProgram;
+            if (program == null) { SetLastError(ErrorCode.InvalidOperation); return; }
+            UniformVariable v = program.GetUniformVariable(location);
+            if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
+            FieldInfo field = v.field;
+            if (field.FieldType.IsArray) { SetLastError(ErrorCode.InvalidOperation); return; } // TODO: not sure about this line.
+
+            program.SetUniform2i(location, v0, v1);
+        }
+
+        public static void glUniform1i(int location, int v0)
+        {
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.Uniform1i(location, v0);
+            }
+        }
+
+        private void Uniform1i(int location, int v0)
+        {
+            if (location < 0) { return; }
+
+            ShaderProgram program = this.currentShaderProgram;
+            if (program == null) { SetLastError(ErrorCode.InvalidOperation); return; }
+            UniformVariable v = program.GetUniformVariable(location);
+            if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
+            FieldInfo field = v.field;
+            if (field.FieldType.IsArray) { SetLastError(ErrorCode.InvalidOperation); return; } // TODO: not sure about this line.
+
+            program.SetUniform1i(location, v0);
+        }
+
     }
 }
