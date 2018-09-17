@@ -280,6 +280,52 @@ namespace SoftOpengl32
             SoftGLRenderContext.glUniform1i(location, v0);
         }
 
+        /// <summary>
+        /// Specify the value of a uniform variable for the current program object.
+        /// </summary>
+        /// <param name="location">Specifies the location of the uniform value to be modified.</param>
+        /// <param name="v0"></param>
+        /// <param name="v1"></param>
+        /// <param name="v2"></param>
+        /// <param name="v3"></param>
+        public static void glUniform4f(int location, float v0, float v1, float v2, float v3)
+        {
+            SoftGLRenderContext.glUniform4f(location, v0, v1, v2, v3);
+        }
+
+        /// <summary>
+        /// Specify the value of a uniform variable for the current program object.
+        /// </summary>
+        /// <param name="location">Specifies the location of the uniform value to be modified.</param>
+        /// <param name="v0"></param>
+        /// <param name="v1"></param>
+        /// <param name="v2"></param>
+        public static void glUniform3f(int location, float v0, float v1, float v2)
+        {
+            SoftGLRenderContext.glUniform3f(location, v0, v1, v2);
+        }
+
+        /// <summary>
+        /// Specify the value of a uniform variable for the current program object.
+        /// </summary>
+        /// <param name="location">Specifies the location of the uniform value to be modified.</param>
+        /// <param name="v0"></param>
+        /// <param name="v1"></param>
+        public static void glUniform2f(int location, float v0, float v1)
+        {
+            SoftGLRenderContext.glUniform2f(location, v0, v1);
+        }
+
+        /// <summary>
+        /// Specify the value of a uniform variable for the current program object.
+        /// </summary>
+        /// <param name="location">Specifies the location of the uniform value to be modified.</param>
+        /// <param name="v0"></param>
+        public static void glUniform1f(int location, float v0)
+        {
+            SoftGLRenderContext.glUniform1f(location, v0);
+        }
+
 
     }
 }
