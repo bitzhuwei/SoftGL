@@ -144,5 +144,76 @@ namespace SoftGL
             pin.Free();
         }
 
+        public unsafe void SetUniform4ui(int location, uint v0, uint v1, uint v2, uint v3)
+        {
+            var values = new uint[] { v0, v1, v2, v3 };
+            SetUniformuiv(location, 1, values, 4);
+        }
+
+        public unsafe void SetUniform3ui(int location, uint v0, uint v1, uint v2)
+        {
+            var values = new uint[] { v0, v1, v2 };
+            SetUniformuiv(location, 1, values, 3);
+        }
+
+        public unsafe void SetUniform2ui(int location, uint v0, uint v1)
+        {
+            var values = new uint[] { v0, v1 };
+            SetUniformuiv(location, 1, values, 2);
+        }
+
+        public unsafe void SetUniform1ui(int location, uint v0)
+        {
+            var values = new uint[] { v0 };
+            SetUniformuiv(location, 1, values, 1);
+        }
+
+        public unsafe void SetUniform4i(int location, int v0, int v1, int v2, int v3)
+        {
+            var values = new int[] { v0, v1, v2, v3 };
+            SetUniformiv(location, 1, values, 4);
+        }
+
+        public unsafe void SetUniform3i(int location, int v0, int v1, int v2)
+        {
+            var values = new int[] { v0, v1, v2 };
+            SetUniformiv(location, 1, values, 3);
+        }
+
+        public unsafe void SetUniform2i(int location, int v0, int v1)
+        {
+            var values = new int[] { v0, v1 };
+            SetUniformiv(location, 1, values, 2);
+        }
+
+        public unsafe void SetUniform1i(int location, int v0)
+        {
+            var values = new int[] { v0 };
+            SetUniformiv(location, 1, values, 1);
+        }
+
+        public unsafe void SetUniform4i(int location, float v0, float v1, float v2, float v3)
+        {
+            var values = new float[] { v0, v1, v2, v3 };
+            SetUniformfv(location, 1, values, 4);
+        }
+
+        public unsafe void SetUniform3i(int location, float v0, float v1, float v2)
+        {
+            var values = new float[] { v0, v1, v2 };
+            SetUniformfv(location, 1, values, 3);
+        }
+
+        public unsafe void SetUniform2i(int location, float v0, float v1)
+        {
+            var values = new float[] { v0, v1 };
+            SetUniformfv(location, 1, values, 2);
+        }
+
+        public unsafe void SetUniform1f(int location, float v0)
+        {
+            var values = new float[] { v0 };
+            SetUniformfv(location, 1, values, 1);
+        }
     }
 }
