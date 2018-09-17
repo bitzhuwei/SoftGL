@@ -213,6 +213,15 @@ namespace SoftGL
             program.SetUniformuiv(location, count, value, 1);
         }
 
+        public static void glUniform4iv(int location, int count, int[] value)
+        {
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.Uniform4iv(location, count, value);
+            }
+        }
+
         private void Uniform4iv(int location, int count, int[] value)
         {
             if (location < 0 || value == null || value.Length != 4) { return; }
