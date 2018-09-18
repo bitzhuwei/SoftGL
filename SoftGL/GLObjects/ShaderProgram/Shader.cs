@@ -151,10 +151,12 @@ namespace SoftGL
         {
             var builder = new StringBuilder();
             if (res != null)
+            {
                 foreach (var item in res.Errors)
                 {
                     builder.AppendLine(item.ToString());
                 }
+            }
 
             return builder.ToString();
         }

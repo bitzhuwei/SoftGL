@@ -18,6 +18,12 @@ namespace SoftGL
                 dict.Add(GL.GL_MAX_DRAW_BUFFERS, new int[] { Framebuffer.maxColorAttachments });
                 // TODO: add other constants..
             }
+            // create default vertex array object.
+            {
+                var ids = new uint[1];
+                glGenVertexArrays(ids.Length, ids);
+                
+            }
         }
     }
 }
