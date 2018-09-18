@@ -10,12 +10,8 @@ namespace SoftGL
 {
     class VertexShader : Shader
     {
-        private Dictionary<string, InVariable> inVariableDict = new Dictionary<string, InVariable>();
-
-        public InVariable[] GetAllInVariables()
-        {
-            return this.inVariableDict.Values.ToArray();
-        }
+        public readonly Dictionary<string, InVariable> inVariableDict = new Dictionary<string, InVariable>();
+        public readonly Dictionary<string, OutVariable> outVariableDict = new Dictionary<string, OutVariable>();
 
         public VertexShader(uint id) : base(ShaderType.VertexShader, id) { }
 
@@ -40,6 +36,26 @@ namespace SoftGL
                 string result = FindInVariables(this.codeType, this.inVariableDict);
                 if (result != string.Empty) { return result; }
             }
+            {
+                string result = FindOutVariables(this.codeType, this.outVariableDict);
+                if (result != string.Empty) { return result; }
+            }
+
+            return string.Empty;
+        }
+
+        private string FindOutVariables(Type vsType, Dictionary<string, OutVariable> dict)
+        {
+            dict.Clear();
+            foreach (var item in vsType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+            {
+                object[] attribute = item.GetCustomAttributes(typeof(OutAttribute), false);
+                if (attribute != null && attribute.Length > 0) // this is a 'in ...;' field.
+                {
+                    var v = new OutVariable(item);
+                    dict.Add(item.Name, v);
+                }
+            }
 
             return string.Empty;
         }
@@ -50,8 +66,8 @@ namespace SoftGL
             uint nextLoc = 0;
             foreach (var item in vsType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
             {
-                object[] inAttribute = item.GetCustomAttributes(typeof(InAttribute), false);
-                if (inAttribute != null && inAttribute.Length > 0) // this is a 'in ...;' field.
+                object[] attribute = item.GetCustomAttributes(typeof(InAttribute), false);
+                if (attribute != null && attribute.Length > 0) // this is a 'in ...;' field.
                 {
                     var v = new InVariable(item);
                     object[] locationAttribute = item.GetCustomAttributes(typeof(LocationAttribute), false);
