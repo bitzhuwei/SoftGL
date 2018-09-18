@@ -104,5 +104,46 @@ namespace SoftGL
             }
         }
 
+        public static void glEnableVertexAttribArray(uint index)
+        {
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.EnableVertexAttribArray(index);
+            }
+        }
+
+        private void EnableVertexAttribArray(uint index)
+        {
+            // TODO: GL_INVALID_VALUE is generated if index​ is greater than or equal to GL_MAX_VERTEX_ATTRIBS.
+            VertexArrayObject vao = this.currentVertexArrayObject;
+            if (vao == null) { SetLastError(ErrorCode.InvalidOperation); return; }
+            VertexAttribDesc desc = null;
+            if (vao.LocVertexAttribDict.TryGetValue(index, out desc))
+            {
+                desc.enabled = true;
+            }
+        }
+
+        public static void glDisableVertexAttribArray(uint index)
+        {
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.DisableVertexAttribArray(index);
+            }
+        }
+
+        private void DisableVertexAttribArray(uint index)
+        {
+            // TODO: GL_INVALID_VALUE is generated if index​ is greater than or equal to GL_MAX_VERTEX_ATTRIBS.
+            VertexArrayObject vao = this.currentVertexArrayObject;
+            if (vao == null) { SetLastError(ErrorCode.InvalidOperation); return; }
+            VertexAttribDesc desc = null;
+            if (vao.LocVertexAttribDict.TryGetValue(index, out desc))
+            {
+                desc.enabled = false;
+            }
+        }
     }
 }
