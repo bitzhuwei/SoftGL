@@ -123,8 +123,11 @@ namespace SoftGL
             for (int i = 0; i < count; i++)
             {
                 uint name = names[i];
-                if (textureNameList.Contains(name)) { textureNameList.Remove(name); }
-                if (nameTextureDict.ContainsKey(name)) { nameTextureDict.Remove(name); }
+                if (name > 0)
+                {
+                    if (textureNameList.Contains(name)) { textureNameList.Remove(name); }
+                    if (nameTextureDict.ContainsKey(name)) { nameTextureDict.Remove(name); }
+                }
             }
         }
     }

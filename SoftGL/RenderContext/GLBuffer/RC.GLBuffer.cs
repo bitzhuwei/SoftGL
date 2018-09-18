@@ -103,6 +103,7 @@ namespace SoftGL
                 uint name = names[i];
                 if (bufferNameList.Contains(name)) { bufferNameList.Remove(name); }
                 if (nameBufferDict.ContainsKey(name)) { nameBufferDict.Remove(name); }
+                // TODO: If a buffer object that is currently bound is deleted, the binding reverts to 0 (the absence of any buffer object).
             }
         }
     }
