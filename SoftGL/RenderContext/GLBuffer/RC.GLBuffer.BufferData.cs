@@ -16,8 +16,8 @@ namespace SoftGL
 
         private void BufferData(BindBufferTarget target, int size, IntPtr data, Usage usage)
         {
-            if (target == 0) { SetLastError(ErrorCode.InvalidEnum); return; }
-            if (usage == 0) { SetLastError(ErrorCode.InvalidEnum); return; }
+            if (!Enum.IsDefined(typeof(BindBufferTarget), target)) { SetLastError(ErrorCode.InvalidEnum); return; }
+            if (!Enum.IsDefined(typeof(Usage), usage)) { SetLastError(ErrorCode.InvalidEnum); return; }
             if (size < 0) { SetLastError(ErrorCode.InvalidValue); return; }
             GLBuffer buffer = this.currentBufferDict[target];
             if (buffer == null) { SetLastError(ErrorCode.InvalidOperation); return; }

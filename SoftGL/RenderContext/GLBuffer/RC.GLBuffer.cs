@@ -48,7 +48,7 @@ namespace SoftGL
 
         private void BindBuffer(BindBufferTarget target, uint name)
         {
-            if (target == 0) { SetLastError(ErrorCode.InvalidEnum); return; }
+            if (!Enum.IsDefined(typeof(BindBufferTarget), target)) { SetLastError(ErrorCode.InvalidEnum); return; }
             if ((name != 0) && (!this.bufferNameList.Contains(name))) { SetLastError(ErrorCode.InvalidValue); return; }
             GLBuffer buffer = null;
             if (name != 0)
