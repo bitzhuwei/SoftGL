@@ -23,7 +23,7 @@ namespace SoftGL
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("Vertex Array Object: Id:{0}, T:{1}", this.Id);
+            return string.Format("Vertex Array Object: Id:{0}", this.Id);
         }
     }
 
