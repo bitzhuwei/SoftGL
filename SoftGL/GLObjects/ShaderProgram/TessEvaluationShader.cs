@@ -8,8 +8,10 @@ using System.Text;
 
 namespace SoftGL
 {
-    class TessEvaluationShader : Shader
+    class TessEvaluationShader : PipelineShader
     {
+        public override int PipelineOrder { get { return 2; } }
+
         public TessEvaluationShader(uint id) : base(ShaderType.TessEvaluationShader, id) { }
 
         protected override string AfterCompile()

@@ -8,8 +8,10 @@ using System.Text;
 
 namespace SoftGL
 {
-    class GeometryShader : Shader
+    class GeometryShader : PipelineShader
     {
+        public override int PipelineOrder { get { return 3; } }
+
         public GeometryShader(uint id) : base(ShaderType.GeometryShader, id) { }
 
         protected override string AfterCompile()
