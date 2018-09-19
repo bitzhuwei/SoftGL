@@ -109,10 +109,12 @@
     <Compile Include="GLObjects\ShaderProgram\GeometryShader.cs" />
     <Compile Include="GLObjects\ShaderProgram\FragmentShader.cs" />
     <Compile Include="GLObjects\ShaderProgram\VertexShader.cs" />
+    <Compile Include="GLObjects\Utilities\TypeHelper.cs" />
     <Compile Include="GLObjects\VertexArrayObject\VertexArrayObject.cs" />
-    <Compile Include="RenderContext\DrawCommand\RC.DrawElementsType.cs" />
+    <Compile Include="RenderContext\DrawCommand\DrawElements\RC.VertexShaderStage.cs" />
+    <Compile Include="RenderContext\DrawCommand\DrawElements\RC.DrawElementsType.cs" />
     <Compile Include="RenderContext\DrawCommand\RC.DrawTarget.cs" />
-    <Compile Include="RenderContext\DrawCommand\RC.DrawElements.cs" />
+    <Compile Include="RenderContext\DrawCommand\DrawElements\RC.DrawElements.cs" />
     <Compile Include="RenderContext\RC.tmp.cs" />
     <Compile Include="RenderContext\GLBuffer\RC.BindBufferTarget.cs" />
     <Compile Include="RenderContext\GLBuffer\RC.InitBufferDict.cs" />
