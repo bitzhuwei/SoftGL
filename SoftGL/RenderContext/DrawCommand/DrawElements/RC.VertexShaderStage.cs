@@ -54,7 +54,7 @@ namespace SoftGL
                     byte[] bytes = obj.ToBytes();
                     for (int t = 0; t < bytes.Length; t++)
                     {
-                        vsOutput[gl_VertexID + t] = bytes[t];
+                        vsOutput[gl_VertexID * vertexSize + t] = bytes[t];
                     }
                 }
             }
