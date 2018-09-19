@@ -31,7 +31,7 @@ namespace SoftGL
         /// <typeparam name="T"></typeparam>
         /// <param name="structObj"></param>
         /// <returns></returns>
-        public static byte[] ToBytes<T>(this T structObj) where T : struct
+        public static byte[] ToBytes(this object structObj)
         {
             Int32 size = Marshal.SizeOf(structObj);
             Byte[] bytes = new Byte[size];
@@ -48,6 +48,24 @@ namespace SoftGL
             }
 
             return bytes;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="packet"></param>
+        /// <param name="type"></param>
+        /// <param name="startPos"></param>
+        /// <returns></returns>
+        public static object ToStruct(this byte[] packet, Type type, int startPos = 0)
+        {
+            GCHandle pin = GCHandle.Alloc(packet, GCHandleType.Pinned);
+            IntPtr address = Marshal.UnsafeAddrOfPinnedArrayElement(packet, startPos);
+            object result = Marshal.PtrToStructure(address, type);
+            pin.Free();
+
+            return result;
         }
     }
 }
