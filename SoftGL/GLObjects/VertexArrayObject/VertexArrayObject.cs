@@ -49,5 +49,39 @@ namespace SoftGL
         /// </summary>
         public uint stride;
         public bool enabled;
+
+        public int GetVertexCount()
+        {
+            int result = -1;
+            if (this.vbo == null) { return result; }
+            int byteLength = this.vbo.Data.Length;
+            // we know that all data types are in VertexAttribType.
+            VertexAttribType type = (VertexAttribType)this.dataType;
+            if (!Enum.IsDefined(typeof(VertexAttribType), type)) { return result; }
+            uint typeLength = type.GetByteLength(); // byte length of specified type.
+            uint typeCount = (uint)(this.dataSize == GL.GL_BGRA ? 4 : this.dataSize); // how many elements of specified type in one vertex?
+            uint vertexLength = typeLength * typeCount + stride; // byte length of a single vertex.
+            result = (int)(byteLength / vertexLength); // how many vertex?
+            if ((byteLength % vertexLength) != 0)
+            { throw new Exception(string.Format("GetVertexCount() error! [{0} % {1}, t:{2}, s:{3}]", byteLength, vertexLength, type, typeCount)); }
+
+            return result;
+        }
+
+        public int GetDataIndex(int indexID)
+        {
+            int result = -1;
+            if (this.vbo == null) { return result; }
+            int byteLength = this.vbo.Data.Length;
+            // we know that all data types are in VertexAttribType.
+            VertexAttribType type = (VertexAttribType)this.dataType;
+            if (!Enum.IsDefined(typeof(VertexAttribType), type)) { return result; }
+            uint typeLength = type.GetByteLength(); // byte length of specified type.(float, int, uint, ..)
+            uint typeCount = (uint)(this.dataSize == GL.GL_BGRA ? 4 : this.dataSize); // how many elements of specified type in one vertex? (1, 2, 3 or 4)
+            uint vertexLength = typeLength * typeCount + stride; // byte length of a single vertex.
+            result = (int)(vertexLength * indexID + this.startPos);
+
+            return result;
+        }
     }
 }
