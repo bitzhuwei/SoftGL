@@ -66,5 +66,10 @@ namespace SoftGL
             return string.Empty;
         }
 
+
+        public override InnerVertexShaderCode PostProcess()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

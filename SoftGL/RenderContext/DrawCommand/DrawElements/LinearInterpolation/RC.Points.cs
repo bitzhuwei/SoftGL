@@ -13,6 +13,18 @@ namespace SoftGL
             FragmentShader fs = program.FragmentShader;
             if (fs == null) { return result; }
 
+            byte[] indexData = indexBuffer.Data;
+            int byteLength = indexData.Length;
+            GCHandle pin = GCHandle.Alloc(indexData, GCHandleType.Pinned);
+            IntPtr pointer = pin.AddrOfPinnedObject();
+            var gl_VertexIDList = new List<uint>();
+            for (int indexID = 0; indexID < count; indexID++)
+            {
+                uint gl_VertexID = GetVertexID(pointer, type, byteLength, indexID);
+                if (gl_VertexIDList.Contains(gl_VertexID)) { continue; }
+                else { gl_VertexIDList.Add(gl_VertexID); }
+
+            }
             return result;
         }
     }

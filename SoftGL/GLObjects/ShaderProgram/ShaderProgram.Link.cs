@@ -28,7 +28,15 @@ namespace SoftGL
             if (!FindTypedShaders()) { return; }
             if (!FindUniforms(this.nameUniformDict, this.locationUniformDict)) { return; }
             if (!MakeSureVariablesMatch()) { return; }
+            if (!GetInnerShaderCodes()) { return; }
             // TODO: do something else.
+        }
+
+        private bool GetInnerShaderCodes()
+        {
+            var vs = this.VertexShader;
+            if (vs != null) { this.InnerVertexShaderCode = vs.PostProcess(); }
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -146,11 +154,11 @@ namespace SoftGL
 
             {
                 // TODO: support other shaders.
-                this.vertexShader = vertexShader;
+                this.VertexShader = vertexShader;
                 //this.tessControlShader = tessControlShader;
                 //this.tessEvaluationShader = tessEvaluationShader;
                 //this.geometryShader = geometryShader;
-                this.fragmentShader = fragmentShader;
+                this.FragmentShader = fragmentShader;
                 //this.computeShader = computeShader;
             }
 
