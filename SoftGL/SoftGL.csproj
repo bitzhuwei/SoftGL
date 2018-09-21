@@ -49,6 +49,7 @@
     <Compile Include="BasicDataStructures\ShaderCodes\InnerFragmentShaderCode.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BasicDataStructures\ShaderCodes\InnerShaderCode.cs" />
     <Compile Include="BasicDataStructures\ShaderCodes\InnerVertexShaderCode.cs">
       <SubType>Code</SubType>
     </Compile>

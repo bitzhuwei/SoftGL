@@ -6,7 +6,7 @@ using System.Text;
 namespace SoftGL
 {
 
-    abstract unsafe class InnerFragmentShaderCode : ICloneable
+    abstract unsafe class InnerFragmentShaderCode : InnerShaderCode
     {
         [In]
         public vec3 gl_FragCoord;
@@ -22,8 +22,6 @@ namespace SoftGL
 
         public byte* fsOutput;
         public int fsOutByteLength;
-
-        public abstract void main();
 
         #region ICloneable 成员
 

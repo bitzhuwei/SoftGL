@@ -6,7 +6,7 @@ using System.Text;
 namespace SoftGL
 {
 
-    abstract unsafe class InnerVertexShaderCode : ICloneable
+    abstract unsafe class InnerVertexShaderCode : InnerShaderCode
     {
         public byte* vboData;
         [In]
@@ -23,8 +23,6 @@ namespace SoftGL
             get { return ((vec4*)(vsOutput[gl_VertexID * vsOutByteLength + 0]))[0]; }
             set { ((vec4*)(vsOutput[gl_VertexID * vsOutByteLength]))[0] = value; }
         }
-
-        public abstract void main();
 
         #region ICloneable 成员
 
