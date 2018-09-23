@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SoftGL
 {
-    public abstract class ComputeCode
+    public abstract class GeometryCodeBase
     {
         public abstract void main();
     }

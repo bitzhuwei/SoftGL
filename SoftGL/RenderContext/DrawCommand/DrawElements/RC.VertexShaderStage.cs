@@ -29,7 +29,7 @@ namespace SoftGL
                 if (gl_VertexIDList.Contains(gl_VertexID)) { continue; }
                 else { gl_VertexIDList.Add(gl_VertexID); }
 
-                var instance = vs.CreateCodeInstance() as VertexCode; // an executable vertex shader.
+                var instance = vs.CreateCodeInstance() as VertexCodeBase; // an executable vertex shader.
                 instance.gl_VertexID = (int)gl_VertexID; // setup gl_VertexID.
                 // setup "in SomeType varName;" vertex attributes.
                 Dictionary<uint, VertexAttribDesc> locVertexAttribDict = vao.LocVertexAttribDict;

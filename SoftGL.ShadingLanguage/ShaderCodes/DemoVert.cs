@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SoftGL
 {
-    class SimpleVert : VertexCode
+    class DemoVert : VertexCodeBase
     {
         [In]
         vec3 inPosition;
