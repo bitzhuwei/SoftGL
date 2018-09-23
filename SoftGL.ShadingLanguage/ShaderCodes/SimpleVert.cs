@@ -10,15 +10,15 @@ namespace SoftGL
     class SimpleVert : VertexShaderCode
     {
         [In]
-        vec3 inPosition;
+        vec3 inPosition { get; set; }
         [In]
-        vec3 inColor;
+        vec3 inColor { get; set; }
 
         [Uniform]
         mat4 mvpMatrix;
 
         [Out]
-        vec3 passColor;
+        vec3 passColor { get; set; }
 
         public override void main()
         {

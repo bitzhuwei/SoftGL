@@ -64,8 +64,6 @@
     <Compile Include="ShaderCodes\ComputeShaderCode.cs" />
     <Compile Include="ShaderCodes\FragmentShaderCode.cs" />
     <Compile Include="ShaderCodes\GeometryShaderCode.cs" />
-    <None Include="ShaderCodes\InnerFragmentShaderCode.cs" />
-    <None Include="ShaderCodes\InnerVertexShaderCode.cs" />
     <Compile Include="ShaderCodes\SimpleFrag.cs" />
     <Compile Include="ShaderCodes\SimpleVert.cs" />
     <Compile Include="ShaderCodes\TessControlShaderCode.cs" />

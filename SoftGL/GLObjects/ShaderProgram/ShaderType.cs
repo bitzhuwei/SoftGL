@@ -39,5 +39,29 @@ namespace SoftGL
 
             return type;
         }
+
+        public static string GetIDName(this ShaderType shaderType)
+        {
+            string result = string.Empty;
+            switch (shaderType)
+            {
+                case ShaderType.VertexShader: result = "gl_VertexID"; break;
+                case ShaderType.TessControlShader:
+                    break;
+                case ShaderType.TessEvaluationShader:
+                    break;
+                case ShaderType.GeometryShader:
+                    break;
+                case ShaderType.FragmentShader: result = "fragmentID"; break;
+                case ShaderType.ComputeShader:
+                    break;
+                default:
+                    break;
+            }
+
+            if (result == string.Empty) { throw new NotImplementedException(); }
+
+            return result;
+        }
     }
 }

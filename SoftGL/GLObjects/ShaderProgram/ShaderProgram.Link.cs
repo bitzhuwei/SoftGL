@@ -35,9 +35,11 @@ namespace SoftGL
         private bool GetInnerShaderCodes()
         {
             var vs = this.VertexShader;
-            if (vs != null) { this.InnerVertexShaderCode = vs.PostProcess() as InnerVertexShaderCode; }
+            if (vs != null)
+            {
+
+            }
             var fs = this.FragmentShader;
-            if (fs != null) { this.InnerFragmentShaderCode = fs.PostProcess() as InnerFragmentShaderCode; }
 
             return true;
         }
@@ -58,7 +60,7 @@ namespace SoftGL
                     InVariable inVar = null;
                     if (inDict.TryGetValue(outItem.Key, out inVar))
                     {
-                        if (inVar.field.FieldType != outItem.Value.field.FieldType)
+                        if (inVar.propertyInfo.PropertyType != outItem.Value.propertyInfo.PropertyType)
                         {
                             this.logInfo = string.Format("Variable [{0}] not the same type!", outItem.Key);
                             return false;
@@ -79,7 +81,7 @@ namespace SoftGL
                 inDict.Clear();
                 foreach (var item in list)
                 {
-                    inDict.Add(item.field.Name, item);
+                    inDict.Add(item.propertyInfo.Name, item);
                 }
             }
 
@@ -98,7 +100,7 @@ namespace SoftGL
                     UniformVariable v = item.Value;
                     if (nameUniformDict.ContainsKey(varName))
                     {
-                        if (v.field.FieldType != nameUniformDict[varName].field.FieldType)
+                        if (v.fieldInfo.FieldType != nameUniformDict[varName].fieldInfo.FieldType)
                         {
                             this.logInfo = string.Format("Different uniform variable types of the same name[{0}!]", varName);
                             return false;
@@ -107,7 +109,7 @@ namespace SoftGL
                     else
                     {
                         v.location = nextLoc;
-                        int byteSize = this.GetByteSize(v.field.FieldType);
+                        int byteSize = this.GetByteSize(v.fieldInfo.FieldType);
                         nextLoc += byteSize;
                         nameUniformDict.Add(varName, v);
                         locationUniformDict.Add(v.location, v);

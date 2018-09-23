@@ -17,7 +17,6 @@ namespace SoftGL
             program.Link();
         }
 
-
         const string vertexCode = @"using System;
 
 namespace SoftGL
@@ -26,12 +25,12 @@ namespace SoftGL
 
     class SimpleVert : VertexShaderCode
     {
-        [In] vec3 inPosition;
-        [In] vec3 inColor;
+        [In] vec3 inPosition { get; set; }
+        [In] vec3 inColor { get; set; }
 
         [Uniform] mat4 mvpMatrix;
 
-        [Out] vec3 passColor;
+        [Out] vec3 passColor { get; set; }
 
         public override void main()
         {
@@ -48,18 +47,14 @@ namespace SoftGL
 {
     class SimpleFrag : FragmentShaderCode
     {
-        [In]
-        vec3 passColor;
+        [In] vec3 passColor { get; set; }
 
-        [Out]
-        vec4 outColor;
+        [Out] vec4 outColor { get; set; }
 
         public override void main()
         {
             outColor = new vec4(passColor, 1.0f);
         }
-    }
-}
     }
 }
 ";

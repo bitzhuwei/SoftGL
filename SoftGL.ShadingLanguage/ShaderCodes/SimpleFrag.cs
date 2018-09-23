@@ -8,10 +8,10 @@ namespace SoftGL
     class SimpleFrag : FragmentShaderCode
     {
         [In]
-        vec3 passColor;
+        vec3 passColor { get; set; }
 
         [Out]
-        vec4 outColor;
+        vec4 outColor { get; set; }
 
         public override void main()
         {
