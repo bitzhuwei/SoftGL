@@ -9,12 +9,12 @@ namespace SoftGL
     {
     }
 
-    [AttributeUsage(AttributeTargets.Property, Inherited = true, AllowMultiple = true)]
+    [AttributeUsage(AttributeTargets.Field, Inherited = true, AllowMultiple = true)]
     public sealed class InAttribute : SoftGLAttribute
     {
     }
 
-    [AttributeUsage(AttributeTargets.Property, Inherited = true, AllowMultiple = true)]
+    [AttributeUsage(AttributeTargets.Field, Inherited = true, AllowMultiple = true)]
     public sealed class OutAttribute : SoftGLAttribute
     {
     }
@@ -25,7 +25,7 @@ namespace SoftGL
     }
 
 
-    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, Inherited = true, AllowMultiple = true)]
+    [AttributeUsage(AttributeTargets.Field, Inherited = true, AllowMultiple = true)]
     public sealed class LocationAttribute : SoftGLAttribute
     {
         public readonly uint location;

@@ -5,20 +5,18 @@ using System.Text;
 
 namespace SoftGL
 {
-    // TODO: 动态改写C#代码。
-
-    class SimpleVert : VertexShaderCode
+    class SimpleVert : VertexCode
     {
         [In]
-        vec3 inPosition { get; set; }
+        vec3 inPosition;
         [In]
-        vec3 inColor { get; set; }
+        vec3 inColor;
 
         [Uniform]
         mat4 mvpMatrix;
 
         [Out]
-        vec3 passColor { get; set; }
+        vec3 passColor;
 
         public override void main()
         {

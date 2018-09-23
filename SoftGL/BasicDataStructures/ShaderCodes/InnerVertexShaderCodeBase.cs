@@ -21,7 +21,7 @@ namespace SoftGL
 
     }
 
-    unsafe class InnerDemoVert : InnerVertexShaderCodeBase
+    unsafe class InnerDemoVert : InnerVertexShaderCodeBase, IMain
     {
         public vec3* inPositionData;
         [In]
@@ -111,11 +111,15 @@ namespace SoftGL
 } // end of method InnerDemoVert::set_passColor
          */
 
-        //public override void main()
-        //{
-        //    gl_Position = projectionMat * viewMat * modelMat * new vec4(inPosition, 1.0f);
-        //    passColor = inColor;
-        //}
+        #region IMain 成员
+
+        public void main()
+        {
+            gl_Position = projectionMat * viewMat * modelMat * new vec4(inPosition, 1.0f);
+            passColor = inColor;
+        }
+
+        #endregion
     }
 
 }

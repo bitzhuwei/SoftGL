@@ -12,15 +12,14 @@ namespace SoftGL
     {
         public ComputeShader(uint id) : base(ShaderType.ComputeShader, id) { }
 
-        public override object CreateCodeInstance()
-        {
-            throw new NotImplementedException();
-        }
-
         protected override string AfterCompile()
         {
             throw new NotImplementedException();
         }
 
+        public override object CreateCodeInstance()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -5,10 +5,8 @@ using System.Text;
 
 namespace SoftGL
 {
-    public abstract class FragmentShaderCode
+    public interface IMain
     {
-        public vec3 gl_FragCoord;
-
-        public abstract void main();
+        void main();
     }
 }

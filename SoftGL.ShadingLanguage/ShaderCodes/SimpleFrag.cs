@@ -5,13 +5,13 @@ using System.Text;
 
 namespace SoftGL
 {
-    class SimpleFrag : FragmentShaderCode
+    class SimpleFrag : FragmentCode
     {
         [In]
-        vec3 passColor { get; set; }
+        vec3 passColor;
 
         [Out]
-        vec4 outColor { get; set; }
+        vec4 outColor;
 
         public override void main()
         {

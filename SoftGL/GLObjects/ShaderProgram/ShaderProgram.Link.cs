@@ -60,7 +60,7 @@ namespace SoftGL
                     InVariable inVar = null;
                     if (inDict.TryGetValue(outItem.Key, out inVar))
                     {
-                        if (inVar.propertyInfo.PropertyType != outItem.Value.propertyInfo.PropertyType)
+                        if (inVar.fieldInfo.FieldType != outItem.Value.fieldInfo.FieldType)
                         {
                             this.logInfo = string.Format("Variable [{0}] not the same type!", outItem.Key);
                             return false;
@@ -81,7 +81,7 @@ namespace SoftGL
                 inDict.Clear();
                 foreach (var item in list)
                 {
-                    inDict.Add(item.propertyInfo.Name, item);
+                    inDict.Add(item.fieldInfo.Name, item);
                 }
             }
 

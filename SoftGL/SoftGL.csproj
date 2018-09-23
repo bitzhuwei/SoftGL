@@ -46,17 +46,6 @@
     <Compile Include="BasicDataStructures\IBoundingBox\IBoundingBoxHelper.cs" />
     <Compile Include="BasicDataStructures\NoisyArray.cs" />
     <Compile Include="BasicDataStructures\Pixel.cs" />
-    <Compile Include="BasicDataStructures\ShaderCodes\InnerTessControlShaderCodeBase.cs" />
-    <Compile Include="BasicDataStructures\ShaderCodes\InnerTessEvaluationShaderCodeBase.cs" />
-    <Compile Include="BasicDataStructures\ShaderCodes\InnerGeometryShaderCodeBase.cs" />
-    <Compile Include="BasicDataStructures\ShaderCodes\InnerComputeShaderCodeBase.cs" />
-    <Compile Include="BasicDataStructures\ShaderCodes\InnerFragmentShaderCodeBase.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BasicDataStructures\ShaderCodes\InnerShaderCodeBase.cs" />
-    <Compile Include="BasicDataStructures\ShaderCodes\InnerVertexShaderCodeBase.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="BasicDataStructures\UnamangedArray\TempUnmanagedArray`1.cs" />
     <Compile Include="BasicDataStructures\UnamangedArray\TempUnmanagedArray`1.IDisposable.cs" />
     <Compile Include="BasicDataStructures\UnamangedArray\UnmanagedArrayBase.cs" />

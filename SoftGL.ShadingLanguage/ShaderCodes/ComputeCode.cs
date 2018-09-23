@@ -5,13 +5,8 @@ using System.Text;
 
 namespace SoftGL
 {
-    public abstract class VertexShaderCode
+    public abstract class ComputeCode
     {
-        public int gl_VertexID;
-
-        [Out]
-        public vec4 gl_Position { get; set; }
-
         public abstract void main();
     }
 }

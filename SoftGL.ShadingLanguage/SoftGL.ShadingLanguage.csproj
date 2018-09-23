@@ -61,14 +61,14 @@
     <Compile Include="GLSL\vec3.cs" />
     <Compile Include="GLSL\vec4.cs" />
     <Compile Include="ShaderCodes\Attributes.cs" />
-    <Compile Include="ShaderCodes\ComputeShaderCode.cs" />
-    <Compile Include="ShaderCodes\FragmentShaderCode.cs" />
-    <Compile Include="ShaderCodes\GeometryShaderCode.cs" />
+    <Compile Include="ShaderCodes\ComputeCode.cs" />
+    <Compile Include="ShaderCodes\FragmentCode.cs" />
+    <Compile Include="ShaderCodes\GeometryCode.cs" />
     <Compile Include="ShaderCodes\SimpleFrag.cs" />
     <Compile Include="ShaderCodes\SimpleVert.cs" />
-    <Compile Include="ShaderCodes\TessControlShaderCode.cs" />
-    <Compile Include="ShaderCodes\TessEvaluationShaderCode.cs" />
-    <Compile Include="ShaderCodes\VertexShaderCode.cs" />
+    <Compile Include="ShaderCodes\TessControlCode.cs" />
+    <Compile Include="ShaderCodes\TessEvaluationCode.cs" />
+    <Compile Include="ShaderCodes\VertexCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
