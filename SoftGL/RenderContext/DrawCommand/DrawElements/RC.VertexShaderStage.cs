@@ -8,15 +8,24 @@ namespace SoftGL
 {
     partial class SoftGLRenderContext
     {
-        private byte[] VertexShaderStage(DrawTarget mode, int count, DrawElementsType type, IntPtr indices, VertexArrayObject vao, ShaderProgram program, GLBuffer indexBuffer)
+        private unsafe PassBuffer[] VertexShaderStage(DrawTarget mode, int count, DrawElementsType type, IntPtr indices, VertexArrayObject vao, ShaderProgram program, GLBuffer indexBuffer)
         {
-            byte[] vsOutput = null;
+            PassBuffer[] passBuffers = null;
             VertexShader vs = program.VertexShader;
-            if (vs == null) { return vsOutput; }
+            if (vs == null) { return passBuffers; }
 
+            FieldInfo[] outVariables = (from item in vs.outVariableDict select item.Value.fieldInfo).ToArray();
             uint vertexCount = GetVertexCount(vao, indexBuffer, type);
-            uint vertexSize = GetVertexSize(vs.outVariableDict.Values.ToArray());
-            vsOutput = new byte[vertexCount * vertexSize];
+            uint vertexSize = GetVertexSize(outVariables);
+            passBuffers = new PassBuffer[outVariables.Length];
+            for (int i = 0; i < passBuffers.Length; i++)
+            {
+                var outVar = outVariables[i];
+                PassType passType = outVar.FieldType.GetPassType();
+                var passBuffer = new PassBuffer(passType, (int)vertexCount);
+                passBuffer.Mapbuffer();
+                passBuffers[i] = passBuffer;
+            }
 
             byte[] indexData = indexBuffer.Data;
             int byteLength = indexData.Length;
@@ -48,19 +57,28 @@ namespace SoftGL
 
                 instance.main(); // execute vertex shader code.
 
-                foreach (var outVar in vs.outVariableDict.Values) // Dictionary<string, OutVariable>.Values
+                // copy data to pass-buffer.
+                for (int i = 0; i < passBuffers.Length; i++)
                 {
-                    var obj = outVar.fieldInfo.GetValue(instance);
+                    var outVar = outVariables[i];
+                    var obj = outVar.GetValue(instance);
                     byte[] bytes = obj.ToBytes();
+                    PassBuffer passBuffer = passBuffers[i];
+                    byte* array = (byte*)passBuffer.AddrOfPinnedObject();
                     for (int t = 0; t < bytes.Length; t++)
                     {
-                        vsOutput[gl_VertexID * vertexSize + t] = bytes[t];
+                        array[gl_VertexID * vertexSize + t] = bytes[t];
                     }
                 }
             }
             pin.Free();
 
-            return vsOutput;
+            for (int i = 0; i < passBuffers.Length; i++)
+            {
+                passBuffers[i].Unmapbuffer();
+            }
+
+            return passBuffers;
         }
 
         /// <summary>
@@ -68,14 +86,14 @@ namespace SoftGL
         /// </summary>
         /// <param name="vao"></param>
         /// <returns></returns>
-        private uint GetVertexSize(OutVariable[] outVariables)
+        private uint GetVertexSize(FieldInfo[] outVariables)
         {
             uint result = 0;
             if (outVariables == null || outVariables.Length == 0) { return result; }
 
             foreach (var item in outVariables)
             {
-                uint size = item.fieldInfo.FieldType.ByteSize();
+                uint size = item.FieldType.ByteSize();
                 result += size;
             }
 

@@ -7,7 +7,7 @@ namespace SoftGL
 {
     partial class SoftGLRenderContext
     {
-        private List<Fragment> LinearInterpolationLineStripAdjacency(int count, DrawElementsType type, IntPtr indices, VertexArrayObject vao, ShaderProgram program, GLBuffer indexBuffer, byte[] vsOutput)
+        private List<Fragment> LinearInterpolationLineStripAdjacency(int count, DrawElementsType type, IntPtr indices, VertexArrayObject vao, ShaderProgram program, GLBuffer indexBuffer, PassBuffer[] passBuffers)
         {
             var result = new List<Fragment>();
             FragmentShader fs = program.FragmentShader;
