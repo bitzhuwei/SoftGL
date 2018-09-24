@@ -25,12 +25,12 @@ namespace SoftGL
 
     class SimpleVert : VertexShaderCode
     {
-        [In] vec3 inPosition { get; set; }
-        [In] vec3 inColor { get; set; }
+        [In] vec3 inPosition;
+        [In] vec3 inColor;
 
         [Uniform] mat4 mvpMatrix;
 
-        [Out] vec3 passColor { get; set; }
+        [Out] vec3 passColor;
 
         public override void main()
         {
@@ -47,9 +47,9 @@ namespace SoftGL
 {
     class SimpleFrag : FragmentShaderCode
     {
-        [In] vec3 passColor { get; set; }
+        [In] vec3 passColor;
 
-        [Out] vec4 outColor { get; set; }
+        [Out] vec4 outColor;
 
         public override void main()
         {
