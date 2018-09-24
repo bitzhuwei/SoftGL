@@ -36,7 +36,8 @@ namespace SoftGL
 
         public override string ToString()
         {
-            return string.Format("t:{0}, l:{1}", this.elementType, this.array.Length);
+            byte[] array = this.array;
+            return string.Format("this = new byte[{1}]; inner type:{0}", this.elementType, array != null ? array.Length : 0);
         }
     }
 
