@@ -22,11 +22,6 @@ namespace SoftGL
 
         GCHandle pin;
 
-        public IntPtr AddrOfPinnedObject()
-        {
-            return this.pin.AddrOfPinnedObject();
-        }
-
         public unsafe IntPtr Mapbuffer()
         {
             this.pin = GCHandle.Alloc(this.array, GCHandleType.Pinned);

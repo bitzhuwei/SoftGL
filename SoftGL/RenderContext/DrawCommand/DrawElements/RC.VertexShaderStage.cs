@@ -18,16 +18,19 @@ namespace SoftGL
             uint vertexCount = GetVertexCount(vao, indexBuffer, type);
             //int vertexSize = GetVertexSize(outFieldInfos);
             passBuffers = new PassBuffer[1 + outFieldInfos.Length];
+            void*[] pointers = new void*[1 + outFieldInfos.Length];
             {
                 // the first pass-buffer stores gl_Position.
-                passBuffers[0] = new PassBuffer(PassType.Vec4, (int)vertexCount);
+                var passBuffer = new PassBuffer(PassType.Vec4, (int)vertexCount);
+                pointers[0] = (void*)passBuffer.Mapbuffer();
+                passBuffers[0] = passBuffer;
             }
             for (int i = 1; i < passBuffers.Length; i++)
             {
                 var outField = outFieldInfos[i - 1];
                 PassType passType = outField.FieldType.GetPassType();
                 var passBuffer = new PassBuffer(passType, (int)vertexCount);
-                passBuffer.Mapbuffer();
+                pointers[i] = (void*)passBuffer.Mapbuffer();
                 passBuffers[i] = passBuffer;
             }
 
@@ -65,49 +68,48 @@ namespace SoftGL
                 // copy data to pass-buffer.
                 {
                     PassBuffer passBuffer = passBuffers[0];
-                    var array = (vec4*)passBuffer.AddrOfPinnedObject();
+                    var array = (vec4*)pointers[0];
                     array[gl_VertexID] = instance.gl_Position;
                 }
                 for (int i = 1; i < passBuffers.Length; i++)
                 {
                     var outField = outFieldInfos[i - 1];
                     var obj = outField.GetValue(instance);
-                    PassBuffer passBuffer = passBuffers[i];
                     switch (outField.FieldType.GetPassType())
                     {
                         case PassType.Float:
                             {
-                                var array = (float*)passBuffer.AddrOfPinnedObject();
+                                var array = (float*)pointers[i];
                                 array[gl_VertexID] = (float)obj;
                             } break;
                         case PassType.Vec2:
                             {
-                                var array = (vec2*)passBuffer.AddrOfPinnedObject();
+                                var array = (vec2*)pointers[i];
                                 array[gl_VertexID] = (vec2)obj;
                             } break;
                         case PassType.Vec3:
                             {
-                                var array = (vec3*)passBuffer.AddrOfPinnedObject();
+                                var array = (vec3*)pointers[i];
                                 array[gl_VertexID] = (vec3)obj;
                             } break;
                         case PassType.Vec4:
                             {
-                                var array = (vec4*)passBuffer.AddrOfPinnedObject();
+                                var array = (vec4*)pointers[i];
                                 array[gl_VertexID] = (vec4)obj;
                             } break;
                         case PassType.Mat2:
                             {
-                                var array = (mat2*)passBuffer.AddrOfPinnedObject();
+                                var array = (mat2*)pointers[i];
                                 array[gl_VertexID] = (mat2)obj;
                             } break;
                         case PassType.Mat3:
                             {
-                                var array = (mat3*)passBuffer.AddrOfPinnedObject();
+                                var array = (mat3*)pointers[i];
                                 array[gl_VertexID] = (mat3)obj;
                             } break;
                         case PassType.Mat4:
                             {
-                                var array = (mat4*)passBuffer.AddrOfPinnedObject();
+                                var array = (mat4*)pointers[i];
                                 array[gl_VertexID] = (mat4)obj;
                             } break;
                         default:
