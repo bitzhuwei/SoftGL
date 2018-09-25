@@ -20,6 +20,12 @@ namespace SoftGL
             this.array = new byte[type.ByteSize() * length];
         }
 
+        public int Length()
+        {
+            int result = this.array.Length / this.elementType.ByteSize();
+
+            return result;
+        }
         GCHandle pin;
 
         public unsafe IntPtr Mapbuffer()

@@ -36,12 +36,33 @@ namespace SoftGL
             PassBuffer[] passBuffers = VertexShaderStage(mode, count, type, indices, vao, program, indexBuffer);
             if (passBuffers == null) { return; } // this stage failed.
 
+            ClipSpace2NormalDeviceSpace(passBuffers[0]);
             // linear interpolation.
             List<Fragment> fragmentList = LinearInterpolation(mode, count, type, indices, vao, program, indexBuffer, passBuffers);
 
             // execute fargment shader for each fragment!
             // This is a low effetient implementation.
 
+        }
+
+        private unsafe void ClipSpace2NormalDeviceSpace(PassBuffer passBuffer)
+        {
+            var array = (vec4*)passBuffer.Mapbuffer();
+            int length = passBuffer.Length();
+            for (int i = 0; i < length; i++)
+            {
+                vec4 gl_Position = array[i];
+                float w = gl_Position.w;
+                if (w != 0)
+                {
+                    gl_Position.x = gl_Position.x / w;
+                    gl_Position.y = gl_Position.y / w;
+                    gl_Position.z = gl_Position.z / w;
+                    gl_Position.w = 1;
+                }
+                array[i] = gl_Position;
+            }
+            passBuffer.Unmapbuffer();
         }
     }
 }
