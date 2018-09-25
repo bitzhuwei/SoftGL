@@ -79,22 +79,6 @@ namespace SoftGL.Windows
             return true;
         }
 
-        private void GetHighestVersion(out int major, out int minor)
-        {
-            major = 2; minor = 1;
-            try
-            {
-                string version = GL.Instance.GetString(GL.GL_VERSION);
-                string[] parts = version.Split('.');
-                major = int.Parse(parts[0]);
-                minor = int.Parse(parts[1]);
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-        }
-
         //private static WndProc wndProcDelegate = new WndProc(WndProc);
 
         //static private IntPtr WndProc(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam)
