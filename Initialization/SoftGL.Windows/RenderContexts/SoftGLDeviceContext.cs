@@ -7,6 +7,18 @@ namespace SoftGL
 {
     class SoftGLDeviceContext
     {
+        private static readonly Dictionary<IntPtr, SoftGLDeviceContext> handleDeviceDict = new Dictionary<IntPtr, SoftGLDeviceContext>();
+        public static SoftGLDeviceContext FromHandle(IntPtr handle)
+        {
+            SoftGLDeviceContext result = null;
+            if (!handleDeviceDict.TryGetValue(handle, out result))
+            {
+                result = null;
+            }
+
+            return result;
+        }
+
         System.Windows.Forms.Control control;
         /// <summary>
         /// Gets the device context handle.
@@ -17,6 +29,12 @@ namespace SoftGL
         {
             const int left = 0, top = 0;
             this.control = new System.Windows.Forms.Control("SoftGLDeviceContext", left, top, width, height);
+            handleDeviceDict.Add(this.DeviceContextHandle, this);
         }
+
+        public int Width { get { return this.control.Width; } }
+
+        public int Height { get { return this.control.Height; } }
+
     }
 }
