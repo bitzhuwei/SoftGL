@@ -23,9 +23,8 @@ namespace SoftGL.Windows
             this.Parameters = parameters;
 
             {
-                const int left = 0, top = 0;
-                var control = new System.Windows.Forms.Control("CSharpGLRenderWindow", left, top, width, height);
-                IntPtr dc = control.Handle;
+                var control = new SoftGLDeviceContext(width, height);
+                IntPtr dc = control.DeviceContextHandle;
                 var paramNames = new string[0]; var paramValues = new uint[0];
                 IntPtr hrc = SoftOpengl32.StaticCalls.CreateContext(dc, width, height, paramNames, paramValues);
                 SoftOpengl32.StaticCalls.MakeCurrent(IntPtr.Zero, IntPtr.Zero);
