@@ -68,36 +68,13 @@ namespace SoftGL.Windows
         /// <param name="parameters"></param>
         protected bool UpdateContextVersion(int width, int height, ContextGenerationParams parameters)
         {
-            //  If the request version number is anything up to and including 2.1, standard render contexts
-            //  will provide what we need (as long as the graphics card drivers are up to date).
-
-            //  Now the none-trivial case. We must use the WGL_create_context extension to
-            //  attempt to create a 3.0+ context.
-            try
-            {
-                var wglChoosePixelFormatARB = GL.Instance.GetDelegateFor("wglChoosePixelFormatARB", GLDelegates.typeof_bool_IntPtr_intN_floatN_uint_intN_uintN) as GLDelegates.bool_IntPtr_intN_floatN_uint_intN_uintN;
-                if (wglChoosePixelFormatARB == null) { return false; }
-                var wglCreateContextAttribs = GL.Instance.GetDelegateFor("wglCreateContextAttribsARB", GLDelegates.typeof_IntPtr_IntPtr_IntPtr_intN) as GLDelegates.IntPtr_IntPtr_IntPtr_intN;
-                if (wglCreateContextAttribs == null) { return false; }
-
-                int major, minor;
-                GetHighestVersion(out major, out minor);
-                if ((major > 2) || (major == 2 && minor > 1))
-                {
-                    IntPtr dc = this.DeviceContextHandle;
-                    var paramNames = new string[0]; var paramValues = new uint[0];
-                    IntPtr hrc = SoftOpengl32.StaticCalls.CreateContext(dc, width, height, paramNames, paramValues);
-                    SoftOpengl32.StaticCalls.MakeCurrent(IntPtr.Zero, IntPtr.Zero);
-                    SoftOpengl32.StaticCalls.DeleteContext(this.RenderContextHandle);
-                    SoftOpengl32.StaticCalls.MakeCurrent(dc, hrc);
-                    this.RenderContextHandle = hrc;
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-                Log.Write(ex);
-            }
+            IntPtr dc = this.DeviceContextHandle;
+            var paramNames = new string[0]; var paramValues = new uint[0];
+            IntPtr hrc = SoftOpengl32.StaticCalls.CreateContext(dc, width, height, paramNames, paramValues);
+            SoftOpengl32.StaticCalls.MakeCurrent(IntPtr.Zero, IntPtr.Zero);
+            SoftOpengl32.StaticCalls.DeleteContext(this.RenderContextHandle);
+            SoftOpengl32.StaticCalls.MakeCurrent(dc, hrc);
+            this.RenderContextHandle = hrc;
 
             return true;
         }
