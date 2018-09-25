@@ -12,10 +12,22 @@ namespace SoftGL
         /// </summary>
         public IntPtr RenderContextHandle { get; protected set; }
 
+        private bool bounded = false;
+
+        public bool Bounded
+        {
+            get { return bounded; }
+        }
+
+        private IntPtr deviceContextHandle;
         /// <summary>
         /// Gets the device context handle.
         /// </summary>
-        public IntPtr DeviceContextHandle { get; internal set; }
+        public IntPtr DeviceContextHandle
+        {
+            get { return this.deviceContextHandle; }
+            internal set { this.deviceContextHandle = value; this.bounded = true; }
+        }
 
         /// <summary>
         /// Gets or sets the width.

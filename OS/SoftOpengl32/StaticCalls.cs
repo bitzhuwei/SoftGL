@@ -34,7 +34,17 @@ namespace SoftOpengl32
         /// <param name="renderContext"></param>
         public static void MakeCurrent(IntPtr deviceContext, IntPtr renderContext)
         {
+            SoftGLRenderContext context = GetContextObj(renderContext);
+            var device = SoftGLDeviceContext.FromHandle(deviceContext);
+            bool firstBound = ((context != null) && (device != null) && (!context.Bounded));
+
             ContextManager.MakeCurrent(deviceContext, renderContext);
+
+            if (firstBound)
+            {
+                int x = 0, y = 0, width = device.Width, height = device.Height;
+                SoftGLRenderContext.glViewport(x, y, width, height);
+            }
         }
 
         /// <summary>
@@ -56,6 +66,16 @@ namespace SoftOpengl32
         }
 
         /// <summary>
+        /// Gets render context object with specified <paramref name="handle"/>.
+        /// </summary>
+        /// <param name="handle"></param>
+        /// <returns></returns>
+        private static SoftGLRenderContext GetContextObj(IntPtr handle)
+        {
+            return ContextManager.GetContextObj(handle);
+        }
+
+        /// <summary>
         /// Gets current device context.
         /// </summary>
         /// <returns></returns>
@@ -71,6 +91,12 @@ namespace SoftOpengl32
         public static void DeleteContext(IntPtr renderContext)
         {
             ContextManager.DeleteContext(renderContext);
+        }
+
+        public static IntPtr CreateDeviceContext(int width, int height)
+        {
+            var dc = new SoftGLDeviceContext(width, height);
+            return dc.DeviceContextHandle;
         }
     }
 }
