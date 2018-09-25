@@ -128,7 +128,6 @@ namespace SoftGL.Windows
 //#endif
                         0
                     };
-                    //IntPtr hrc = wglCreateContextAttribs(dc, IntPtr.Zero, attributes);
                     var paramNames = new string[0]; var paramValues = new uint[0];
                     IntPtr hrc = SoftOpengl32.StaticCalls.CreateContext(dc, width, height, paramNames, paramValues);
                     SoftOpengl32.StaticCalls.MakeCurrent(IntPtr.Zero, IntPtr.Zero);
