@@ -10,8 +10,6 @@ namespace SoftGL
         private List<Fragment> LinearInterpolationPoints(int count, DrawElementsType type, IntPtr indices, VertexArrayObject vao, ShaderProgram program, GLBuffer indexBuffer, PassBuffer[] passBuffers)
         {
             var result = new List<Fragment>();
-            FragmentShader fs = program.FragmentShader;
-            if (fs == null) { return result; }
 
             byte[] indexData = indexBuffer.Data;
             int byteLength = indexData.Length;
@@ -24,6 +22,8 @@ namespace SoftGL
                 if (gl_VertexIDList.Contains(gl_VertexID)) { continue; }
                 else { gl_VertexIDList.Add(gl_VertexID); }
 
+                var fragment = new Fragment();
+                //fragment.gl_FragCoord
             }
             return result;
         }
