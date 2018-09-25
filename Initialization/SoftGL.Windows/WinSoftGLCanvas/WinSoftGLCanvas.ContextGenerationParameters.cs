@@ -18,13 +18,6 @@ namespace SoftGL.Windows
         //public ContextGenerationParams Parameters { get { return this.parameters; } }
 
         [Category(strWinSoftGLCanvas)]
-        public bool UpdateContextVersion
-        {
-            get { return this.parameters.UpdateContextVersion; }
-            set { this.parameters.UpdateContextVersion = value; }
-        }
-
-        [Category(strWinSoftGLCanvas)]
         public byte AccumBits
         {
             get { return this.parameters.AccumBits; }

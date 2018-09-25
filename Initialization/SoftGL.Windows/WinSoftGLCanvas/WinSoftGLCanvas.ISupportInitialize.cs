@@ -42,7 +42,6 @@ namespace SoftGL.Windows
                 if (this.designMode)
                 {
                     parameters = new ContextGenerationParams();
-                    parameters.UpdateContextVersion = false;
                 }
                 else
                 {
