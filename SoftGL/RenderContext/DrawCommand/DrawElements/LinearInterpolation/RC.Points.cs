@@ -82,7 +82,7 @@ namespace SoftGL
                         default:
                             throw new NotDealWithNewEnumItemException(typeof(PassType));
                     }
-                    fragment.attributes[attrIndex].Unmapbuffer();
+                    attribute.Unmapbuffer();
                 }
                 result.Add(fragment);
             }
