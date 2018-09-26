@@ -54,6 +54,7 @@
     <Compile Include="Texture\SC.Texture.cs" />
     <Compile Include="Utilities\Clear.cs" />
     <Compile Include="GLBuffer\SC.GLBuffer.cs" />
+    <Compile Include="Viewport\SC.DepthRange.cs" />
     <Compile Include="Viewport\SC.Viewport.cs" />
     <None Include="readme.md" />
     <Compile Include="Texture\Sampler\SC.Sampler.cs" />
