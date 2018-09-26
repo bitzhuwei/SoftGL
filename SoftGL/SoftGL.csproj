@@ -90,6 +90,7 @@
     <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\RC.Patches.cs" />
     <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\RC.LineStrip.cs" />
     <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\RC.Points.cs" />
+    <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\LinearInterpolationInfoGroup.cs" />
     <Compile Include="RenderContext\DrawCommand\DrawElements\RC.FragmentShaderStage.cs" />
     <Compile Include="RenderContext\DrawCommand\DrawElements\RC.LinearInterpolation.cs" />
     <Compile Include="RenderContext\DrawCommand\Fragment.cs" />
