@@ -78,6 +78,7 @@
     <Compile Include="GLObjects\Utilities\SpaceHelper.cs" />
     <Compile Include="GLObjects\Utilities\TypeHelper.cs" />
     <Compile Include="GLObjects\VertexArrayObject\VertexArrayObject.cs" />
+    <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\PixelsAtLine.cs" />
     <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\RC.LineLoop.cs" />
     <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\RC.Lines.cs" />
     <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\RC.Triangles.cs" />
