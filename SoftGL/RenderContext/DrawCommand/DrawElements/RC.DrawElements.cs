@@ -45,6 +45,23 @@ namespace SoftGL
             // execute fargment shader for each fragment!
             // This is a low effetient implementation.
             FragmentShaderStage(program, fragmentList);
+
+            // Scissor test
+
+            // Multisampel fragment operations
+
+            // Stencil test
+
+            // Depth test
+
+            //Blending
+
+            // Dithering
+
+            // Logical operations
+
+            // write fragments to framebuffer's colorbuffer attachment(s).
+
         }
 
         private unsafe void ClipSpace2NormalDeviceSpace(PassBuffer passBuffer)
