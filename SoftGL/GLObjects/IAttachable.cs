@@ -15,6 +15,14 @@ namespace SoftGL
         /// </summary>
         /// <param name="values"></param>
         void Clear(byte[] values);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="data"></param>
+        void Set(int x, int y, byte[] data);
     }
 
     static class IAttachableHelper

@@ -14,6 +14,11 @@ namespace SoftGL
             IAttachableHelper.Fill(this.DataStore, values);
         }
 
+        public void Set(int x, int y, byte[] data)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion IAttachable
     }
 }
