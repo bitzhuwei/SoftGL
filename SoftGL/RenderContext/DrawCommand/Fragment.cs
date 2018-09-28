@@ -20,6 +20,11 @@ namespace SoftGL
         /// <summary>
         /// 
         /// </summary>
+        public PassBuffer[] outVariables;
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="fragCoord"></param>
         /// <param name="attributeLength"></param>
         public Fragment(vec3 fragCoord, int attributeLength)
