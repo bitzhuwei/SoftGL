@@ -10,34 +10,27 @@ namespace SoftGL
     /// </summary>
     interface IAttachable
     {
-        /// <summary>
-        /// Clear attachment with specified <paramref name="values"/>.
-        /// </summary>
-        /// <param name="values"></param>
-        void Clear(byte[] values);
+        int Width { get; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="data"></param>
-        void Set(int x, int y, byte[] data);
+        int Height { get; }
+
+        byte[] DataStore { get; }
+
     }
 
     static class IAttachableHelper
     {
         /// <summary>
-        /// Fill specified <paramref name="dataStore"/> with specified <paramref name="values"/>.
+        /// set <paramref name="attachable"/>'s data store to specified <paramref name="values"/>.
         /// </summary>
-        /// <param name="dataStore"></param>
+        /// <param name="attachable"></param>
         /// <param name="values"></param>
-        public static void Fill(this byte[] dataStore, byte[] values)
+        public static void Clear(this IAttachable attachable, byte[] values)
         {
-            if (dataStore == null) { throw new ArgumentNullException("dataStore"); }
-            if (values == null || values.Length < 1) { throw new ArgumentNullException("values"); }
+            if (attachable == null || values == null || values.Length < 1) { return; }
 
             int interval = values.Length;
+            byte[] dataStore = attachable.DataStore;
             int total = dataStore.Length;
             int tail = total % interval;
             int i = 0;
@@ -55,5 +48,30 @@ namespace SoftGL
                 }
             }
         }
+
+        public static void Set(this IAttachable attachable, int x, int y, byte[] data)
+        {
+            if (attachable == null || data == null) { return; }
+
+            byte[] dataStore = attachable.DataStore;
+            int width = attachable.Width;
+            int height = attachable.Height;
+            int singleElementByteLength = dataStore.Length / width / height;
+            if (singleElementByteLength != data.Length)
+            {
+                for (int i = 0; i < singleElementByteLength && i < data.Length; i++)
+                {
+                    attachable.DataStore[(width * y + x) * singleElementByteLength + i] = data[i];
+                }
+            }
+            else
+            {
+                for (int i = 0; i < singleElementByteLength; i++)
+                {
+                    attachable.DataStore[(width * y + x) * singleElementByteLength + i] = data[i];
+                }
+            }
+        }
+
     }
 }
