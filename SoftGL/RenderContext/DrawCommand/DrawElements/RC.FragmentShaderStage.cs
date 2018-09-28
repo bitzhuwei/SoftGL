@@ -38,7 +38,7 @@ namespace SoftGL
                 }
 
                 instance.main(); // execute fragment shader code.
-
+                fragment.discard = instance.discard;
                 if (!instance.discard) // if this fragment is not discarded.
                 {
                     OutVariable[] outVariables = fs.outVariableDict.Values.ToArray();
