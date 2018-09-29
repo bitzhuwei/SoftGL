@@ -35,11 +35,11 @@ namespace CSharpGL
         /// </summary>
         public abstract void MakeCurrent();
 
-        /// <summary>
-        /// Blit the rendered data to the supplied device context.
-        /// </summary>
-        /// <param name="deviceContext">The HDC.</param>
-        public abstract void Blit(IntPtr deviceContext);
+        ///// <summary>
+        ///// Blit the rendered data to the supplied device context.
+        ///// </summary>
+        ///// <param name="deviceContext">The HDC.</param>
+        //public abstract void Blit(IntPtr deviceContext);
 
         /// <summary>
         /// Gets the render context handle.
