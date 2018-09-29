@@ -3128,6 +3128,10 @@ namespace SoftGL
         /// </summary>
         public const uint GL_DEPTH_STENCIL = 0x84F9;
         /// <summary>
+        /// 
+        /// </summary>
+        public const uint GL_UNSIGNED_INT_24_8 = 0x84FA;
+        /// <summary>
         ///
         /// </summary>
         public const uint GL_FLOAT_32_UNSIGNED_INT_24_8_REV = 0x8DAD;
