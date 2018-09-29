@@ -12,6 +12,11 @@ namespace SoftGL
         /// <summary>
         /// 
         /// </summary>
+        public uint Format { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public int Width { get; private set; }
 
         /// <summary>
@@ -26,8 +31,9 @@ namespace SoftGL
 
         #endregion IAttachable
 
-        public Image(int width, int height, int elementByteLength)
+        public Image(uint format, int width, int height, int elementByteLength)
         {
+            this.Format = format;
             this.Width = width; this.Height = height;
             this.DataStore = new byte[elementByteLength * width * height];
         }

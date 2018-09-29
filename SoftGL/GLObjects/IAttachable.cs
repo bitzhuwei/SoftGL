@@ -10,6 +10,8 @@ namespace SoftGL
     /// </summary>
     interface IAttachable
     {
+        uint Format { get; }
+
         int Width { get; }
 
         int Height { get; }
