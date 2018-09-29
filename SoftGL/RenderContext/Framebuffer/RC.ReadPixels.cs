@@ -43,18 +43,26 @@ namespace SoftGL
 
             if (format == ReadPixelsFormat.DepthComponent)
             {
+                IAttachable attachment = framebuffer.DepthbufferAttachment;
+                byte[] dataStore = attachment.DataStore;
 
             }
             else if (format == ReadPixelsFormat.StencilIndex)
             {
+                IAttachable attachment = framebuffer.StencilbufferAttachment;
+                byte[] dataStore = attachment.DataStore;
 
             }
             else if (format == ReadPixelsFormat.DepthStencil)
             {
+                IAttachable attachment = framebuffer.DepthbufferAttachment;
+                byte[] dataStore = attachment.DataStore;
 
             }
             else
             {
+                IAttachable attachment = framebuffer.ColorbufferAttachments[framebuffer.DrawBuffers[0]];
+                byte[] dataStore = attachment.DataStore;
 
             }
         }
