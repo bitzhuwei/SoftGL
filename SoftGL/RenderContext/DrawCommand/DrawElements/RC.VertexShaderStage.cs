@@ -91,41 +91,13 @@ namespace SoftGL
                     var obj = outField.GetValue(instance);
                     switch (outField.FieldType.GetPassType())
                     {
-                        case PassType.Float:
-                            {
-                                var array = (float*)pointers[i];
-                                array[gl_VertexID] = (float)obj;
-                            } break;
-                        case PassType.Vec2:
-                            {
-                                var array = (vec2*)pointers[i];
-                                array[gl_VertexID] = (vec2)obj;
-                            } break;
-                        case PassType.Vec3:
-                            {
-                                var array = (vec3*)pointers[i];
-                                array[gl_VertexID] = (vec3)obj;
-                            } break;
-                        case PassType.Vec4:
-                            {
-                                var array = (vec4*)pointers[i];
-                                array[gl_VertexID] = (vec4)obj;
-                            } break;
-                        case PassType.Mat2:
-                            {
-                                var array = (mat2*)pointers[i];
-                                array[gl_VertexID] = (mat2)obj;
-                            } break;
-                        case PassType.Mat3:
-                            {
-                                var array = (mat3*)pointers[i];
-                                array[gl_VertexID] = (mat3)obj;
-                            } break;
-                        case PassType.Mat4:
-                            {
-                                var array = (mat4*)pointers[i];
-                                array[gl_VertexID] = (mat4)obj;
-                            } break;
+                        case PassType.Float: { var array = (float*)pointers[i]; array[gl_VertexID] = (float)obj; } break;
+                        case PassType.Vec2: { var array = (vec2*)pointers[i]; array[gl_VertexID] = (vec2)obj; } break;
+                        case PassType.Vec3: { var array = (vec3*)pointers[i]; array[gl_VertexID] = (vec3)obj; } break;
+                        case PassType.Vec4: { var array = (vec4*)pointers[i]; array[gl_VertexID] = (vec4)obj; } break;
+                        case PassType.Mat2: { var array = (mat2*)pointers[i]; array[gl_VertexID] = (mat2)obj; } break;
+                        case PassType.Mat3: { var array = (mat3*)pointers[i]; array[gl_VertexID] = (mat3)obj; } break;
+                        case PassType.Mat4: { var array = (mat4*)pointers[i]; array[gl_VertexID] = (mat4)obj; } break;
                         default:
                             throw new NotImplementedException();
                     }
