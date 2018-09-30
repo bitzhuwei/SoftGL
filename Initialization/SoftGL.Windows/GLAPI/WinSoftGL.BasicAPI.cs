@@ -361,7 +361,7 @@ namespace SoftGL.Windows
 
         public override void DrawElements(uint mode, int count, uint type, IntPtr indices)
         {
-            //throw new NotImplementedException();
+            SoftOpengl32.StaticCalls.glDrawElements(mode, count, type, indices);
         }
 
         public override void DrawElements(uint mode, int count, uint[] indices)
