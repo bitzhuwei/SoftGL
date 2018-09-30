@@ -56,9 +56,9 @@ namespace SoftGL
                     if (locVertexAttribDict.TryGetValue(inVar.location, out desc))
                     {
                         byte[] dataStore = desc.vbo.Data;
-                        int byteIndex = desc.GetDataIndex(indexID);
+                        int byteIndex = desc.GetDataIndex(gl_VertexID);
                         VertexAttribType vertexAttribType = (VertexAttribType)desc.dataType;
-                        object value = dataStore.ToStruct(vertexAttribType.GetManagedType(), byteIndex);
+                        object value = dataStore.ToStruct(inVar.fieldInfo.FieldType, byteIndex);
                         inVar.fieldInfo.SetValue(instance, value);
                     }
                 }
