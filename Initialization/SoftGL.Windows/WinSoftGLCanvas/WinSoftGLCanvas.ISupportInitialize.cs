@@ -58,8 +58,9 @@ namespace SoftGL.Windows
                 GL.Instance.DepthFunc(GL.GL_LEQUAL);
                 GL.Instance.Hint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Log.Write(ex);
             }
         }
 

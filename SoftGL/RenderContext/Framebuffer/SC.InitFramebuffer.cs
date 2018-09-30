@@ -40,7 +40,7 @@ namespace SoftGL
             glCheckFramebufferStatus((uint)BindFramebufferTarget.Framebuffer);
             //glBindFramebuffer((uint)BindFramebufferTarget.Framebuffer, 0); // not needed.
 
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }
