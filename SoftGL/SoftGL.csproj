@@ -114,7 +114,6 @@
     <Compile Include="RenderContext\VertexArrayObject\RC.VertexAttribPointer.cs" />
     <Compile Include="RenderContext\VertexArrayObject\RC.VertexArrayObject.cs" />
     <Compile Include="RenderContext\Frustum\RC.Viewport.cs" />
-    <Compile Include="TestConsole\ShaderTest.cs" />
     <None Include="GLObjects\readme.md" />
     <None Include="readme.md" />
     <Compile Include="GLAPI\GL.BasicAPI.cs" />
