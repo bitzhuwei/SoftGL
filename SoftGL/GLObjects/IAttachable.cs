@@ -23,30 +23,36 @@ namespace SoftGL
     static class IAttachableHelper
     {
         /// <summary>
-        /// set <paramref name="attachable"/>'s data store to specified <paramref name="values"/>.
+        /// set <paramref name="attachable"/>'s data store to specified <paramref name="data"/>.
         /// </summary>
         /// <param name="attachable"></param>
-        /// <param name="values"></param>
-        public static void Clear(this IAttachable attachable, byte[] values)
+        /// <param name="data"></param>
+        public static void Clear(this IAttachable attachable, byte[] data)
         {
-            if (attachable == null || values == null || values.Length < 1) { return; }
+            if (attachable == null || data == null || data.Length < 1) { return; }
 
-            int interval = values.Length;
             byte[] dataStore = attachable.DataStore;
-            int total = dataStore.Length;
-            int tail = total % interval;
-            int i = 0;
-            for (; i + interval < total; i += interval)
+            int width = attachable.Width;
+            int height = attachable.Height;
+            int singleElementByteLength = dataStore.Length / width / height;
+            if (singleElementByteLength != data.Length)
             {
-                for (int j = 0; j < interval; j++)
+                for (int i = 0; i < width; i++)
                 {
-                    dataStore[i + j] = values[j];
+                    for (int j = 0; j < height; j++)
+                    {
+                        for (int t = 0; t < singleElementByteLength && t < data.Length; t++)
+                        {
+                            dataStore[(width * j + i) * singleElementByteLength + t] = data[t];
+                        }
+                    }
                 }
             }
+            else
             {
-                for (int j = 0; j < tail; j++)
+                for (int i = 0; i < dataStore.Length; i++)
                 {
-                    dataStore[i + j] = values[j];
+                    dataStore[i] = data[i % data.Length];
                 }
             }
         }
