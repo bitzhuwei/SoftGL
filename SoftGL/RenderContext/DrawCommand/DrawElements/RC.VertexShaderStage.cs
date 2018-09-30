@@ -62,6 +62,20 @@ namespace SoftGL
                         inVar.fieldInfo.SetValue(instance, value);
                     }
                 }
+                // setup "uniform SomeType varName;" in vertex shader.
+                Dictionary<string, UniformValue> nameUniformDict = program.nameUniformDict;
+                foreach (UniformVariable uniformVar in vs.UniformVariableDict.Values)
+                {
+                    string name = uniformVar.fieldInfo.Name;
+                    UniformValue obj = null;
+                    if (nameUniformDict.TryGetValue(name, out obj))
+                    {
+                        if (obj.value != null)
+                        {
+                            uniformVar.fieldInfo.SetValue(instance, obj.value);
+                        }
+                    }
+                }
 
                 instance.main(); // execute vertex shader code.
 

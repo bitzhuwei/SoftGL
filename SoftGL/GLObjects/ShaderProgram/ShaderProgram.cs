@@ -60,10 +60,10 @@ namespace SoftGL
         {
             int result = -1;
             if (this.logInfo.Length > 0) { return -1; }
-            UniformVariable v = null;
+            UniformValue v = null;
             if (this.nameUniformDict.TryGetValue(name, out v))
             {
-                result = (int)v.location;
+                result = (int)v.variable.location;
             }
 
             return result;
