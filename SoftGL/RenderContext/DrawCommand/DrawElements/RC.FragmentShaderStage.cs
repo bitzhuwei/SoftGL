@@ -36,6 +36,20 @@ namespace SoftGL
                     }
                     attribute.Unmapbuffer();
                 }
+                // setup "uniform SomeType varName;" in fragment shader.
+                Dictionary<string, UniformValue> nameUniformDict = program.nameUniformDict;
+                foreach (UniformVariable uniformVar in fs.UniformVariableDict.Values)
+                {
+                    string name = uniformVar.fieldInfo.Name;
+                    UniformValue obj = null;
+                    if (nameUniformDict.TryGetValue(name, out obj))
+                    {
+                        if (obj.value != null)
+                        {
+                            uniformVar.fieldInfo.SetValue(instance, obj.value);
+                        }
+                    }
+                }
 
                 instance.main(); // execute fragment shader code.
                 fragment.discard = instance.discard;
