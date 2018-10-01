@@ -12,7 +12,9 @@ namespace d00_HelloSoftGL
 
         public override void main()
         {
-            outColor = color; // fill the fragment with specified color.
+            vec4 result = color; // fill the fragment with specified color.
+            outColor = result;
+
         }
     }
 }

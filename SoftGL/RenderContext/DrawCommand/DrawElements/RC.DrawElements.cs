@@ -78,7 +78,7 @@ namespace SoftGL
                     for (int i = 0; i < fragment.outVariables.Length && i < drawBufferIndexes.Length; i++)
                     {
                         PassBuffer outVar = fragment.outVariables[i];
-                        IAttachable attachment = framebuffer.ColorbufferAttachments[drawBufferIndexes[i]];
+                        IAttachable attachment = framebuffer.ColorbufferAttachments[drawBufferIndexes[i].ToIndex()];
                         attachment.Set((int)fragment.gl_FragCoord.x, (int)fragment.gl_FragCoord.y, outVar.array);
                     }
                 }

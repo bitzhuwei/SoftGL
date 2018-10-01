@@ -36,5 +36,10 @@ namespace SoftOpengl32
 
         internal int Height { get { return this.control.Height; } }
 
+        internal void SetDimensions(int width, int height)
+        {
+            this.control.Width = width;
+            this.control.Height = height;
+        }
     }
 }

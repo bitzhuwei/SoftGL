@@ -18,6 +18,7 @@ namespace SoftGL
             if (context != null)
             {
                 context.Viewport(x, y, width, height);
+
             }
         }
 
@@ -27,6 +28,10 @@ namespace SoftGL
 
             this.viewport.x = x; this.viewport.y = y;
             this.viewport.z = width; this.viewport.w = height;
+
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            bool firstBound = ((context != null) && (!context.Bounded) && (this.deviceContextHandle != IntPtr.Zero));
+            if (firstBound) { context.bounded = true; }
         }
     }
 }

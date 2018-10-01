@@ -37,7 +37,7 @@ namespace d00_HelloSoftGL
             var camera = new Camera(position, center, up, CameraType.Perspective, this.winSoftGLCanvas1.Width, this.winSoftGLCanvas1.Height);
             this.cubeNode = CubeNode.Create();
             var scene = new Scene(camera);
-            scene.RootNode = cubeNode;
+            //scene.RootNode = cubeNode;
             this.scene = scene;
 
             var list = new ActionList();
@@ -62,8 +62,8 @@ namespace d00_HelloSoftGL
                 GL.Instance.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
                 GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
-                Viewport viewport = Viewport.GetCurrent();
-                list.Act(new ActionParams(viewport));
+                //Viewport viewport = Viewport.GetCurrent();
+                //list.Act(new ActionParams(viewport));
             }
         }
 
