@@ -88,16 +88,6 @@ namespace SoftGL
             this.infoLog = this.AfterCompile();
         }
 
-        /// <summary>
-        /// Creates an instance of executable shader code.
-        /// </summary>
-        /// <returns></returns>
-        public object CreateCodeInstance()
-        {
-            object instance = Activator.CreateInstance(this.codeType);
-            return instance;
-        }
-
         private string FindUniformVariables(Type shaderCodeType, Dictionary<string, UniformVariable> dict)
         {
             dict.Clear();
