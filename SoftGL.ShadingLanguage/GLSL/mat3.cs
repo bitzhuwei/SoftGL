@@ -239,17 +239,6 @@ namespace SoftGL
         /// <summary>
         ///
         /// </summary>
-        /// <param name="lhs"></param>
-        /// <param name="rhs"></param>
-        /// <returns></returns>
-        public static mat3 operator +(mat3 lhs, mat3 rhs)
-        {
-            return new mat3(lhs.col0 + rhs.col0, lhs.col1 + rhs.col1, lhs.col2 + rhs.col2);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
         /// <param name="left"></param>
         /// <param name="right"></param>
         /// <returns></returns>
