@@ -57,11 +57,10 @@ namespace SoftGL
             }
         }
 
-        public static void Set(this IAttachable attachable, int x, int y, PassBuffer passbuffer)
+        public static void Set(this IAttachable attachable, int x, int y, byte[] data)
         {
-            if (attachable == null || passbuffer == null || passbuffer.array == null) { return; }
+            if (attachable == null || data == null) { return; }
 
-            byte[] data = passbuffer.ConvertTo(attachable.Format);
             byte[] dataStore = attachable.DataStore;
             int width = attachable.Width;
             int height = attachable.Height;
