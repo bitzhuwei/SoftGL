@@ -99,7 +99,6 @@
     <Compile Include="GLObjects\GLBuffers\GLBuffer.cs" />
     <Compile Include="GLObjects\ShaderProgram\ComputeShader.cs" />
     <Compile Include="GLObjects\ShaderProgram\OutVariable.cs" />
-    <Compile Include="GLObjects\ShaderProgram\PipelineShader.cs" />
     <Compile Include="GLObjects\ShaderProgram\ShaderProgram.Uniform.cs" />
     <Compile Include="GLObjects\ShaderProgram\ShaderType.cs" />
     <Compile Include="GLObjects\ShaderProgram\UniformVariable.cs" />

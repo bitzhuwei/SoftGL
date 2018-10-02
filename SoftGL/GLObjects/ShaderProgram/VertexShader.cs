@@ -8,12 +8,10 @@ using System.Text;
 
 namespace SoftGL
 {
-    class VertexShader : PipelineShader
+    class VertexShader : Shader
     {
         public readonly Dictionary<string, InVariable> inVariableDict = new Dictionary<string, InVariable>();
         public readonly Dictionary<string, OutVariable> outVariableDict = new Dictionary<string, OutVariable>();
-
-        public override int PipelineOrder { get { return 0; } }
 
         public VertexShader(uint id) : base(ShaderType.VertexShader, id) { }
 
