@@ -7,7 +7,7 @@ namespace SoftGL
 {
     partial class SoftGLRenderContext
     {
-        private List<Fragment> LinearInterpolationTriangleFan(int count, DrawElementsType type, IntPtr indices, VertexArrayObject vao, ShaderProgram program, GLBuffer indexBuffer, PassBuffer[] passBuffers)
+        private List<Fragment> LinearInterpolationTriangleFan(int count, DrawElementsType type, IntPtr indices, VertexArrayObject vao, ShaderProgram program, GLBuffer indexBuffer, byte[] vsOutput)
         {
             var result = new List<Fragment>();
             FragmentShader fs = program.FragmentShader;
