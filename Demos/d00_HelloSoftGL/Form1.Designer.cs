@@ -47,6 +47,7 @@
             this.winSoftGLCanvas1.StencilBits = ((byte)(0));
             this.winSoftGLCanvas1.TabIndex = 0;
             this.winSoftGLCanvas1.TimerTriggerInterval = 40;
+            this.winSoftGLCanvas1.UpdateContextVersion = true;
             // 
             // Form1
             // 
