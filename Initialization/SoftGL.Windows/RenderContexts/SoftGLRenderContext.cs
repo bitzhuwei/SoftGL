@@ -36,6 +36,8 @@ namespace SoftGL.Windows
 
             //  Make the context current.
             this.MakeCurrent();
+
+            this.dibSection = new DIBSection(this.DeviceContextHandle, width, height, parameters);
         }
 
         //private static WndProc wndProcDelegate = new WndProc(WndProc);
@@ -50,6 +52,9 @@ namespace SoftGL.Windows
         /// </summary>
         protected override void DisposeUnmanagedResources()
         {
+            //  Destroy the internal dc.
+            this.dibSection.Dispose();
+
             ////	Release the device context.
             //Win32.ReleaseDC(windowHandle, this.DeviceContextHandle);
 
@@ -82,6 +87,8 @@ namespace SoftGL.Windows
             //    SetWindowPosFlags.SWP_NOMOVE |
             //    SetWindowPosFlags.SWP_NOOWNERZORDER);
 
+            //	Resize dib section.
+            this.dibSection.Resize(width, height, this.Parameters);
         }
 
         /// <summary>
@@ -106,7 +113,8 @@ namespace SoftGL.Windows
                 //GL.Instance.ReadBuffer(GL.GL_COLOR_ATTACHMENT0);
 
                 //	Read the pixels into the DIB section.
-                //GL.Instance.ReadPixels(0, 0, this.Width, this.Height, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, this.dibSection.Bits);
+                GL.Instance.ReadPixels(0, 0, this.Width, this.Height, GL.GL_BGRA,
+                    GL.GL_UNSIGNED_BYTE, this.dibSection.Bits);
 
                 //	Blit the DC (containing the DIB section) to the target DC.
                 //Win32.BitBlt(deviceContext, 0, 0, this.Width, this.Height,
@@ -129,14 +137,14 @@ namespace SoftGL.Windows
         protected IntPtr windowHandle = IntPtr.Zero;
 
 
-        /////// <summary>
-        ///////
-        /////// </summary>
-        ////private IntPtr dibSectionDeviceContext = IntPtr.Zero;
         ///// <summary>
         /////
         ///// </summary>
-        //private DIBSection dibSection;
+        //private IntPtr dibSectionDeviceContext = IntPtr.Zero;
+        /// <summary>
+        ///
+        /// </summary>
+        private DIBSection dibSection;
 
         public ContextGenerationParams Parameters { get; set; }
     }
