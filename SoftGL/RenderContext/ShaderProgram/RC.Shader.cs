@@ -28,12 +28,12 @@ namespace SoftGL
         {
             if (shaderType == 0) { SetLastError(ErrorCode.InvalidEnum); return 0; }
 
-            uint id = nextShaderName;
-            Shader shader = Shader.Create(shaderType, id);
-            this.nameShaderDict.Add(id, shader);
+            uint name = nextShaderName;
+            var shader = new Shader(shaderType, name);
+            this.nameShaderDict.Add(name, shader);
             nextShaderName++;
 
-            return id;
+            return name;
         }
 
         public static void glShaderSource(uint name, int count, string[] codes, int[] lengths)

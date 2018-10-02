@@ -75,26 +75,5 @@ namespace SoftGL
 
             program.Link();
         }
-
-        public static int glGetAttribLocation(uint program, string name)
-        {
-            int result = -1;
-            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
-            if (context != null)
-            {
-                result = context.GetAttribLocation(program, name);
-            }
-
-            return result;
-        }
-
-        private int GetAttribLocation(uint program, string name)
-        {
-            if ((program == 0) || (!this.nameShaderProgramDict.ContainsKey(program))) { SetLastError(ErrorCode.InvalidOperation); return -1; }
-            // TODO: GL_INVALID_OPERATION is generated if program​ has not been successfully linked.
-
-            ShaderProgram shaderProgram = this.nameShaderProgramDict[program];
-            return shaderProgram.GetAttribLocation(name);
-        }
     }
 }

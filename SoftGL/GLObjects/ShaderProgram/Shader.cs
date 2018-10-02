@@ -7,28 +7,9 @@ using System.Text;
 
 namespace SoftGL
 {
-    abstract class Shader
+    class Shader
     {
-        public static Shader Create(ShaderType type, uint id)
-        {
-            Shader result = null;
-            switch (type)
-            {
-                case ShaderType.VertexShader: result = new VertexShader(id); break;
-                case ShaderType.TessControlShader: result = new TessControlShader(id); break;
-                case ShaderType.TessEvaluationShader: result = new TessEvaluationShader(id); break;
-                case ShaderType.GeometryShader: result = new GeometryShader(id); break;
-                case ShaderType.FragmentShader: result = new FragmentShader(id); break;
-                case ShaderType.ComputeShader: result = new ComputeShader(id); break;
-                default:
-                    throw new NotImplementedException();
-            }
-
-            return result;
-        }
-
-        protected string infoLog = string.Empty;
-
+        private CompilerResults CompilingResult;
         /// <summary>
         /// 
         /// </summary>
@@ -64,14 +45,12 @@ namespace SoftGL
             return string.Format("Shader: Id:{0}", this.Id);
         }
 
-        protected abstract string DoCompile();
         public void Compile()
         {
-            this.infoLog = DoCompile();
-            //var codeProvider = new CSharpCodeProvider();
-            //var compParameters = new CompilerParameters();
-            //CompilerResults res = codeProvider.CompileAssemblyFromSource(compParameters, this.Code);
-            //this.compilerResult = res;
+            var codeProvider = new CSharpCodeProvider();
+            var compParameters = new CompilerParameters();
+            CompilerResults res = codeProvider.CompileAssemblyFromSource(compParameters, this.Code);
+            this.CompilingResult = res;
             // how to use res:
             //// Create a new instance of the class 'MyClass'　　　　// 有命名空间的，需要命名空间.类名
             //object myClass = res.CompiledAssembly.CreateInstance("MyClass");
@@ -83,42 +62,56 @@ namespace SoftGL
 
         public void GetShaderStatus(ShaderStatus pname, int[] pValues)
         {
-            if (pValues == null || pValues.Length < 1) { return; }
+            if (pValues == null) { return; }
 
             switch (pname)
             {
                 case ShaderStatus.ShaderType:
-                    pValues[0] = (int)this.ShaderType;
+                    if (pValues.Length > 0)
+                    {
+                        pValues[0] = (int)this.ShaderType;
+                    }
                     break;
                 case ShaderStatus.DeleteStatus:
                     throw new NotImplementedException();
                 case ShaderStatus.CompileStatus:
-                    pValues[0] = this.infoLog.Length == 0 ? (int)GL.GL_TRUE : (int)GL.GL_FALSE;
+                    if (pValues.Length > 0)
+                    {
+                        CompilerResults res = this.CompilingResult;
+                        if (res == null) { pValues[0] = (int)GL.GL_FALSE; }
+                        else
+                        {
+                            pValues[0] = res.Errors.Count == 0 ? (int)GL.GL_TRUE : (int)GL.GL_FALSE;
+                        }
+                    }
                     break;
                 case ShaderStatus.InfoLogLength:
-                    pValues[0] = this.infoLog.Length;
+                    if (pValues.Length > 0)
+                    {
+                        CompilerResults res = this.CompilingResult;
+                        if (res == null) { pValues[0] = 0; }
+                        else
+                        {
+                            int length = 0;
+                            foreach (var error in res.Errors)
+                            {
+                                length += error.ToString().Length + Environment.NewLine.Length;
+                            }
+                            pValues[0] = length;
+                        }
+                    }
                     break;
                 case ShaderStatus.ShaderSourceLength:
-                    string code = this.Code;
-                    if (code == null) { pValues[0] = 0; }
-                    else { pValues[0] = code.Length; }
+                    if (pValues.Length > 0)
+                    {
+                        string code = this.Code;
+                        if (code == null) { pValues[0] = 0; }
+                        else { pValues[0] = code.Length; }
+                    }
                     break;
                 default:
                     throw new NotImplementedException();
             }
         }
-
-        protected string DumpLog(CompilerResults res)
-        {
-            var builder = new StringBuilder();
-            if (res != null)
-                foreach (var item in res.Errors)
-                {
-                    builder.AppendLine(item.ToString());
-                }
-
-            return builder.ToString();
-        }
-
     }
 }
