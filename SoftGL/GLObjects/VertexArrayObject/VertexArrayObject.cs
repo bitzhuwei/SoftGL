@@ -68,7 +68,7 @@ namespace SoftGL
             return result;
         }
 
-        public int GetDataIndex(uint indexID)
+        public int GetDataIndex(int indexID)
         {
             int result = -1;
             if (this.vbo == null) { return result; }
