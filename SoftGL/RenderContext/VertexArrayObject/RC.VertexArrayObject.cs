@@ -7,7 +7,7 @@ namespace SoftGL
 {
     partial class SoftGLRenderContext
     {
-        private uint nextVertexArrayName = 0;
+        private uint nextVertexArrayName = 1;
 
         private readonly List<uint> vertexArrayNameList = new List<uint>();
         /// <summary>
@@ -53,11 +53,14 @@ namespace SoftGL
         {
             if ((name != 0) && (!this.vertexArrayNameList.Contains(name))) { SetLastError(ErrorCode.InvalidOperation); return; }
             VertexArrayObject obj = null;
-            Dictionary<uint, VertexArrayObject> dict = this.nameVertexArrayDict;
-            if (!dict.TryGetValue(name, out obj)) // create a new texture object.
+            if (name != 0)
             {
-                obj = new VertexArrayObject(name);
-                dict.Add(name, obj);
+                Dictionary<uint, VertexArrayObject> dict = this.nameVertexArrayDict;
+                if (!dict.TryGetValue(name, out obj)) // create a new texture object.
+                {
+                    obj = new VertexArrayObject(name);
+                    dict.Add(name, obj);
+                }
             }
 
             this.currentVertexArrayObject = obj;
@@ -96,11 +99,8 @@ namespace SoftGL
             for (int i = 0; i < count; i++)
             {
                 uint name = names[i];
-                if (name > 0)
-                {
-                    if (vertexArrayNameList.Contains(name)) { vertexArrayNameList.Remove(name); }
-                    if (nameVertexArrayDict.ContainsKey(name)) { nameVertexArrayDict.Remove(name); }
-                }
+                if (vertexArrayNameList.Contains(name)) { vertexArrayNameList.Remove(name); }
+                if (nameVertexArrayDict.ContainsKey(name)) { nameVertexArrayDict.Remove(name); }
             }
         }
 
