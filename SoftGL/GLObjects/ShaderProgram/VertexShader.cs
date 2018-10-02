@@ -4,13 +4,16 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Emit;
 using System.Text;
 
 namespace SoftGL
 {
-    class VertexShader : Shader
+    class VertexShader : PipelineShader
     {
-        private Dictionary<string, InVariable> inVariableDict = new Dictionary<string, InVariable>();
+        public OutVariable gl_PositionVar { get; private set; }
+
+        public override int PipelineOrder { get { return 0; } }
 
         public VertexShader(uint id) : base(ShaderType.VertexShader, id) { }
 
@@ -31,43 +34,23 @@ namespace SoftGL
 
         protected override string AfterCompile()
         {
+            string result = base.AfterCompile();
+            if (result != string.Empty) { return result; }
+
+            // find the "out vec4 gl_Position;" variable.
+            FieldInfo fieldInfo = this.codeType.GetField("gl_Position");
+            if (fieldInfo == null) { result = "gl_Position not found!"; return result; }
+            object[] attribute = fieldInfo.GetCustomAttributes(typeof(OutAttribute), false);
+            if (attribute != null && attribute.Length > 0) // this is a 'in ...;' field.
             {
-                string result = FindInVariables(this.codeType, this.inVariableDict);
-                if (result != string.Empty) { return result; }
+                this.gl_PositionVar = new OutVariable(fieldInfo);
+            }
+            else
+            {
+                result = "gl_Position has no [Out] attribute.";
             }
 
-            return string.Empty;
+            return result;
         }
-
-        private string FindInVariables(Type vsType, Dictionary<string, InVariable> dict)
-        {
-            dict.Clear();
-            uint nextLoc = 0;
-            foreach (var item in vsType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
-            {
-                object[] inAttribute = item.GetCustomAttributes(typeof(InAttribute), false);
-                if (inAttribute != null && inAttribute.Length > 0) // this is a 'in ...;' field.
-                {
-                    var v = new InVariable(item);
-                    object[] locationAttribute = item.GetCustomAttributes(typeof(LocationAttribute), false);
-                    if (locationAttribute != null && locationAttribute.Length > 0) // (location = ..) in ...;
-                    {
-                        uint loc = (locationAttribute[0] as LocationAttribute).location;
-                        if (loc < nextLoc) { return "location error in VertexShader!"; }
-                        v.location = loc;
-                        nextLoc = loc + 1;
-                    }
-                    else
-                    {
-                        v.location = nextLoc++;
-                    }
-                    dict.Add(item.Name, v);
-                }
-            }
-
-            return string.Empty;
-        }
-
-
     }
 }

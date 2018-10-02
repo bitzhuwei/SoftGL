@@ -58,7 +58,7 @@ namespace SoftGL
             if (unit >= maxCombinedTextureImageUnits) { SetLastError(ErrorCode.InvalidValue); return; }
             if ((name != 0) && (!this.nameSamplerDict.ContainsKey(name))) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-            if (name == 0) { this.currentRenderbuffers[unit] = null; }
+            if (name == 0) { this.currentSamplers[unit] = null; }
             else { this.currentSamplers[unit] = this.nameSamplerDict[name]; }
         }
 
@@ -95,7 +95,10 @@ namespace SoftGL
             for (int i = 0; i < count; i++)
             {
                 uint name = names[i];
-                if (nameSamplerDict.ContainsKey(name)) { nameSamplerDict.Remove(name); }
+                if (name > 0)
+                {
+                    if (nameSamplerDict.ContainsKey(name)) { nameSamplerDict.Remove(name); }
+                }
             }
         }
     }

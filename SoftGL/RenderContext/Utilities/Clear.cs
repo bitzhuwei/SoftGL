@@ -94,10 +94,11 @@ namespace SoftGL
             {
                 List<IAttachable> list = framebuffer.GetCurrentColorBuffers();
                 vec4 c = this.clearColor;
-                byte[] value = c.ToBytes();
+                byte[] c2 = new byte[4] { (byte)(c.x * 255), (byte)(c.y * 255), (byte)(c.z * 255), (byte)(c.w * 255) };
+                //byte[] value = c.ToBytes();
                 foreach (var item in list)
                 {
-                    item.Clear(value);
+                    item.Clear(c2);
                 }
             }
 

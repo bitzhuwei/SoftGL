@@ -27,17 +27,41 @@ namespace SoftGL
             Type type = null;
             switch (shaderType)
             {
-                case ShaderType.VertexShader: type = typeof(VertexShaderCode); break;
-                case ShaderType.TessControlShader: type = typeof(TessControlShaderCode); break;
-                case ShaderType.TessEvaluationShader: type = typeof(TessEvaluationShaderCode); break;
-                case ShaderType.GeometryShader: type = typeof(GeometryShaderCode); break;
-                case ShaderType.FragmentShader: type = typeof(FragmentShaderCode); break;
-                case ShaderType.ComputeShader: type = typeof(ComputeShaderCode); break;
+                case ShaderType.VertexShader: type = typeof(VertexCodeBase); break;
+                case ShaderType.TessControlShader: type = typeof(TessControlCodeBase); break;
+                case ShaderType.TessEvaluationShader: type = typeof(TessEvaluationCodeBase); break;
+                case ShaderType.GeometryShader: type = typeof(GeometryCodeBase); break;
+                case ShaderType.FragmentShader: type = typeof(FragmentCodeBase); break;
+                case ShaderType.ComputeShader: type = typeof(ComputeCodeBase); break;
                 default:
                     throw new NotImplementedException();
             }
 
             return type;
+        }
+
+        public static string GetIDName(this ShaderType shaderType)
+        {
+            string result = string.Empty;
+            switch (shaderType)
+            {
+                case ShaderType.VertexShader: result = "gl_VertexID"; break;
+                case ShaderType.TessControlShader:
+                    break;
+                case ShaderType.TessEvaluationShader:
+                    break;
+                case ShaderType.GeometryShader:
+                    break;
+                case ShaderType.FragmentShader: result = "fragmentID"; break;
+                case ShaderType.ComputeShader:
+                    break;
+                default:
+                    break;
+            }
+
+            if (result == string.Empty) { throw new NotImplementedException(); }
+
+            return result;
         }
     }
 }

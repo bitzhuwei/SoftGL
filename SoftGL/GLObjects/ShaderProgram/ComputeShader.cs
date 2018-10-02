@@ -16,5 +16,10 @@ namespace SoftGL
         {
             throw new NotImplementedException();
         }
+
+        public override object CreateCodeInstance()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

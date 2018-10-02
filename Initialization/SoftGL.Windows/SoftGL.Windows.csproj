@@ -48,8 +48,6 @@
     <Compile Include="GLAPI\WinSoftGL.BasicAPI.cs" />
     <Compile Include="GUI\WinCtrlRoot\TranslateExtension.cs" />
     <Compile Include="GUI\WinCtrlRoot\WinSoftCtrlRoot.cs" />
-    <Compile Include="RenderContexts\DIBSection.cs" />
-    <Compile Include="RenderContexts\DIBSection.IDisposable.cs" />
     <Compile Include="RenderContexts\PixelFormatDescriptor.cs" />
     <Compile Include="RenderContexts\SoftGLRenderContext.cs" />
     <Compile Include="WinSoftGLCanvas\ContextGenerationParams.cs" />

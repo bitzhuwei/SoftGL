@@ -19,7 +19,7 @@ namespace SoftGL
 
         private void TexParameteri(BindTextureTarget target, uint pname, int param)
         {
-            if (target == 0) { SetLastError(ErrorCode.InvalidEnum); return; }
+            if (!Enum.IsDefined(typeof(BindTextureTarget), target)) { SetLastError(ErrorCode.InvalidEnum); return; }
 
             Texture texture = this.GetCurrentTexture(target);
             if (texture != null) { texture.SetProperty(pname, param); }

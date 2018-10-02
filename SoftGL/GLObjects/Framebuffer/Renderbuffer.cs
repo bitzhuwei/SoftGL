@@ -9,26 +9,6 @@ namespace SoftGL
     {
         public uint Id { get; private set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public uint InternalFormat { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public int Width { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public int Height { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public byte[] DataStore { get; set; }
-
         public Renderbuffer(uint id) { this.Id = id; }
 
         /// <summary>
@@ -40,7 +20,7 @@ namespace SoftGL
         /// <param name="dataStore"></param>
         public void Storage(uint internalformat, int width, int height, byte[] dataStore)
         {
-            this.InternalFormat = internalformat;
+            this.Format = internalformat;
             this.Width = width;
             this.Height = height;
             this.DataStore = dataStore;
@@ -52,7 +32,7 @@ namespace SoftGL
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("Renderbuffer:internalFormat:{0}, w:{1}, h:{2}", this.InternalFormat, this.Width, this.Height);
+            return string.Format("Renderbuffer:internalFormat:{0}, w:{1}, h:{2}", (RenderbufferStorageInternalformat)this.Format, this.Width, this.Height);
         }
     }
 }

@@ -51,8 +51,8 @@ namespace SoftGL
 
             UniformVariable v = program.GetUniformVariable(location);
             if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
-            FieldInfo field = v.field;
-            if ((count > 1) && (!field.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
+            FieldInfo fieldInfo = v.fieldInfo;
+            if ((count > 1) && (!fieldInfo.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
 
             program.SetUniform4fv(location, count, transpose, value);
         }
@@ -77,8 +77,8 @@ namespace SoftGL
 
             UniformVariable v = program.GetUniformVariable(location);
             if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
-            FieldInfo field = v.field;
-            if ((count > 1) && (!field.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
+            FieldInfo fieldInfo = v.fieldInfo;
+            if ((count > 1) && (!fieldInfo.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
 
             program.SetUniform3fv(location, count, transpose, value);
         }
@@ -103,8 +103,8 @@ namespace SoftGL
 
             UniformVariable v = program.GetUniformVariable(location);
             if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
-            FieldInfo field = v.field;
-            if ((count > 1) && (!field.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
+            FieldInfo fieldInfo = v.fieldInfo;
+            if ((count > 1) && (!fieldInfo.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
 
             program.SetUniform2fv(location, count, transpose, value);
         }
@@ -129,10 +129,15 @@ namespace SoftGL
 
             UniformVariable v = program.GetUniformVariable(location);
             if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
-            FieldInfo field = v.field;
-            if ((count > 1) && (!field.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
+            FieldInfo fieldInfo = v.fieldInfo;
+            if ((count > 1) && (!fieldInfo.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-            program.SetUniformuiv(location, count, value, 4);
+            var copy = new uvec4[count];
+            for (int i = 0; i < count; i++)
+            {
+                copy[i] = new uvec4(value[i * 4 + 0], value[i * 4 + 1], value[i * 4 + 2], value[i * 4 + 3]);
+            }
+            program.SetUniform(location, copy);
         }
 
         public static void glUniform3uiv(int location, int count, uint[] value)
@@ -155,10 +160,15 @@ namespace SoftGL
 
             UniformVariable v = program.GetUniformVariable(location);
             if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
-            FieldInfo field = v.field;
-            if ((count > 1) && (!field.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
+            FieldInfo fieldInfo = v.fieldInfo;
+            if ((count > 1) && (!fieldInfo.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-            program.SetUniformuiv(location, count, value, 3);
+            var copy = new uvec3[count];
+            for (int i = 0; i < count; i++)
+            {
+                copy[i] = new uvec3(value[i * 3 + 0], value[i * 3 + 1], value[i * 3 + 2]);
+            }
+            program.SetUniform(location, copy);
         }
 
         public static void glUniform2uiv(int location, int count, uint[] value)
@@ -181,10 +191,15 @@ namespace SoftGL
 
             UniformVariable v = program.GetUniformVariable(location);
             if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
-            FieldInfo field = v.field;
-            if ((count > 1) && (!field.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
+            FieldInfo fieldInfo = v.fieldInfo;
+            if ((count > 1) && (!fieldInfo.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-            program.SetUniformuiv(location, count, value, 2);
+            var copy = new uvec2[count];
+            for (int i = 0; i < count; i++)
+            {
+                copy[i] = new uvec2(value[i * 2 + 0], value[i * 2 + 1]);
+            }
+            program.SetUniform(location, copy);
         }
 
         public static void glUniform1uiv(int location, int count, uint[] value)
@@ -207,10 +222,15 @@ namespace SoftGL
 
             UniformVariable v = program.GetUniformVariable(location);
             if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
-            FieldInfo field = v.field;
-            if ((count > 1) && (!field.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
+            FieldInfo fieldInfo = v.fieldInfo;
+            if ((count > 1) && (!fieldInfo.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-            program.SetUniformuiv(location, count, value, 1);
+            var copy = new uint[count];
+            for (int i = 0; i < count; i++)
+            {
+                copy[i] = value[i];
+            }
+            program.SetUniform(location, copy);
         }
 
         public static void glUniform4iv(int location, int count, int[] value)
@@ -233,10 +253,15 @@ namespace SoftGL
 
             UniformVariable v = program.GetUniformVariable(location);
             if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
-            FieldInfo field = v.field;
-            if ((count > 1) && (!field.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
+            FieldInfo fieldInfo = v.fieldInfo;
+            if ((count > 1) && (!fieldInfo.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-            program.SetUniformiv(location, count, value, 4);
+            var copy = new ivec4[count];
+            for (int i = 0; i < count; i++)
+            {
+                copy[i] = new ivec4(value[i * 4 + 0], value[i * 4 + 1], value[i * 4 + 2], value[i * 4 + 3]);
+            }
+            program.SetUniform(location, copy);
         }
 
         public static void glUniform3iv(int location, int count, int[] value)
@@ -259,10 +284,15 @@ namespace SoftGL
 
             UniformVariable v = program.GetUniformVariable(location);
             if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
-            FieldInfo field = v.field;
-            if ((count > 1) && (!field.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
+            FieldInfo fieldInfo = v.fieldInfo;
+            if ((count > 1) && (!fieldInfo.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-            program.SetUniformiv(location, count, value, 3);
+            var copy = new ivec3[count];
+            for (int i = 0; i < count; i++)
+            {
+                copy[i] = new ivec3(value[i * 3 + 0], value[i * 3 + 1], value[i * 3 + 2]);
+            }
+            program.SetUniform(location, copy);
         }
 
         public static void glUniform2iv(int location, int count, int[] value)
@@ -285,10 +315,15 @@ namespace SoftGL
 
             UniformVariable v = program.GetUniformVariable(location);
             if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
-            FieldInfo field = v.field;
-            if ((count > 1) && (!field.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
+            FieldInfo fieldInfo = v.fieldInfo;
+            if ((count > 1) && (!fieldInfo.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-            program.SetUniformiv(location, count, value, 2);
+            var copy = new ivec2[count];
+            for (int i = 0; i < count; i++)
+            {
+                copy[i] = new ivec2(value[i * 2 + 0], value[i * 2 + 1]);
+            }
+            program.SetUniform(location, copy);
         }
 
         public static void glUniform1iv(int location, int count, int[] value)
@@ -311,10 +346,15 @@ namespace SoftGL
 
             UniformVariable v = program.GetUniformVariable(location);
             if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
-            FieldInfo field = v.field;
-            if ((count > 1) && (!field.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
+            FieldInfo fieldInfo = v.fieldInfo;
+            if ((count > 1) && (!fieldInfo.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-            program.SetUniformiv(location, count, value, 1);
+            var copy = new int[count];
+            for (int i = 0; i < count; i++)
+            {
+                copy[i] = value[i];
+            }
+            program.SetUniform(location, copy);
         }
 
         public static void glUniform4fv(int location, int count, float[] value)
@@ -337,10 +377,15 @@ namespace SoftGL
 
             UniformVariable v = program.GetUniformVariable(location);
             if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
-            FieldInfo field = v.field;
-            if ((count > 1) && (!field.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
+            FieldInfo fieldInfo = v.fieldInfo;
+            if ((count > 1) && (!fieldInfo.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-            program.SetUniformfv(location, count, value, 4);
+            var copy = new vec4[count];
+            for (int i = 0; i < count; i++)
+            {
+                copy[i] = new vec4(value[i * 4 + 0], value[i * 4 + 1], value[i * 4 + 2], value[i * 4 + 3]);
+            }
+            program.SetUniform(location, copy);
         }
 
         public static void glUniform3fv(int location, int count, float[] value)
@@ -363,10 +408,15 @@ namespace SoftGL
 
             UniformVariable v = program.GetUniformVariable(location);
             if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
-            FieldInfo field = v.field;
-            if ((count > 1) && (!field.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
+            FieldInfo fieldInfo = v.fieldInfo;
+            if ((count > 1) && (!fieldInfo.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-            program.SetUniformfv(location, count, value, 3);
+            var copy = new vec3[count];
+            for (int i = 0; i < count; i++)
+            {
+                copy[i] = new vec3(value[i * 3 + 0], value[i * 3 + 1], value[i * 3 + 2]);
+            }
+            program.SetUniform(location, copy);
         }
 
         public static void glUniform2fv(int location, int count, float[] value)
@@ -389,10 +439,15 @@ namespace SoftGL
 
             UniformVariable v = program.GetUniformVariable(location);
             if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
-            FieldInfo field = v.field;
-            if ((count > 1) && (!field.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
+            FieldInfo fieldInfo = v.fieldInfo;
+            if ((count > 1) && (!fieldInfo.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-            program.SetUniformfv(location, count, value, 2);
+            var copy = new vec2[count];
+            for (int i = 0; i < count; i++)
+            {
+                copy[i] = new vec2(value[i * 2 + 0], value[i * 2 + 1]);
+            }
+            program.SetUniform(location, copy);
         }
 
         public static void glUniform1fv(int location, int count, float[] value)
@@ -415,10 +470,15 @@ namespace SoftGL
 
             UniformVariable v = program.GetUniformVariable(location);
             if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
-            FieldInfo field = v.field;
-            if ((count > 1) && (!field.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
+            FieldInfo fieldInfo = v.fieldInfo;
+            if ((count > 1) && (!fieldInfo.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-            program.SetUniformfv(location, count, value, 1);
+            var copy = new float[count];
+            for (int i = 0; i < count; i++)
+            {
+                copy[i] = value[i];
+            }
+            program.SetUniform(location, copy);
         }
 
         public static void glUniform4ui(int location, uint v0, uint v1, uint v2, uint v3)
@@ -438,8 +498,8 @@ namespace SoftGL
             if (program == null) { SetLastError(ErrorCode.InvalidOperation); return; }
             UniformVariable v = program.GetUniformVariable(location);
             if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
-            FieldInfo field = v.field;
-            if (field.FieldType.IsArray) { SetLastError(ErrorCode.InvalidOperation); return; } // TODO: not sure about this line.
+            FieldInfo fieldInfo = v.fieldInfo;
+            if (fieldInfo.FieldType.IsArray) { SetLastError(ErrorCode.InvalidOperation); return; } // TODO: not sure about this line.
 
             program.SetUniform4ui(location, v0, v1, v2, v3);
         }
@@ -461,8 +521,8 @@ namespace SoftGL
             if (program == null) { SetLastError(ErrorCode.InvalidOperation); return; }
             UniformVariable v = program.GetUniformVariable(location);
             if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
-            FieldInfo field = v.field;
-            if (field.FieldType.IsArray) { SetLastError(ErrorCode.InvalidOperation); return; } // TODO: not sure about this line.
+            FieldInfo fieldInfo = v.fieldInfo;
+            if (fieldInfo.FieldType.IsArray) { SetLastError(ErrorCode.InvalidOperation); return; } // TODO: not sure about this line.
 
             program.SetUniform3ui(location, v0, v1, v2);
         }
@@ -484,8 +544,8 @@ namespace SoftGL
             if (program == null) { SetLastError(ErrorCode.InvalidOperation); return; }
             UniformVariable v = program.GetUniformVariable(location);
             if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
-            FieldInfo field = v.field;
-            if (field.FieldType.IsArray) { SetLastError(ErrorCode.InvalidOperation); return; } // TODO: not sure about this line.
+            FieldInfo fieldInfo = v.fieldInfo;
+            if (fieldInfo.FieldType.IsArray) { SetLastError(ErrorCode.InvalidOperation); return; } // TODO: not sure about this line.
 
             program.SetUniform2ui(location, v0, v1);
         }
@@ -507,8 +567,8 @@ namespace SoftGL
             if (program == null) { SetLastError(ErrorCode.InvalidOperation); return; }
             UniformVariable v = program.GetUniformVariable(location);
             if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
-            FieldInfo field = v.field;
-            if (field.FieldType.IsArray) { SetLastError(ErrorCode.InvalidOperation); return; } // TODO: not sure about this line.
+            FieldInfo fieldInfo = v.fieldInfo;
+            if (fieldInfo.FieldType.IsArray) { SetLastError(ErrorCode.InvalidOperation); return; } // TODO: not sure about this line.
 
             program.SetUniform1ui(location, v0);
         }
@@ -530,8 +590,8 @@ namespace SoftGL
             if (program == null) { SetLastError(ErrorCode.InvalidOperation); return; }
             UniformVariable v = program.GetUniformVariable(location);
             if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
-            FieldInfo field = v.field;
-            if (field.FieldType.IsArray) { SetLastError(ErrorCode.InvalidOperation); return; } // TODO: not sure about this line.
+            FieldInfo fieldInfo = v.fieldInfo;
+            if (fieldInfo.FieldType.IsArray) { SetLastError(ErrorCode.InvalidOperation); return; } // TODO: not sure about this line.
 
             program.SetUniform4i(location, v0, v1, v2, v3);
         }
@@ -553,8 +613,8 @@ namespace SoftGL
             if (program == null) { SetLastError(ErrorCode.InvalidOperation); return; }
             UniformVariable v = program.GetUniformVariable(location);
             if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
-            FieldInfo field = v.field;
-            if (field.FieldType.IsArray) { SetLastError(ErrorCode.InvalidOperation); return; } // TODO: not sure about this line.
+            FieldInfo fieldInfo = v.fieldInfo;
+            if (fieldInfo.FieldType.IsArray) { SetLastError(ErrorCode.InvalidOperation); return; } // TODO: not sure about this line.
 
             program.SetUniform3i(location, v0, v1, v2);
         }
@@ -576,8 +636,8 @@ namespace SoftGL
             if (program == null) { SetLastError(ErrorCode.InvalidOperation); return; }
             UniformVariable v = program.GetUniformVariable(location);
             if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
-            FieldInfo field = v.field;
-            if (field.FieldType.IsArray) { SetLastError(ErrorCode.InvalidOperation); return; } // TODO: not sure about this line.
+            FieldInfo fieldInfo = v.fieldInfo;
+            if (fieldInfo.FieldType.IsArray) { SetLastError(ErrorCode.InvalidOperation); return; } // TODO: not sure about this line.
 
             program.SetUniform2i(location, v0, v1);
         }
@@ -599,8 +659,8 @@ namespace SoftGL
             if (program == null) { SetLastError(ErrorCode.InvalidOperation); return; }
             UniformVariable v = program.GetUniformVariable(location);
             if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
-            FieldInfo field = v.field;
-            if (field.FieldType.IsArray) { SetLastError(ErrorCode.InvalidOperation); return; } // TODO: not sure about this line.
+            FieldInfo fieldInfo = v.fieldInfo;
+            if (fieldInfo.FieldType.IsArray) { SetLastError(ErrorCode.InvalidOperation); return; } // TODO: not sure about this line.
 
             program.SetUniform1i(location, v0);
         }
@@ -622,8 +682,8 @@ namespace SoftGL
             if (program == null) { SetLastError(ErrorCode.InvalidOperation); return; }
             UniformVariable v = program.GetUniformVariable(location);
             if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
-            FieldInfo field = v.field;
-            if (field.FieldType.IsArray) { SetLastError(ErrorCode.InvalidOperation); return; } // TODO: not sure about this line.
+            FieldInfo fieldInfo = v.fieldInfo;
+            if (fieldInfo.FieldType.IsArray) { SetLastError(ErrorCode.InvalidOperation); return; } // TODO: not sure about this line.
 
             program.SetUniform4f(location, v0, v1, v2, v3);
         }
@@ -645,8 +705,8 @@ namespace SoftGL
             if (program == null) { SetLastError(ErrorCode.InvalidOperation); return; }
             UniformVariable v = program.GetUniformVariable(location);
             if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
-            FieldInfo field = v.field;
-            if (field.FieldType.IsArray) { SetLastError(ErrorCode.InvalidOperation); return; } // TODO: not sure about this line.
+            FieldInfo fieldInfo = v.fieldInfo;
+            if (fieldInfo.FieldType.IsArray) { SetLastError(ErrorCode.InvalidOperation); return; } // TODO: not sure about this line.
 
             program.SetUniform3f(location, v0, v1, v2);
         }
@@ -668,8 +728,8 @@ namespace SoftGL
             if (program == null) { SetLastError(ErrorCode.InvalidOperation); return; }
             UniformVariable v = program.GetUniformVariable(location);
             if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
-            FieldInfo field = v.field;
-            if (field.FieldType.IsArray) { SetLastError(ErrorCode.InvalidOperation); return; } // TODO: not sure about this line.
+            FieldInfo fieldInfo = v.fieldInfo;
+            if (fieldInfo.FieldType.IsArray) { SetLastError(ErrorCode.InvalidOperation); return; } // TODO: not sure about this line.
 
             program.SetUniform2f(location, v0, v1);
         }
@@ -691,8 +751,8 @@ namespace SoftGL
             if (program == null) { SetLastError(ErrorCode.InvalidOperation); return; }
             UniformVariable v = program.GetUniformVariable(location);
             if (v == null) { SetLastError(ErrorCode.InvalidOperation); return; }
-            FieldInfo field = v.field;
-            if (field.FieldType.IsArray) { SetLastError(ErrorCode.InvalidOperation); return; } // TODO: not sure about this line.
+            FieldInfo fieldInfo = v.fieldInfo;
+            if (fieldInfo.FieldType.IsArray) { SetLastError(ErrorCode.InvalidOperation); return; } // TODO: not sure about this line.
 
             program.SetUniform1f(location, v0);
         }

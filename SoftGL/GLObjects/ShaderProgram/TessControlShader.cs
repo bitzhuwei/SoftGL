@@ -4,17 +4,15 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Emit;
 using System.Text;
 
 namespace SoftGL
 {
-    class TessControlShader : Shader
+    class TessControlShader : PipelineShader
     {
-        public TessControlShader(uint id) : base(ShaderType.TessControlShader, id) { }
+        public override int PipelineOrder { get { return 1; } }
 
-        protected override string AfterCompile()
-        {
-            throw new NotImplementedException();
-        }
+        public TessControlShader(uint id) : base(ShaderType.TessControlShader, id) { }
     }
 }

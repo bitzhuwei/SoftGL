@@ -7,7 +7,7 @@ namespace SoftGL
 {
     partial class SoftGLRenderContext
     {
-        private uint nextVertexArrayName = 1;
+        private uint nextVertexArrayName = 0;
 
         private readonly List<uint> vertexArrayNameList = new List<uint>();
         /// <summary>
@@ -16,6 +16,7 @@ namespace SoftGL
         private readonly Dictionary<uint, VertexArrayObject> nameVertexArrayDict = new Dictionary<uint, VertexArrayObject>();
 
         private VertexArrayObject currentVertexArrayObject;
+
 
         public static void glGenVertexArrays(int count, uint[] names)
         {
@@ -52,14 +53,11 @@ namespace SoftGL
         {
             if ((name != 0) && (!this.vertexArrayNameList.Contains(name))) { SetLastError(ErrorCode.InvalidOperation); return; }
             VertexArrayObject obj = null;
-            if (name != 0)
+            Dictionary<uint, VertexArrayObject> dict = this.nameVertexArrayDict;
+            if (!dict.TryGetValue(name, out obj)) // create a new texture object.
             {
-                Dictionary<uint, VertexArrayObject> dict = this.nameVertexArrayDict;
-                if (!dict.TryGetValue(name, out obj)) // create a new texture object.
-                {
-                    obj = new VertexArrayObject(name);
-                    dict.Add(name, obj);
-                }
+                obj = new VertexArrayObject(name);
+                dict.Add(name, obj);
             }
 
             this.currentVertexArrayObject = obj;
@@ -98,8 +96,53 @@ namespace SoftGL
             for (int i = 0; i < count; i++)
             {
                 uint name = names[i];
-                if (vertexArrayNameList.Contains(name)) { vertexArrayNameList.Remove(name); }
-                if (nameVertexArrayDict.ContainsKey(name)) { nameVertexArrayDict.Remove(name); }
+                if (name > 0)
+                {
+                    if (vertexArrayNameList.Contains(name)) { vertexArrayNameList.Remove(name); }
+                    if (nameVertexArrayDict.ContainsKey(name)) { nameVertexArrayDict.Remove(name); }
+                }
+            }
+        }
+
+        public static void glEnableVertexAttribArray(uint index)
+        {
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.EnableVertexAttribArray(index);
+            }
+        }
+
+        private void EnableVertexAttribArray(uint index)
+        {
+            // TODO: GL_INVALID_VALUE is generated if index​ is greater than or equal to GL_MAX_VERTEX_ATTRIBS.
+            VertexArrayObject vao = this.currentVertexArrayObject;
+            if (vao == null) { SetLastError(ErrorCode.InvalidOperation); return; }
+            VertexAttribDesc desc = null;
+            if (vao.LocVertexAttribDict.TryGetValue(index, out desc))
+            {
+                desc.enabled = true;
+            }
+        }
+
+        public static void glDisableVertexAttribArray(uint index)
+        {
+            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
+            if (context != null)
+            {
+                context.DisableVertexAttribArray(index);
+            }
+        }
+
+        private void DisableVertexAttribArray(uint index)
+        {
+            // TODO: GL_INVALID_VALUE is generated if index​ is greater than or equal to GL_MAX_VERTEX_ATTRIBS.
+            VertexArrayObject vao = this.currentVertexArrayObject;
+            if (vao == null) { SetLastError(ErrorCode.InvalidOperation); return; }
+            VertexAttribDesc desc = null;
+            if (vao.LocVertexAttribDict.TryGetValue(index, out desc))
+            {
+                desc.enabled = false;
             }
         }
     }

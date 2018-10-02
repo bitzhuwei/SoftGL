@@ -53,8 +53,9 @@ namespace SoftGL
 
         private void ActiveTexture(uint textureUnit)
         {
-            if (textureUnit < GL.GL_TEXTURE0) { SetLastError(ErrorCode.InvalidEnum); return; }
-            if (GL.GL_TEXTURE0 + maxTextureImageUnits <= textureUnit) { SetLastError(ErrorCode.InvalidEnum); return; }
+            if (textureUnit < GL.GL_TEXTURE0
+                || GL.GL_TEXTURE0 + maxTextureImageUnits <= textureUnit)
+            { SetLastError(ErrorCode.InvalidEnum); return; }
 
             this.currentTextureUnitIndex = textureUnit - GL.GL_TEXTURE0;
         }
@@ -70,7 +71,7 @@ namespace SoftGL
 
         private void BindTexture(BindTextureTarget target, uint name)
         {
-            if (target == 0) { SetLastError(ErrorCode.InvalidEnum); return; }
+            if (!Enum.IsDefined(typeof(BindTextureTarget), target)) { SetLastError(ErrorCode.InvalidEnum); return; }
             if ((name != 0) && (!this.textureNameList.Contains(name))) { SetLastError(ErrorCode.InvalidValue); return; }
             Texture texture = null;
             if (name != 0)
@@ -123,8 +124,11 @@ namespace SoftGL
             for (int i = 0; i < count; i++)
             {
                 uint name = names[i];
-                if (textureNameList.Contains(name)) { textureNameList.Remove(name); }
-                if (nameTextureDict.ContainsKey(name)) { nameTextureDict.Remove(name); }
+                if (name > 0)
+                {
+                    if (textureNameList.Contains(name)) { textureNameList.Remove(name); }
+                    if (nameTextureDict.ContainsKey(name)) { nameTextureDict.Remove(name); }
+                }
             }
         }
     }

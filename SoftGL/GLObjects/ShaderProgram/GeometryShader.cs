@@ -4,17 +4,15 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Emit;
 using System.Text;
 
 namespace SoftGL
 {
-    class GeometryShader : Shader
+    class GeometryShader : PipelineShader
     {
-        public GeometryShader(uint id) : base(ShaderType.GeometryShader, id) { }
+        public override int PipelineOrder { get { return 3; } }
 
-        protected override string AfterCompile()
-        {
-            throw new NotImplementedException();
-        }
+        public GeometryShader(uint id) : base(ShaderType.GeometryShader, id) { }
     }
 }

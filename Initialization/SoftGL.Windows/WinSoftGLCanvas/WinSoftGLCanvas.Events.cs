@@ -10,6 +10,8 @@ namespace SoftGL.Windows
     public partial class WinSoftGLCanvas
     {
         private static readonly vec4 clearColor = Color.SkyBlue.ToVec4();
+        private Bitmap bitmap;
+
         /// <summary>
         ///
         /// </summary>
@@ -31,16 +33,16 @@ namespace SoftGL.Windows
 
             if (this.designMode)
             {
-                try
-                {
-                    GL.Instance.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
-                    GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
+                //try
+                //{
+                //GL.Instance.ClearColor(clearColor.x, clearColor.y, clearColor.z, clearColor.w);
+                //GL.Instance.Clear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT | GL.GL_STENCIL_BUFFER_BIT);
 
-                    //this.assist.Render(this.RenderTrigger == RenderTrigger.TimerBased, this.Height, this.FPS, this);
-                }
-                catch (Exception)
-                {
-                }
+                //this.assist.Render(this.RenderTrigger == RenderTrigger.TimerBased, this.Height, this.FPS, this);
+                //}
+                //catch (Exception)
+                //{
+                //}
             }
             else
             {
@@ -50,9 +52,25 @@ namespace SoftGL.Windows
 
             //	Blit our offscreen bitmap.
             Graphics graphics = e.Graphics;
-            IntPtr deviceContext = graphics.GetHdc();
-            renderContext.Blit(deviceContext);
-            graphics.ReleaseHdc(deviceContext);
+            //IntPtr deviceContext = graphics.GetHdc();
+            //renderContext.Blit(deviceContext);
+            //graphics.ReleaseHdc(deviceContext);
+            {
+                int width = this.Width, height = this.Height;
+                Bitmap bmp = this.bitmap;
+                if (bmp == null)
+                {
+                    bmp = new Bitmap(width, height); ;
+                    this.bitmap = bmp;
+                }
+                {
+                    var bmpData = bmp.LockBits(new Rectangle(0, 0, width, height), System.Drawing.Imaging.ImageLockMode.ReadWrite, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                    GL.Instance.ReadPixels(0, 0, width, height, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, bmpData.Scan0);
+                    bmp.UnlockBits(bmpData);
+                    bmp.RotateFlip(RotateFlipType.Rotate180FlipX);
+                    graphics.DrawImage(bmp, 0, 0);
+                }
+            }
 
             stopWatch.Stop();
 
@@ -112,6 +130,15 @@ namespace SoftGL.Windows
                     {
                         //this.assist.Resize(width, height);
                     }
+                    else
+                    {
+                        Bitmap bmp = this.bitmap;
+                        this.bitmap = new Bitmap(width, height);
+                        if (bmp != null)
+                        {
+                            bmp.Dispose();
+                        }
+                    }
 
                     this.Invalidate();
                 }
@@ -125,6 +152,14 @@ namespace SoftGL.Windows
         protected override void OnHandleDestroyed(EventArgs e)
         {
             DestroyRenderContext();
+            {
+                Bitmap bmp = this.bitmap;
+                this.bitmap = null;
+                if (bmp != null)
+                {
+                    bmp.Dispose();
+                }
+            }
 
             base.OnHandleDestroyed(e);
         }

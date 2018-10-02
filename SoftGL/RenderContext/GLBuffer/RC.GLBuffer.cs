@@ -48,7 +48,7 @@ namespace SoftGL
 
         private void BindBuffer(BindBufferTarget target, uint name)
         {
-            if (target == 0) { SetLastError(ErrorCode.InvalidEnum); return; }
+            if (!Enum.IsDefined(typeof(BindBufferTarget), target)) { SetLastError(ErrorCode.InvalidEnum); return; }
             if ((name != 0) && (!this.bufferNameList.Contains(name))) { SetLastError(ErrorCode.InvalidValue); return; }
             GLBuffer buffer = null;
             if (name != 0)
@@ -103,6 +103,7 @@ namespace SoftGL
                 uint name = names[i];
                 if (bufferNameList.Contains(name)) { bufferNameList.Remove(name); }
                 if (nameBufferDict.ContainsKey(name)) { nameBufferDict.Remove(name); }
+                // TODO: If a buffer object that is currently bound is deleted, the binding reverts to 0 (the absence of any buffer object).
             }
         }
     }

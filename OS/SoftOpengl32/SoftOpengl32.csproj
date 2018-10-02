@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -43,15 +44,19 @@
     <Compile Include="Framebuffer\SC.Framebuffer.DrawBuffers.cs" />
     <Compile Include="Framebuffer\SC.Framebuffer.CheckStatus.cs" />
     <Compile Include="Framebuffer\SC.Framebuffer.cs" />
+    <Compile Include="Framebuffer\SC.ReadPixels.cs" />
     <Compile Include="ShaderProgram\SC.Shader.cs" />
     <Compile Include="ShaderProgram\SC.ShaderProgram.Uniform.cs" />
     <Compile Include="ShaderProgram\SC.ShaderProgram.cs" />
+    <Compile Include="SoftGLDeviceContext.cs" />
     <Compile Include="VertexArrayObject\SC.VertexArrayObject.cs" />
     <Compile Include="Texture\TexImage\SC.TexImage2D.cs" />
     <Compile Include="Texture\Storage\SC.Storage2D.cs" />
     <Compile Include="Texture\SC.Texture.cs" />
     <Compile Include="Utilities\Clear.cs" />
     <Compile Include="GLBuffer\SC.GLBuffer.cs" />
+    <Compile Include="Viewport\SC.DepthRange.cs" />
+    <Compile Include="Viewport\SC.Viewport.cs" />
     <None Include="readme.md" />
     <Compile Include="Texture\Sampler\SC.Sampler.cs" />
     <Compile Include="Framebuffer\SC.Renderbuffer.cs" />
