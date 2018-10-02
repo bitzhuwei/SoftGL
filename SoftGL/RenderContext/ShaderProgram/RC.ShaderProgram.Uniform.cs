@@ -132,12 +132,7 @@ namespace SoftGL
             FieldInfo fieldInfo = v.fieldInfo;
             if ((count > 1) && (!fieldInfo.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-            var copy = new uvec4[count];
-            for (int i = 0; i < count; i++)
-            {
-                copy[i] = new uvec4(value[i * 4 + 0], value[i * 4 + 1], value[i * 4 + 2], value[i * 4 + 3]);
-            }
-            program.SetUniform(location, copy);
+            program.SetUniformuiv(location, count, value, 4);
         }
 
         public static void glUniform3uiv(int location, int count, uint[] value)
@@ -163,12 +158,7 @@ namespace SoftGL
             FieldInfo fieldInfo = v.fieldInfo;
             if ((count > 1) && (!fieldInfo.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-            var copy = new uvec3[count];
-            for (int i = 0; i < count; i++)
-            {
-                copy[i] = new uvec3(value[i * 3 + 0], value[i * 3 + 1], value[i * 3 + 2]);
-            }
-            program.SetUniform(location, copy);
+            program.SetUniformuiv(location, count, value, 3);
         }
 
         public static void glUniform2uiv(int location, int count, uint[] value)
@@ -194,12 +184,7 @@ namespace SoftGL
             FieldInfo fieldInfo = v.fieldInfo;
             if ((count > 1) && (!fieldInfo.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-            var copy = new uvec2[count];
-            for (int i = 0; i < count; i++)
-            {
-                copy[i] = new uvec2(value[i * 2 + 0], value[i * 2 + 1]);
-            }
-            program.SetUniform(location, copy);
+            program.SetUniformuiv(location, count, value, 2);
         }
 
         public static void glUniform1uiv(int location, int count, uint[] value)
@@ -225,12 +210,7 @@ namespace SoftGL
             FieldInfo fieldInfo = v.fieldInfo;
             if ((count > 1) && (!fieldInfo.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-            var copy = new uint[count];
-            for (int i = 0; i < count; i++)
-            {
-                copy[i] = value[i];
-            }
-            program.SetUniform(location, copy);
+            program.SetUniformuiv(location, count, value, 1);
         }
 
         public static void glUniform4iv(int location, int count, int[] value)
@@ -256,12 +236,7 @@ namespace SoftGL
             FieldInfo fieldInfo = v.fieldInfo;
             if ((count > 1) && (!fieldInfo.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-            var copy = new ivec4[count];
-            for (int i = 0; i < count; i++)
-            {
-                copy[i] = new ivec4(value[i * 4 + 0], value[i * 4 + 1], value[i * 4 + 2], value[i * 4 + 3]);
-            }
-            program.SetUniform(location, copy);
+            program.SetUniformiv(location, count, value, 4);
         }
 
         public static void glUniform3iv(int location, int count, int[] value)
@@ -287,12 +262,7 @@ namespace SoftGL
             FieldInfo fieldInfo = v.fieldInfo;
             if ((count > 1) && (!fieldInfo.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-            var copy = new ivec3[count];
-            for (int i = 0; i < count; i++)
-            {
-                copy[i] = new ivec3(value[i * 3 + 0], value[i * 3 + 1], value[i * 3 + 2]);
-            }
-            program.SetUniform(location, copy);
+            program.SetUniformiv(location, count, value, 3);
         }
 
         public static void glUniform2iv(int location, int count, int[] value)
@@ -318,12 +288,7 @@ namespace SoftGL
             FieldInfo fieldInfo = v.fieldInfo;
             if ((count > 1) && (!fieldInfo.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-            var copy = new ivec2[count];
-            for (int i = 0; i < count; i++)
-            {
-                copy[i] = new ivec2(value[i * 2 + 0], value[i * 2 + 1]);
-            }
-            program.SetUniform(location, copy);
+            program.SetUniformiv(location, count, value, 2);
         }
 
         public static void glUniform1iv(int location, int count, int[] value)
@@ -349,12 +314,7 @@ namespace SoftGL
             FieldInfo fieldInfo = v.fieldInfo;
             if ((count > 1) && (!fieldInfo.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-            var copy = new int[count];
-            for (int i = 0; i < count; i++)
-            {
-                copy[i] = value[i];
-            }
-            program.SetUniform(location, copy);
+            program.SetUniformiv(location, count, value, 1);
         }
 
         public static void glUniform4fv(int location, int count, float[] value)
@@ -380,12 +340,7 @@ namespace SoftGL
             FieldInfo fieldInfo = v.fieldInfo;
             if ((count > 1) && (!fieldInfo.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-            var copy = new vec4[count];
-            for (int i = 0; i < count; i++)
-            {
-                copy[i] = new vec4(value[i * 4 + 0], value[i * 4 + 1], value[i * 4 + 2], value[i * 4 + 3]);
-            }
-            program.SetUniform(location, copy);
+            program.SetUniformfv(location, count, value, 4);
         }
 
         public static void glUniform3fv(int location, int count, float[] value)
@@ -411,12 +366,7 @@ namespace SoftGL
             FieldInfo fieldInfo = v.fieldInfo;
             if ((count > 1) && (!fieldInfo.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-            var copy = new vec3[count];
-            for (int i = 0; i < count; i++)
-            {
-                copy[i] = new vec3(value[i * 3 + 0], value[i * 3 + 1], value[i * 3 + 2]);
-            }
-            program.SetUniform(location, copy);
+            program.SetUniformfv(location, count, value, 3);
         }
 
         public static void glUniform2fv(int location, int count, float[] value)
@@ -442,12 +392,7 @@ namespace SoftGL
             FieldInfo fieldInfo = v.fieldInfo;
             if ((count > 1) && (!fieldInfo.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-            var copy = new vec2[count];
-            for (int i = 0; i < count; i++)
-            {
-                copy[i] = new vec2(value[i * 2 + 0], value[i * 2 + 1]);
-            }
-            program.SetUniform(location, copy);
+            program.SetUniformfv(location, count, value, 2);
         }
 
         public static void glUniform1fv(int location, int count, float[] value)
@@ -473,12 +418,7 @@ namespace SoftGL
             FieldInfo fieldInfo = v.fieldInfo;
             if ((count > 1) && (!fieldInfo.FieldType.IsArray)) { SetLastError(ErrorCode.InvalidOperation); return; }
 
-            var copy = new float[count];
-            for (int i = 0; i < count; i++)
-            {
-                copy[i] = value[i];
-            }
-            program.SetUniform(location, copy);
+            program.SetUniformfv(location, count, value, 1);
         }
 
         public static void glUniform4ui(int location, uint v0, uint v1, uint v2, uint v3)
