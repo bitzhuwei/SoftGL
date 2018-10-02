@@ -26,12 +26,22 @@ namespace SoftGL
         /// </summary>
         public VertexShader VertexShader { get; private set; }
 
+        /// <summary>
+        /// Contains post-processed vertex shader code.
+        /// </summary>
+        public InnerVertexShaderCode InnerVertexShaderCode { get; private set; }
+
         //public GeometryShader GeometryShader { get; private set; }
 
         /// <summary>
         /// Contains string of fragment shader from user input.
         /// </summary>
         public FragmentShader FragmentShader { get; private set; }
+
+        /// <summary>
+        /// Contains post-processed fragment shader code
+        /// </summary>
+        public InnerFragmentShaderCode InnerFragmentShaderCode { get; private set; }
 
         private IList<Shader> attachedShaders = new List<Shader>();
         /// <summary>

@@ -10,16 +10,16 @@ namespace SoftGL
     class UniformVariable
     {
         public int location = -1;
-        public readonly FieldInfo fieldInfo;
+        public readonly FieldInfo field;
 
         public UniformVariable(FieldInfo field)
         {
-            this.fieldInfo = field;
+            this.field = field;
         }
 
         public override string ToString()
         {
-            return string.Format("f:{0}, loc:{1}", this.fieldInfo, this.location);
+            return string.Format("f:{0}, loc:{1}", this.field, this.location);
         }
     }
 }

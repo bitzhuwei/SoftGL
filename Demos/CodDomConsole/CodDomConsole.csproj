@@ -44,10 +44,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\SoftGL.ShadingLanguage\SoftGL.ShadingLanguage.csproj">
-      <Project>{c297b6a5-bc67-416b-8728-fe0be0184f3a}</Project>
-      <Name>SoftGL.ShadingLanguage</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\SoftGL\SoftGL.csproj">
       <Project>{6d016512-38b7-49f0-9fcb-b58621621545}</Project>
       <Name>SoftGL</Name>

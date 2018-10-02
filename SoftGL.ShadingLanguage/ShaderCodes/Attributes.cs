@@ -5,28 +5,24 @@ using System.Text;
 
 namespace SoftGL
 {
-    public abstract class SoftGLAttribute : Attribute
+    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, Inherited = true, AllowMultiple = true)]
+    public sealed class InAttribute : Attribute
     {
     }
 
-    [AttributeUsage(AttributeTargets.Property, Inherited = true, AllowMultiple = true)]
-    public sealed class InAttribute : SoftGLAttribute
+    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, Inherited = true, AllowMultiple = true)]
+    public sealed class OutAttribute : Attribute
     {
     }
 
-    [AttributeUsage(AttributeTargets.Property, Inherited = true, AllowMultiple = true)]
-    public sealed class OutAttribute : SoftGLAttribute
-    {
-    }
-
-    [AttributeUsage(AttributeTargets.Field, Inherited = true, AllowMultiple = true)]
-    public sealed class UniformAttribute : SoftGLAttribute
+    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, Inherited = true, AllowMultiple = true)]
+    public sealed class UniformAttribute : Attribute
     {
     }
 
 
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, Inherited = true, AllowMultiple = true)]
-    public sealed class LocationAttribute : SoftGLAttribute
+    public sealed class LocationAttribute : Attribute
     {
         public readonly uint location;
 
