@@ -14,6 +14,21 @@ namespace SoftGL
         /// </summary>
         public uint InternalFormat { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Width { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Height { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public byte[] DataStore { get; set; }
+
         public Renderbuffer(uint id) { this.Id = id; }
 
         /// <summary>

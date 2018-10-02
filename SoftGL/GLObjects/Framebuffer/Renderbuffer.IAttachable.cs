@@ -9,20 +9,21 @@ namespace SoftGL
     {
         #region IAttachable
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public int Width { get; set; }
+        public void Clear(byte[] values)
+        {
+            IAttachableHelper.Fill(this.DataStore, values);
+        }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public int Height { get; set; }
+        public void Set(int x, int y, byte[] data)
+        {
+            if (data == null) { return; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public byte[] DataStore { get; set; }
+            int singleElementByteLength = this.DataStore.Length / this.Width / this.Height;
+            for (int i = 0; i < singleElementByteLength && i < data.Length; i++)
+            {
+                this.DataStore[(this.Width * y + x) * singleElementByteLength + i] = data[i];
+            }
+        }
 
         #endregion IAttachable
     }
