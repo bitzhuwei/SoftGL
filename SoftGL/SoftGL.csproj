@@ -94,10 +94,9 @@
     <Compile Include="BasicDataStructures\Viewport.cs" />
     <Compile Include="GLObjects\GLBuffers\GLBuffer.cs" />
     <Compile Include="RenderContext\RC.tmp.cs" />
-    <Compile Include="RenderContext\GLBuffer\RC.BindBufferTarget.cs" />
-    <Compile Include="RenderContext\GLBuffer\RC.InitBufferDict.cs" />
-    <Compile Include="RenderContext\GLBuffer\RC.GLBuffer.BufferData.cs" />
-    <Compile Include="RenderContext\GLBuffer\RC.GLBuffer.cs" />
+    <Compile Include="RenderContext\VertexBuffer\RC.BindBufferTarget.cs" />
+    <Compile Include="RenderContext\VertexBuffer\RC.VertexBuffer.BufferData.cs" />
+    <Compile Include="RenderContext\VertexBuffer\RC.VertexBuffer.cs" />
     <None Include="GLObjects\readme.md" />
     <None Include="readme.md" />
     <Compile Include="GLAPI\GL.BasicAPI.cs" />

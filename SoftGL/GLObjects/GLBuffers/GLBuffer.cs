@@ -16,13 +16,6 @@ namespace SoftGL
         /// </summary>
         public uint Id { get { return this.ids[0]; } }
 
-        public int Size { get; private set; }
-
-        private byte[] data;
-        public byte[] Data { get { return this.data; } }
-
-        public Usage Usage { get; private set; }
-
         /// <summary>
         /// Creates a buffer object.
         /// </summary>
@@ -39,24 +32,6 @@ namespace SoftGL
         public override string ToString()
         {
             return string.Format("Texture: Id:{0}, T:{1}", this.ids, this.Target);
-        }
-
-        public unsafe void SetData(int size, IntPtr data, Usage usage)
-        {
-            this.Size = size;
-
-            var newData = new byte[size];
-            if (data != IntPtr.Zero)
-            {
-                byte* array = (byte*)data.ToPointer();
-                for (int i = 0; i < size; i++)
-                {
-                    newData[i] = array[i];
-                }
-            }
-            this.data = newData;
-
-            this.Usage = usage;
         }
     }
 }
