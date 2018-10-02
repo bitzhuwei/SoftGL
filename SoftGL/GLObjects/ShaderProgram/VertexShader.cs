@@ -12,11 +12,6 @@ namespace SoftGL
     {
         private Dictionary<string, InVariable> inVariableDict = new Dictionary<string, InVariable>();
 
-        public InVariable[] GetAllInVariables()
-        {
-            return this.inVariableDict.Values.ToArray();
-        }
-
         public VertexShader(uint id) : base(ShaderType.VertexShader, id) { }
 
         public int GetAttribLocation(string name)

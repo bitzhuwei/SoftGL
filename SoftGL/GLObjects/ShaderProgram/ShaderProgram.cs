@@ -22,12 +22,8 @@ namespace SoftGL
         }
 
         private VertexShader vertexShader;
-
-        public VertexShader VertexShader { get { return vertexShader; } }
-
         //private GeometryShader geometryShader;
         private FragmentShader fragmentShader;
-        public FragmentShader FragmentShader { get { return fragmentShader; } }
 
         private IList<Shader> attachedShaders = new List<Shader>();
         /// <summary>
