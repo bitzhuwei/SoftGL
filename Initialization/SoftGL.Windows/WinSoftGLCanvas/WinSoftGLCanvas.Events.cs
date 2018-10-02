@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using CSharpGL;
+using System.Drawing.Imaging;
 
 namespace SoftGL.Windows
 {
@@ -11,6 +12,7 @@ namespace SoftGL.Windows
     {
         private static readonly vec4 clearColor = Color.SkyBlue.ToVec4();
         private Bitmap bitmap;
+        private BitmapData bmpData;
 
         /// <summary>
         ///
@@ -57,18 +59,12 @@ namespace SoftGL.Windows
             //graphics.ReleaseHdc(deviceContext);
             {
                 int width = this.Width, height = this.Height;
-                Bitmap bmp = this.bitmap;
-                if (bmp == null)
+                Bitmap bmp = this.bitmap; BitmapData bmpData = this.bmpData;
+                if (bmp != null && bmpData != null)
                 {
-                    bmp = new Bitmap(width, height); ;
-                    this.bitmap = bmp;
-                }
-                {
-                    var bmpData = bmp.LockBits(new Rectangle(0, 0, width, height), System.Drawing.Imaging.ImageLockMode.ReadWrite, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                    GL.Instance.ReadPixels(0, 0, width, height, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, bmpData.Scan0);
-                    bmp.UnlockBits(bmpData);
-                    bmp.RotateFlip(RotateFlipType.Rotate180FlipX);
-                    graphics.DrawImage(bmp, 0, 0);
+                    GL.Instance.ReadPixels(0, 0, width, height, GL.GL_BGRA, GL.GL_UNSIGNED_BYTE, this.bmpData.Scan0);
+                    //this.bitmap.RotateFlip(RotateFlipType.Rotate180FlipX);
+                    graphics.DrawImage(this.bitmap, 0, 0);
                 }
             }
 
@@ -132,12 +128,17 @@ namespace SoftGL.Windows
                     }
                     else
                     {
-                        Bitmap bmp = this.bitmap;
-                        this.bitmap = new Bitmap(width, height);
-                        if (bmp != null)
+                        Bitmap bmp = this.bitmap; BitmapData bmpData = this.bmpData;
+                        if (bmp != null && bmp != null)
                         {
-                            bmp.Dispose();
+                            this.bitmap = null; this.bmpData = null;
+                            bmp.UnlockBits(bmpData);
                         }
+                        bmp.Dispose();
+
+                        bmp = new Bitmap(width, height);
+                        this.bitmap = bmp;
+                        this.bmpData = bmp.LockBits(new Rectangle(0, 0, width, height), System.Drawing.Imaging.ImageLockMode.ReadWrite, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
                     }
 
                     this.Invalidate();
@@ -153,8 +154,12 @@ namespace SoftGL.Windows
         {
             DestroyRenderContext();
             {
-                Bitmap bmp = this.bitmap;
-                this.bitmap = null;
+                Bitmap bmp = this.bitmap; BitmapData bmpData = this.bmpData;
+                if (bmp != null && bmpData != null)
+                {
+                    this.bitmap = null; this.bmpData = null;
+                    bmp.UnlockBits(bmpData);
+                }
                 if (bmp != null)
                 {
                     bmp.Dispose();
