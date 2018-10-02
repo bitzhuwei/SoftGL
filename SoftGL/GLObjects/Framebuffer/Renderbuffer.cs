@@ -32,7 +32,7 @@ namespace SoftGL
         /// <returns></returns>
         public override string ToString()
         {
-            return string.Format("Renderbuffer:internalFormat:{0}, w:{1}, h:{2}", (RenderbufferStorageInternalformat)this.Format, this.Width, this.Height);
+            return string.Format("Renderbuffer:internalFormat:{0}, w:{1}, h:{2}", this.Format, this.Width, this.Height);
         }
     }
 }
