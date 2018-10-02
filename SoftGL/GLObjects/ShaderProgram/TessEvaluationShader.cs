@@ -12,7 +12,7 @@ namespace SoftGL
     {
         public TessEvaluationShader(uint id) : base(ShaderType.TessEvaluationShader, id) { }
 
-        protected override string AfterCompile()
+        protected override string AfterCompile(Assembly assembly)
         {
             throw new NotImplementedException();
         }

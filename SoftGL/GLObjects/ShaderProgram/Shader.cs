@@ -29,12 +29,12 @@ namespace SoftGL
         }
 
         protected CompilerResults compilerResults;
-        protected Type codeType;
-        private Dictionary<string, UniformVariable> uniformVariableDict = new Dictionary<string, UniformVariable>();
-        private string infoLog = string.Empty;
+        protected Dictionary<string, UniformVariable> uniformVariableDict;
+        protected string infoLog = string.Empty;
 
-        public Dictionary<string, UniformVariable> UniformVariableDict { get { return uniformVariableDict; } }
-        public string InfoLog { get { return infoLog; } }
+        /// <summary>
+        /// 
+        /// </summary>
         public ShaderType ShaderType { get; private set; }
 
         /// <summary>
@@ -67,27 +67,27 @@ namespace SoftGL
             return string.Format("Shader: Id:{0}", this.Id);
         }
 
-        protected abstract string AfterCompile();
+        protected abstract string AfterCompile(Assembly assembly);
         public void Compile()
         {
             var codeProvider = new CSharpCodeProvider();
             var compParameters = new CompilerParameters();
             CompilerResults res = codeProvider.CompileAssemblyFromSource(compParameters, this.Code);
-            if (res.Errors.Count > 0) { this.infoLog = DumpLog(res); return; }
-            Type codeType = this.FindShaderCodeType(res.CompiledAssembly, this.ShaderType.GetShaderCodeType());
-            if (codeType == null) { this.infoLog = string.Format("No {0} found!", this.ShaderType); return; }
-            string result = FindUniformVariables(codeType, this.uniformVariableDict);
-            if (result != string.Empty) { this.infoLog = result; return; }
+            if (res.Errors.Count > 0)
+            {
+                this.infoLog = DumpLog(res);
+            }
+            else
+            {
+                this.compilerResults = res;
 
-            this.compilerResults = res;
-            this.codeType = codeType;
-
-            this.infoLog = this.AfterCompile();
+                this.infoLog = AfterCompile(res.CompiledAssembly);
+            }
         }
 
-        private string FindUniformVariables(Type shaderCodeType, Dictionary<string, UniformVariable> dict)
+        protected string FindUniformVariables(Type shaderCodeType, out Dictionary<string, UniformVariable> dict)
         {
-            dict.Clear();
+            dict = new Dictionary<string, UniformVariable>();
             uint nextLoc = 0;
             foreach (var item in shaderCodeType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
             {

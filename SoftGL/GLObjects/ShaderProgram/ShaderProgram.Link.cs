@@ -26,14 +26,7 @@ namespace SoftGL
         private bool FindUniforms()
         {
             bool result = true;
-            Dictionary<string, UniformVariable> uniformDict = new Dictionary<string, UniformVariable>();
-            foreach (var shader in this.attachedShaders)
-            {
-                foreach (var uniformVariable in shader.UniformVariableDict)
-                {
 
-                }
-            }
             return result;
         }
 
@@ -53,8 +46,6 @@ namespace SoftGL
             ComputeShader computeShader = null;
             foreach (var item in this.attachedShaders)
             {
-                if (item.InfoLog != string.Empty) { this.logInfo = "Shader Compiling Error!"; result = false; break; }
-
                 switch (item.ShaderType)
                 {
                     case ShaderType.VertexShader:

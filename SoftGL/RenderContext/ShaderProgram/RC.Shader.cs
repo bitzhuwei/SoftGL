@@ -99,6 +99,16 @@ namespace SoftGL
         }
     }
 
+    enum ShaderType : uint
+    {
+        VertexShader = GL.GL_VERTEX_SHADER,
+        TessControlShader = GL.GL_TESS_CONTROL_SHADER,
+        TessEvaluationShader = GL.GL_TESS_EVALUATION_SHADER,
+        GeometryShader = GL.GL_GEOMETRY_SHADER,
+        FragmentShader = GL.GL_FRAGMENT_SHADER,
+        ComputeShader = GL.GL_COMPUTE_SHADER
+    }
+
     enum ShaderStatus : uint
     {
         ShaderType = GL.GL_SHADER_TYPE,
