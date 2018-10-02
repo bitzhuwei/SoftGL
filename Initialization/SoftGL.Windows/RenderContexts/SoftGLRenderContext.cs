@@ -35,7 +35,7 @@ namespace SoftGL.Windows
             {
                 //  Update the context if required.
                 // if I update context, something in legacy opengl will not work...
-                this.UpdateContextVersion(width, height, parameters);
+                this.UpdateContextVersion(parameters);
             }
 
             this.dibSection = new DIBSection(this.DeviceContextHandle, width, height, parameters);
@@ -66,7 +66,7 @@ namespace SoftGL.Windows
         /// means building a new context. If this fails, we'll have to make do with 2.1.
         /// </summary>
         /// <param name="parameters"></param>
-        protected bool UpdateContextVersion(int width, int height, ContextGenerationParams parameters)
+        protected bool UpdateContextVersion(ContextGenerationParams parameters)
         {
             //  If the request version number is anything up to and including 2.1, standard render contexts
             //  will provide what we need (as long as the graphics card drivers are up to date).
@@ -128,9 +128,7 @@ namespace SoftGL.Windows
 //#endif
                         0
                     };
-                    //IntPtr hrc = wglCreateContextAttribs(dc, IntPtr.Zero, attributes);
-                    var paramNames = new string[0]; var paramValues = new uint[0];
-                    IntPtr hrc = SoftOpengl32.StaticCalls.CreateContext(dc, width, height, paramNames, paramValues);
+                    IntPtr hrc = wglCreateContextAttribs(dc, IntPtr.Zero, attributes);
                     //Win32.wglMakeCurrent(IntPtr.Zero, IntPtr.Zero);
                     //Win32.wglDeleteContext(this.RenderContextHandle);
                     //Win32.wglMakeCurrent(dc, hrc);
