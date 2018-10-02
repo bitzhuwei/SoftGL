@@ -28,7 +28,20 @@ namespace SoftGL
             if (!FindTypedShaders()) { return; }
             if (!FindUniforms(this.nameUniformDict, this.locationUniformDict)) { return; }
             if (!MakeSureVariablesMatch()) { return; }
+            if (!GetInnerShaderCodes()) { return; }
             // TODO: do something else.
+        }
+
+        private bool GetInnerShaderCodes()
+        {
+            var vs = this.VertexShader;
+            if (vs != null)
+            {
+
+            }
+            var fs = this.FragmentShader;
+
+            return true;
         }
 
         /// <summary>
@@ -113,21 +126,8 @@ namespace SoftGL
         {
             int size = 0;
             if (type == typeof(float)) { size = sizeof(float); }
-            if (type == typeof(vec2)) { size = sizeof(float) * 2; }
-            if (type == typeof(vec3)) { size = sizeof(float) * 3; }
-            if (type == typeof(vec4)) { size = sizeof(float) * 4; }
             else if (type == typeof(int)) { size = sizeof(int); }
-            else if (type == typeof(ivec2)) { size = sizeof(int) * 2; }
-            else if (type == typeof(ivec3)) { size = sizeof(int) * 3; }
-            else if (type == typeof(ivec4)) { size = sizeof(int) * 4; }
             else if (type == typeof(uint)) { size = sizeof(uint); }
-            else if (type == typeof(uvec2)) { size = sizeof(uint) * 2; }
-            else if (type == typeof(uvec3)) { size = sizeof(uint) * 3; }
-            else if (type == typeof(uvec4)) { size = sizeof(uint) * 4; }
-            else if (type == typeof(double)) { size = sizeof(double); }
-            else if (type == typeof(dvec2)) { size = sizeof(double) * 2; }
-            else if (type == typeof(dvec3)) { size = sizeof(double) * 3; }
-            else if (type == typeof(dvec4)) { size = sizeof(double) * 4; }
             else if (type == typeof(mat2)) { size = sizeof(float) * 4; }
             else if (type == typeof(mat3)) { size = sizeof(float) * 9; }
             else if (type == typeof(mat4)) { size = sizeof(float) * 16; }

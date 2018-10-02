@@ -26,20 +26,12 @@ namespace SoftGL
         /// </summary>
         public VertexShader VertexShader { get; private set; }
 
-        /// <summary>
-        /// Contains string of geometry shader from user input.
-        /// </summary>
-        public GeometryShader GeometryShader { get; private set; }
+        //public GeometryShader GeometryShader { get; private set; }
 
         /// <summary>
         /// Contains string of fragment shader from user input.
         /// </summary>
         public FragmentShader FragmentShader { get; private set; }
-
-        /// <summary>
-        /// Contains string of compute shader from user input.
-        /// </summary>
-        public ComputeShader ComputeShader { get; private set; }
 
         private IList<Shader> attachedShaders = new List<Shader>();
         /// <summary>
