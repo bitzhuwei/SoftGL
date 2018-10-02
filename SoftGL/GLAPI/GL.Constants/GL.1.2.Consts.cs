@@ -112,16 +112,6 @@ namespace SoftGL
         public const uint GL_UNSIGNED_INT_8_8_8_8_REV = 0x8367;
 
         /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_INT_2_10_10_10_REV = 0x8D9F;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_FIXED = 0x140C;
-
-        /// <summary>
         ///
         /// </summary>
         public const uint GL_UNSIGNED_INT_2_10_10_10_REV = 0x8368;
