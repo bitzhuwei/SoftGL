@@ -51,8 +51,20 @@ namespace SoftGL.Windows
         private bool CreateBasicRenderContext(int width, int height, ContextGenerationParams parameters)
         {
             // TODO: create a System.Windows.Forms.Control to work as DeviceContext.
-            const int left = 0, top = 0;
-            var control = new System.Windows.Forms.Control("CSharpGLRenderWindow", left, top, width, height);
+            //var wndClass = new WNDCLASSEX();
+            //wndClass.Init();
+            //wndClass.style = ClassStyles.HorizontalRedraw | ClassStyles.VerticalRedraw | ClassStyles.OwnDC;
+            //wndClass.lpfnWndProc = wndProcDelegate;
+            //wndClass.lpszClassName = "CSharpGLRenderWindow";
+            //Win32.RegisterClassEx(ref wndClass);
+
+            ////	Create the window. Position and size it.
+            //windowHandle = Win32.CreateWindowEx(0,
+            //              "CSharpGLRenderWindow",
+            //              "",
+            //              WindowStyles.WS_CLIPCHILDREN | WindowStyles.WS_CLIPSIBLINGS | WindowStyles.WS_POPUP,
+            //              0, 0, width, height,
+            //              IntPtr.Zero, IntPtr.Zero, IntPtr.Zero, IntPtr.Zero);
 
             ////	Get the window device context.
             //this.DeviceContextHandle = Win32.GetDC(windowHandle);
