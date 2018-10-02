@@ -21,27 +21,13 @@ namespace SoftGL
             this.Id = id;
         }
 
-        /// <summary>
-        /// Contains string of vertex shader from user input.
-        /// </summary>
-        public VertexShader VertexShader { get; private set; }
+        private VertexShader vertexShader;
 
-        /// <summary>
-        /// Contains post-processed vertex shader code.
-        /// </summary>
-        public InnerVertexShaderCode InnerVertexShaderCode { get; private set; }
+        public VertexShader VertexShader { get { return vertexShader; } }
 
-        //public GeometryShader GeometryShader { get; private set; }
-
-        /// <summary>
-        /// Contains string of fragment shader from user input.
-        /// </summary>
-        public FragmentShader FragmentShader { get; private set; }
-
-        /// <summary>
-        /// Contains post-processed fragment shader code
-        /// </summary>
-        public InnerFragmentShaderCode InnerFragmentShaderCode { get; private set; }
+        //private GeometryShader geometryShader;
+        private FragmentShader fragmentShader;
+        public FragmentShader FragmentShader { get { return fragmentShader; } }
 
         private IList<Shader> attachedShaders = new List<Shader>();
         /// <summary>
@@ -75,7 +61,7 @@ namespace SoftGL
         {
             int result = -1;
             if (this.logInfo.Length > 0) { return -1; }
-            VertexShader vs = this.VertexShader;
+            VertexShader vs = this.vertexShader;
             if (vs != null)
             {
                 result = vs.GetAttribLocation(name);
