@@ -13,7 +13,7 @@ namespace SoftGL
             }
         }
 
-        private unsafe void ReadPixels(int x, int y, int width, int height, ReadPixelsFormat format, ReadPixelsType type, IntPtr data)
+        private void ReadPixels(int x, int y, int width, int height, ReadPixelsFormat format, ReadPixelsType type, IntPtr data)
         {
             Framebuffer framebuffer = this.currentFramebuffer;
             if (framebuffer == null) { throw new Exception("This should not happen!"); }
@@ -41,40 +41,29 @@ namespace SoftGL
             // TODO: GL_INVALID_OPERATION is generated if a non-zero buffer object name is bound to the GL_PIXEL_PACK_BUFFER target and data​ is not evenly divisible into the number of bytes needed to store in memory a datum indicated by type.
             // TODO: GL_INVALID_OPERATION is generated if GL_READ_FRAMEBUFFER_BINDING is non-zero, the read framebuffer is complete, and the value of GL_SAMPLE_BUFFERS for the read framebuffer is greater than zero.
 
-            IAttachable attachment = null;
             if (format == ReadPixelsFormat.DepthComponent)
             {
-                attachment = framebuffer.DepthbufferAttachment;
+                IAttachable attachment = framebuffer.DepthbufferAttachment;
+                byte[] dataStore = attachment.DataStore;
+
             }
             else if (format == ReadPixelsFormat.StencilIndex)
             {
-                attachment = framebuffer.StencilbufferAttachment;
+                IAttachable attachment = framebuffer.StencilbufferAttachment;
+                byte[] dataStore = attachment.DataStore;
+
             }
             else if (format == ReadPixelsFormat.DepthStencil)
             {
-                attachment = framebuffer.DepthbufferAttachment;
+                IAttachable attachment = framebuffer.DepthbufferAttachment;
+                byte[] dataStore = attachment.DataStore;
+
             }
             else
             {
-                attachment = framebuffer.ColorbufferAttachments[framebuffer.DrawBuffers[0]];
-            }
-            // copy data from attachment to "data".
-            byte[] dataStore = attachment.DataStore;
-            int srcBitSize = InternalFormatHelper.BitSize(attachment.Format);
-            int srcElementByteLength = (srcBitSize % 8 == 0) ? srcBitSize / 8 : srcBitSize / 8 + 1; // TODO: any better solution?
-            int srcWidth = attachment.Width, srcHeight = attachment.Height;
-            int dstBitSize = InternalFormatHelper.BitSize((uint)format);
-            int dstElementByteLength = (dstBitSize % 8 == 0) ? dstBitSize / 8 : dstBitSize / 8 + 1; // TODO: any better solution? 
-            var array = (byte*)data.ToPointer();
-            for (int h = 0; h < width; h++)
-            {
-                for (int v = 0; v < height; v++)
-                {
-                    for (int t = 0; t < dstElementByteLength && t < srcElementByteLength; t++)
-                    {
-                        array[(v * width + h) * dstElementByteLength + t] = dataStore[((v + y) * srcWidth + (h + x)) * srcElementByteLength + t];
-                    }
-                }
+                IAttachable attachment = framebuffer.ColorbufferAttachments[framebuffer.DrawBuffers[0]];
+                byte[] dataStore = attachment.DataStore;
+
             }
         }
     }
