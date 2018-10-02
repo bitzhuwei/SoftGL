@@ -100,7 +100,6 @@
     <Compile Include="RenderContext\DrawCommand\DrawElements\RC.DrawElementsType.cs" />
     <Compile Include="RenderContext\DrawCommand\RC.DrawTarget.cs" />
     <Compile Include="RenderContext\DrawCommand\DrawElements\RC.DrawElements.cs" />
-    <Compile Include="RenderContext\Framebuffer\RC.ReadPixels.cs" />
     <Compile Include="RenderContext\Frustum\RC.DepthRange.cs" />
     <Compile Include="RenderContext\RC.tmp.cs" />
     <Compile Include="RenderContext\GLBuffer\RC.BindBufferTarget.cs" />
