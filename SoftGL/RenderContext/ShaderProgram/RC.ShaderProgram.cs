@@ -96,25 +96,5 @@ namespace SoftGL
             ShaderProgram shaderProgram = this.nameShaderProgramDict[program];
             return shaderProgram.GetAttribLocation(name);
         }
-
-        public static void glUseProgram(uint program)
-        {
-            SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
-            if (context != null)
-            {
-                context.UseProgram(program);
-            }
-        }
-
-        private void UseProgram(uint name)
-        {
-            if (name == 0) { SetLastError(ErrorCode.InvalidValue); return; }
-            if (!this.nameShaderProgramDict.ContainsKey(name)) { SetLastError(ErrorCode.InvalidOperation); return; }
-            ShaderProgram program = this.nameShaderProgramDict[name];
-            if (program.LogInfo != string.Empty) { SetLastError(ErrorCode.InvalidOperation); return; }
-            // TODO: GL_INVALID_OPERATION is generated if transform feedback mode is active.
-
-            this.currentShaderProgram = program;
-        }
     }
 }
