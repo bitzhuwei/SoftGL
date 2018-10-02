@@ -9,22 +9,20 @@ namespace SoftGL
     {
         #region IAttachable
 
-        public uint Format { get; private set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Width { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int Width { get; private set; }
+        public int Height { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int Height { get; private set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public byte[] DataStore { get; private set; }
+        public byte[] DataStore { get; set; }
 
         #endregion IAttachable
     }
