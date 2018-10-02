@@ -93,13 +93,11 @@
     <Compile Include="BasicDataStructures\Utilities\StructHelper.cs" />
     <Compile Include="BasicDataStructures\Viewport.cs" />
     <Compile Include="GLObjects\GLBuffers\GLBuffer.cs" />
-    <Compile Include="GLObjects\VertexArrayObject\VertexArrayObject.cs" />
     <Compile Include="RenderContext\RC.tmp.cs" />
     <Compile Include="RenderContext\GLBuffer\RC.BindBufferTarget.cs" />
     <Compile Include="RenderContext\GLBuffer\RC.InitBufferDict.cs" />
     <Compile Include="RenderContext\GLBuffer\RC.GLBuffer.BufferData.cs" />
     <Compile Include="RenderContext\GLBuffer\RC.GLBuffer.cs" />
-    <Compile Include="RenderContext\VertexArrayObject\RC.VertexArrayObject.cs" />
     <None Include="GLObjects\readme.md" />
     <None Include="readme.md" />
     <Compile Include="GLAPI\GL.BasicAPI.cs" />
