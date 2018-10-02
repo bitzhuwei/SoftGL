@@ -74,8 +74,7 @@ namespace SoftGL.Windows
         {
             //  Call the base.
             base.SetDimensions(width, height);
-            SoftOpengl32.StaticCalls.SetDimensions(this.DeviceContextHandle, width, height);
-            
+
             ////	Set the window size.
             //Win32.SetWindowPos(windowHandle, IntPtr.Zero, 0, 0, Width, Height,
             //    SetWindowPosFlags.SWP_NOACTIVATE |

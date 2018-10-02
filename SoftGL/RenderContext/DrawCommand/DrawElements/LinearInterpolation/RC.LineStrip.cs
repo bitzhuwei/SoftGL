@@ -41,11 +41,8 @@ namespace SoftGL
 
                 vec3 fragCoord0 = group.array[0].fragCoord, fragCoord1 = group.array[1].fragCoord;
                 {
-                    vec3 diff = (fragCoord0 - fragCoord1); // discard line that is too small.
-                    if (Math.Abs(diff.x) < epsilon
-                        && Math.Abs(diff.y) < epsilon
-                        && Math.Abs(diff.z) < epsilon
-                        ) { continue; }
+                    vec3 diff = (fragCoord0 - fragCoord1); // discard liine that is too small.
+                    if (Math.Abs(diff.x) < epsilon && Math.Abs(diff.y) < epsilon && Math.Abs(diff.z) < epsilon) { continue; }
                 }
 
                 foreach (vec3 pixel in PixelsAtLine(fragCoord0, fragCoord1)) // for each pixel at this line..

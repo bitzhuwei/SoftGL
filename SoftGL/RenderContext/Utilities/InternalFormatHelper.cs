@@ -18,8 +18,8 @@ namespace SoftGL
             int result = 8;
             switch (internalFormat)
             {
-                case GL.GL_RGBA: result = 4 * 4 * 8; break; // vec4(r, g, b, a)
-                case GL.GL_BGRA: result = 4 * 4 * 8; break; // vec4(b, g, r, a)
+                case GL.GL_RGBA: result = 4 * 8; break;
+                case GL.GL_BGRA: result = 4 * 8; break;
                 case GL.GL_DEPTH_COMPONENT: result = 32; break; // TODO: what should this be?
                 case GL.GL_DEPTH_COMPONENT24: result = 24; break;
                 case GL.GL_DEPTH_COMPONENT32: result = 32; break;

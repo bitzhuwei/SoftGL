@@ -26,7 +26,7 @@ namespace SoftGL
         public IntPtr DeviceContextHandle
         {
             get { return this.deviceContextHandle; }
-            internal set { this.deviceContextHandle = value; }
+            internal set { this.deviceContextHandle = value; this.bounded = true; }
         }
 
         /// <summary>

@@ -98,14 +98,5 @@ namespace SoftOpengl32
             var dc = new SoftGLDeviceContext(width, height);
             return dc.DeviceContextHandle;
         }
-
-        public static void SetDimensions(IntPtr deviceContext, int width, int height)
-        {
-            SoftGLDeviceContext dc = SoftGLDeviceContext.FromHandle(deviceContext);
-            if (dc != null)
-            {
-                dc.SetDimensions(width, height);
-            }
-        }
     }
 }

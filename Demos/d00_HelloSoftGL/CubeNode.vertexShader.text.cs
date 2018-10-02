@@ -12,8 +12,7 @@ namespace d00_HelloSoftGL
         public override void main()
         {
             // transform vertex' position from model space to clip space.
-            vec4 result = mvpMatrix * new vec4(inPosition, 1.0f);
-            gl_Position = result;
+            gl_Position = mvpMatrix * new vec4(inPosition, 1.0f);
         }
     }
 }
