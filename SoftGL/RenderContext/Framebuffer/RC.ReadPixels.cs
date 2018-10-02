@@ -67,53 +67,23 @@ namespace SoftGL
             // copy data from attachment to "data".
             if (attachment != null)
             {
-                ReadPixels(x, y, width, height, format, type, data, attachment);
-            }
-        }
-
-        private unsafe void ReadPixels(int x, int y, int width, int height, ReadPixelsFormat format, ReadPixelsType type, IntPtr data, IAttachable attachment)
-        {
-            byte[] dataStore = attachment.DataStore;
-            //int srcBitSize = InternalFormatHelper.BitSize(attachment.Format);
-            //int srcElementByteLength = (srcBitSize % 8 == 0) ? srcBitSize / 8 : srcBitSize / 8 + 1; // TODO: any better solution?
-            int srcWidth = attachment.Width, srcHeight = attachment.Height;
-            //int dstBitSize = InternalFormatHelper.BitSize((uint)format);
-            //int dstElementByteLength = (dstBitSize % 8 == 0) ? dstBitSize / 8 : dstBitSize / 8 + 1; // TODO: any better solution? 
-            var array = (byte*)data.ToPointer();
-            if (format == ReadPixelsFormat.BGRA && attachment.Format == GL.GL_RGBA)
-            {
-                var indexes = new int[4] { 2, 1, 0, 3 };
-                for (int i = 0; i < width; i++)
+                byte[] dataStore = attachment.DataStore;
+                int srcBitSize = InternalFormatHelper.BitSize(attachment.Format);
+                int srcElementByteLength = (srcBitSize % 8 == 0) ? srcBitSize / 8 : srcBitSize / 8 + 1; // TODO: any better solution?
+                int srcWidth = attachment.Width, srcHeight = attachment.Height;
+                int dstBitSize = InternalFormatHelper.BitSize((uint)format);
+                int dstElementByteLength = (dstBitSize % 8 == 0) ? dstBitSize / 8 : dstBitSize / 8 + 1; // TODO: any better solution? 
+                var array = (byte*)data.ToPointer();
+                for (int h = 0; h < width; h++)
                 {
-                    for (int j = 0; j < height; j++)
+                    for (int v = 0; v < height; v++)
                     {
-                        for (int t = 0; t < 4; t++)
+                        for (int t = 0; t < dstElementByteLength && t < srcElementByteLength; t++)
                         {
-                            int dstT = (j * width + i) * 4 + t;
-                            int srcT = ((j + y) * srcWidth + (i + x)) * 4 + indexes[t];
-                            array[dstT] = dataStore[srcT];
+                            array[(v * width + h) * dstElementByteLength + t] = dataStore[((v + y) * srcWidth + (h + x)) * srcElementByteLength + t];
                         }
                     }
                 }
-            }
-            else if (format == ReadPixelsFormat.BGRA && attachment.Format == GL.GL_BGRA)
-            {
-                for (int i = 0; i < width; i++)
-                {
-                    for (int j = 0; j < height; j++)
-                    {
-                        for (int t = 0; t < 4; t++)
-                        {
-                            int dstT = (j * width + i) * 4 + t;
-                            int srcT = ((j + y) * srcWidth + (i + x)) * 4 + t;
-                            array[dstT] = dataStore[srcT];
-                        }
-                    }
-                }
-            }
-            else // TODO; deal with all possibilities.
-            {
-                throw new NotImplementedException();
             }
         }
     }
