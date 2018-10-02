@@ -32,12 +32,9 @@ namespace SoftGL
 
             // execute vertex shader for each vertex!
             // This is a low effetient implementation.
-            // vsOutput is input for the next stage: linear interpolation.
+            // vsOutput is input for the next stage: fragment shader.(for now)
             byte[] vsOutput = VertexShaderStage(mode, count, type, indices, vao, program, indexBuffer);
             if (vsOutput == null) { return; } // this stage failed.
-
-            // linear interpolation.
-            List<Fragment> fragmentList = LinearInterpolation(mode, count, type, indices, vao, program, indexBuffer, vsOutput);
 
             // execute fargment shader for each fragment!
             // This is a low effetient implementation.

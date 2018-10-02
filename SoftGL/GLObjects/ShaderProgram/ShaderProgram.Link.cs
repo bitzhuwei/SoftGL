@@ -27,17 +27,7 @@ namespace SoftGL
         {
             if (!FindTypedShaders()) { return; }
             if (!FindUniforms(this.nameUniformDict, this.locationUniformDict)) { return; }
-            if (!MakeSureVariablesMatch()) { return; }
             // TODO: do something else.
-        }
-
-        /// <summary>
-        /// ex. Make sure vs.out and fs.in match.
-        /// </summary>
-        /// <returns></returns>
-        private bool MakeSureVariablesMatch()
-        {
-            throw new NotImplementedException();
         }
 
         private bool FindUniforms(Dictionary<string, UniformVariable> nameUniformDict, Dictionary<int, UniformVariable> locationUniformDict)
