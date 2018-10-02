@@ -13,12 +13,12 @@ namespace SoftGL
         /// </summary>
         public string LogInfo { get { return logInfo; } }
 
-        internal readonly Dictionary<string, UniformValue> nameUniformDict = new Dictionary<string, UniformValue>();
-        internal readonly Dictionary<int, UniformValue> locationUniformDict = new Dictionary<int, UniformValue>();
-        ///// <summary>
-        ///// Storage
-        ///// </summary>
-        //private byte[] uniformBytes;
+        private Dictionary<string, UniformVariable> nameUniformDict = new Dictionary<string, UniformVariable>();
+        private Dictionary<int, UniformVariable> locationUniformDict = new Dictionary<int, UniformVariable>();
+        /// <summary>
+        /// Storage
+        /// </summary>
+        private byte[] uniformBytes;
 
         /// <summary>
         /// from Shader to exe.
@@ -75,7 +75,7 @@ namespace SoftGL
             return true;
         }
 
-        private bool FindUniforms(Dictionary<string, UniformValue> nameUniformDict, Dictionary<int, UniformValue> locationUniformDict)
+        private bool FindUniforms(Dictionary<string, UniformVariable> nameUniformDict, Dictionary<int, UniformVariable> locationUniformDict)
         {
             nameUniformDict.Clear(); locationUniformDict.Clear();
             int nextLoc = 0;
@@ -87,7 +87,7 @@ namespace SoftGL
                     UniformVariable v = item.Value;
                     if (nameUniformDict.ContainsKey(varName))
                     {
-                        if (v.fieldInfo.FieldType != nameUniformDict[varName].variable.fieldInfo.FieldType)
+                        if (v.fieldInfo.FieldType != nameUniformDict[varName].fieldInfo.FieldType)
                         {
                             this.logInfo = string.Format("Different uniform variable types of the same name[{0}!]", varName);
                             return false;
@@ -98,12 +98,13 @@ namespace SoftGL
                         v.location = nextLoc;
                         int byteSize = this.GetByteSize(v.fieldInfo.FieldType);
                         nextLoc += byteSize;
-                        var value = new UniformValue(v, null);
-                        nameUniformDict.Add(varName, value);
-                        locationUniformDict.Add(v.location, value);
+                        nameUniformDict.Add(varName, v);
+                        locationUniformDict.Add(v.location, v);
                     }
                 }
             }
+
+            this.uniformBytes = new byte[nextLoc];
 
             return true;
         }
@@ -205,23 +206,6 @@ namespace SoftGL
             }
 
             return result;
-        }
-    }
-
-    class UniformValue
-    {
-        public readonly UniformVariable variable;
-        public Object value;
-
-        public UniformValue(UniformVariable variable, Object value = null)
-        {
-            this.variable = variable;
-            this.value = value;
-        }
-
-        public override string ToString()
-        {
-            return string.Format("{0} {1}: [{2}]", this.variable.fieldInfo.FieldType, this.variable.fieldInfo.Name, this.value);
         }
     }
 }
