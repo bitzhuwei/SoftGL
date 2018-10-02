@@ -3,7 +3,6 @@ using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 
 namespace SoftGL
@@ -28,8 +27,6 @@ namespace SoftGL
             return result;
         }
 
-        protected CompilerResults compilerResults;
-        protected Dictionary<string, UniformVariable> uniformVariableDict;
         protected string infoLog = string.Empty;
 
         /// <summary>
@@ -67,67 +64,21 @@ namespace SoftGL
             return string.Format("Shader: Id:{0}", this.Id);
         }
 
-        protected abstract string AfterCompile(Assembly assembly);
+        protected abstract string DoCompile();
         public void Compile()
         {
-            var codeProvider = new CSharpCodeProvider();
-            var compParameters = new CompilerParameters();
-            CompilerResults res = codeProvider.CompileAssemblyFromSource(compParameters, this.Code);
-            if (res.Errors.Count > 0)
-            {
-                this.infoLog = DumpLog(res);
-            }
-            else
-            {
-                this.compilerResults = res;
+            this.infoLog = DoCompile();
+            //var codeProvider = new CSharpCodeProvider();
+            //var compParameters = new CompilerParameters();
+            //CompilerResults res = codeProvider.CompileAssemblyFromSource(compParameters, this.Code);
+            //this.compilerResult = res;
+            // how to use res:
+            //// Create a new instance of the class 'MyClass'　　　　// 有命名空间的，需要命名空间.类名
+            //object myClass = res.CompiledAssembly.CreateInstance("MyClass");
 
-                this.infoLog = AfterCompile(res.CompiledAssembly);
-            }
-        }
-
-        protected string FindUniformVariables(Type shaderCodeType, out Dictionary<string, UniformVariable> dict)
-        {
-            dict = new Dictionary<string, UniformVariable>();
-            uint nextLoc = 0;
-            foreach (var item in shaderCodeType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
-            {
-                object[] inAttribute = item.GetCustomAttributes(typeof(UniformAttribute), false);
-                if (inAttribute != null && inAttribute.Length > 0) // this is a 'in ...;' field.
-                {
-                    var v = new UniformVariable(item);
-                    object[] locationAttribute = item.GetCustomAttributes(typeof(LocationAttribute), false);
-                    if (locationAttribute != null && locationAttribute.Length > 0) // (location = ..) in ...;
-                    {
-                        uint loc = (locationAttribute[0] as LocationAttribute).location;
-                        if (loc < nextLoc) { return string.Format("location error in {0}!", this.GetType().Name); }
-                        v.location = loc;
-                        nextLoc = loc + 1;
-                    }
-                    else
-                    {
-                        v.location = nextLoc++;
-                    }
-                    dict.Add(item.Name, v);
-                }
-            }
-
-            return string.Empty;
-        }
-
-        protected Type FindShaderCodeType(Assembly assembly, Type shaderCodeType)
-        {
-            Type result = null;
-            Type[] types = assembly.GetTypes();
-            foreach (var item in types)
-            {
-                if (item.BaseType == shaderCodeType)
-                {
-                    result = item;
-                    break;
-                }
-            }
-
-            return result;
+            //// Call the method 'PrintConsole' with the parameter 'Hello World'
+            //// "Hello World" will be written in console
+            //myClass.GetType().GetMethod("PrintConsole").Invoke(myClass, new object[] { "Hello World" });
         }
 
         public void GetShaderStatus(ShaderStatus pname, int[] pValues)

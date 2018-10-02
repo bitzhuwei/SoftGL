@@ -3,7 +3,6 @@ using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 
 namespace SoftGL
@@ -12,7 +11,7 @@ namespace SoftGL
     {
         public TessEvaluationShader(uint id) : base(ShaderType.TessEvaluationShader, id) { }
 
-        protected override string AfterCompile(Assembly assembly)
+        protected override string DoCompile()
         {
             throw new NotImplementedException();
         }

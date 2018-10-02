@@ -22,7 +22,7 @@ namespace SoftGL
         }
 
         private VertexShader vertexShader;
-        //private GeometryShader geometryShader;
+        private GeometryShader geometryShader;
         private FragmentShader fragmentShader;
 
         private IList<Shader> attachedShaders = new List<Shader>();
