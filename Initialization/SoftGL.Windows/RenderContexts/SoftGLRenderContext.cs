@@ -22,24 +22,61 @@ namespace SoftGL.Windows
         {
             this.Parameters = parameters;
 
+            // Create a new window class, as basic as possible.
+            if (!this.CreateBasicRenderContext(width, height, parameters))
             {
-                const int left = 0, top = 0;
-                var control = new System.Windows.Forms.Control("CSharpGLRenderWindow", left, top, width, height);
-                IntPtr dc = control.Handle;
-                var paramNames = new string[0]; var paramValues = new uint[0];
-                IntPtr hrc = SoftOpengl32.StaticCalls.CreateContext(dc, width, height, paramNames, paramValues);
-                SoftOpengl32.StaticCalls.MakeCurrent(IntPtr.Zero, IntPtr.Zero);
-                SoftOpengl32.StaticCalls.DeleteContext(this.RenderContextHandle);
-                SoftOpengl32.StaticCalls.MakeCurrent(dc, hrc);
-
-                this.DeviceContextHandle = dc;
-                this.RenderContextHandle = hrc;
+                throw new Exception(string.Format("Create basic render context failed!"));
             }
 
             //  Make the context current.
             this.MakeCurrent();
 
+            if (parameters.UpdateContextVersion)
+            {
+                //  Update the context if required.
+                // if I update context, something in legacy opengl will not work...
+                this.UpdateContextVersion(width, height, parameters);
+            }
+
             this.dibSection = new DIBSection(this.DeviceContextHandle, width, height, parameters);
+        }
+
+        /// <summary>
+        /// Create a new window class, as basic as possible.
+        /// </summary>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
+        private bool CreateBasicRenderContext(int width, int height, ContextGenerationParams parameters)
+        {
+            // TODO: create a System.Windows.Forms.Control to work as DeviceContext.
+            const int left = 0, top = 0;
+            var control = new System.Windows.Forms.Control("CSharpGLRenderWindow", left, top, width, height);
+
+            //	Get the window device context.
+            this.DeviceContextHandle = control.Handle;
+
+            return true;
+        }
+
+        /// <summary>
+        /// Only valid to be called after the render context is created, this function attempts to
+        /// move the render context to the OpenGL version originally requested. If this is &gt; 2.1, this
+        /// means building a new context. If this fails, we'll have to make do with 2.1.
+        /// </summary>
+        /// <param name="parameters"></param>
+        protected bool UpdateContextVersion(int width, int height, ContextGenerationParams parameters)
+        {
+            IntPtr dc = this.DeviceContextHandle;
+            var paramNames = new string[0]; var paramValues = new uint[0];
+            IntPtr hrc = SoftOpengl32.StaticCalls.CreateContext(dc, width, height, paramNames, paramValues);
+            SoftOpengl32.StaticCalls.MakeCurrent(IntPtr.Zero, IntPtr.Zero);
+            SoftOpengl32.StaticCalls.DeleteContext(this.RenderContextHandle);
+            SoftOpengl32.StaticCalls.MakeCurrent(dc, hrc);
+            this.RenderContextHandle = hrc;
+
+            return true;
         }
 
         //private static WndProc wndProcDelegate = new WndProc(WndProc);

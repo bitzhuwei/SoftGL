@@ -77,6 +77,16 @@ namespace SoftGL.Windows
             set { depthBits = value; }
         }
 
+        private bool updateContextVersion = true;
+        /// <summary>
+        /// update render context version?
+        /// </summary>
+        public bool UpdateContextVersion
+        {
+            get { return updateContextVersion; }
+            set { updateContextVersion = value; }
+        }
+
         private byte stencilBits = 0;
         /// <summary>
         /// initi with stencil buffer?
