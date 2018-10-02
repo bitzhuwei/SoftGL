@@ -12,7 +12,7 @@ namespace SoftGL
     class PassBuffer
     {
         public readonly PassType elementType;
-        public readonly byte[] array;
+        byte[] array;
 
         public PassBuffer(PassType type, int length)
         {

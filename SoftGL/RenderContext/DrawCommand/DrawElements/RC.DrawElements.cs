@@ -38,9 +38,6 @@ namespace SoftGL
             PassBuffer[] passBuffers = VertexShaderStage(count, type, indices, vao, program, indexBuffer);
             if (passBuffers == null) { return; } // this stage failed.
 
-            Framebuffer framebuffer = this.currentFramebuffer;
-            if (framebuffer == null) { throw new Exception("This should not happen!"); }
-
             ClipSpace2NormalDeviceSpace(passBuffers[0]);
             // linear interpolation.
             List<Fragment> fragmentList = LinearInterpolation(mode, count, type, indices, vao, program, indexBuffer, passBuffers);
@@ -48,14 +45,7 @@ namespace SoftGL
             // execute fargment shader for each fragment!
             // This is a low effetient implementation.
             FragmentShaderStage(program, fragmentList);
-            {
-                int index = 0;
-                while (index < fragmentList.Count)
-                {
-                    if (fragmentList[index].discard) { fragmentList.RemoveAt(index); }
-                    else { index++; }
-                }
-            }
+
             // Scissor test
 
             // Multisampel fragment operations
@@ -71,18 +61,7 @@ namespace SoftGL
             // Logical operations
 
             // write fragments to framebuffer's colorbuffer attachment(s).
-            {
-                uint[] drawBufferIndexes = framebuffer.DrawBuffers.ToArray();
-                foreach (var fragment in fragmentList)
-                {
-                    for (int i = 0; i < fragment.outVariables.Length && i < drawBufferIndexes.Length; i++)
-                    {
-                        PassBuffer outVar = fragment.outVariables[i];
-                        IAttachable attachment = framebuffer.ColorbufferAttachments[drawBufferIndexes[i]];
-                        attachment.Set((int)fragment.gl_FragCoord.x, (int)fragment.gl_FragCoord.y, outVar.array);
-                    }
-                }
-            }
+
         }
 
         private unsafe void ClipSpace2NormalDeviceSpace(PassBuffer passBuffer)
