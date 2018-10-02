@@ -57,6 +57,38 @@ namespace SoftGL.Windows
             //	Get the window device context.
             this.DeviceContextHandle = control.Handle;
 
+            ////	Setup a pixel format.
+            //var pfd = new PixelFormatDescriptor();
+            //pfd.Init();
+            //pfd.nVersion = 1;
+            //pfd.dwFlags = Win32.PFD_DRAW_TO_WINDOW | Win32.PFD_SUPPORT_OPENGL | Win32.PFD_DOUBLEBUFFER;
+            //pfd.iPixelType = Win32.PFD_TYPE_RGBA;
+            //pfd.cColorBits = parameters.ColorBits;
+            //pfd.cAccumBits = parameters.AccumBits;
+            //pfd.cAccumRedBits = parameters.AccumRedBits;
+            //pfd.cAccumGreenBits = parameters.AccumGreenBits;
+            //pfd.cAccumBlueBits = parameters.AccumBlueBits;
+            //pfd.cAccumAlphaBits = parameters.AccumAlphaBits;
+            //pfd.cDepthBits = parameters.DepthBits;
+            //pfd.cStencilBits = parameters.StencilBits;
+            //pfd.iLayerType = Win32.PFD_MAIN_PLANE;
+
+            ////	Match an appropriate pixel format
+            //int iPixelformat = Win32.ChoosePixelFormat(this.DeviceContextHandle, pfd);
+            //if (iPixelformat == 0)
+            //{
+            //    return false;
+            //}
+
+            ////	Sets the pixel format
+            //if (false == Win32.SetPixelFormat(this.DeviceContextHandle, iPixelformat, pfd))
+            //{
+            //    return false;
+            //}
+
+            ////	Create the render context.
+            //this.RenderContextHandle = Win32.wglCreateContext(this.DeviceContextHandle);
+
             return true;
         }
 
