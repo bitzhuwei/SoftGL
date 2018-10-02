@@ -20,111 +20,92 @@ namespace SoftGL
 
         public unsafe void SetUniform4fv(int location, int count, bool transpose, float[] value)
         {
-            mat4 matrix;
-
+            var v = new mat4[count];
             if (transpose)
             {
-                matrix = new mat4(
-                     new vec4(value[0], value[4], value[8], value[12]),
-                     new vec4(value[1], value[5], value[9], value[13]),
-                     new vec4(value[2], value[6], value[10], value[14]),
-                     new vec4(value[3], value[7], value[11], value[15])
-                     );
-            }
-            else
-            {
-                matrix = new mat4(
-                      new vec4(value[0], value[1], value[2], value[3]),
-                      new vec4(value[4], value[5], value[6], value[7]),
-                      new vec4(value[8], value[9], value[10], value[11]),
-                      new vec4(value[12], value[13], value[14], value[15])
+                var matrix = new mat4(
+                      new vec4(value[0], value[4], value[8], value[12]),
+                      new vec4(value[1], value[5], value[9], value[13]),
+                      new vec4(value[2], value[6], value[10], value[14]),
+                      new vec4(value[3], value[7], value[11], value[15])
                       );
-
-            }
-
-            if (count == 1)
-            {
-                this.SetUniform(location, matrix);
-            }
-            else
-            {
-                var v = new mat4[count];
                 for (int i = 0; i < count; i++)
                 {
                     v[i] = matrix;
                 }
-                this.SetUniform(location, v);
             }
+            else
+            {
+                var matrix = new mat4(
+                       new vec4(value[0], value[1], value[2], value[3]),
+                       new vec4(value[4], value[5], value[6], value[7]),
+                       new vec4(value[8], value[9], value[10], value[11]),
+                       new vec4(value[12], value[13], value[14], value[15])
+                       );
+                for (int i = 0; i < count; i++)
+                {
+                    v[i] = matrix;
+                }
+            }
+            this.SetUniform(location, v);
         }
 
         public unsafe void SetUniform3fv(int location, int count, bool transpose, float[] value)
         {
-            mat3 matrix;
-
+            var v = new mat3[count];
             if (transpose)
             {
-                matrix = new mat3(
-                   new vec3(value[0], value[3], value[6]),
-                   new vec3(value[1], value[4], value[7]),
-                   new vec3(value[2], value[5], value[8])
-                   );
-            }
-            else
-            {
-                matrix = new mat3(
-                   new vec3(value[0], value[1], value[2]),
-                   new vec3(value[3], value[4], value[5]),
-                   new vec3(value[6], value[7], value[8])
-                   );
-            }
-
-            if (count == 1)
-            {
-                this.SetUniform(location, matrix);
-            }
-            else
-            {
-                var v = new mat3[count];
+                var matrix = new mat3(
+                    new vec3(value[0], value[3], value[6]),
+                    new vec3(value[1], value[4], value[7]),
+                    new vec3(value[2], value[5], value[8])
+                    );
                 for (int i = 0; i < count; i++)
                 {
                     v[i] = matrix;
                 }
-                this.SetUniform(location, v);
             }
+            else
+            {
+                var matrix = new mat3(
+                    new vec3(value[0], value[1], value[2]),
+                    new vec3(value[3], value[4], value[5]),
+                    new vec3(value[6], value[7], value[8])
+                    );
+                for (int i = 0; i < count; i++)
+                {
+                    v[i] = matrix;
+                }
+            }
+            this.SetUniform(location, v);
         }
 
         public unsafe void SetUniform2fv(int location, int count, bool transpose, float[] value)
         {
-            mat2 matrix;
-
+            var v = new mat2[count];
             if (transpose)
             {
-                matrix = new mat2(
-                   new vec2(value[0], value[2]),
-                   new vec2(value[1], value[3])
-                   );
-            }
-            else
-            {
-                matrix = new mat2(
-                   new vec2(value[0], value[1]),
-                   new vec2(value[2], value[3])
-                   );
-            }
-
-            if (count == 1)
-            {
-                this.SetUniform(location, matrix);
-            }
-            else
-            {
-                var v = new mat2[count];
+                var matrix = new mat2(
+                    new vec2(value[0], value[2]),
+                    new vec2(value[1], value[3])
+                    );
                 for (int i = 0; i < count; i++)
                 {
                     v[i] = matrix;
                 }
-                this.SetUniform(location, v);
             }
+            else
+            {
+                var matrix = new mat2(
+                    new vec2(value[0], value[1]),
+                    new vec2(value[2], value[3])
+                    );
+                for (int i = 0; i < count; i++)
+                {
+                    v[i] = matrix;
+                }
+            }
+            this.SetUniform(location, v);
         }
 
         public unsafe void SetUniform4ui(int location, uint v0, uint v1, uint v2, uint v3)
