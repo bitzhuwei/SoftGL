@@ -27,12 +27,12 @@ namespace SoftGL
             Type type = null;
             switch (shaderType)
             {
-                case ShaderType.VertexShader: type = typeof(VertexCode); break;
-                case ShaderType.TessControlShader: type = typeof(TessControlCode); break;
+                case ShaderType.VertexShader: type = typeof(VertexShaderCode); break;
+                case ShaderType.TessControlShader: type = typeof(TessControlShaderCode); break;
                 case ShaderType.TessEvaluationShader: type = typeof(TessEvaluationShaderCode); break;
-                case ShaderType.GeometryShader: type = typeof(GeometryCode); break;
-                case ShaderType.FragmentShader: type = typeof(FragmentCode); break;
-                case ShaderType.ComputeShader: type = typeof(ComputeCode); break;
+                case ShaderType.GeometryShader: type = typeof(GeometryShaderCode); break;
+                case ShaderType.FragmentShader: type = typeof(FragmentShaderCode); break;
+                case ShaderType.ComputeShader: type = typeof(ComputeShaderCode); break;
                 default:
                     throw new NotImplementedException();
             }

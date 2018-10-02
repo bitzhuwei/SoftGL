@@ -29,34 +29,34 @@ namespace SoftGL
                 if (gl_VertexIDList.Contains(gl_VertexID)) { continue; }
                 else { gl_VertexIDList.Add(gl_VertexID); }
 
-                var instance = vs.CreateCodeInstance() as VertexCode; // an executable vertex shader.
+                var instance = vs.CreateCodeInstance() as VertexShaderCode; // an executable vertex shader.
                 instance.gl_VertexID = (int)gl_VertexID; // setup gl_VertexID.
                 // setup "in SomeType varName;" vertex attributes.
                 Dictionary<uint, VertexAttribDesc> locVertexAttribDict = vao.LocVertexAttribDict;
-                foreach (var inVar in vs.inVariableDict.Values) // Dictionary<string, InVariable>.Values
-                {
-                    VertexAttribDesc desc = null;
-                    if (locVertexAttribDict.TryGetValue(inVar.location, out desc))
-                    {
-                        byte[] dataStore = desc.vbo.Data;
-                        int byteIndex = desc.GetDataIndex(indexID);
-                        VertexAttribType vertexAttribType = (VertexAttribType)desc.dataType;
-                        object value = dataStore.ToStruct(vertexAttribType.GetManagedType(), byteIndex);
-                        inVar.fieldInfo.SetValue(instance, value);
-                    }
-                }
+                //foreach (var inVar in vs.inVariableDict.Values) // Dictionary<string, InVariable>.Values
+                //{
+                //    VertexAttribDesc desc = null;
+                //    if (locVertexAttribDict.TryGetValue(inVar.location, out desc))
+                //    {
+                //        byte[] dataStore = desc.vbo.Data;
+                //        int byteIndex = desc.GetDataIndex(indexID);
+                //        VertexAttribType vertexAttribType = (VertexAttribType)desc.dataType;
+                //        object value = dataStore.ToStruct(vertexAttribType.GetManagedType(), byteIndex);
+                //        inVar.field.SetValue(instance, value);
+                //    }
+                //}
 
                 instance.main(); // execute vertex shader code.
 
-                foreach (var outVar in vs.outVariableDict.Values) // Dictionary<string, OutVariable>.Values
-                {
-                    var obj = outVar.fieldInfo.GetValue(instance);
-                    byte[] bytes = obj.ToBytes();
-                    for (int t = 0; t < bytes.Length; t++)
-                    {
-                        vsOutput[gl_VertexID * vertexSize + t] = bytes[t];
-                    }
-                }
+                //foreach (var outVar in vs.outVariableDict.Values) // Dictionary<string, OutVariable>.Values
+                //{
+                //    var obj = (ValueType)outVar.property.GetValue(instance);
+                //    byte[] bytes = obj.ToBytes();
+                //    for (int t = 0; t < bytes.Length; t++)
+                //    {
+                //        vsOutput[gl_VertexID * vertexSize + t] = bytes[t];
+                //    }
+                //}
             }
             pin.Free();
 
@@ -75,7 +75,7 @@ namespace SoftGL
 
             foreach (var item in outVariables)
             {
-                uint size = item.fieldInfo.FieldType.ByteSize();
+                uint size = item.propertyInfo.PropertyType.ByteSize();
                 result += size;
             }
 

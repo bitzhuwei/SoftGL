@@ -6,6 +6,7 @@ using System.Text;
 
 namespace SoftGL
 {
+
     class UniformVariable
     {
         public int location = -1;

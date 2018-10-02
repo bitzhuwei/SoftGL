@@ -10,16 +10,16 @@ namespace SoftGL
     class InVariable
     {
         public uint location = uint.MaxValue;
-        public readonly FieldInfo fieldInfo;
+        public readonly PropertyInfo propertyInfo;
 
-        public InVariable(FieldInfo field)
+        public InVariable(PropertyInfo field)
         {
-            this.fieldInfo = field;
+            this.propertyInfo = field;
         }
 
         public override string ToString()
         {
-            return string.Format("f:{0}, loc:{1}", this.fieldInfo, this.location);
+            return string.Format("P:{0}, loc:{1}", this.propertyInfo, this.location);
         }
     }
 }
