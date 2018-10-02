@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
 
 namespace SoftGL
@@ -36,7 +35,7 @@ namespace SoftGL
                 VertexShader vs = program.VertexShader;
                 if (vs == null) { return; }
                 Dictionary<uint, VertexAttribDesc> locVertexAttribDict = vao.LocVertexAttribDict;
-                InVariable[] inVariables = vs.inVariableDict.Values.ToArray();
+                InVariable[] inVariables = vs.GetAllInVariables();
                 byte[] data = indexBuffer.Data;
                 int byteLength = data.Length;
                 GCHandle pin = GCHandle.Alloc(indexBuffer.Data, GCHandleType.Pinned);
