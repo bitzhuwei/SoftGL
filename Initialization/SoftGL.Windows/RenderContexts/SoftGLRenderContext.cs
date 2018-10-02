@@ -54,8 +54,8 @@ namespace SoftGL.Windows
             const int left = 0, top = 0;
             var control = new System.Windows.Forms.Control("CSharpGLRenderWindow", left, top, width, height);
 
-            //	Get the window device context.
-            this.DeviceContextHandle = control.Handle;
+            ////	Get the window device context.
+            //this.DeviceContextHandle = Win32.GetDC(windowHandle);
 
             ////	Setup a pixel format.
             //var pfd = new PixelFormatDescriptor();
