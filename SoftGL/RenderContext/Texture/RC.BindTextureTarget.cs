@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SoftGL
 {
-    enum BindTextureTarget : uint
+    public enum BindTextureTarget : uint
     {
         Texture1D = GL.GL_TEXTURE_1D,
         Texture2D = GL.GL_TEXTURE_2D,

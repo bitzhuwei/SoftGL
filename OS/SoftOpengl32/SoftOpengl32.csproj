@@ -48,7 +48,6 @@
     <Compile Include="Texture\Storage\SC.Storage2D.cs" />
     <Compile Include="Texture\SC.Texture.cs" />
     <Compile Include="Utilities\Clear.cs" />
-    <Compile Include="VertexBuffer\SC.VertexBuffer.cs" />
     <None Include="readme.md" />
     <Compile Include="Texture\Sampler\SC.Sampler.cs" />
     <Compile Include="Framebuffer\SC.Renderbuffer.cs" />
