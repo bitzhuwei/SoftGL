@@ -101,7 +101,7 @@ namespace SoftGL
                         default:
                             throw new NotImplementedException();
                     }
-                    // a general way to do this:
+                    // general way to do this:
                     //var obj = outField.GetValue(instance);
                     //byte[] bytes = obj.ToBytes();
                     //PassBuffer passBuffer = passBuffers[i];
