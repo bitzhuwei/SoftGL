@@ -20,7 +20,7 @@ namespace SoftGL
             var gl_VertexIDList = new List<uint>();
             for (int indexID = 0; indexID < count; indexID++)
             {
-                uint gl_VertexID = GetVertexID(pointer, type, indexID);
+                uint gl_VertexID = GetVertexID(pointer, type, byteLength, indexID);
                 if (gl_VertexIDList.Contains(gl_VertexID)) { continue; }
                 else { gl_VertexIDList.Add(gl_VertexID); }
 
