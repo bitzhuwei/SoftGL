@@ -50,7 +50,6 @@ namespace SoftGL.Windows
         /// <returns></returns>
         private bool CreateBasicRenderContext(int width, int height, ContextGenerationParams parameters)
         {
-            // TODO: create a System.Windows.Forms.Control to work as DeviceContext.
             //var wndClass = new WNDCLASSEX();
             //wndClass.Init();
             //wndClass.style = ClassStyles.HorizontalRedraw | ClassStyles.VerticalRedraw | ClassStyles.OwnDC;
