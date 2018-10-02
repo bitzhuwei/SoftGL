@@ -14,11 +14,6 @@ namespace SoftGL
             throw new NotImplementedException();
         }
 
-        public void Set(int x, int y, byte[] data)
-        {
-            throw new NotImplementedException();
-        }
-
         #endregion IAttachable
     }
 }
