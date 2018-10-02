@@ -108,7 +108,6 @@
     <Compile Include="RenderContext\VertexArrayObject\RC.VertexAttribIPointer.cs" />
     <Compile Include="RenderContext\VertexArrayObject\RC.VertexAttribPointer.cs" />
     <Compile Include="RenderContext\VertexArrayObject\RC.VertexArrayObject.cs" />
-    <Compile Include="RenderContext\Viewport\RC.Viewport.cs" />
     <Compile Include="TestConsole\ShaderTest.cs" />
     <None Include="GLObjects\readme.md" />
     <None Include="readme.md" />

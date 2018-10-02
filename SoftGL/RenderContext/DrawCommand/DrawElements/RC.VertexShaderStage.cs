@@ -155,14 +155,6 @@ namespace SoftGL
             return result;
         }
 
-        /// <summary>
-        /// Get the vertex id at specified <paramref name="indexID"/> of the array represented by <paramref name="pointer"/>.
-        /// The <paramref name="type"/> indicates the type of the array(byte[], ushort[] or uint[]).
-        /// </summary>
-        /// <param name="pointer"></param>
-        /// <param name="type"></param>
-        /// <param name="indexID"></param>
-        /// <returns></returns>
         private unsafe uint GetVertexID(IntPtr pointer, DrawElementsType type, int indexID)
         {
             uint gl_VertexID = uint.MaxValue;
