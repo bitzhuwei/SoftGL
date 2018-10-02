@@ -66,28 +66,5 @@ namespace SoftGL
             }
             pin.Free();
         }
-
-        public unsafe void SetUniform2fv(int location, int count, bool transpose, float[] value)
-        {
-            float[] values = value;
-            if (transpose)
-            {
-                values[0] = value[0]; values[1] = value[2];
-                values[2] = value[1]; values[3] = value[3];
-            }
-            byte[] uniformBytes = this.uniformBytes;
-            GCHandle pin = GCHandle.Alloc(values, GCHandleType.Pinned);
-            IntPtr address = pin.AddrOfPinnedObject();
-            byte* array = (byte*)address.ToPointer();
-            const int valuesLength = 4 * sizeof(float);
-            for (int i = 0; i < count; i++)
-            {
-                for (int j = 0; j < valuesLength; j++)
-                {
-                    uniformBytes[location + i * valuesLength + j] = array[j];
-                }
-            }
-            pin.Free();
-        }
     }
 }
