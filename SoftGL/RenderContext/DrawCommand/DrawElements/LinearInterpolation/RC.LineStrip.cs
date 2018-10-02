@@ -7,7 +7,6 @@ namespace SoftGL
 {
     partial class SoftGLRenderContext
     {
-        const float epsilon = 0.001f;
         private unsafe List<Fragment> LinearInterpolationLineStrip(int count, DrawElementsType type, IntPtr indices, VertexArrayObject vao, ShaderProgram program, GLBuffer indexBuffer, PassBuffer[] passBuffers)
         {
             var result = new List<Fragment>();
@@ -36,72 +35,10 @@ namespace SoftGL
                     group.array[i] = new LinearInterpolationInfo(indexID + i, gl_VertexID, fragCoord);
                 }
 
-                if (groupList.Contains(group)) { continue; } // discard the same line.
+                if (groupList.Contains(group)) { continue; }
                 else { groupList.Add(group); }
 
-                vec3 fragCoord0 = group.array[0].fragCoord, fragCoord1 = group.array[1].fragCoord;
-                {
-                    vec3 diff = (fragCoord0 - fragCoord1); // discard liine that is too small.
-                    if (Math.Abs(diff.x) < epsilon && Math.Abs(diff.y) < epsilon && Math.Abs(diff.z) < epsilon) { continue; }
-                }
 
-                foreach (vec3 pixel in PixelsAtLine(fragCoord0, fragCoord1)) // for each pixel at this line..
-                {
-                    var fragment = new Fragment(pixel, attributeCount);
-                    var alpha = (pixel - fragCoord0).length() / (fragCoord1 - fragCoord0).length();
-                    for (int i = 0; i < attributeCount; i++) // new pass-buffer objects.
-                    {
-                        PassType passType = passBuffers[i].elementType;
-                        fragment.attributes[i] = new PassBuffer(passType, 1); // only one element.
-                    }
-                    for (int attrIndex = 0; attrIndex < attributeCount; attrIndex++) // fill data in pass-buffer.
-                    {
-                        PassBuffer attribute = fragment.attributes[attrIndex];
-                        void* fragmentAttribute = attribute.Mapbuffer().ToPointer(); ;
-                        switch (attribute.elementType)
-                        {
-                            case PassType.Float:
-                                {
-                                    var fAttr = (float*)fragmentAttribute; var array = (float*)pointers[attrIndex];
-                                    fAttr[0] = array[group.array[0].gl_VertexID] * alpha + array[group.array[1].gl_VertexID] * (1 - alpha);
-                                } break;
-                            case PassType.Vec2:
-                                {
-                                    var fAttr = (vec2*)fragmentAttribute; var array = (vec2*)pointers[attrIndex];
-                                    fAttr[0] = array[group.array[0].gl_VertexID] * alpha + array[group.array[1].gl_VertexID] * (1 - alpha);
-                                } break;
-                            case PassType.Vec3:
-                                {
-                                    var fAttr = (vec3*)fragmentAttribute; var array = (vec3*)pointers[attrIndex];
-                                    fAttr[0] = array[group.array[0].gl_VertexID] * alpha + array[group.array[1].gl_VertexID] * (1 - alpha);
-                                } break;
-                            case PassType.Vec4:
-                                {
-                                    var fAttr = (vec4*)fragmentAttribute; var array = (vec4*)pointers[attrIndex];
-                                    fAttr[0] = array[group.array[0].gl_VertexID] * alpha + array[group.array[1].gl_VertexID] * (1 - alpha);
-                                } break;
-                            case PassType.Mat2:
-                                {
-                                    var fAttr = (mat2*)fragmentAttribute; var array = (mat2*)pointers[attrIndex];
-                                    fAttr[0] = array[group.array[0].gl_VertexID] * alpha + array[group.array[1].gl_VertexID] * (1 - alpha);
-                                } break;
-                            case PassType.Mat3:
-                                {
-                                    var fAttr = (mat3*)fragmentAttribute; var array = (mat3*)pointers[attrIndex];
-                                    fAttr[0] = array[group.array[0].gl_VertexID] * alpha + array[group.array[1].gl_VertexID] * (1 - alpha);
-                                } break;
-                            case PassType.Mat4:
-                                {
-                                    var fAttr = (mat4*)fragmentAttribute; var array = (mat4*)pointers[attrIndex];
-                                    fAttr[0] = array[group.array[0].gl_VertexID] * alpha + array[group.array[1].gl_VertexID] * (1 - alpha);
-                                } break;
-                            default:
-                                throw new NotDealWithNewEnumItemException(typeof(PassType));
-                        }
-                        attribute.Unmapbuffer();
-                    }
-                    result.Add(fragment);
-                }
             }
 
             for (int i = 0; i < passBuffers.Length; i++)
