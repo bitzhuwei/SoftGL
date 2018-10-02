@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 
 namespace SoftGL
 {
@@ -20,35 +19,22 @@ namespace SoftGL
         public void Link()
         {
             if (!FindTypedShaders()) { return; }
-            if (!FindUniforms()) { return; }
-            // TODO: do something else.
+
+            throw new NotImplementedException();
         }
 
         private bool FindUniforms()
         {
+            bool result = true;
             Dictionary<string, UniformVariable> uniformDict = new Dictionary<string, UniformVariable>();
             foreach (var shader in this.attachedShaders)
             {
-                foreach (var item in shader.UniformVariableDict)
+                foreach (var uniformVariable in shader.UniformVariableDict)
                 {
-                    string varName = item.Key;
-                    UniformVariable v = item.Value;
-                    if (uniformDict.ContainsKey(varName))
-                    {
-                        if (v.field.FieldType != uniformDict[varName].field.FieldType)
-                        {
-                            this.logInfo = string.Format("Different uniform variable types of the same name[{0}!]", varName);
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        uniformDict.Add(varName, v);
-                    }
+
                 }
             }
-
-            return true;
+            return result;
         }
 
         /// <summary>

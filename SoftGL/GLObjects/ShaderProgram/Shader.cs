@@ -33,9 +33,6 @@ namespace SoftGL
         private Dictionary<string, UniformVariable> uniformVariableDict = new Dictionary<string, UniformVariable>();
         private string infoLog = string.Empty;
 
-        /// <summary>
-        /// Name -> field.
-        /// </summary>
         public Dictionary<string, UniformVariable> UniformVariableDict { get { return uniformVariableDict; } }
         public string InfoLog { get { return infoLog; } }
         public ShaderType ShaderType { get; private set; }
