@@ -91,24 +91,5 @@ namespace SoftOpengl32
         {
             SoftGLRenderContext.glVertexAttribLPointer(index, size, type, stride, pointer);
         }
-
-        /// <summary>
-        /// Enable a generic vertex attribute array.
-        /// </summary>
-        /// <param name="index">Specifies the index of the generic vertex attribute to be enabled or disabled.</param>
-        public static void glEnableVertexAttribArray(uint index)
-        {
-            SoftGLRenderContext.glEnableVertexAttribArray(index);
-        }
-
-        /// <summary>
-        /// Disable a generic vertex attribute array.
-        /// </summary>
-        /// <param name="index">Specifies the index of the generic vertex attribute to be enabled or disabled.</param>
-        public static void glDisableVertexAttribArray(uint index)
-        {
-            SoftGLRenderContext.glDisableVertexAttribArray(index);
-        }
-
     }
 }
