@@ -53,9 +53,8 @@ namespace SoftGL
 
         private void ActiveTexture(uint textureUnit)
         {
-            if (textureUnit < GL.GL_TEXTURE0
-                || GL.GL_TEXTURE0 + maxTextureImageUnits <= textureUnit)
-            { SetLastError(ErrorCode.InvalidEnum); return; }
+            if (textureUnit < GL.GL_TEXTURE0) { SetLastError(ErrorCode.InvalidEnum); return; }
+            if (GL.GL_TEXTURE0 + maxTextureImageUnits <= textureUnit) { SetLastError(ErrorCode.InvalidEnum); return; }
 
             this.currentTextureUnitIndex = textureUnit - GL.GL_TEXTURE0;
         }
@@ -71,7 +70,7 @@ namespace SoftGL
 
         private void BindTexture(BindTextureTarget target, uint name)
         {
-            if (!Enum.IsDefined(typeof(BindTextureTarget), target)) { SetLastError(ErrorCode.InvalidEnum); return; }
+            if (target == 0) { SetLastError(ErrorCode.InvalidEnum); return; }
             if ((name != 0) && (!this.textureNameList.Contains(name))) { SetLastError(ErrorCode.InvalidValue); return; }
             Texture texture = null;
             if (name != 0)

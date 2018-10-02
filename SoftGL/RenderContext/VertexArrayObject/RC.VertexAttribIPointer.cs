@@ -21,7 +21,7 @@ namespace SoftGL
         {
             // TODO: GL_INVALID_VALUE is generated if index​ is greater than or equal to GL_MAX_VERTEX_ATTRIBS.
             if (size != 1 && size != 2 && size != 3 && size != 4) { SetLastError(ErrorCode.InvalidValue); return; }
-            if (!Enum.IsDefined(typeof(VertexAttribIType), type)) { SetLastError(ErrorCode.InvalidEnum); return; }
+            if (type == 0) { SetLastError(ErrorCode.InvalidEnum); return; }
             if (stride < 0) { SetLastError(ErrorCode.InvalidValue); return; }
             VertexArrayObject vao = this.currentVertexArrayObject;
             if (vao == null) { SetLastError(ErrorCode.InvalidOperation); return; }

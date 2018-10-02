@@ -26,7 +26,7 @@ namespace SoftGL
 
         private uint CreateShader(ShaderType shaderType)
         {
-            if (!Enum.IsDefined(typeof(ShaderType), shaderType)) { SetLastError(ErrorCode.InvalidEnum); return 0; }
+            if (shaderType == 0) { SetLastError(ErrorCode.InvalidEnum); return 0; }
 
             uint id = nextShaderName;
             Shader shader = Shader.Create(shaderType, id);
@@ -92,7 +92,7 @@ namespace SoftGL
         {
             if (name == 0) { SetLastError(ErrorCode.InvalidValue); return; }
             if (!this.nameShaderDict.ContainsKey(name)) { SetLastError(ErrorCode.InvalidOperation); return; }
-            if (!Enum.IsDefined(typeof(ShaderStatus), pname)) { SetLastError(ErrorCode.InvalidEnum); return; }
+            if (pname == 0) { SetLastError(ErrorCode.InvalidEnum); return; }
 
             Shader shader = this.nameShaderDict[name];
             shader.GetShaderStatus(pname, pValues);
