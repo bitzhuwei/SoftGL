@@ -108,23 +108,5 @@ namespace SoftGL
             pin.Free();
         }
 
-        public unsafe void SetUniformiv(int location, int count, int[] value, int componentCount)
-        {
-            int[] values = value;
-            byte[] uniformBytes = this.uniformBytes;
-            GCHandle pin = GCHandle.Alloc(values, GCHandleType.Pinned);
-            IntPtr address = pin.AddrOfPinnedObject();
-            byte* array = (byte*)address.ToPointer();
-            int valuesLength = componentCount * sizeof(int);
-            for (int i = 0; i < count; i++)
-            {
-                for (int j = 0; j < valuesLength; j++)
-                {
-                    uniformBytes[location + i * valuesLength + j] = array[j];
-                }
-            }
-            pin.Free();
-        }
-
     }
 }
