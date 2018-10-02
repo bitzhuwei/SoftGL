@@ -8,17 +8,13 @@ namespace SoftGL
     {
         private string logInfo = string.Empty;
 
-        /// <summary>
-        /// Link error exists if LogInfo is not String.Empty.
-        /// </summary>
-        public string LogInfo { get { return logInfo; } }
+        public string LogInfo
+        {
+            get { return logInfo; }
+            set { logInfo = value; }
+        }
 
-        private Dictionary<string, UniformVariable> nameUniformDict = new Dictionary<string, UniformVariable>();
-        private Dictionary<int, UniformVariable> locationUniformDict = new Dictionary<int, UniformVariable>();
-        /// <summary>
-        /// Storage
-        /// </summary>
-        private byte[] uniformBytes;
+        private Dictionary<string, UniformVariable> uniformDict = new Dictionary<string, UniformVariable>();
 
         /// <summary>
         /// from Shader to exe.
@@ -26,23 +22,23 @@ namespace SoftGL
         public void Link()
         {
             if (!FindTypedShaders()) { return; }
-            if (!FindUniforms(this.nameUniformDict, this.locationUniformDict)) { return; }
+            if (!FindUniforms(this.uniformDict)) { return; }
             // TODO: do something else.
         }
 
-        private bool FindUniforms(Dictionary<string, UniformVariable> nameUniformDict, Dictionary<int, UniformVariable> locationUniformDict)
+        private bool FindUniforms(Dictionary<string, UniformVariable> dict)
         {
-            nameUniformDict.Clear(); locationUniformDict.Clear();
-            int nextLoc = 0;
+            dict.Clear();
+            uint nextLoc = 0;
             foreach (var shader in this.attachedShaders)
             {
                 foreach (var item in shader.UniformVariableDict)
                 {
                     string varName = item.Key;
                     UniformVariable v = item.Value;
-                    if (nameUniformDict.ContainsKey(varName))
+                    if (dict.ContainsKey(varName))
                     {
-                        if (v.field.FieldType != nameUniformDict[varName].field.FieldType)
+                        if (v.field.FieldType != dict[varName].field.FieldType)
                         {
                             this.logInfo = string.Format("Different uniform variable types of the same name[{0}!]", varName);
                             return false;
@@ -50,37 +46,13 @@ namespace SoftGL
                     }
                     else
                     {
-                        v.location = nextLoc;
-                        int byteSize = this.GetByteSize(v.field.FieldType);
-                        nextLoc += byteSize;
-                        nameUniformDict.Add(varName, v);
-                        locationUniformDict.Add(v.location, v);
+                        v.location = nextLoc++; // TODO: more location slots for matrix types(mat2, mat3, mat4).
+                        dict.Add(varName, v);
                     }
                 }
             }
 
-            this.uniformBytes = new byte[nextLoc];
-
             return true;
-        }
-
-        private int GetByteSize(Type type)
-        {
-            int size = 0;
-            if (type == typeof(float)) { size = sizeof(float); }
-            else if (type == typeof(int)) { size = sizeof(int); }
-            else if (type == typeof(uint)) { size = sizeof(uint); }
-            else if (type.IsArray)
-            {
-                Type elementType = type.GetElementType();
-                size = GetByteSize(elementType);
-            }
-            else
-            {
-                throw new ArgumentException(string.Format("Type[{0}] is not supported in uniform variable!", type));
-            }
-
-            return size;
         }
 
         /// <summary>
