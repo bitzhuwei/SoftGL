@@ -75,7 +75,7 @@
     <Compile Include="BasicDataStructures\Shaders\Attributes.cs" />
     <Compile Include="BasicDataStructures\Shaders\FragmentShader.cs" />
     <Compile Include="BasicDataStructures\Shaders\SimpleFrag.cs" />
-    <Compile Include="BasicDataStructures\Shaders\SimpleVert.cs" />
+    <Compile Include="BasicDataStructures\Shaders\SimpleVsrt.cs" />
     <Compile Include="BasicDataStructures\Shaders\VertexShader.cs" />
     <Compile Include="BasicDataStructures\UnamangedArray\TempUnmanagedArray`1.cs" />
     <Compile Include="BasicDataStructures\UnamangedArray\TempUnmanagedArray`1.IDisposable.cs" />
