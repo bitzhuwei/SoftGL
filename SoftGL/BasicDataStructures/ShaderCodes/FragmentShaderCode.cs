@@ -7,9 +7,6 @@ namespace SoftGL
 {
     abstract class FragmentShaderCode
     {
-        [In]
-        public vec3 gl_FragCoord;
-
         public abstract void main();
     }
 }
