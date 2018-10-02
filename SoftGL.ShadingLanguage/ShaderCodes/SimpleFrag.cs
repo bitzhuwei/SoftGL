@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SoftGL
 {
-    class DemoFrag : FragmentCodeBase
+    class SimpleFrag : FragmentCode
     {
         [In]
         vec3 passColor;

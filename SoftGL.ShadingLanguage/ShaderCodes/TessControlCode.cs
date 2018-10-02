@@ -5,13 +5,8 @@ using System.Text;
 
 namespace SoftGL
 {
-    public abstract class VertexCodeBase
+    public abstract class TessControlCode
     {
-        public int gl_VertexID;
-
-        [Out]
-        public vec4 gl_Position;
-
         public abstract void main();
     }
 }
