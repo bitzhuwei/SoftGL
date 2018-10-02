@@ -38,7 +38,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DrawCommand\SC.DrawElements.cs" />
     <Compile Include="Framebuffer\Attach\SC.Attach.Renderbuffer.cs" />
     <Compile Include="Framebuffer\SC.Framebuffer.DrawBuffers.cs" />
     <Compile Include="Framebuffer\SC.Framebuffer.CheckStatus.cs" />
