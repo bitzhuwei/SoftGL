@@ -44,7 +44,7 @@ namespace SoftGL
 
             // execute fargment shader for each fragment!
             // This is a low effetient implementation.
-            FragmentShaderStage(program, fragmentList);
+
         }
 
         private unsafe void ClipSpace2NormalDeviceSpace(PassBuffer passBuffer)
