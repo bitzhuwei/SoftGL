@@ -11,23 +11,22 @@ namespace SoftGL
         private unsafe PassBuffer[] VertexShaderStage(DrawTarget mode, int count, DrawElementsType type, IntPtr indices, VertexArrayObject vao, ShaderProgram program, GLBuffer indexBuffer)
         {
             PassBuffer[] passBuffers = null;
-            VertexShader vs = program.VertexShader; if (vs == null) { return passBuffers; }
+            VertexShader vs = program.VertexShader;
+            if (vs == null) { return passBuffers; }
 
-            // init pass-buffers to record output from vertex shader.
-            FieldInfo[] outFieldInfos = (from item in vs.outVariableDict select item.Value.fieldInfo).ToArray();
+            FieldInfo[] outVariables = (from item in vs.outVariableDict select item.Value.fieldInfo).ToArray();
             uint vertexCount = GetVertexCount(vao, indexBuffer, type);
-            int vertexSize = GetVertexSize(outFieldInfos);
-            passBuffers = new PassBuffer[outFieldInfos.Length];
+            uint vertexSize = GetVertexSize(outVariables);
+            passBuffers = new PassBuffer[outVariables.Length];
             for (int i = 0; i < passBuffers.Length; i++)
             {
-                var outField = outFieldInfos[i];
-                PassType passType = outField.FieldType.GetPassType();
+                var outVar = outVariables[i];
+                PassType passType = outVar.FieldType.GetPassType();
                 var passBuffer = new PassBuffer(passType, (int)vertexCount);
                 passBuffer.Mapbuffer();
                 passBuffers[i] = passBuffer;
             }
 
-            // execute vertex shader for each vertex.
             byte[] indexData = indexBuffer.Data;
             int byteLength = indexData.Length;
             GCHandle pin = GCHandle.Alloc(indexData, GCHandleType.Pinned);
@@ -35,7 +34,7 @@ namespace SoftGL
             var gl_VertexIDList = new List<uint>();
             for (int indexID = 0; indexID < count; indexID++)
             {
-                uint gl_VertexID = GetVertexID(pointer, type, indexID);
+                uint gl_VertexID = GetVertexID(pointer, type, byteLength, indexID);
                 if (gl_VertexIDList.Contains(gl_VertexID)) { continue; }
                 else { gl_VertexIDList.Add(gl_VertexID); }
 
@@ -43,7 +42,7 @@ namespace SoftGL
                 instance.gl_VertexID = (int)gl_VertexID; // setup gl_VertexID.
                 // setup "in SomeType varName;" vertex attributes.
                 Dictionary<uint, VertexAttribDesc> locVertexAttribDict = vao.LocVertexAttribDict;
-                foreach (InVariable inVar in vs.inVariableDict.Values) // Dictionary<string, InVariable>.Values
+                foreach (var inVar in vs.inVariableDict.Values) // Dictionary<string, InVariable>.Values
                 {
                     VertexAttribDesc desc = null;
                     if (locVertexAttribDict.TryGetValue(inVar.location, out desc))
@@ -61,11 +60,11 @@ namespace SoftGL
                 // copy data to pass-buffer.
                 for (int i = 0; i < passBuffers.Length; i++)
                 {
-                    var outField = outFieldInfos[i];
-                    var obj = outField.GetValue(instance);
+                    var outVar = outVariables[i];
+                    var obj = outVar.GetValue(instance);
                     byte[] bytes = obj.ToBytes();
                     PassBuffer passBuffer = passBuffers[i];
-                    var array = (byte*)passBuffer.AddrOfPinnedObject();
+                    byte* array = (byte*)passBuffer.AddrOfPinnedObject();
                     for (int t = 0; t < bytes.Length; t++)
                     {
                         array[gl_VertexID * vertexSize + t] = bytes[t];
@@ -87,41 +86,53 @@ namespace SoftGL
         /// </summary>
         /// <param name="vao"></param>
         /// <returns></returns>
-        private int GetVertexSize(FieldInfo[] outVariables)
+        private uint GetVertexSize(FieldInfo[] outVariables)
         {
-            int result = 0;
+            uint result = 0;
             if (outVariables == null || outVariables.Length == 0) { return result; }
 
             foreach (var item in outVariables)
             {
-                int size = item.FieldType.GetPassType().ByteSize();
+                uint size = item.FieldType.ByteSize();
                 result += size;
             }
 
             return result;
         }
 
-        private unsafe uint GetVertexID(IntPtr pointer, DrawElementsType type, int indexID)
+        private unsafe uint GetVertexID(IntPtr pointer, DrawElementsType type, int byteLength, int indexID)
         {
             uint gl_VertexID = uint.MaxValue;
             switch (type)
             {
                 case DrawElementsType.UnsignedByte:
                     {
-                        byte* array = (byte*)pointer.ToPointer();
-                        gl_VertexID = array[indexID];
+                        int length = byteLength;
+                        if (indexID <= length)
+                        {
+                            byte* array = (byte*)pointer.ToPointer();
+                            gl_VertexID = array[indexID];
+                        }
                     }
                     break;
                 case DrawElementsType.UnsignedShort:
                     {
-                        ushort* array = (ushort*)pointer.ToPointer();
-                        gl_VertexID = array[indexID];
+                        int length = byteLength / 2;
+                        if (indexID <= length)
+                        {
+                            ushort* array = (ushort*)pointer.ToPointer();
+                            gl_VertexID = array[indexID];
+                        }
                     }
                     break;
                 case DrawElementsType.UnsignedInt:
                     {
-                        uint* array = (uint*)pointer.ToPointer();
-                        gl_VertexID = array[indexID];
+                        int length = byteLength / 4;
+                        if (indexID <= length)
+                        {
+                            uint* array = (uint*)pointer.ToPointer();
+                            gl_VertexID = array[indexID];
+                        }
                     }
                     break;
                 default:
