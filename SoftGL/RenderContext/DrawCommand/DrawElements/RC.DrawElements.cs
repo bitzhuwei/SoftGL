@@ -32,9 +32,7 @@ namespace SoftGL
 
             // execute vertex shader for each vertex!
             // This is a low effetient implementation.
-            // passBuffers is input for the next stage: linear interpolation.
-            // passBuffers[0] is gl_Position.
-            // passBuffers[others] are attributes of vertexes.
+            // vsOutput is input for the next stage: linear interpolation.
             PassBuffer[] passBuffers = VertexShaderStage(mode, count, type, indices, vao, program, indexBuffer);
             if (passBuffers == null) { return; } // this stage failed.
 
@@ -49,8 +47,6 @@ namespace SoftGL
 
         private unsafe void ClipSpace2NormalDeviceSpace(PassBuffer passBuffer)
         {
-            if (passBuffer.elementType != PassType.Vec4) { throw new Exception(String.Format("This pass-buffer must be of vec4 type!")); }
-
             var array = (vec4*)passBuffer.Mapbuffer();
             int length = passBuffer.Length();
             for (int i = 0; i < length; i++)
