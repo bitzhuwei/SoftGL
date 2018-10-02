@@ -84,7 +84,50 @@ namespace SoftGL.Windows
                 GetHighestVersion(out major, out minor);
                 if ((major > 2) || (major == 2 && minor > 1))
                 {
+
+                    int[] attribList = new int[]
+                    {
+                        //SoftGL.WGL_SUPPORT_OPENGL_ARB,   (int)GL.GL_TRUE,
+                        //SoftGL.WGL_DRAW_TO_WINDOW_ARB,   (int)GL.GL_TRUE,
+                        //SoftGL.WGL_DOUBLE_BUFFER_ARB,    (int)GL.GL_TRUE,
+                        //SoftGL.WGL_ACCELERATION_ARB,     SoftGL.WGL_FULL_ACCELERATION_ARB,
+                        //SoftGL.WGL_PIXEL_TYPE_ARB,       SoftGL.WGL_TYPE_RGBA_ARB,
+                        //SoftGL.WGL_COLOR_BITS_ARB,       parameters.ColorBits,
+                        //SoftGL.WGL_ACCUM_BITS_ARB,       parameters.AccumBits,
+                        //SoftGL.WGL_ACCUM_RED_BITS_ARB,   parameters.AccumRedBits,
+                        //SoftGL.WGL_ACCUM_GREEN_BITS_ARB, parameters.AccumGreenBits,
+                        //SoftGL.WGL_ACCUM_BLUE_BITS_ARB,  parameters.AccumBlueBits,
+                        //SoftGL.WGL_ACCUM_ALPHA_BITS_ARB, parameters.AccumAlphaBits,
+                        //SoftGL.WGL_DEPTH_BITS_ARB,       parameters.DepthBits,
+                        //SoftGL.WGL_STENCIL_BITS_ARB,     parameters.StencilBits,
+                        0,        //End
+                    };
+
                     IntPtr dc = this.DeviceContextHandle;
+                    //	Match an appropriate pixel format
+                    int[] pixelFormat = new int[1];
+                    uint[] numFormats = new uint[1];
+                    if (false == wglChoosePixelFormatARB(dc, attribList, null, 1, pixelFormat, numFormats))
+                    { return false; }
+                    //	Sets the pixel format
+                    //if (false == Win32.SetPixelFormat(dc, pixelFormat[0], new PixelFormatDescriptor()))
+                    //{
+                    //    return false;
+                    //}
+
+                    int[] attributes =
+                    {
+                        //SoftGL.WGL_CONTEXT_MAJOR_VERSION_ARB, 
+                        //major,
+                        //SoftGL.WGL_CONTEXT_MINOR_VERSION_ARB, 
+                        //minor,
+                        //SoftGL.WGL_CONTEXT_PROFILE_MASK_ARB,  
+                        //SoftGL.WGL_CONTEXT_COMPATIBILITY_PROFILE_BIT_ARB,
+//#if DEBUG
+//                        GL.WGL_CONTEXT_FLAGS, GL.WGL_CONTEXT_DEBUG_BIT,// this is a debug context
+//#endif
+                        0
+                    };
                     var paramNames = new string[0]; var paramValues = new uint[0];
                     IntPtr hrc = SoftOpengl32.StaticCalls.CreateContext(dc, width, height, paramNames, paramValues);
                     SoftOpengl32.StaticCalls.MakeCurrent(IntPtr.Zero, IntPtr.Zero);
