@@ -17,7 +17,6 @@ namespace SoftGL
 
         private VertexArrayObject currentVertexArrayObject;
 
-
         public static void glGenVertexArrays(int count, uint[] names)
         {
             SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
@@ -103,6 +102,5 @@ namespace SoftGL
                 if (nameVertexArrayDict.ContainsKey(name)) { nameVertexArrayDict.Remove(name); }
             }
         }
-
     }
 }

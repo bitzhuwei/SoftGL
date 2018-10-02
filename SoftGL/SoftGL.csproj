@@ -118,9 +118,6 @@
     <Compile Include="RenderContext\GLBuffer\RC.GLBuffer.cs" />
     <Compile Include="GLObjects\ShaderProgram\ShaderProgram.Link.cs" />
     <Compile Include="RenderContext\ShaderProgram\RC.ShaderProgram.Uniform.cs" />
-    <Compile Include="RenderContext\VertexArrayObject\RC.VertexAttribLPointer.cs" />
-    <Compile Include="RenderContext\VertexArrayObject\RC.VertexAttribIPointer.cs" />
-    <Compile Include="RenderContext\VertexArrayObject\RC.VertexAttribPointer.cs" />
     <Compile Include="RenderContext\VertexArrayObject\RC.VertexArrayObject.cs" />
     <None Include="GLObjects\readme.md" />
     <None Include="readme.md" />
