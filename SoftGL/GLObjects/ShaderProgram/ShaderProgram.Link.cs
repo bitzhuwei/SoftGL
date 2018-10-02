@@ -14,31 +14,28 @@ namespace SoftGL
             set { logInfo = value; }
         }
 
-        private Dictionary<string, UniformVariable> uniformDict = new Dictionary<string, UniformVariable>();
-
         /// <summary>
         /// from Shader to exe.
         /// </summary>
         public void Link()
         {
             if (!FindTypedShaders()) { return; }
-            if (!FindUniforms(this.uniformDict)) { return; }
+            if (!FindUniforms()) { return; }
             // TODO: do something else.
         }
 
-        private bool FindUniforms(Dictionary<string, UniformVariable> dict)
+        private bool FindUniforms()
         {
-            dict.Clear();
-            uint nextLoc = 0;
+            Dictionary<string, UniformVariable> uniformDict = new Dictionary<string, UniformVariable>();
             foreach (var shader in this.attachedShaders)
             {
                 foreach (var item in shader.UniformVariableDict)
                 {
                     string varName = item.Key;
                     UniformVariable v = item.Value;
-                    if (dict.ContainsKey(varName))
+                    if (uniformDict.ContainsKey(varName))
                     {
-                        if (v.field.FieldType != dict[varName].field.FieldType)
+                        if (v.field.FieldType != uniformDict[varName].field.FieldType)
                         {
                             this.logInfo = string.Format("Different uniform variable types of the same name[{0}!]", varName);
                             return false;
@@ -46,8 +43,7 @@ namespace SoftGL
                     }
                     else
                     {
-                        v.location = nextLoc++; // TODO: more location slots for matrix types(mat2, mat3, mat4).
-                        dict.Add(varName, v);
+                        uniformDict.Add(varName, v);
                     }
                 }
             }

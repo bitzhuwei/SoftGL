@@ -98,6 +98,18 @@ namespace SoftGL
                 if (inAttribute != null && inAttribute.Length > 0) // this is a 'in ...;' field.
                 {
                     var v = new UniformVariable(item);
+                    object[] locationAttribute = item.GetCustomAttributes(typeof(LocationAttribute), false);
+                    if (locationAttribute != null && locationAttribute.Length > 0) // (location = ..) in ...;
+                    {
+                        uint loc = (locationAttribute[0] as LocationAttribute).location;
+                        if (loc < nextLoc) { return string.Format("location error in {0}!", this.GetType().Name); }
+                        v.location = loc;
+                        nextLoc = loc + 1;
+                    }
+                    else
+                    {
+                        v.location = nextLoc++;
+                    }
                     dict.Add(item.Name, v);
                 }
             }
