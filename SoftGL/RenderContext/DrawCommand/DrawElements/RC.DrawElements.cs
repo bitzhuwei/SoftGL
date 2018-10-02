@@ -35,7 +35,7 @@ namespace SoftGL
             // passBuffers is input for the next stage: linear interpolation.
             // passBuffers[0] is gl_Position.
             // passBuffers[others] are attributes of vertexes.
-            PassBuffer[] passBuffers = VertexShaderStage(count, type, indices, vao, program, indexBuffer);
+            PassBuffer[] passBuffers = VertexShaderStage(mode, count, type, indices, vao, program, indexBuffer);
             if (passBuffers == null) { return; } // this stage failed.
 
             ClipSpace2NormalDeviceSpace(passBuffers[0]);

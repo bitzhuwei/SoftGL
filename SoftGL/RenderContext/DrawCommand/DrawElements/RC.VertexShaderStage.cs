@@ -8,7 +8,7 @@ namespace SoftGL
 {
     partial class SoftGLRenderContext
     {
-        private unsafe PassBuffer[] VertexShaderStage(int count, DrawElementsType type, IntPtr indices, VertexArrayObject vao, ShaderProgram program, GLBuffer indexBuffer)
+        private unsafe PassBuffer[] VertexShaderStage(DrawTarget mode, int count, DrawElementsType type, IntPtr indices, VertexArrayObject vao, ShaderProgram program, GLBuffer indexBuffer)
         {
             PassBuffer[] passBuffers = null;
             VertexShader vs = program.VertexShader; if (vs == null) { return passBuffers; }
