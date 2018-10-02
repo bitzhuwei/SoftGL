@@ -36,7 +36,7 @@ namespace SoftGL
             return string.Empty;
         }
 
-        public override InnerShaderCode PostProcess()
+        public override InnerVertexShaderCode PostProcess()
         {
             string innerCode = GetInnerCode();
             throw new NotImplementedException();
@@ -47,10 +47,10 @@ namespace SoftGL
             var builder = new StringBuilder();
             int tabCount = 0;
             builder.PrintLine(string.Format("namespace SoftGL"), tabCount);
-            builder.PrintLine("{", tabCount); tabCount++;
+            builder.PrintLine(string.Format("{"), tabCount); tabCount++;
             {
                 builder.PrintLine(string.Format("unsafe class InnerVert : InnerVertexShaderCode"), tabCount);
-                builder.PrintLine("{", tabCount); tabCount++;
+                builder.PrintLine(string.Format("{"), tabCount); tabCount++;
                 {
                     // GLSL: in vec3 inPosition;
                     // [In] vec3 inPosition { get { return ((vec3*)(vboData[gl_VertexID * vertexByteLength + 0]))[0]; } }
@@ -61,7 +61,7 @@ namespace SoftGL
                         InVariable inVar = inVars[i];
                         string typeName = inVar.field.FieldType.Name;
                         string varName = inVar.field.Name;
-                        builder.PrintLine(string.Format("[In] {0} {1} {{ get {{ return (({0}*)(vboData[gl_VertexID * vertexByteLength + {2}]))[0]; }} }}", typeName, varName, offset), tabCount);
+                        builder.PrintLine(string.Format("[In] {0} {1} { get { return (({0}*)(vboData[gl_VertexID * vertexByteLength + {2}]))[0]; } }", typeName, varName, offset), tabCount);
                         offset += inVar.field.FieldType.ByteSize();
                     }
                 }
@@ -75,7 +75,7 @@ namespace SoftGL
                         UniformVariable uniform = uniforms[i];
                         string typeName = uniform.field.FieldType.Name;
                         string varName = uniform.field.Name;
-                        builder.PrintLine(string.Format("[Uniform] {0} {1} {{ get {{ return (({0} *)uniformData[{2}])[0]; }} }}", typeName, varName, offset), tabCount);
+                        builder.PrintLine(string.Format("[Uniform] {0} {1} { get { return (({0} *)uniformData[{2}])[0]; } }", typeName, varName), tabCount);
                         offset += uniform.field.FieldType.ByteSize();
                     }
                 }
@@ -96,26 +96,23 @@ namespace SoftGL
                         builder.PrintLine(string.Format("[Out] {0} {1}", typeName, varName), tabCount);
                         builder.PrintLine("{", tabCount); tabCount++;
                         {
-                            builder.PrintLine(string.Format("get {{ return (({0}*)(vsOutput[gl_VertexID * vsOutByteLength + {1}]))[0]; }}", typeName, offset), tabCount);
-                            builder.PrintLine(string.Format("set {{ (({0}*)(vsOutput[gl_VertexID * vsOutByteLength + {1}]))[0] = value; }}", typeName, offset), tabCount);
+                            builder.PrintLine(string.Format("get { return (({0}*)(vsOutput[gl_VertexID * vsOutByteLength + {1}]))[0]; }", typeName, offset), tabCount);
+                            builder.PrintLine(string.Format("set { (({0}*)(vsOutput[gl_VertexID * vsOutByteLength + {1}]))[0] = value; }", typeName, offset), tabCount);
                         }
                         tabCount--; builder.PrintLine("}", tabCount);
                         offset += outVar.field.FieldType.ByteSize();
                     }
                 }
                 {
-                    // GLSL: void main() { .. }
-                    // public override void main() { .. }
-                    string sign = "public override void main()";
-                    int index = this.Code.IndexOf(sign);
-                    int index2 = this.Code.IndexOf(sign, index + sign.Length);
-                    if (index2 > 0) { }
-                }
-                tabCount--; builder.PrintLine("}", tabCount);
-            }
-            tabCount--; builder.PrintLine("}", tabCount);
+                    // GLSL: void main()
+                    // public override void main() ...
+                    int index = this.Code.IndexOf("public override void main()");
 
-            return builder.ToString();
+                }
+                tabCount--; builder.PrintLine(string.Format("}"), tabCount);
+            }
+            tabCount--; builder.PrintLine(string.Format("}"), tabCount);
+            throw new NotImplementedException();
         }
     }
 }

@@ -67,7 +67,7 @@ namespace SoftGL
         }
 
 
-        public override InnerShaderCode PostProcess()
+        public override InnerVertexShaderCode PostProcess()
         {
             throw new NotImplementedException();
         }

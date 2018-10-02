@@ -35,11 +35,8 @@ namespace SoftGL
         private bool GetInnerShaderCodes()
         {
             var vs = this.VertexShader;
-            if (vs != null) { this.InnerVertexShaderCode = vs.PostProcess() as InnerVertexShaderCode; }
-            var fs = this.FragmentShader;
-            if (fs != null) { this.InnerFragmentShaderCode = fs.PostProcess() as InnerFragmentShaderCode; }
-
-            return true;
+            if (vs != null) { this.InnerVertexShaderCode = vs.PostProcess(); }
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -48,42 +45,7 @@ namespace SoftGL
         /// <returns></returns>
         private bool MakeSureVariablesMatch()
         {
-            if (this.VertexShader != null && this.FragmentShader != null)
-            {
-                Dictionary<string, OutVariable> outDict = this.VertexShader.outVariableDict;
-                Dictionary<string, InVariable> inDict = this.FragmentShader.inVariableDict;
-                if (outDict.Count != inDict.Count) { this.logInfo = string.Format("Variables number ({0} and {1}) not match!", outDict.Count, inDict.Count); return false; }
-                foreach (var outItem in outDict)
-                {
-                    InVariable inVar = null;
-                    if (inDict.TryGetValue(outItem.Key, out inVar))
-                    {
-                        if (inVar.field.FieldType != outItem.Value.field.FieldType)
-                        {
-                            this.logInfo = string.Format("Variable [{0}] not the same type!", outItem.Key);
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        this.logInfo = string.Format("No variable matches [{0}] in {1}", outItem.Key, this.VertexShader.ShaderType);
-                        return false;
-                    }
-                }
-                var list = new List<InVariable>();
-                foreach (var outItem in outDict)
-                {
-                    var inVar = inDict[outItem.Key];
-                    list.Add(inVar);
-                }
-                inDict.Clear();
-                foreach (var item in list)
-                {
-                    inDict.Add(item.field.Name, item);
-                }
-            }
-
-            return true;
+            throw new NotImplementedException();
         }
 
         private bool FindUniforms(Dictionary<string, UniformVariable> nameUniformDict, Dictionary<int, UniformVariable> locationUniformDict)
@@ -126,9 +88,6 @@ namespace SoftGL
             if (type == typeof(float)) { size = sizeof(float); }
             else if (type == typeof(int)) { size = sizeof(int); }
             else if (type == typeof(uint)) { size = sizeof(uint); }
-            else if (type == typeof(mat2)) { size = sizeof(float) * 4; }
-            else if (type == typeof(mat3)) { size = sizeof(float) * 9; }
-            else if (type == typeof(mat4)) { size = sizeof(float) * 16; }
             else if (type.IsArray)
             {
                 Type elementType = type.GetElementType();

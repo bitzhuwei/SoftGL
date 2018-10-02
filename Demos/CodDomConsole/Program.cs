@@ -15,6 +15,9 @@ namespace CodDomConsole
         }
 
         const string vertexCode = @"using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace SoftGL
 {
@@ -39,6 +42,9 @@ namespace SoftGL
 ";
 
         const string fragmentCode = @"using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace SoftGL
 {

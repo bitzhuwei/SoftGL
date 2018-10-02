@@ -75,9 +75,8 @@ namespace SoftGL
         {
             var codeProvider = new CSharpCodeProvider();
             var compParameters = new CompilerParameters();
-            //compParameters.ReferencedAssemblies.Add("system.core.dll");
+            compParameters.ReferencedAssemblies.Add("System.Linq.dll");
             compParameters.ReferencedAssemblies.Add("SoftGL.dll");
-            compParameters.ReferencedAssemblies.Add("SoftGL.ShadingLanguage.dll");
             CompilerResults res = codeProvider.CompileAssemblyFromSource(compParameters, this.Code);
             if (res.Errors.Count > 0) { this.infoLog = DumpLog(res); return; }
             Type codeType = this.FindShaderCodeType(res.CompiledAssembly, this.ShaderType.GetShaderCodeType());
@@ -91,7 +90,7 @@ namespace SoftGL
             this.infoLog = this.AfterCompile();
         }
 
-        public abstract InnerShaderCode PostProcess();
+        public abstract InnerVertexShaderCode PostProcess();
 
         /// <summary>
         /// Creates an instance of executable shader code.
