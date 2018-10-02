@@ -33,23 +33,19 @@ namespace ControlAndHandle
                 GetCursorPos(out p);
                 IntPtr handle = WindowFromPoint(p);
                 builder.AppendLine(string.Format("WindowFromPoint({0}) => {1}", p, handle));
-                builder.AppendLine(string.Format("{0}.Handle({1})", this.GetType().Name, this.Handle));
-                builder.AppendLine(string.Format("FromHandle({0}) => {1}", this.Handle, Control.FromHandle(this.Handle).GetType().Name));
+                builder.AppendLine(string.Format("{0}.Handle({1})", this, this.Handle));
             }
-            builder.AppendLine("--------");
             foreach (var item in this.Controls)
             {
                 var control = item as Control;
                 if (control != null)
                 {
-                    builder.AppendLine(string.Format("{0}.Handle({1})", control.GetType().Name, control.Handle));
-                    builder.AppendLine(string.Format("FromHandle({0}) => {1}", control.Handle, Control.FromHandle(control.Handle).GetType().Name));
+                    builder.AppendLine(string.Format("{0}.Handle({1})", control, control.Handle));
                 }
                 else
                 {
                     builder.AppendLine(string.Format("{0}", item));
                 }
-                builder.AppendLine("--------");
             }
 
             string result = builder.ToString();

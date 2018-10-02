@@ -41,31 +41,26 @@
             // 
             // textBox1
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.Font = new System.Drawing.Font("宋体", 16F);
             this.textBox1.Location = new System.Drawing.Point(12, 12);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(1017, 265);
+            this.textBox1.Size = new System.Drawing.Size(543, 265);
             this.textBox1.TabIndex = 0;
             // 
             // demoUserControl1
             // 
-            this.demoUserControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.demoUserControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.demoUserControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.demoUserControl1.Location = new System.Drawing.Point(12, 283);
+            this.demoUserControl1.Location = new System.Drawing.Point(405, 230);
             this.demoUserControl1.Name = "demoUserControl1";
-            this.demoUserControl1.Size = new System.Drawing.Size(315, 250);
+            this.demoUserControl1.Size = new System.Drawing.Size(150, 150);
             this.demoUserControl1.TabIndex = 1;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1041, 545);
+            this.ClientSize = new System.Drawing.Size(567, 392);
             this.Controls.Add(this.demoUserControl1);
             this.Controls.Add(this.textBox1);
             this.Name = "Form1";
