@@ -53,30 +53,29 @@ namespace SoftGL
 
         private void ActiveTexture(uint textureUnit)
         {
-            if (textureUnit < GL.GL_TEXTURE0
-                || GL.GL_TEXTURE0 + maxTextureImageUnits <= textureUnit)
-            { SetLastError(ErrorCode.InvalidEnum); return; }
+            if (textureUnit < GL.GL_TEXTURE0) { SetLastError(ErrorCode.InvalidEnum); return; }
+            if (GL.GL_TEXTURE0 + maxTextureImageUnits <= textureUnit) { SetLastError(ErrorCode.InvalidEnum); return; }
 
             this.currentTextureUnitIndex = textureUnit - GL.GL_TEXTURE0;
         }
 
-        public static void glBindTexture(uint target, uint name)
+        public static void glBindTexture(BindTextureTarget target, uint name)
         {
             SoftGLRenderContext context = ContextManager.GetCurrentContextObj();
             if (context != null)
             {
-                context.BindTexture((BindTextureTarget)target, name);
+                context.BindTexture(target, name);
             }
         }
 
         private void BindTexture(BindTextureTarget target, uint name)
         {
-            if (!Enum.IsDefined(typeof(BindTextureTarget), target)) { SetLastError(ErrorCode.InvalidEnum); return; }
-            if ((name != 0) && (!this.textureNameList.Contains(name))) { SetLastError(ErrorCode.InvalidValue); return; }
+            if (target == 0) { SetLastError(ErrorCode.InvalidEnum); return; }
+            if ((name != 0) && (!this.textureNameList.Contains(name))) { SetLastError(ErrorCode.InvalidOperation); return; }
             Texture texture = null;
             if (name != 0)
             {
-                Dictionary<uint, Texture> dict = this.nameTextureDict;
+                Dictionary<uint, Texture> dict = nameTextureDict;
                 if (dict.TryGetValue(name, out texture))
                 {
                     if (texture.Target != target) { SetLastError(ErrorCode.InvalidOperation); return; }
@@ -124,11 +123,8 @@ namespace SoftGL
             for (int i = 0; i < count; i++)
             {
                 uint name = names[i];
-                if (name > 0)
-                {
-                    if (textureNameList.Contains(name)) { textureNameList.Remove(name); }
-                    if (nameTextureDict.ContainsKey(name)) { nameTextureDict.Remove(name); }
-                }
+                if (textureNameList.Contains(name)) { textureNameList.Remove(name); }
+                if (nameTextureDict.ContainsKey(name)) { nameTextureDict.Remove(name); }
             }
         }
     }

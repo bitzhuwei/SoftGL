@@ -22,7 +22,7 @@ namespace SoftGL
 
         private uint CheckFramebufferStatus(BindFramebufferTarget target)
         {
-            if (!Enum.IsDefined(typeof(BindFramebufferTarget), target)) { SetLastError(ErrorCode.InvalidEnum); return 0; }
+            if (target == 0) { SetLastError(ErrorCode.InvalidEnum); return 0; }
 
             // TODO: check this framebuffer.
 

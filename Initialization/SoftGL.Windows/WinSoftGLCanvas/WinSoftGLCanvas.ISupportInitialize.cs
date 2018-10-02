@@ -42,6 +42,7 @@ namespace SoftGL.Windows
                 if (this.designMode)
                 {
                     parameters = new ContextGenerationParams();
+                    parameters.UpdateContextVersion = false;
                 }
                 else
                 {
@@ -58,9 +59,8 @@ namespace SoftGL.Windows
                 GL.Instance.DepthFunc(GL.GL_LEQUAL);
                 GL.Instance.Hint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Log.Write(ex);
             }
         }
 

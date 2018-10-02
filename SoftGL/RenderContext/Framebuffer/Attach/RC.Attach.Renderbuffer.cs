@@ -19,7 +19,7 @@ namespace SoftGL
 
         private void FramebufferRenderbuffer(BindFramebufferTarget target, uint attachmentPoint, uint renderbufferTarget, uint renderbufferName)
         {
-            if (!Enum.IsDefined(typeof(BindFramebufferTarget), target)) { SetLastError(ErrorCode.InvalidEnum); return; }
+            if (target == 0) { SetLastError(ErrorCode.InvalidEnum); return; }
             if (renderbufferTarget != GL.GL_RENDERBUFFER) { SetLastError(ErrorCode.InvalidEnum); return; }
             // TODO: GL_INVALID_OPERATION is generated if zero is bound to target.
             Dictionary<uint, Renderbuffer> dict = this.nameRenderbufferDict;

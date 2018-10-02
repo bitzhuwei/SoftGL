@@ -52,7 +52,7 @@ namespace SoftGL
 
         private void BindFramebuffer(BindFramebufferTarget target, uint name)
         {
-            if (!Enum.IsDefined(typeof(BindFramebufferTarget), target)) { SetLastError(ErrorCode.InvalidEnum); return; }
+            if (target == 0) { SetLastError(ErrorCode.InvalidEnum); return; }
             if ((name != 0) && (!this.framebufferNameList.Contains(name))) { SetLastError(ErrorCode.InvalidOperation); return; }
 
             Dictionary<uint, Framebuffer> dict = this.nameFramebufferDict;

@@ -19,8 +19,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OS", "OS", "{507849A4-61CF-
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftOpengl32", "OS\SoftOpengl32\SoftOpengl32.csproj", "{99434AFF-95F3-4C32-B0FF-6383A2FAAFBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftGL.ShadingLanguage", "SoftGL.ShadingLanguage\SoftGL.ShadingLanguage.csproj", "{C297B6A5-BC67-416B-8728-FE0BE0184F3A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,10 +45,6 @@ Global
 		{99434AFF-95F3-4C32-B0FF-6383A2FAAFBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99434AFF-95F3-4C32-B0FF-6383A2FAAFBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99434AFF-95F3-4C32-B0FF-6383A2FAAFBF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C297B6A5-BC67-416B-8728-FE0BE0184F3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C297B6A5-BC67-416B-8728-FE0BE0184F3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C297B6A5-BC67-416B-8728-FE0BE0184F3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C297B6A5-BC67-416B-8728-FE0BE0184F3A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

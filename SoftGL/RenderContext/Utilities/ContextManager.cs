@@ -53,16 +53,17 @@ namespace SoftGL
             }
             else // change current render context to current thread.
             {
-                SoftGLRenderContext context = GetContextObj(renderContext);
-                if (context != null)
+                Thread thread = Thread.CurrentThread;
+                SoftGLRenderContext oldContext = null;
+                threadContextDict.TryGetValue(thread, out oldContext);
+                SoftGLRenderContext context = null;
+                if (SoftGLRenderContext.handleContextDict.TryGetValue(renderContext, out context))
                 {
-                    SoftGLRenderContext oldContext = GetCurrentContextObj();
                     if (oldContext != context)
                     {
-                        Thread thread = Thread.CurrentThread;
                         if (oldContext != null) { threadContextDict.Remove(thread); }
-                        threadContextDict.Add(thread, context);
                         context.DeviceContextHandle = deviceContext;
+                        threadContextDict.Add(thread, context);
                     }
                 }
                 else
@@ -101,22 +102,6 @@ namespace SoftGL
             SoftGLRenderContext context = null;
             Thread thread = Thread.CurrentThread;
             if (!threadContextDict.TryGetValue(thread, out context))
-            {
-                context = null;
-            }
-
-            return context;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="handle"></param>
-        /// <returns></returns>
-        public static SoftGLRenderContext GetContextObj(IntPtr handle)
-        {
-            SoftGLRenderContext context = null;
-            if (!SoftGLRenderContext.handleContextDict.TryGetValue(handle, out context))
             {
                 context = null;
             }

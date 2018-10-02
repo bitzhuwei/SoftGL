@@ -26,14 +26,14 @@ namespace SoftGL
 
         private uint CreateShader(ShaderType shaderType)
         {
-            if (!Enum.IsDefined(typeof(ShaderType), shaderType)) { SetLastError(ErrorCode.InvalidEnum); return 0; }
+            if (shaderType == 0) { SetLastError(ErrorCode.InvalidEnum); return 0; }
 
-            uint id = nextShaderName;
-            Shader shader = Shader.Create(shaderType, id);
-            this.nameShaderDict.Add(id, shader);
+            uint name = nextShaderName;
+            var shader = new Shader(shaderType, name);
+            this.nameShaderDict.Add(name, shader);
             nextShaderName++;
 
-            return id;
+            return name;
         }
 
         public static void glShaderSource(uint name, int count, string[] codes, int[] lengths)
@@ -92,11 +92,21 @@ namespace SoftGL
         {
             if (name == 0) { SetLastError(ErrorCode.InvalidValue); return; }
             if (!this.nameShaderDict.ContainsKey(name)) { SetLastError(ErrorCode.InvalidOperation); return; }
-            if (!Enum.IsDefined(typeof(ShaderStatus), pname)) { SetLastError(ErrorCode.InvalidEnum); return; }
+            if (pname == 0) { SetLastError(ErrorCode.InvalidEnum); return; }
 
             Shader shader = this.nameShaderDict[name];
             shader.GetShaderStatus(pname, pValues);
         }
+    }
+
+    enum ShaderType : uint
+    {
+        VertexShader = GL.GL_VERTEX_SHADER,
+        TessControlShader = GL.GL_TESS_CONTROL_SHADER,
+        TessEvaluationShader = GL.GL_TESS_EVALUATION_SHADER,
+        GeometryShader = GL.GL_GEOMETRY_SHADER,
+        FragmentShader = GL.GL_FRAGMENT_SHADER,
+        ComputeShader = GL.GL_COMPUTE_SHADER
     }
 
     enum ShaderStatus : uint

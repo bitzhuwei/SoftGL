@@ -275,16 +275,6 @@ namespace SoftGL
         public const uint GL_LINK_STATUS = 0x8B82;
 
         /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_PROGRAM_BINARY_LENGTH = 0x8741;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public const uint GL_ACTIVE_ATOMIC_COUNTER_BUFFERS = 0x92D9;
-
-        /// <summary>
         ///
         /// </summary>
         public const uint GL_VALIDATE_STATUS = 0x8B83;

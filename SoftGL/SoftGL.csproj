@@ -41,6 +41,32 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasicDataStructures\FullDictionary.cs" />
+    <Compile Include="BasicDataStructures\GLSL\bvec2.cs" />
+    <Compile Include="BasicDataStructures\GLSL\bvec3.cs" />
+    <Compile Include="BasicDataStructures\GLSL\bvec4.cs" />
+    <Compile Include="BasicDataStructures\GLSL\dvec2.cs" />
+    <Compile Include="BasicDataStructures\GLSL\dvec3.cs" />
+    <Compile Include="BasicDataStructures\GLSL\dvec4.cs" />
+    <Compile Include="BasicDataStructures\GLSL\glm_camera.cs" />
+    <Compile Include="BasicDataStructures\GLSL\glm_inverse.cs" />
+    <Compile Include="BasicDataStructures\GLSL\glm_trigonometric.cs" />
+    <Compile Include="BasicDataStructures\GLSL\glm_unorm4x8.cs" />
+    <Compile Include="BasicDataStructures\GLSL\ivec2.cs" />
+    <Compile Include="BasicDataStructures\GLSL\ivec3.cs" />
+    <Compile Include="BasicDataStructures\GLSL\ivec4.cs" />
+    <Compile Include="BasicDataStructures\GLSL\mat2.cs" />
+    <Compile Include="BasicDataStructures\GLSL\mat3.cs" />
+    <Compile Include="BasicDataStructures\GLSL\mat4.cs" />
+    <Compile Include="BasicDataStructures\GLSL\MatrixHelper.cs" />
+    <Compile Include="BasicDataStructures\GLSL\ModelMatrixHelper.cs" />
+    <Compile Include="BasicDataStructures\GLSL\Quaternion.cs" />
+    <Compile Include="BasicDataStructures\GLSL\uvec2.cs" />
+    <Compile Include="BasicDataStructures\GLSL\uvec3.cs" />
+    <Compile Include="BasicDataStructures\GLSL\uvec4.cs" />
+    <Compile Include="BasicDataStructures\GLSL\vec2.cs" />
+    <Compile Include="BasicDataStructures\GLSL\vec3.cs" />
+    <Compile Include="BasicDataStructures\GLSL\vec4.cs" />
+    <Compile Include="BasicDataStructures\GLSL\VectorHelper.cs" />
     <Compile Include="BasicDataStructures\IBoundingBox\BoundingBox.cs" />
     <Compile Include="BasicDataStructures\IBoundingBox\IBoundingBox.cs" />
     <Compile Include="BasicDataStructures\IBoundingBox\IBoundingBoxHelper.cs" />
@@ -61,59 +87,6 @@
     <Compile Include="BasicDataStructures\Utilities\PositionHelper.cs" />
     <Compile Include="BasicDataStructures\Utilities\StructHelper.cs" />
     <Compile Include="BasicDataStructures\Viewport.cs" />
-    <Compile Include="GLObjects\GLBuffers\GLBuffer.cs" />
-    <Compile Include="GLObjects\Image.cs" />
-    <Compile Include="GLObjects\ShaderProgram\ComputeShader.cs" />
-    <Compile Include="GLObjects\ShaderProgram\OutVariable.cs" />
-    <Compile Include="GLObjects\ShaderProgram\PassBuffer.cs" />
-    <Compile Include="GLObjects\ShaderProgram\PipelineShader.cs" />
-    <Compile Include="GLObjects\ShaderProgram\ShaderProgram.Uniform.cs" />
-    <Compile Include="GLObjects\ShaderProgram\ShaderType.cs" />
-    <Compile Include="GLObjects\ShaderProgram\UniformVariable.cs" />
-    <Compile Include="GLObjects\ShaderProgram\InVariable.cs" />
-    <Compile Include="GLObjects\ShaderProgram\TessEvaluationShader.cs" />
-    <Compile Include="GLObjects\ShaderProgram\TessControlShader.cs" />
-    <Compile Include="GLObjects\ShaderProgram\GeometryShader.cs" />
-    <Compile Include="GLObjects\ShaderProgram\FragmentShader.cs" />
-    <Compile Include="GLObjects\ShaderProgram\VertexShader.cs" />
-    <Compile Include="GLObjects\Utilities\SpaceHelper.cs" />
-    <Compile Include="GLObjects\Utilities\TypeHelper.cs" />
-    <Compile Include="GLObjects\VertexArrayObject\VertexArrayObject.cs" />
-    <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\PixelsAtLine.cs" />
-    <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\RC.LineLoop.cs" />
-    <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\RC.Lines.cs" />
-    <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\RC.Triangles.cs" />
-    <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\RC.TriangleStripAdjacency.cs" />
-    <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\RC.TrianglesAdjacency.cs" />
-    <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\RC.LineStripAdjacency.cs" />
-    <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\RC.LinesAdjacency.cs" />
-    <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\RC.TriangleStrip.cs" />
-    <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\RC.TriangleFan.cs" />
-    <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\RC.Patches.cs" />
-    <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\RC.LineStrip.cs" />
-    <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\RC.Points.cs" />
-    <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\LinearInterpolationInfoGroup.cs" />
-    <Compile Include="RenderContext\DrawCommand\DrawElements\RC.FragmentShaderStage.cs" />
-    <Compile Include="RenderContext\DrawCommand\DrawElements\RC.LinearInterpolation.cs" />
-    <Compile Include="RenderContext\DrawCommand\Fragment.cs" />
-    <Compile Include="RenderContext\DrawCommand\DrawElements\RC.VertexShaderStage.cs" />
-    <Compile Include="RenderContext\DrawCommand\DrawElements\RC.DrawElementsType.cs" />
-    <Compile Include="RenderContext\DrawCommand\RC.DrawTarget.cs" />
-    <Compile Include="RenderContext\DrawCommand\DrawElements\RC.DrawElements.cs" />
-    <Compile Include="RenderContext\Framebuffer\RC.ReadPixels.cs" />
-    <Compile Include="RenderContext\Frustum\RC.DepthRange.cs" />
-    <Compile Include="RenderContext\RC.tmp.cs" />
-    <Compile Include="RenderContext\GLBuffer\RC.BindBufferTarget.cs" />
-    <Compile Include="RenderContext\GLBuffer\RC.InitBufferDict.cs" />
-    <Compile Include="RenderContext\GLBuffer\RC.GLBuffer.BufferData.cs" />
-    <Compile Include="RenderContext\GLBuffer\RC.GLBuffer.cs" />
-    <Compile Include="GLObjects\ShaderProgram\ShaderProgram.Link.cs" />
-    <Compile Include="RenderContext\ShaderProgram\RC.ShaderProgram.Uniform.cs" />
-    <Compile Include="RenderContext\VertexArrayObject\RC.VertexAttribLPointer.cs" />
-    <Compile Include="RenderContext\VertexArrayObject\RC.VertexAttribIPointer.cs" />
-    <Compile Include="RenderContext\VertexArrayObject\RC.VertexAttribPointer.cs" />
-    <Compile Include="RenderContext\VertexArrayObject\RC.VertexArrayObject.cs" />
-    <Compile Include="RenderContext\Frustum\RC.Viewport.cs" />
     <None Include="GLObjects\readme.md" />
     <None Include="readme.md" />
     <Compile Include="GLAPI\GL.BasicAPI.cs" />
@@ -149,7 +122,7 @@
     <Compile Include="GLObjects\Texture\TexParameters\TexParameterf.cs" />
     <Compile Include="GLObjects\Texture\TexParameters\TexParameterfv.cs" />
     <Compile Include="GLObjects\Texture\TexParameters\TexParameteri.cs" />
-    <Compile Include="GLObjects\Texture\Texture.Images.cs" />
+    <Compile Include="GLObjects\Texture\Texture.IAttachable.cs" />
     <Compile Include="GLObjects\Texture\Texture.Parameters.cs" />
     <Compile Include="GLObjects\Texture\Texture.cs" />
     <Compile Include="GLObjects\Texture\Samplers\SamplerObject\Sampler.cs" />
@@ -194,12 +167,7 @@
     <None Include="BasicDataStructures\readme.md" />
     <None Include="GLAPI\readme.md" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SoftGL.ShadingLanguage\SoftGL.ShadingLanguage.csproj">
-      <Project>{c297b6a5-bc67-416b-8728-fe0be0184f3a}</Project>
-      <Name>SoftGL.ShadingLanguage</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

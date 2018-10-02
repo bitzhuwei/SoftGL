@@ -8,7 +8,7 @@ namespace SoftGL
     /// <summary>
     /// glTexParameterf();
     /// </summary>
-    class TexParameterfv : TexParameter
+    public class TexParameterfv : TexParameter
     {
         private float[] pValue;
 
