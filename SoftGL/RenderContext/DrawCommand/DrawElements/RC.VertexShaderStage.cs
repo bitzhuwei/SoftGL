@@ -17,14 +17,10 @@ namespace SoftGL
             FieldInfo[] outFieldInfos = (from item in vs.outVariableDict select item.Value.fieldInfo).ToArray();
             uint vertexCount = GetVertexCount(vao, indexBuffer, type);
             int vertexSize = GetVertexSize(outFieldInfos);
-            passBuffers = new PassBuffer[1 + outFieldInfos.Length];
+            passBuffers = new PassBuffer[outFieldInfos.Length];
+            for (int i = 0; i < passBuffers.Length; i++)
             {
-                // the first pass-buffer stores gl_Position.
-                passBuffers[0] = new PassBuffer(PassType.Vec4, (int)vertexCount);
-            }
-            for (int i = 1; i < passBuffers.Length; i++)
-            {
-                var outField = outFieldInfos[i - 1];
+                var outField = outFieldInfos[i];
                 PassType passType = outField.FieldType.GetPassType();
                 var passBuffer = new PassBuffer(passType, (int)vertexCount);
                 passBuffer.Mapbuffer();
@@ -63,64 +59,17 @@ namespace SoftGL
                 instance.main(); // execute vertex shader code.
 
                 // copy data to pass-buffer.
+                for (int i = 0; i < passBuffers.Length; i++)
                 {
-                    PassBuffer passBuffer = passBuffers[0];
-                    var array = (vec4*)passBuffer.AddrOfPinnedObject();
-                    array[gl_VertexID * vertexSize] = instance.gl_Position;
-                }
-                for (int i = 1; i < passBuffers.Length; i++)
-                {
-                    var outField = outFieldInfos[i - 1];
+                    var outField = outFieldInfos[i];
                     var obj = outField.GetValue(instance);
+                    byte[] bytes = obj.ToBytes();
                     PassBuffer passBuffer = passBuffers[i];
-                    switch (outField.FieldType.GetPassType())
+                    var array = (byte*)passBuffer.AddrOfPinnedObject();
+                    for (int t = 0; t < bytes.Length; t++)
                     {
-                        case PassType.Float:
-                            {
-                                var array = (float*)passBuffer.AddrOfPinnedObject();
-                                array[gl_VertexID * vertexSize] = (float)obj;
-                            } break;
-                        case PassType.Vec2:
-                            {
-                                var array = (vec2*)passBuffer.AddrOfPinnedObject();
-                                array[gl_VertexID * vertexSize] = (vec2)obj;
-                            } break;
-                        case PassType.Vec3:
-                            {
-                                var array = (vec3*)passBuffer.AddrOfPinnedObject();
-                                array[gl_VertexID * vertexSize] = (vec3)obj;
-                            } break;
-                        case PassType.Vec4:
-                            {
-                                var array = (vec4*)passBuffer.AddrOfPinnedObject();
-                                array[gl_VertexID * vertexSize] = (vec4)obj;
-                            } break;
-                        case PassType.Mat2:
-                            {
-                                var array = (mat2*)passBuffer.AddrOfPinnedObject();
-                                array[gl_VertexID * vertexSize] = (mat2)obj;
-                            } break;
-                        case PassType.Mat3:
-                            {
-                                var array = (mat3*)passBuffer.AddrOfPinnedObject();
-                                array[gl_VertexID * vertexSize] = (mat3)obj;
-                            } break;
-                        case PassType.Mat4:
-                            {
-                                var array = (mat4*)passBuffer.AddrOfPinnedObject();
-                                array[gl_VertexID * vertexSize] = (mat4)obj;
-                            } break;
-                        default:
-                            throw new NotImplementedException();
+                        array[gl_VertexID * vertexSize + t] = bytes[t];
                     }
-                    //var obj = outField.GetValue(instance);
-                    //byte[] bytes = obj.ToBytes();
-                    //PassBuffer passBuffer = passBuffers[i];
-                    //var array = (byte*)passBuffer.AddrOfPinnedObject();
-                    //for (int t = 0; t < bytes.Length; t++)
-                    //{
-                    //    array[gl_VertexID * vertexSize + t] = bytes[t];
-                    //}
                 }
             }
             pin.Free();
