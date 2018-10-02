@@ -138,10 +138,4 @@ namespace SoftGL
             }
         }
     }
-
-    enum RenderbufferStorageInternalformat : uint
-    {
-        RGBA = GL.GL_RGBA,
-        DepthComponent = GL.GL_DEPTH_COMPONENT
-    }
 }
