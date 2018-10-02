@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace SoftGL
 {
@@ -57,31 +56,23 @@ namespace SoftGL
             }
             else
             {
-                IList<uint> drawBuffers = framebuffer.DrawBuffers;
-                if (drawBuffers.Count > 0)
-                {
-                    uint index = drawBuffers[0].ToIndex();
-                    attachment = framebuffer.ColorbufferAttachments[index];
-                }
+                attachment = framebuffer.ColorbufferAttachments[framebuffer.DrawBuffers[0]];
             }
             // copy data from attachment to "data".
-            if (attachment != null)
+            byte[] dataStore = attachment.DataStore;
+            int srcBitSize = InternalFormatHelper.BitSize(attachment.Format);
+            int srcElementByteLength = (srcBitSize % 8 == 0) ? srcBitSize / 8 : srcBitSize / 8 + 1; // TODO: any better solution?
+            int srcWidth = attachment.Width, srcHeight = attachment.Height;
+            int dstBitSize = InternalFormatHelper.BitSize((uint)format);
+            int dstElementByteLength = (dstBitSize % 8 == 0) ? dstBitSize / 8 : dstBitSize / 8 + 1; // TODO: any better solution? 
+            var array = (byte*)data.ToPointer();
+            for (int h = 0; h < width; h++)
             {
-                byte[] dataStore = attachment.DataStore;
-                int srcBitSize = InternalFormatHelper.BitSize(attachment.Format);
-                int srcElementByteLength = (srcBitSize % 8 == 0) ? srcBitSize / 8 : srcBitSize / 8 + 1; // TODO: any better solution?
-                int srcWidth = attachment.Width, srcHeight = attachment.Height;
-                int dstBitSize = InternalFormatHelper.BitSize((uint)format);
-                int dstElementByteLength = (dstBitSize % 8 == 0) ? dstBitSize / 8 : dstBitSize / 8 + 1; // TODO: any better solution? 
-                var array = (byte*)data.ToPointer();
-                for (int h = 0; h < width; h++)
+                for (int v = 0; v < height; v++)
                 {
-                    for (int v = 0; v < height; v++)
+                    for (int t = 0; t < dstElementByteLength && t < srcElementByteLength; t++)
                     {
-                        for (int t = 0; t < dstElementByteLength && t < srcElementByteLength; t++)
-                        {
-                            array[(v * width + h) * dstElementByteLength + t] = dataStore[((v + y) * srcWidth + (h + x)) * srcElementByteLength + t];
-                        }
+                        array[(v * width + h) * dstElementByteLength + t] = dataStore[((v + y) * srcWidth + (h + x)) * srcElementByteLength + t];
                     }
                 }
             }

@@ -70,7 +70,6 @@ namespace SoftGL.Windows
 
         public override void Clear(uint mask)
         {
-            SoftOpengl32.StaticCalls.glClear(mask);
             //throw new NotImplementedException();
         }
 
@@ -81,7 +80,7 @@ namespace SoftGL.Windows
 
         public override void ClearColor(float red, float green, float blue, float alpha)
         {
-            SoftOpengl32.StaticCalls.glClearColor(red, green, blue, alpha);
+            //throw new NotImplementedException();
         }
 
         public override void ClearDepth(double depth)
@@ -1262,7 +1261,7 @@ namespace SoftGL.Windows
 
         public override void ReadPixels(int x, int y, int width, int height, uint format, uint type, IntPtr pixels)
         {
-            SoftOpengl32.StaticCalls.glReadPixels(x, y, width, height, format, type, pixels);
+            //throw new NotImplementedException();
         }
 
         public override void Rectd(double x1, double y1, double x2, double y2)

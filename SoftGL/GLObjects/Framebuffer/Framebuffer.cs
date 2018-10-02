@@ -76,19 +76,4 @@ namespace SoftGL
             }
         }
     }
-
-    static class DrawBufferHelper
-    {
-        public static uint ToIndex(this uint drawBuffer)
-        {
-            uint result = 0;
-            if (GL.GL_FRONT_LEFT <= drawBuffer && drawBuffer <= GL.GL_BACK_RIGHT) { result = drawBuffer - GL.GL_FRONT_LEFT; }
-            else if (GL.GL_COLOR_ATTACHMENT0 <= drawBuffer && drawBuffer < GL.GL_COLOR_ATTACHMENT0 + Framebuffer.maxColorAttachments)
-            { result = drawBuffer - GL.GL_COLOR_ATTACHMENT0; }
-            else
-            { throw new ArgumentOutOfRangeException("drawBuffer"); }
-
-            return result;
-        }
-    }
 }
