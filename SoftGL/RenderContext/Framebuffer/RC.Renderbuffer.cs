@@ -130,11 +130,8 @@ namespace SoftGL
             for (int i = 0; i < count; i++)
             {
                 uint name = names[i];
-                if (name > 0)
-                {
-                    if (renderbufferNameList.Contains(name)) { renderbufferNameList.Remove(name); }
-                    if (nameRenderbufferDict.ContainsKey(name)) { nameRenderbufferDict.Remove(name); }
-                }
+                if (renderbufferNameList.Contains(name)) { renderbufferNameList.Remove(name); }
+                if (nameRenderbufferDict.ContainsKey(name)) { nameRenderbufferDict.Remove(name); }
             }
         }
     }

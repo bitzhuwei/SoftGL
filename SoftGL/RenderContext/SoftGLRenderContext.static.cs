@@ -22,8 +22,7 @@ namespace SoftGL
             {
                 var ids = new uint[1];
                 glGenVertexArrays(ids.Length, ids);
-                if (ids[0] != 0) { throw new Exception("ids[0] must be 0 here!"); }
-                glBindVertexArray(0);
+                
             }
         }
     }
