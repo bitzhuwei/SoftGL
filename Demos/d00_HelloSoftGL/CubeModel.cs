@@ -35,6 +35,17 @@ namespace d00_HelloSoftGL
             new vec3(-halfLength, -halfLength, +halfLength), // 6
             new vec3(-halfLength, -halfLength, -halfLength), // 7
         };
+        private static readonly vec3[] colors = new vec3[]
+        {
+            new vec3(+halfLength+0.5f, +halfLength+0.5f, +halfLength+0.5f), // 0
+            new vec3(+halfLength+0.5f, +halfLength+0.5f, -halfLength+0.5f), // 1
+            new vec3(+halfLength+0.5f, -halfLength+0.5f, +halfLength+0.5f), // 2
+            new vec3(+halfLength+0.5f, -halfLength+0.5f, -halfLength+0.5f), // 3 
+            new vec3(-halfLength+0.5f, +halfLength+0.5f, +halfLength+0.5f), // 4 
+            new vec3(-halfLength+0.5f, +halfLength+0.5f, -halfLength+0.5f), // 5
+            new vec3(-halfLength+0.5f, -halfLength+0.5f, +halfLength+0.5f), // 6
+            new vec3(-halfLength+0.5f, -halfLength+0.5f, -halfLength+0.5f), // 7
+        };
 
         private static readonly uint[] indexes = new uint[]
         {
@@ -48,6 +59,8 @@ namespace d00_HelloSoftGL
 
         public const string strPosition = "position";
         private VertexBuffer positionBuffer; // array in GPU side.
+        public const string strColor = "color";
+        private VertexBuffer colorBuffer; // array in GPU side.
 
         private IDrawCommand drawCommand;
 
@@ -68,6 +81,18 @@ namespace d00_HelloSoftGL
 
                 yield return this.positionBuffer;
             }
+            else if (strColor == bufferName) // requiring position buffer.
+            {
+                if (this.colorBuffer == null)
+                {
+                    // transform managed array to vertex buffer.
+                    this.colorBuffer = colors.GenVertexBuffer(
+                        VBOConfig.Vec3, // mapping to 'in vec3 someVar;' in vertex shader.
+                        BufferUsage.StaticDraw); // GL_STATIC_DRAW.
+                }
+
+                yield return this.positionBuffer;
+            }
             else
             {
                 throw new ArgumentException("bufferName");
@@ -80,8 +105,8 @@ namespace d00_HelloSoftGL
             {
                 // indexes in GPU side.
                 IndexBuffer indexBuffer = indexes.GenIndexBuffer(BufferUsage.StaticDraw);
-                this.drawCommand = new DrawElementsCmd(indexBuffer, DrawMode.LineStrip); // GL_TRIANGLES.
-                //this.drawCommand = new DrawElementsCmd(indexBuffer, DrawMode.Triangles); // GL_TRIANGLES.
+                //this.drawCommand = new DrawElementsCmd(indexBuffer, DrawMode.LineStrip); // GL_TRIANGLES.
+                this.drawCommand = new DrawElementsCmd(indexBuffer, DrawMode.Triangles); // GL_TRIANGLES.
             }
 
             yield return this.drawCommand;

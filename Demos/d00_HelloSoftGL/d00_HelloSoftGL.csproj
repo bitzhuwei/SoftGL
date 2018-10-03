@@ -45,9 +45,9 @@
   <ItemGroup>
     <Compile Include="CubeModel.cs" />
     <Compile Include="CubeNode.cs" />
-    <None Include="CubeNode.fragmentShader.text.cs" />
+    <Compile Include="CubeNode.fragmentShader.text.cs" />
     <Compile Include="CubeNode.noVertexAttribute.cs" />
-    <None Include="CubeNode.vertexShader.text.cs" />
+    <Compile Include="CubeNode.vertexShader.text.cs" />
     <Compile Include="CubeNode.vertexShader.cs" />
     <Compile Include="CubeNode.fragmentShader.cs" />
     <Compile Include="Form1.cs">

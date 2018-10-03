@@ -103,9 +103,9 @@ namespace SoftGL
         {
             if (other == null) { return false; }
 
-            if (this.indexID != other.indexID) { return false; }
+            //if (this.indexID != other.indexID) { return false; }
             if (this.gl_VertexID != other.gl_VertexID) { return false; }
-            if (this.fragCoord != other.fragCoord) { return false; }
+            //if (this.fragCoord != other.fragCoord) { return false; }
 
             return true;
         }

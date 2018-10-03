@@ -5,7 +5,7 @@ namespace SoftGL
     /// <summary>
     /// OpenGL render context.
     /// </summary>
-    public partial class SoftGLRenderContext : IDisposable
+    public unsafe partial class SoftGLRenderContext : IDisposable
     {
         /// <summary>
         /// Gets the render context handle.

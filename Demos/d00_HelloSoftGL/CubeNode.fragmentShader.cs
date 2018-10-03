@@ -8,23 +8,21 @@ namespace d00_HelloSoftGL
 {
     partial class CubeNode
     {
-        private const string fragmentCode = @"using SoftGL;
-
-namespace d00_HelloSoftGL
+        private const string fragmentCode = @"namespace SoftGL
 {
     class fargmentCode : FragmentCodeBase
     {
-        [Uniform]
-        vec4 color = new vec4(1, 0, 0, 1); // default: red color.
+        [In]
+        vec3 passColor;
+        //[Uniform]
+        //vec4 color = new vec4(1, 0, 0, 1); // default: red color.
 
         [Out]
         vec4 outColor;
 
         public override void main()
         {
-            vec4 result = color; // fill the fragment with specified color.
-            outColor = result;
-            
+            outColor = new vec4(passColor, 1.0f); // fill the fragment with specified color.
         }
     }
 }

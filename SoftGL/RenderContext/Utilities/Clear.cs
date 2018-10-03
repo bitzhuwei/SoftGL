@@ -93,12 +93,13 @@ namespace SoftGL
             if (colorBIT) // clear all colorbuffers.
             {
                 List<IAttachable> list = framebuffer.GetCurrentColorBuffers();
-                vec4 c = this.clearColor;
-                byte[] c2 = new byte[4] { (byte)(c.x * 255), (byte)(c.y * 255), (byte)(c.z * 255), (byte)(c.w * 255) };
-                //byte[] value = c.ToBytes();
+                vec4 clearColor = this.clearColor;
                 foreach (var item in list)
                 {
-                    item.Clear(c2);
+                    // convert vec4 to byte[4]{r, g, b, a}
+                    //byte[] data = clearColor.ConvertTo(PassType.Vec4, GL.GL_RGBA);
+                    byte[] data = clearColor.ConvertTo(PassType.Vec4, item.Format);
+                    item.Clear(data);
                 }
             }
 
@@ -107,7 +108,7 @@ namespace SoftGL
                 IAttachable item = framebuffer.DepthbufferAttachment;
                 if (item != null)
                 {
-                    byte[] value = this.clearDepth.ToBytes();
+                    byte[] value = this.clearDepthf.ConvertTo(PassType.Float, item.Format);
                     item.Clear(value);
                 }
             }
@@ -117,7 +118,8 @@ namespace SoftGL
                 IAttachable item = framebuffer.StencilbufferAttachment;
                 if (item != null)
                 {
-                    byte[] value = this.clearStencil.ToBytes();
+                    throw new NotImplementedException("clearStencil is an integer. But PassType not support int type.");
+                    byte[] value = this.clearStencil.ConvertTo(PassType.Float, item.Format);
                     item.Clear(value);
                 }
             }

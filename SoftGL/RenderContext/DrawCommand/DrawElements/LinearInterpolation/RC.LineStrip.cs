@@ -7,7 +7,6 @@ namespace SoftGL
 {
     partial class SoftGLRenderContext
     {
-        const float epsilon = 0.001f;
         private unsafe List<Fragment> LinearInterpolationLineStrip(int count, DrawElementsType type, IntPtr indices, VertexArrayObject vao, ShaderProgram program, GLBuffer indexBuffer, PassBuffer[] passBuffers)
         {
             var result = new List<Fragment>();
@@ -48,7 +47,9 @@ namespace SoftGL
                         ) { continue; }
                 }
 
-                foreach (vec3 pixel in PixelsAtLine(fragCoord0, fragCoord1)) // for each pixel at this line..
+                var pixelList = new List<vec3>();
+                FindPixelsAtLine(fragCoord0, fragCoord1, pixelList);
+                foreach (vec3 pixel in pixelList) // for each pixel at this line..
                 {
                     var fragment = new Fragment(pixel, attributeCount);
                     var alpha = (pixel - fragCoord0).length() / (fragCoord1 - fragCoord0).length();

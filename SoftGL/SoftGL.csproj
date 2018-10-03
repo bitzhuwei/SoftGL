@@ -79,9 +79,14 @@
     <Compile Include="GLObjects\Utilities\SpaceHelper.cs" />
     <Compile Include="GLObjects\Utilities\TypeHelper.cs" />
     <Compile Include="GLObjects\VertexArrayObject\VertexArrayObject.cs" />
-    <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\PixelsAtLine.cs" />
+    <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\FindPixelsAtLine.cs" />
+    <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\FindPixelsAtQuad.cs" />
+    <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\FindPixelsAtTriangle.cs" />
     <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\RC.LineLoop.cs" />
     <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\RC.Lines.cs" />
+    <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\RC.Polygon.cs" />
+    <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\RC.QuadStrip.cs" />
+    <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\RC.Quads.cs" />
     <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\RC.Triangles.cs" />
     <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\RC.TriangleStripAdjacency.cs" />
     <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\RC.TrianglesAdjacency.cs" />

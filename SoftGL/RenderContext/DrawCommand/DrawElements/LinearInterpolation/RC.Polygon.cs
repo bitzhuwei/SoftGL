@@ -7,7 +7,7 @@ namespace SoftGL
 {
     partial class SoftGLRenderContext
     {
-        private unsafe List<Fragment> LinearInterpolationLines(int count, DrawElementsType type, IntPtr indices, VertexArrayObject vao, ShaderProgram program, GLBuffer indexBuffer, PassBuffer[] passBuffers)
+        private unsafe List<Fragment> LinearInterpolationPolygon(int count, DrawElementsType type, IntPtr indices, VertexArrayObject vao, ShaderProgram program, GLBuffer indexBuffer, PassBuffer[] passBuffers)
         {
             var result = new List<Fragment>();
             int attributeCount = passBuffers.Length - 1;
@@ -22,41 +22,35 @@ namespace SoftGL
             IntPtr pointer = pin.AddrOfPinnedObject();
             var groupList = new List<LinearInterpolationInfoGroup>();
             ivec4 viewport = this.viewport;  // ivec4(x, y, width, height)
-            count = (count - count % 2);
-            for (int indexID = 0; indexID < count - 1; indexID += 2)
+            for (int indexID = 1; indexID < count - 1; indexID++)
             {
-                var group = new LinearInterpolationInfoGroup(2);
-                for (int i = 0; i < 2; i++)
+                var group = new LinearInterpolationInfoGroup(3);
+                for (int i = 0; i < 3; i++)
                 {
-                    uint gl_VertexID = GetVertexID(pointer, type, indexID + i);
+                    uint gl_VertexID = GetVertexID(pointer, type, i == 0 ? 0 : indexID + i);
                     vec4 gl_Position = gl_PositionArray[gl_VertexID];
                     vec3 fragCoord = new vec3((gl_Position.x + 1) / 2.0f * viewport.z + viewport.x,
                     (gl_Position.y + 1) / 2.0f * viewport.w + viewport.y,
                     (gl_Position.z + 1) / 2.0f * (float)(this.depthRangeFar - this.depthRangeNear) + (float)this.depthRangeNear);
-                    group.array[i] = new LinearInterpolationInfo(indexID + i, gl_VertexID, fragCoord);
+                    group.array[i] = new LinearInterpolationInfo(i == 0 ? 0 : indexID + i, gl_VertexID, fragCoord);
                 }
 
                 if (groupList.Contains(group)) { continue; } // discard the same line.
                 else { groupList.Add(group); }
 
-                vec3 fragCoord0 = group.array[0].fragCoord, fragCoord1 = group.array[1].fragCoord;
-                {
-                    vec3 diff = (fragCoord0 - fragCoord1); // discard line that is too small.
-                    if (Math.Abs(diff.x) < epsilon
-                        && Math.Abs(diff.y) < epsilon
-                        && Math.Abs(diff.z) < epsilon
-                        ) { continue; }
-                }
+                vec3 fragCoord0 = group.array[0].fragCoord;
+                vec3 fragCoord1 = group.array[1].fragCoord;
+                vec3 fragCoord2 = group.array[2].fragCoord;
 
                 var pixelList = new List<vec3>();
-                FindPixelsAtLine(fragCoord0, fragCoord1, pixelList);
+                FindPixelsAtTriangle(fragCoord0, fragCoord1, fragCoord2, pixelList);
                 foreach (vec3 pixel in pixelList) // for each pixel at this line..
                 {
                     var fragment = new Fragment(pixel, attributeCount);
                     var alpha = (pixel - fragCoord0).length() / (fragCoord1 - fragCoord0).length();
                     for (int i = 0; i < attributeCount; i++) // new pass-buffer objects.
                     {
-                        PassType passType = passBuffers[i].elementType;
+                        PassType passType = passBuffers[i + 1].elementType;
                         fragment.attributes[i] = new PassBuffer(passType, 1); // only one element.
                     }
                     for (int attrIndex = 0; attrIndex < attributeCount; attrIndex++) // fill data in pass-buffer.
