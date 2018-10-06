@@ -24,7 +24,7 @@ namespace SoftGL
         /// <returns></returns>
         public static IntPtr CreateContext(IntPtr deviceContext, int width, int height, string[] paramNames, uint[] paramValues)
         {
-            var context = new SoftGLRenderContext(width, height, paramNames, paramValues);
+            var context = new SoftGLRenderContext(deviceContext, width, height, paramNames, paramValues);
 
             return context.RenderContextHandle;
         }

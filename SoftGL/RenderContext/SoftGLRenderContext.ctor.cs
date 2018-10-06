@@ -22,11 +22,12 @@ namespace SoftGL
         /// <summary>
         /// creates render context.
         /// </summary>
+        /// <param name="deviceContext"></param>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
         /// <param name="paramNames">parameters' names.</param>
         /// <param name="paramValues">parameters' values.</param>
-        public SoftGLRenderContext(int width, int height, string[] paramNames, uint[] paramValues)
+        public SoftGLRenderContext(IntPtr deviceContext, int width, int height, string[] paramNames, uint[] paramValues)
         {
             {
                 if (paramNames != null)
@@ -58,15 +59,15 @@ namespace SoftGL
             // TODO: move this dc to SoftGL.Windows.
             {
                 ////	Create the window. Position and size it.
-                var window = new Bitmap(width, height);
-                var graphics = Graphics.FromImage(window);
+                //var window = new Bitmap(width, height);
+                //var graphics = Graphics.FromImage(window);
                 ////	Get the window device context.
                 //GCHandle handle = GCHandle.Alloc(window, GCHandleType.WeakTrackResurrection);
                 //this.DeviceContextHandle = GCHandle.ToIntPtr(handle);
                 //handle.Free();
-                this.DeviceContextHandle = graphics.GetHdc();
-                this.window = window;
-                this.graphics = graphics;
+                this.DeviceContextHandle = deviceContext;// graphics.GetHdc();
+                //this.window = window;
+                //this.graphics = graphics;
             }
 
             ContextManager.MakeCurrent(this.DeviceContextHandle, this.RenderContextHandle);
