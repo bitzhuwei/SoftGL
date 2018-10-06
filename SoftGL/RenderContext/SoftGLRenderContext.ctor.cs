@@ -43,6 +43,7 @@ namespace SoftGL
                     paramValues = new uint[0];
                 }
 
+                this.DeviceContextHandle = deviceContext;
                 this.Width = width;
                 this.Height = height;
                 this.ParamNames = paramNames;
@@ -54,20 +55,6 @@ namespace SoftGL
                 handle.Free();
                 handleContextDict.Add(this.RenderContextHandle, this);
                 //allRenderContexts.Add(this);
-            }
-
-            // TODO: move this dc to SoftGL.Windows.
-            {
-                ////	Create the window. Position and size it.
-                //var window = new Bitmap(width, height);
-                //var graphics = Graphics.FromImage(window);
-                ////	Get the window device context.
-                //GCHandle handle = GCHandle.Alloc(window, GCHandleType.WeakTrackResurrection);
-                //this.DeviceContextHandle = GCHandle.ToIntPtr(handle);
-                //handle.Free();
-                this.DeviceContextHandle = deviceContext;// graphics.GetHdc();
-                //this.window = window;
-                //this.graphics = graphics;
             }
 
             ContextManager.MakeCurrent(this.DeviceContextHandle, this.RenderContextHandle);
