@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Threading;
 
@@ -9,6 +8,7 @@ namespace SoftGL
 {
     partial class SoftGLRenderContext
     {
+
         /// <summary>
         /// RenderContextHandle -> Render Context Object.
         /// </summary>
@@ -83,10 +83,6 @@ namespace SoftGL
             InitBufferDict();
         }
 
-        // abstract window for now.
-        private Bitmap window;
-        private Graphics graphics;
-
         /// <summary>
         /// Makes the render context current.
         /// </summary>
@@ -98,7 +94,6 @@ namespace SoftGL
                 ContextManager.MakeCurrent(this.DeviceContextHandle, this.RenderContextHandle);
             }
         }
-
 
     }
 }

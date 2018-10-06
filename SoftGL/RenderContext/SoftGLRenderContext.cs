@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 
 namespace SoftGL
 {
@@ -7,6 +8,9 @@ namespace SoftGL
     /// </summary>
     public unsafe partial class SoftGLRenderContext : IDisposable
     {
+        private Bitmap window;
+        private Graphics graphics;
+
         /// <summary>
         /// Gets the render context handle.
         /// </summary>
