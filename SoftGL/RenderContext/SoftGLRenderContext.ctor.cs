@@ -86,36 +86,6 @@ namespace SoftGL
         // abstract window for now.
         private Bitmap window;
         private Graphics graphics;
-        /// <summary>
-        /// Blit the rendered data to the supplied device context.
-        /// </summary>
-        /// <param name="deviceContext">The HDC.</param>
-        public void Blit(IntPtr deviceContext)
-        {
-            ////IntPtr dc = this.DeviceContextHandle;
-            ////if (dc != IntPtr.Zero || windowHandle != IntPtr.Zero)
-            ////{
-            ////    //	Swap the buffers.
-            ////    Win32.SwapBuffers(dc);
-
-            ////    //	Blit the DC (containing the DIB section) to the target DC.
-            ////    Win32.BitBlt(deviceContext, 0, 0, this.Width, this.Height, dc, 0, 0, Win32.SRCCOPY);
-            ////}
-
-            //if (this.DeviceContextHandle != IntPtr.Zero)
-            //{
-            //    ////  Set the read buffer.
-            //    //GL.Instance.ReadBuffer(GL.GL_COLOR_ATTACHMENT0);
-
-            //    //	Read the pixels into the DIB section.
-            //    GL.Instance.ReadPixels(0, 0, this.Width, this.Height, GL.GL_BGRA,
-            //        GL.GL_UNSIGNED_BYTE, this.dibSection.Bits);
-
-            //    //	Blit the DC (containing the DIB section) to the target DC.
-            //    //Win32.BitBlt(deviceContext, 0, 0, this.Width, this.Height,
-            //    //this.dibSection.MemoryDeviceContext, 0, 0, Win32.SRCCOPY);
-            //}
-        }
 
         /// <summary>
         /// Makes the render context current.
