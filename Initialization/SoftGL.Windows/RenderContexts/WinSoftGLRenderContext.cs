@@ -8,7 +8,7 @@ namespace SoftGL.Windows
     /// <summary>
     /// creates render device and render context.
     /// </summary>
-    public partial class SoftGLRenderContext : CSharpGL.GLRenderContext
+    public partial class WinSoftGLRenderContext : CSharpGL.GLRenderContext
     {
         /// <summary>
         /// creates render device and render context.
@@ -17,7 +17,7 @@ namespace SoftGL.Windows
         /// <param name="height">The height.</param>
         /// <param name="parameters">parameters.</param>
         /// <returns></returns>
-        public SoftGLRenderContext(int width, int height, ContextGenerationParams parameters)
+        public WinSoftGLRenderContext(int width, int height, ContextGenerationParams parameters)
             : base(width, height)
         {
             this.Parameters = parameters;
@@ -75,7 +75,7 @@ namespace SoftGL.Windows
             //  Call the base.
             base.SetDimensions(width, height);
             SoftOpengl32.StaticCalls.SetDimensions(this.DeviceContextHandle, width, height);
-            
+
             ////	Set the window size.
             //Win32.SetWindowPos(windowHandle, IntPtr.Zero, 0, 0, Width, Height,
             //    SetWindowPosFlags.SWP_NOACTIVATE |
