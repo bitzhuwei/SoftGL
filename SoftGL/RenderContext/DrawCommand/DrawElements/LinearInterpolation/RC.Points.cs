@@ -18,12 +18,12 @@ namespace SoftGL
                 pointers[i] = passBuffers[i + 1].Mapbuffer().ToPointer();
             }
             byte[] indexData = indexBuffer.Data;
-            int byteLength = indexData.Length;
+            int indexLength = indexData.Length / ByteLength(type);
             GCHandle pin = GCHandle.Alloc(indexData, GCHandleType.Pinned);
             IntPtr pointer = pin.AddrOfPinnedObject();
             var gl_VertexIDList = new List<uint>();
             ivec4 viewport = this.viewport;
-            for (int indexID = 0; indexID < count; indexID++)
+            for (int indexID = indices.ToInt32() / ByteLength(type), c = 0; c < count && indexID < indexLength; indexID++, c++)
             {
                 uint gl_VertexID = GetVertexID(pointer, type, indexID);
                 if (gl_VertexIDList.Contains(gl_VertexID)) { continue; }
@@ -41,7 +41,7 @@ namespace SoftGL
                 for (int attrIndex = 0; attrIndex < attributeCount; attrIndex++) // fill data in pass-buffer.
                 {
                     PassBuffer attribute = fragment.attributes[attrIndex];
-                    void* fragmentAttribute = attribute.Mapbuffer().ToPointer(); ;
+                    void* fragmentAttribute = attribute.Mapbuffer().ToPointer();
                     switch (attribute.elementType)
                     {
                         case PassType.Float:

@@ -22,7 +22,7 @@ namespace d00_HelloSoftGL
             // which vertex buffer maps to which attribute in shader.
             var map = new AttributeMap();
             map.Add("inPosition", CubeModel.strPosition);
-            map.Add("inColor", CubeModel.strPosition);
+            map.Add("inColor", CubeModel.strColor);
             // help to build a render method.
             var builder = new RenderMethodBuilder(array, map);
             // create node.

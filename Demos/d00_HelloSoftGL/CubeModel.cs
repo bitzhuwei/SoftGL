@@ -35,6 +35,7 @@ namespace d00_HelloSoftGL
             new vec3(-halfLength, -halfLength, +halfLength), // 6
             new vec3(-halfLength, -halfLength, -halfLength), // 7
         };
+
         private static readonly vec3[] colors = new vec3[]
         {
             new vec3(+halfLength+0.5f, +halfLength+0.5f, +halfLength+0.5f), // 0
@@ -91,7 +92,7 @@ namespace d00_HelloSoftGL
                         BufferUsage.StaticDraw); // GL_STATIC_DRAW.
                 }
 
-                yield return this.positionBuffer;
+                yield return this.colorBuffer;
             }
             else
             {

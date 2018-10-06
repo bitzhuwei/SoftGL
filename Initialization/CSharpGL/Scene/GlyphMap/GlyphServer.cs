@@ -102,7 +102,7 @@ namespace CSharpGL
         /// <returns></returns>
         public static GlyphServer Create(Font font, IEnumerable<char> charset, int maxTextureWidth, int maxTextureHeight, int maxTextureCount)
         {
-            if (charset == null || charset.Count() == 0) { return new GlyphServer(); ; }
+            if (charset == null || charset.Count() == 0) { return new GlyphServer(); }
 
             List<ChunkBase> chunkList = GetChunkList(font, charset);
             return Create(chunkList, maxTextureWidth, maxTextureHeight, maxTextureCount);

@@ -164,7 +164,7 @@ namespace SoftGL
                 switch (item.ShaderType)
                 {
                     case ShaderType.VertexShader:
-                        if (vertexShader != null) { this.logInfo = "Multiple VertexShader!"; result = false; break; ; }
+                        if (vertexShader != null) { this.logInfo = "Multiple VertexShader!"; result = false; break; }
                         else { vertexShader = item as VertexShader; }
                         break;
                     case ShaderType.TessControlShader:

@@ -20,11 +20,11 @@ namespace CSharpGL
         static Shader()
         {
             glCreateShader = GL.Instance.GetDelegateFor("glCreateShader", GLDelegates.typeof_uint_uint) as GLDelegates.uint_uint;
-            glShaderSource = GL.Instance.GetDelegateFor("glShaderSource", GLDelegates.typeof_void_uint_int_stringN_intN) as GLDelegates.void_uint_int_stringN_intN; ;
-            glCompileShader = GL.Instance.GetDelegateFor("glCompileShader", GLDelegates.typeof_void_uint) as GLDelegates.void_uint; ;
-            glDeleteShader = GL.Instance.GetDelegateFor("glDeleteShader", GLDelegates.typeof_void_uint) as GLDelegates.void_uint; ;
-            glGetShaderiv = GL.Instance.GetDelegateFor("glGetShaderiv", GLDelegates.typeof_void_uint_uint_intN) as GLDelegates.void_uint_uint_intN; ;
-            glGetShaderInfoLog = GL.Instance.GetDelegateFor("glGetShaderInfoLog", GLDelegates.typeof_void_uint_int_IntPtr_StringBuilder) as GLDelegates.void_uint_int_IntPtr_StringBuilder; ;
+            glShaderSource = GL.Instance.GetDelegateFor("glShaderSource", GLDelegates.typeof_void_uint_int_stringN_intN) as GLDelegates.void_uint_int_stringN_intN;
+            glCompileShader = GL.Instance.GetDelegateFor("glCompileShader", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
+            glDeleteShader = GL.Instance.GetDelegateFor("glDeleteShader", GLDelegates.typeof_void_uint) as GLDelegates.void_uint;
+            glGetShaderiv = GL.Instance.GetDelegateFor("glGetShaderiv", GLDelegates.typeof_void_uint_uint_intN) as GLDelegates.void_uint_uint_intN;
+            glGetShaderInfoLog = GL.Instance.GetDelegateFor("glGetShaderInfoLog", GLDelegates.typeof_void_uint_int_IntPtr_StringBuilder) as GLDelegates.void_uint_int_IntPtr_StringBuilder;
 
         }
 

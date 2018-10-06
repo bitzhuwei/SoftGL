@@ -36,11 +36,11 @@ namespace SoftGL
 
             // execute vertex shader for each vertex.
             byte[] indexData = indexBuffer.Data;
-            int byteLength = indexData.Length;
+            int indexLength = indexData.Length / ByteLength(type);
             GCHandle pin = GCHandle.Alloc(indexData, GCHandleType.Pinned);
             IntPtr pointer = pin.AddrOfPinnedObject();
             var gl_VertexIDList = new List<uint>();
-            for (int indexID = 0; indexID < count; indexID++)
+            for (int indexID = indices.ToInt32() / ByteLength(type), c = 0; c < count && indexID < indexLength; indexID++, c++)
             {
                 uint gl_VertexID = GetVertexID(pointer, type, indexID);
                 if (gl_VertexIDList.Contains(gl_VertexID)) { continue; }

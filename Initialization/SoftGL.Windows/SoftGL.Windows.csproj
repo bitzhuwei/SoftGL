@@ -41,6 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormPropertyGrid.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPropertyGrid.Designer.cs">
+      <DependentUpon>FormPropertyGrid.cs</DependentUpon>
+    </Compile>
     <Compile Include="GLAPI\WinSoftGL.DrawText.cs" />
     <Compile Include="GLAPI\WinSoftGL.cs" />
     <Compile Include="GLAPI\WinSoftGL.ExtendedAPI.cs" />

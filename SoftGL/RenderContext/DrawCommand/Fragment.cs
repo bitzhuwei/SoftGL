@@ -7,7 +7,9 @@ namespace SoftGL
 {
     unsafe class Fragment
     {
-        public bool discard;
+        public bool discard = false;
+
+        public bool depthTestFailed = false;
 
         /// <summary>
         /// 

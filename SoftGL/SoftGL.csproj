@@ -79,8 +79,8 @@
     <Compile Include="GLObjects\Utilities\SpaceHelper.cs" />
     <Compile Include="GLObjects\Utilities\TypeHelper.cs" />
     <Compile Include="GLObjects\VertexArrayObject\VertexArrayObject.cs" />
+    <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\FindFragments.cs" />
     <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\FindPixelsAtLine.cs" />
-    <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\FindPixelsAtQuad.cs" />
     <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\FindPixelsAtTriangle.cs" />
     <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\RC.LineLoop.cs" />
     <Compile Include="RenderContext\DrawCommand\DrawElements\LinearInterpolation\RC.Lines.cs" />

@@ -60,7 +60,7 @@ namespace SoftGL.Windows
                 Bitmap bmp = this.bitmap;
                 if (bmp == null)
                 {
-                    bmp = new Bitmap(width, height); ;
+                    bmp = new Bitmap(width, height);
                     this.bitmap = bmp;
                 }
                 {

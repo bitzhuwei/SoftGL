@@ -81,20 +81,18 @@ namespace SoftGL
 
     class LinearInterpolationInfo : IEquatable<LinearInterpolationInfo>
     {
-        public int indexID;
         public uint gl_VertexID;
         public vec3 fragCoord;
 
-        public LinearInterpolationInfo(int indexID, uint gl_VertexID, vec3 fragCoord)
+        public LinearInterpolationInfo(uint gl_VertexID, vec3 fragCoord)
         {
-            this.indexID = indexID;
             this.gl_VertexID = gl_VertexID;
             this.fragCoord = fragCoord;
         }
 
         public override string ToString()
         {
-            return string.Format("indexID:{0}, gl_VertexID:{1}, fragCoord:{2}", this.indexID, this.gl_VertexID, this.fragCoord);
+            return string.Format("gl_VertexID:{0}, fragCoord:{1}", this.gl_VertexID, this.fragCoord);
         }
 
         #region IEquatable<LinearInterpolationInfo> 成员
@@ -103,9 +101,8 @@ namespace SoftGL
         {
             if (other == null) { return false; }
 
-            //if (this.indexID != other.indexID) { return false; }
             if (this.gl_VertexID != other.gl_VertexID) { return false; }
-            //if (this.fragCoord != other.fragCoord) { return false; }
+            if (this.fragCoord != other.fragCoord) { return false; }
 
             return true;
         }

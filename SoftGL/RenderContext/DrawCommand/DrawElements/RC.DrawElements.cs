@@ -63,6 +63,7 @@ namespace SoftGL
             // Stencil test
 
             // Depth test
+            DepthTest(fragmentList);
 
             //Blending
 
@@ -75,6 +76,8 @@ namespace SoftGL
                 uint[] drawBufferIndexes = framebuffer.DrawBuffers.ToArray();
                 foreach (var fragment in fragmentList)
                 {
+                    if (fragment.depthTestFailed) { continue; }
+
                     for (int i = 0; i < fragment.outVariables.Length && i < drawBufferIndexes.Length; i++)
                     {
                         PassBuffer outVar = fragment.outVariables[i];
@@ -85,6 +88,47 @@ namespace SoftGL
             }
         }
 
+        private void DepthTest(List<Fragment> fragmentList)
+        {
+            Fragment[,] depthTestPlatform = new Fragment[viewport.z, viewport.w];
+            foreach (var fragment in fragmentList)
+            {
+                int x = (int)fragment.gl_FragCoord.x;
+                int y = (int)fragment.gl_FragCoord.y;
+                var dst = depthTestPlatform[x, y];
+                if (dst == null)
+                {
+                    depthTestPlatform[x, y] = fragment;
+                }
+                else
+                {
+                    // TODO: switch (depthfunc(..)) { .. }
+                    if (fragment.gl_FragCoord.z < dst.gl_FragCoord.z) // fragment is nearer.
+                    {
+                        dst.depthTestFailed = true;
+                        depthTestPlatform[x, y] = fragment;
+                    }
+                    else
+                    {
+                        fragment.depthTestFailed = true;
+                    }
+                }
+            }
+        }
+
+        private static int ByteLength(DrawElementsType type)
+        {
+            int result = 0;
+            switch (type)
+            {
+                case DrawElementsType.UnsignedByte: result = sizeof(byte); break;
+                case DrawElementsType.UnsignedShort: result = sizeof(ushort); break;
+                case DrawElementsType.UnsignedInt: result = sizeof(uint); break;
+                default: throw new NotDealWithNewEnumItemException(typeof(DrawElementsType));
+            }
+
+            return result;
+        }
         private unsafe void ClipSpace2NormalDeviceSpace(PassBuffer passBuffer)
         {
             if (passBuffer.elementType != PassType.Vec4) { throw new Exception(String.Format("This pass-buffer must be of vec4 type!")); }
