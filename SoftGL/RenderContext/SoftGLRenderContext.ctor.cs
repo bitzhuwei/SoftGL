@@ -86,12 +86,6 @@ namespace SoftGL
         // abstract window for now.
         private Bitmap window;
         private Graphics graphics;
-
-        /// <summary>
-        /// The window handle.
-        /// </summary>
-        protected IntPtr windowHandle = IntPtr.Zero;
-
         /// <summary>
         /// Blit the rendered data to the supplied device context.
         /// </summary>
