@@ -9,7 +9,7 @@
         mat4 mvpMat;
 
         [Out]
-        vec3 passColor;
+        vec4 passColor;
 
         public override void main()
         {
@@ -29,14 +29,14 @@
     class gl_VertexIDFrag : FragmentCodeBase
     {
         [In]
-        vec3 passColor;
+        vec4 passColor;
 
         [Out]
         vec4 outColor;
 
         public override void main()
         {
-            outColor = new vec4(passColor, 1.0f);
+            outColor = passColor;
         }
     }
 }
