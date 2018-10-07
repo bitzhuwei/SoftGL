@@ -1,11 +1,9 @@
 ﻿namespace SoftGL
 {
-    class PositionColorVert : VertexCodeBase
+    class gl_VertexIDVert : VertexCodeBase
     {
         [In]
         vec3 inPosition;
-        [In]
-        vec3 inColor;
 
         [Uniform]
         mat4 mvpMat;
@@ -18,11 +16,17 @@
             // transform vertex' position from model space to clip space.
             gl_Position = mvpMat * new vec4(inPosition, 1.0f);
 
-            passColor = inColor;
+            // gets color value according to gl_VertexID.
+            int index = gl_VertexID;
+            passColor = new vec4(
+                ((index & 0xFF) / 255.0f),
+                (((index >> 8) & 0xFF) / 255.0f),
+                (((index >> 16) & 0xFF) / 255.0f),
+                (((index >> 24) & 0xFF) / 255.0f));
         }
     }
 
-    class PositionColorFrag : FragmentCodeBase
+    class gl_VertexIDFrag : FragmentCodeBase
     {
         [In]
         vec3 passColor;

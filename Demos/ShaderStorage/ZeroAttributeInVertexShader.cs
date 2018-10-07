@@ -4,6 +4,7 @@
     {
         [Out]
         vec2 passTexCoord;
+
         [Uniform]
         mat4 mvpMat;
 
@@ -22,6 +23,7 @@
     {
         [In]
         vec2 passTexCoord;
+
         [Uniform]
         sampler2D tex;
 
