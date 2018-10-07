@@ -72,7 +72,7 @@
     <Compile Include="ShaderCodes\VertexCodeBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Types\texture.cs" />
-    <Compile Include="Types\sampler2D.cs" />
+    <Compile Include="Types\samplers.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="readme.md" />

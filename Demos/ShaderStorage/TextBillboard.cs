@@ -55,7 +55,7 @@
 
         public override void main()
         {
-            float a = texture(glyphTexture, new vec3(passSTR.x, passSTR.y, (int)passSTR.z));
+            float a = texture(glyphTexture, new vec3(passSTR.x, passSTR.y, (int)passSTR.z)).x;
             outColor = new vec4(textColor, a);
         }
     }

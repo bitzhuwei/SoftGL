@@ -12,7 +12,7 @@ namespace SoftGL
             throw new NotImplementedException();
         }
 
-        public static vec4 texture(sampler2DArray tex, vec2 coord)
+        public static vec4 texture(sampler2DArray tex, vec3 coord)
         {
             throw new NotImplementedException();
         }
