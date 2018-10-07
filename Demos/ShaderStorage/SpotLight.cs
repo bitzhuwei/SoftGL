@@ -50,11 +50,14 @@
         [Uniform]
         float shiness = 6;
         [Uniform]
-        float strength = 1;
+        float strength = 10;
         [Uniform]
         vec3 ambientColor = new vec3(0.2f, 0.2f, 0.2f);
+        /// <summary>
+        /// color of the model itself.
+        /// </summary>
         [Uniform]
-        vec3 diffuseColor = new vec3(1, 0.8431f, 0);
+        vec3 materialColor = new vec3(1, 0.8431f, 0);
         /// <summary>
         /// light's position in eye space.
         /// </summary>
@@ -94,12 +97,12 @@
         {
             vec3 normal = normalize(passNormal);
             vec3 L = lightPosition - passPosition;
-            vec3 D = normal(spotDirection);
+            vec3 D = normalize(spotDirection);
             // calculate the overlap between the spot and the light direction.
             float spotEffect = dot(-L, D);
             if (spotEffect > spotCutoff)
             {
-                float diffuse = max(0, dot(normal(L), normal));
+                float diffuse = max(0, dot(normalize(L), normal));
                 float distance = length(L);
                 float attenuation = 1.0f / (constantAttenuation + linearAttenuation * distance + quadraticAttenuation * distance * distance);
                 attenuation *= pow(spotEffect, spotExponent);
@@ -108,17 +111,18 @@
                 if (diffuse > 0)
                 {
                     // vec3(0, 0, 1) is camera's direction.
-                    vece halfVector = normalize(L + new vec3(0, 0, 1));
+                    vec3 halfVector = normalize(L + new vec3(0, 0, 1));
                     specular = max(0, dot(halfVector, normal));
                     specular = pow(specular, shiness) * strength;
                     specular *= attenuation;
                 }
 
-                outColor = new vec4(((ambientColor + diffuse) * diffuseColor + specular) * lightColor, 1);
+                // there should be a materialColor.specular?
+                outColor = new vec4(ambientColor * materialColor + diffuse * materialColor * lightColor + specular * lightColor, 1);
             }
             else
             {
-                outColor = new vec4((ambientColor * diffuseColor) * lightColor, 1.0);
+                outColor = new vec4(ambientColor * materialColor, 1.0f);
             }
         }
     }
