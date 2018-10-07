@@ -50,6 +50,8 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <None Include="readme.md" />
+    <Compile Include="discardTransparent.cs" />
+    <Compile Include="gl_VertexID.cs" />
     <Compile Include="PositionColor.cs" />
     <Compile Include="ZeroAttributeInVertexShader.cs" />
     <Compile Include="Program.cs" />
