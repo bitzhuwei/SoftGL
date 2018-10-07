@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HeightMap.cs" />
+    <Compile Include="SpotLight.cs" />
     <Compile Include="TextBillboard.cs" />
     <Compile Include="sampler2D.cs" />
     <Compile Include="TransformFeedbackCalculator.cs" />
