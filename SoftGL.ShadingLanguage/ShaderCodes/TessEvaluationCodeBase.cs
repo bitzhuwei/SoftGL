@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SoftGL
 {
-    public abstract partial class TessEvaluationCodeBase
+    public abstract partial class TessEvaluationCodeBase : CodeBase
     {
         public abstract void main();
     }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SoftGL
 {
-    public abstract partial class VertexCodeBase
+    public abstract partial class VertexCodeBase : CodeBase
     {
         public int gl_VertexID;
 

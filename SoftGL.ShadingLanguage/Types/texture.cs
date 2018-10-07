@@ -7,7 +7,12 @@ namespace SoftGL
 {
     partial class CodeBase
     {
-        public vec4 texture(sampler2D tex, vec2 coord)
+        public static vec4 texture(sampler2D tex, vec2 coord)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static vec4 texture(sampler2DArray tex, vec2 coord)
         {
             throw new NotImplementedException();
         }

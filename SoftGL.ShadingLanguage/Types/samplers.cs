@@ -8,4 +8,8 @@ namespace SoftGL
     public class sampler2D
     {
     }
+
+    public class sampler2DArray
+    {
+    }
 }

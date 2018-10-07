@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SoftGL
 {
-    public abstract partial class FragmentCodeBase
+    public abstract partial class FragmentCodeBase : CodeBase
     {
         public vec3 gl_FragCoord;
 

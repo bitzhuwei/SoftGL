@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="sampler2D.cs" />
     <Compile Include="TransformFeedbackCalculator.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
