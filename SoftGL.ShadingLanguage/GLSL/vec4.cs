@@ -9,31 +9,8 @@ namespace SoftGL
     /// </summary>
     //[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Size = 4 * 4)]
     [StructLayout(LayoutKind.Explicit)]
-    public struct vec4 : IEquatable<vec4>
+    public partial struct vec4 : IEquatable<vec4>
     {
-        /// <summary>
-        /// x = r = s
-        /// </summary>
-        [FieldOffset(sizeof(float) * 0)]
-        public float x;
-
-        /// <summary>
-        /// y = g = t
-        /// </summary>
-        [FieldOffset(sizeof(float) * 1)]
-        public float y;
-
-        /// <summary>
-        /// z = b = p
-        /// </summary>
-        [FieldOffset(sizeof(float) * 2)]
-        public float z;
-
-        /// <summary>
-        /// w = a = q
-        /// </summary>
-        [FieldOffset(sizeof(float) * 3)]
-        public float w;
 
         /// <summary>
         ///

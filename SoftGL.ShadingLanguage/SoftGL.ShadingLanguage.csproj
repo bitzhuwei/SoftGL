@@ -59,6 +59,7 @@
     <Compile Include="GLSL\uvec4.cs" />
     <Compile Include="GLSL\vec2.cs" />
     <Compile Include="GLSL\vec3.cs" />
+    <Compile Include="GLSL\vec4.members.cs" />
     <Compile Include="GLSL\vec4.cs" />
     <Compile Include="ShaderCodes\Attributes.cs" />
     <Compile Include="ShaderCodes\ComputeCodeBase.cs" />
