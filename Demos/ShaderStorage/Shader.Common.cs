@@ -63,7 +63,7 @@
         /// </summary>
         public vec3 position;
         /// <summary>
-        /// light's direction.
+        /// light's direction from light source to vertex.
         /// </summary>
         public vec3 direction;
         /// <summary>

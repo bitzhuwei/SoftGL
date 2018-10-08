@@ -61,7 +61,7 @@
         /// white light.
         /// </summary>
         [Uniform]
-        SpotLight light = new SpotLight(new vec3(1), new vec3(1), new vec3(1), new vec3(0), new vec3(1), 0.5f, 1);
+        SpotLight light = new SpotLight(new vec3(1), new vec3(1), new vec3(1), new vec3(0), 0.5f, 1);
         [Uniform]
         float constantAttenuation = 1.0f;
         [Uniform]
@@ -75,7 +75,7 @@
         public override void main()
         {
             vec3 normal = normalize(passNormal);
-            vec3 L = lightPosition - passPosition;
+            vec3 L = light.position - passPosition;
             vec3 D = normalize(light.direction);
             // calculate the overlap between the spot and the light direction.
             float spotEffect = dot(-L, D);
