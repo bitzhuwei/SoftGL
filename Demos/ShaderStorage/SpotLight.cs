@@ -47,48 +47,27 @@
         [In]
         vec3 passNormal;
 
-        [Uniform]
-        float shiness = 6;
-        [Uniform]
-        float strength = 10;
-        [Uniform]
-        vec3 ambientColor = new vec3(0.2f, 0.2f, 0.2f);
         /// <summary>
-        /// color of the model itself.
+        /// ambient color of whole scene.
         /// </summary>
         [Uniform]
-        vec3 materialColor = new vec3(1, 0.8431f, 0);
+        vec3 ambientColor = new vec3(0.2f);
         /// <summary>
-        /// light's position in eye space.
+        /// vertex' properties of refelcting light.
         /// </summary>
         [Uniform]
-        vec3 lightPosition = new vec3(0, 0, 0);
+        Material material = new Material(new vec3(1), new vec3(1), new vec3(1), 6.0f, 10);
         /// <summary>
         /// white light.
         /// </summary>
         [Uniform]
-        vec3 lightColor = new vec3(1, 1, 1);
+        SpotLight light = new SpotLight(new vec3(1), new vec3(1), new vec3(1), new vec3(0), new vec3(1), 0.5f, 1);
         [Uniform]
         float constantAttenuation = 1.0f;
         [Uniform]
         float linearAttenuation = 0.0001f;
         [Uniform]
         float quadraticAttenuation = 0.0001f;
-        /// <summary>
-        /// spot light direction in eye space.
-        /// </summary>
-        [Uniform]
-        vec3 spotDirection;
-        /// <summary>
-        /// spot light cutoff.
-        /// </summary>
-        [Uniform]
-        float spotCutoff = 0.5f;
-        /// <summary>
-        /// spot light exponent.
-        /// </summary>
-        [Uniform]
-        float spotExponent = 1.0f;
 
         [Out]
         vec4 outColor;
@@ -97,15 +76,15 @@
         {
             vec3 normal = normalize(passNormal);
             vec3 L = lightPosition - passPosition;
-            vec3 D = normalize(spotDirection);
+            vec3 D = normalize(light.direction);
             // calculate the overlap between the spot and the light direction.
             float spotEffect = dot(-L, D);
-            if (spotEffect > spotCutoff)
+            if (spotEffect > light.cutoff)
             {
                 float diffuse = max(0, dot(normalize(L), normal));
                 float distance = length(L);
                 float attenuation = 1.0f / (constantAttenuation + linearAttenuation * distance + quadraticAttenuation * distance * distance);
-                attenuation *= pow(spotEffect, spotExponent);
+                attenuation *= pow(spotEffect, light.exponent);
 
                 float specular = 0;
                 if (diffuse > 0)
@@ -113,16 +92,17 @@
                     // vec3(0, 0, 1) is camera's direction.
                     vec3 halfVector = normalize(L + new vec3(0, 0, 1));
                     specular = max(0, dot(halfVector, normal));
-                    specular = pow(specular, shiness) * strength;
+                    specular = pow(specular, material.shiness) * material.strength;
                     specular *= attenuation;
                 }
 
-                // there should be a materialColor.specular?
-                outColor = new vec4(ambientColor * materialColor + diffuse * materialColor * lightColor + specular * lightColor, 1);
+                outColor = new vec4(ambientColor * material.ambient
+                    + diffuse * material.diffuse * light.diffuse
+                    + specular * material.specular * light.specular, 1.0f);
             }
             else
             {
-                outColor = new vec4(ambientColor * materialColor, 1.0f);
+                outColor = new vec4(ambientColor * material.ambient, 1.0f);
             }
         }
     }
