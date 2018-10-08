@@ -16,7 +16,7 @@
         public override void main()
         {
             // transform vertex' position from model space to clip space.
-            gl_Position = mvpMat * new vec4(inPosition, 1.0f);
+            gl_Position = mvpMat * vec4(inPosition, 1.0);
 
             passColor = inColor;
         }
@@ -35,7 +35,7 @@
             //if (int(gl_FragCoord.x + gl_FragCoord.y) % 2 == 1) discard;
             if (((int)gl_FragCoord.x + (int)gl_FragCoord.y) % 2 == 1) { discard = true; }
 
-            outColor = new vec4(passColor, 1.0f);
+            outColor = vec4(passColor, 1.0);
         }
     }
 }

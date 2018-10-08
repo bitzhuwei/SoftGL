@@ -14,15 +14,15 @@
         public override void main()
         {
             // transform vertex' position from model space to clip space.
-            gl_Position = mvpMat * new vec4(inPosition, 1.0f);
+            gl_Position = mvpMat * vec4(inPosition, 1.0);
 
             // gets color value according to gl_VertexID.
             int index = gl_VertexID;
-            passColor = new vec4(
-                ((index & 0xFF) / 255.0f),
-                (((index >> 8) & 0xFF) / 255.0f),
-                (((index >> 16) & 0xFF) / 255.0f),
-                (((index >> 24) & 0xFF) / 255.0f));
+            passColor = vec4(
+                ((index & 0xFF) / 255.0),
+                (((index >> 8) & 0xFF) / 255.0),
+                (((index >> 16) & 0xFF) / 255.0),
+                (((index >> 24) & 0xFF) / 255.0));
         }
     }
 

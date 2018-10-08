@@ -8,8 +8,8 @@
         [Uniform]
         mat4 mvpMat;
 
-        static readonly vec4[] vertices = new vec4[4] { new vec4(-1.0f, -1.0f, 0.0f, 1.0f), new vec4(1.0f, -1.0f, 0.0f, 1.0f), new vec4(-1.0f, 1.0f, 0.0f, 1.0f), new vec4(1.0f, 1.0f, 0.0f, 1.0f) };
-        static readonly vec2[] texCoord = new vec2[4] { new vec2(0.0f, 0.0f), new vec2(1.0f, 0.0f), new vec2(0.0f, 1.0f), new vec2(1.0f, 1.0f) };
+        static readonly vec4[] vertices = new vec4[4] { vec4(-1.0, -1.0, 0.0, 1.0), vec4(1.0, -1.0, 0.0, 1.0), vec4(-1.0, 1.0, 0.0, 1.0), vec4(1.0, 1.0, 0.0, 1.0) };
+        static readonly vec2[] texCoord = new vec2[4] { vec2(0.0, 0.0), vec2(1.0, 0.0), vec2(0.0, 1.0), vec2(1.0, 1.0) };
 
         public override void main()
         {
@@ -33,7 +33,7 @@
         public override void main()
         {
             //outColor = texture(tex, passTexCoord);
-            outColor = new vec4(passTexCoord.x, passTexCoord.y, passTexCoord.x / 2 + passTexCoord.y / 2, 1.0f);
+            outColor = vec4(passTexCoord.x, passTexCoord.y, passTexCoord.x / 2 + passTexCoord.y / 2, 1.0);
         }
     }
 }

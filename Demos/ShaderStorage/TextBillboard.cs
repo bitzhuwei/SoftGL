@@ -30,7 +30,7 @@
         public override void main()
         {
             // transform vertex' position from model space to clip space.
-            vec4 position = mvpMat * new vec4(0, 0, 0, 1.0f);
+            vec4 position = mvpMat * vec4(0, 0, 0, 1.0);
             position = position / position.w;
             float deltaX = (inPosition.x * height - width) / screenSize.x;
             float deltaY = (inPosition.y * height - height) / screenSize.y;
@@ -55,8 +55,8 @@
 
         public override void main()
         {
-            float a = texture(glyphTexture, new vec3(passSTR.x, passSTR.y, (int)passSTR.z)).x;
-            outColor = new vec4(textColor, a);
+            float a = texture(glyphTexture, vec3(passSTR.x, passSTR.y, (int)passSTR.z)).x;
+            outColor = vec4(textColor, a);
         }
     }
 }

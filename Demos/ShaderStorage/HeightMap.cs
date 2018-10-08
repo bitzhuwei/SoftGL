@@ -27,12 +27,12 @@
         {
             float u = (float)(gl_VertexID % terrianSize.x) / (float)(terrianSize.x - 1);
             float v = (float)(gl_VertexID / terrianSize.x) / (float)(terrianSize.y - 1);
-            float height = (texture(heightMapTexture, new vec2(u, v)).x - 0.5f) * scale;
+            var height = (texture(heightMapTexture, vec2(u, v)).x - 0.5) * scale;
 
             float x = (u - 0.5f) * terrianSize.x;
             float z = (v - 0.5f) * terrianSize.y;
 
-            gl_Position = mvpMat * new vec4(x, height, z, 1.0f);
+            gl_Position = mvpMat * vec4(x, height, z, 1.0);
         }
     }
 
@@ -43,7 +43,7 @@
 
         public override void main()
         {
-            outColor = new vec4(1, 1, 1, 1);
+            outColor = vec4(1, 1, 1, 1);
         }
     }
 }

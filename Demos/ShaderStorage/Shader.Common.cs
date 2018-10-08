@@ -35,10 +35,10 @@
         /// <param name="specular"></param>
         /// <param name="shiness"></param>
         /// <param name="strength"></param>
-        public Material(vec3 ambient, vec3 diffuse, vec3 specular, float shiness, float strength)
+        public Material(vec3 ambient, vec3 diffuse, vec3 specular, double shiness, double strength)
         {
             this.ambient = ambient; this.diffuse = diffuse; this.specular = specular;
-            this.shiness = shiness; this.strength = strength;
+            this.shiness = (float)shiness; this.strength = (float)strength;
         }
 
         public override string ToString()
@@ -84,11 +84,11 @@
         /// <param name="direction"></param>
         /// <param name="cutoff"></param>
         /// <param name="exponent"></param>
-        public SpotLight(vec3 diffuse, vec3 specular, vec3 position, vec3 direction, float cutoff, float exponent)
+        public SpotLight(vec3 diffuse, vec3 specular, vec3 position, vec3 direction, double cutoff, double exponent)
         {
             this.diffuse = diffuse; this.specular = specular;
             this.position = position; this.direction = direction;
-            this.cutoff = cutoff; this.exponent = exponent;
+            this.cutoff = (float)cutoff; this.exponent = (float)exponent;
         }
     }
 }

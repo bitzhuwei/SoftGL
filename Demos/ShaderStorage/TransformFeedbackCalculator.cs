@@ -10,7 +10,7 @@
 
         public override void main()
         {
-            outValue = inValue;
+            outValue = (float)System.Math.Sqrt(inValue);
         }
     }
 }

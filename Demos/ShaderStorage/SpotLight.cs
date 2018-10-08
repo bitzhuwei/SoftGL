@@ -33,10 +33,10 @@
         public override void main()
         {
             // transform vertex' position from model space to clip space.
-            gl_Position = projectionMat * viewMat * modelMat * new vec4(inPosition, 1.0f);
+            gl_Position = projectionMat * viewMat * modelMat * vec4(inPosition, 1.0);
 
-            passPosition = new vec3(viewMat * modelMat * new vec4(inPosition, 1.0f));
-            passNormal = new vec3(normalMat * new vec4(inNormal, 0));
+            passPosition = new vec3(viewMat * modelMat * vec4(inPosition, 1.0));
+            passNormal = new vec3(normalMat * vec4(inNormal, 0));
         }
     }
 
@@ -51,17 +51,17 @@
         /// ambient color of whole scene.
         /// </summary>
         [Uniform]
-        vec3 ambientColor = new vec3(0.2f);
+        vec3 ambientColor = vec3(0.2);
         /// <summary>
         /// vertex' properties of refelcting light.
         /// </summary>
         [Uniform]
-        Material material = new Material(new vec3(1), new vec3(1), new vec3(1), 6.0f, 10);
+        Material material = new Material(vec3(1), vec3(1), vec3(1), 6.0, 10);
         /// <summary>
         /// white light.
         /// </summary>
         [Uniform]
-        SpotLight light = new SpotLight(new vec3(1), new vec3(1), new vec3(1), new vec3(0), 0.5f, 1);
+        SpotLight light = new SpotLight(vec3(1), vec3(1), vec3(1), vec3(0), 0.5, 1);
         [Uniform]
         float constantAttenuation = 1.0f;
         [Uniform]
@@ -90,19 +90,19 @@
                 if (diffuse > 0)
                 {
                     // vec3(0, 0, 1) is camera's direction.
-                    vec3 halfVector = normalize(L + new vec3(0, 0, 1));
+                    vec3 halfVector = normalize(L + vec3(0, 0, 1));
                     specular = max(0, dot(halfVector, normal));
                     specular = pow(specular, material.shiness) * material.strength;
                     specular *= attenuation;
                 }
 
-                outColor = new vec4(ambientColor * material.ambient
+                outColor = vec4(ambientColor * material.ambient
                     + diffuse * material.diffuse * light.diffuse
-                    + specular * material.specular * light.specular, 1.0f);
+                    + specular * material.specular * light.specular, 1.0);
             }
             else
             {
-                outColor = new vec4(ambientColor * material.ambient, 1.0f);
+                outColor = vec4(ambientColor * material.ambient, 1.0);
             }
         }
     }

@@ -16,7 +16,7 @@
         public override void main()
         {
             // transform vertex' position from model space to clip space.
-            gl_Position = mvpMat * new vec4(inPosition, 1.0f);
+            gl_Position = mvpMat * vec4(inPosition, 1.0);
 
             passColor = inColor;
         }
@@ -32,7 +32,7 @@
 
         public override void main()
         {
-            outColor = new vec4(passColor, 1.0f);
+            outColor = vec4(passColor, 1.0);
         }
     }
 }

@@ -8,9 +8,29 @@ namespace SoftGL
     partial class CodeBase
     {
 
+        public static vec2 vec2(double v)
+        {
+            return new vec2((float)v, (float)v);
+        }
+
         public static vec2 vec2(double x, double y)
         {
             return new vec2((float)x, (float)y);
+        }
+
+        public static vec2 vec2(vec3 v)
+        {
+            return new vec2((float)v.x, (float)v.y);
+        }
+
+        public static vec2 vec2(vec4 v)
+        {
+            return new vec2((float)v.x, (float)v.y);
+        }
+
+        public static vec3 vec3(double v)
+        {
+            return new vec3((float)v, (float)v, (float)v);
         }
 
         public static vec3 vec3(double x, double y, double z)
@@ -26,6 +46,16 @@ namespace SoftGL
         public static vec3 vec3(double x, vec2 yz)
         {
             return new vec3((float)x, yz.x, yz.y);
+        }
+
+        public static vec3 vec3(vec4 v)
+        {
+            return new vec3(v.x, v.y, v.z);
+        }
+
+        public static vec4 vec4(double v)
+        {
+            return new vec4((float)v, (float)v, (float)v, (float)v);
         }
 
         public static vec4 vec4(double x, double y, double z, double w)
