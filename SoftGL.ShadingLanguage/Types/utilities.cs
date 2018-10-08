@@ -7,17 +7,11 @@ namespace SoftGL
 {
     partial class CodeBase
     {
-        public static vec4 texture(sampler2D tex, vec2 coord)
+        public static vec3 reflect(vec3 I, vec3 normal)
         {
             throw new NotImplementedException();
         }
-
-        public static vec4 texture(sampler2DArray tex, vec3 coord)
-        {
-            throw new NotImplementedException();
-        }
-
-        public static vec4 texture(samplerCube tex, vec3 coord)
+        public static vec3 refract(vec3 I, vec3 normal, float ratio)
         {
             throw new NotImplementedException();
         }

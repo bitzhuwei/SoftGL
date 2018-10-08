@@ -71,6 +71,7 @@
     <Compile Include="ShaderCodes\TessEvaluationCodeBase.cs" />
     <Compile Include="ShaderCodes\VertexCodeBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Types\utilities.cs" />
     <Compile Include="Types\math.cs" />
     <Compile Include="Types\vector.cs" />
     <Compile Include="Types\texture.cs" />

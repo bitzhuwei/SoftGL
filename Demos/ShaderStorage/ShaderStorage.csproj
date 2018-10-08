@@ -46,6 +46,7 @@
     <Compile Include="FullScreen.cs" />
     <Compile Include="HeightMap.cs" />
     <Compile Include="GrayFilter.cs" />
+    <Compile Include="EnvironmentMapping.cs" />
     <Compile Include="Shader.Common.cs" />
     <Compile Include="SpotLight.cs" />
     <Compile Include="TextBillboard.cs" />
