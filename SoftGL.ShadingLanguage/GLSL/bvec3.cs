@@ -8,23 +8,8 @@ namespace SoftGL
     /// Represents a three dimensional vector.
     /// </summary>
     [StructLayout(LayoutKind.Explicit)]
-    public struct bvec3 : IEquatable<bvec3>
+    public partial struct bvec3 : IEquatable<bvec3>
     {
-        /// <summary>
-        /// </summary>
-        [FieldOffset(sizeof(bool) * 0)]
-        public bool x;
-
-        /// <summary>
-        /// </summary>
-        [FieldOffset(sizeof(bool) * 1)]
-        public bool y;
-
-        /// <summary>
-        /// </summary>
-        [FieldOffset(sizeof(bool) * 2)]
-        public bool z;
-
         /// <summary>
         ///
         /// </summary>

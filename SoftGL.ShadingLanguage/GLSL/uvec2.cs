@@ -8,20 +8,8 @@ namespace SoftGL
     /// Represents a two dimensional vector.
     /// </summary>
     [StructLayout(LayoutKind.Explicit)]
-    public struct uvec2 : IEquatable<uvec2>
+    public partial struct uvec2 : IEquatable<uvec2>
     {
-        /// <summary>
-        /// Don't change the order of x, y appears!
-        /// </summary>
-        [FieldOffset(sizeof(uint) * 0)]
-        public uint x;
-
-        /// <summary>
-        /// Don't change the order of x, y appears!
-        /// </summary>
-        [FieldOffset(sizeof(uint) * 1)]
-        public uint y;
-
         /// <summary>
         ///
         /// </summary>

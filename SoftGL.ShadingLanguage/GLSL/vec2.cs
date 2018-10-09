@@ -8,20 +8,8 @@ namespace SoftGL
     /// Represents a two dimensional vector.
     /// </summary>
     [StructLayout(LayoutKind.Explicit)]
-    public struct vec2 : IEquatable<vec2>
+    public partial struct vec2 : IEquatable<vec2>
     {
-        /// <summary>
-        /// x = r = s
-        /// </summary>
-        [FieldOffset(sizeof(float) * 0)]
-        public float x;
-
-        /// <summary>
-        /// y = g = t
-        /// </summary>
-        [FieldOffset(sizeof(float) * 1)]
-        public float y;
-
         /// <summary>
         ///
         /// </summary>
