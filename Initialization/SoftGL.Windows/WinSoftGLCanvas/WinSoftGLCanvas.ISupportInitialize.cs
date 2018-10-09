@@ -47,7 +47,7 @@ namespace SoftGL.Windows
                 {
                     parameters = this.parameters;
                 }
-                var renderContext = new SoftGLRenderContext(width, height, parameters);
+                var renderContext = new WinSoftGLRenderContext(width, height, parameters);
                 renderContext.MakeCurrent();
                 this.renderContext = renderContext;
 

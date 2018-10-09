@@ -8,23 +8,8 @@ namespace SoftGL
     /// Represents a three dimensional vector.
     /// </summary>
     [StructLayout(LayoutKind.Explicit)]
-    public struct dvec3 : IEquatable<dvec3>
+    public partial struct dvec3 : IEquatable<dvec3>
     {
-        /// <summary>
-        /// </summary>
-        [FieldOffset(sizeof(double) * 0)]
-        public double x;
-
-        /// <summary>
-        /// </summary>
-        [FieldOffset(sizeof(double) * 1)]
-        public double y;
-
-        /// <summary>
-        /// </summary>
-        [FieldOffset(sizeof(double) * 2)]
-        public double z;
-
         private static readonly char[] separator = new char[] { ' ', ',' };
 
         /// <summary>

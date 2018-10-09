@@ -9,28 +9,8 @@ namespace SoftGL
     /// </summary>
     //[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Size = 4 * 4)]
     [StructLayout(LayoutKind.Explicit)]
-    public struct bvec4 : IEquatable<bvec4>
+    public partial struct bvec4 : IEquatable<bvec4>
     {
-        /// <summary>
-        /// </summary>
-        [FieldOffset(sizeof(bool) * 0)]
-        public bool x;
-
-        /// <summary>
-        /// </summary>
-        [FieldOffset(sizeof(bool) * 1)]
-        public bool y;
-
-        /// <summary>
-        /// </summary>
-        [FieldOffset(sizeof(bool) * 2)]
-        public bool z;
-
-        /// <summary>
-        /// </summary>
-        [FieldOffset(sizeof(bool) * 3)]
-        public bool w;
-
         /// <summary>
         ///
         /// </summary>

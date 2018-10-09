@@ -54,8 +54,7 @@
     <Compile Include="GLAPI\WinSoftGL.BasicAPI.cs" />
     <Compile Include="GUI\WinCtrlRoot\TranslateExtension.cs" />
     <Compile Include="GUI\WinCtrlRoot\WinSoftCtrlRoot.cs" />
-    <Compile Include="RenderContexts\PixelFormatDescriptor.cs" />
-    <Compile Include="RenderContexts\SoftGLRenderContext.cs" />
+    <Compile Include="RenderContexts\WinSoftGLRenderContext.cs" />
     <Compile Include="WinSoftGLCanvas\ContextGenerationParams.cs" />
     <Compile Include="WinSoftGLCanvas\WinSoftGLCanvas.ContextGenerationParameters.cs">
       <SubType>UserControl</SubType>

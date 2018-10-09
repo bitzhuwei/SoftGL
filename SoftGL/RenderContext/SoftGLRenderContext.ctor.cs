@@ -9,6 +9,7 @@ namespace SoftGL
 {
     partial class SoftGLRenderContext
     {
+
         /// <summary>
         /// RenderContextHandle -> Render Context Object.
         /// </summary>
@@ -21,11 +22,12 @@ namespace SoftGL
         /// <summary>
         /// creates render context.
         /// </summary>
+        /// <param name="deviceContext"></param>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
         /// <param name="paramNames">parameters' names.</param>
         /// <param name="paramValues">parameters' values.</param>
-        public SoftGLRenderContext(int width, int height, string[] paramNames, uint[] paramValues)
+        public SoftGLRenderContext(IntPtr deviceContext, int width, int height, string[] paramNames, uint[] paramValues)
         {
             {
                 if (paramNames != null)
@@ -41,6 +43,7 @@ namespace SoftGL
                     paramValues = new uint[0];
                 }
 
+                this.DeviceContextHandle = deviceContext;
                 this.Width = width;
                 this.Height = height;
                 this.ParamNames = paramNames;
@@ -52,20 +55,6 @@ namespace SoftGL
                 handle.Free();
                 handleContextDict.Add(this.RenderContextHandle, this);
                 //allRenderContexts.Add(this);
-            }
-
-            // TODO: move this dc to SoftGL.Windows.
-            {
-                ////	Create the window. Position and size it.
-                var window = new Bitmap(width, height);
-                var graphics = Graphics.FromImage(window);
-                ////	Get the window device context.
-                //GCHandle handle = GCHandle.Alloc(window, GCHandleType.WeakTrackResurrection);
-                //this.DeviceContextHandle = GCHandle.ToIntPtr(handle);
-                //handle.Free();
-                this.DeviceContextHandle = graphics.GetHdc();
-                this.window = window;
-                this.graphics = graphics;
             }
 
             ContextManager.MakeCurrent(this.DeviceContextHandle, this.RenderContextHandle);
@@ -83,46 +72,6 @@ namespace SoftGL
             InitBufferDict();
         }
 
-        // abstract window for now.
-        private Bitmap window;
-        private Graphics graphics;
-
-        /// <summary>
-        /// The window handle.
-        /// </summary>
-        protected IntPtr windowHandle = IntPtr.Zero;
-
-        /// <summary>
-        /// Blit the rendered data to the supplied device context.
-        /// </summary>
-        /// <param name="deviceContext">The HDC.</param>
-        public void Blit(IntPtr deviceContext)
-        {
-            ////IntPtr dc = this.DeviceContextHandle;
-            ////if (dc != IntPtr.Zero || windowHandle != IntPtr.Zero)
-            ////{
-            ////    //	Swap the buffers.
-            ////    Win32.SwapBuffers(dc);
-
-            ////    //	Blit the DC (containing the DIB section) to the target DC.
-            ////    Win32.BitBlt(deviceContext, 0, 0, this.Width, this.Height, dc, 0, 0, Win32.SRCCOPY);
-            ////}
-
-            //if (this.DeviceContextHandle != IntPtr.Zero)
-            //{
-            //    ////  Set the read buffer.
-            //    //GL.Instance.ReadBuffer(GL.GL_COLOR_ATTACHMENT0);
-
-            //    //	Read the pixels into the DIB section.
-            //    GL.Instance.ReadPixels(0, 0, this.Width, this.Height, GL.GL_BGRA,
-            //        GL.GL_UNSIGNED_BYTE, this.dibSection.Bits);
-
-            //    //	Blit the DC (containing the DIB section) to the target DC.
-            //    //Win32.BitBlt(deviceContext, 0, 0, this.Width, this.Height,
-            //    //this.dibSection.MemoryDeviceContext, 0, 0, Win32.SRCCOPY);
-            //}
-        }
-
         /// <summary>
         /// Makes the render context current.
         /// </summary>
@@ -134,7 +83,6 @@ namespace SoftGL
                 ContextManager.MakeCurrent(this.DeviceContextHandle, this.RenderContextHandle);
             }
         }
-
 
     }
 }

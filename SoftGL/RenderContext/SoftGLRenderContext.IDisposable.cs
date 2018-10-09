@@ -38,9 +38,9 @@ namespace SoftGL
                 // Dispose unmanaged resources.
                 { ////	Release the device context and the window.
                     //Win32.ReleaseDC(windowHandle, this.DeviceContextHandle);
-                    this.graphics.ReleaseHdc();
-                    this.graphics.Dispose();
-                    this.window.Dispose();
+                    //this.graphics.ReleaseHdc();
+                    //this.graphics.Dispose();
+                    //this.window.Dispose();
 
                     ////	Destroy the window.
                     //Win32.DestroyWindow(windowHandle);
