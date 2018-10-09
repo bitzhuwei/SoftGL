@@ -22,5 +22,10 @@ namespace SoftGL
             throw new NotImplementedException();
         }
 
+        public static vec3 cross(vec3 left, vec3 right)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

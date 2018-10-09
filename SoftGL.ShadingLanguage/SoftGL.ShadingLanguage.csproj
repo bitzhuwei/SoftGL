@@ -82,6 +82,7 @@
     <Compile Include="ShaderCodes\GeometryCodeBase.cs" />
     <Compile Include="ShaderCodes\DemoFrag.cs" />
     <Compile Include="ShaderCodes\DemoVert.cs" />
+    <Compile Include="ShaderCodes\GeometryIn.cs" />
     <Compile Include="ShaderCodes\TessControlCodeBase.cs" />
     <Compile Include="ShaderCodes\TessEvaluationCodeBase.cs" />
     <Compile Include="ShaderCodes\VertexCodeBase.cs" />

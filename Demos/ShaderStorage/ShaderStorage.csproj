@@ -48,6 +48,7 @@
     <Compile Include="GrayFilter.cs" />
     <Compile Include="EnvironmentMapping.cs" />
     <Compile Include="HelloComputeShader.cs" />
+    <Compile Include="ShadowVolume.cs" />
     <Compile Include="Shader.Common.cs" />
     <Compile Include="SpotLight.cs" />
     <Compile Include="TextBillboard.cs" />

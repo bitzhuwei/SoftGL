@@ -15,8 +15,10 @@
             }
             else
             {
+                vec2 index = vec2(gl_LocalInvocationID.x, gl_LocalInvocationID.xy.y);
+                vec2 size = vec2(gl_WorkGroupSize.x, gl_WorkGroupSize.y);
                 imageStore(outImage, ivec2(xy),
-                    vec4(vec2(gl_LocalInvocationID.xy) / vec2(gl_WorkGroupSize.xy), 0.0, 0.0));
+                    vec4(index.x / size.x, index.y / size.y, 0.0, 0.0));
             }
         }
     }

@@ -61,7 +61,7 @@
         /// white light.
         /// </summary>
         [Uniform]
-        SpotLight light = new SpotLight(vec3(1), vec3(1), vec3(1), vec3(0), 0.5, 1);
+        Light light = new Light(LightType.SpotLight, vec3(1), vec3(1), vec3(1), vec3(0), 0.5, 1);
         [Uniform]
         float constantAttenuation = 1.0f;
         [Uniform]

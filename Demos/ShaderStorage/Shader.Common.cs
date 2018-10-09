@@ -47,8 +47,12 @@
         }
     }
 
-    struct SpotLight
+    struct Light
     {
+        /// <summary>
+        /// which kind of light?
+        /// </summary>
+        public LightType lightType;
         /// <summary>
         /// ability to reflect diffuse color.[0, 1]
         /// </summary>
@@ -78,17 +82,27 @@
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="lightType"></param>
         /// <param name="diffuse"></param>
         /// <param name="specular"></param>
         /// <param name="position"></param>
         /// <param name="direction"></param>
         /// <param name="cutoff"></param>
         /// <param name="exponent"></param>
-        public SpotLight(vec3 diffuse, vec3 specular, vec3 position, vec3 direction, double cutoff, double exponent)
+        public Light(LightType lightType, vec3 diffuse, vec3 specular, vec3 position, vec3 direction, double cutoff, double exponent)
         {
+            this.lightType = lightType;
             this.diffuse = diffuse; this.specular = specular;
             this.position = position; this.direction = direction;
             this.cutoff = (float)cutoff; this.exponent = (float)exponent;
         }
+    }
+
+    enum LightType : int
+    {
+        SpotLight,
+        PointLight,
+        DirectionalLight,
+
     }
 }
