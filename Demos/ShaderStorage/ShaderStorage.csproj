@@ -50,7 +50,6 @@
     <Compile Include="HelloComputeShader.cs" />
     <Compile Include="ShadowVolume.cs" />
     <Compile Include="Shader.Common.cs" />
-    <Compile Include="EZM.cs" />
     <Compile Include="SpotLight.cs" />
     <Compile Include="TextBillboard.cs" />
     <Compile Include="sampler2D.cs" />
