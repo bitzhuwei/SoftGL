@@ -17,6 +17,11 @@ namespace SoftGL
             throw new NotImplementedException();
         }
 
+        public static float dot(vec4 left, vec4 right)
+        {
+            throw new NotImplementedException();
+        }
+
         public static float length(vec3 v)
         {
             throw new NotImplementedException();
